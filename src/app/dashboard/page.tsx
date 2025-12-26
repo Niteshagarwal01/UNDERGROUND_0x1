@@ -12,6 +12,7 @@ import {
     Check,
     Plus,
     LogIn,
+    LogOut,
     Loader2,
     ChevronRight,
     Shield,
@@ -227,6 +228,33 @@ export default function DashboardPage() {
         }
     };
 
+    const handleLeaveTeam = async () => {
+        if (!confirm("Are you sure you want to leave this team? You will lose access to team features.")) {
+            return;
+        }
+
+        setActionLoading(true);
+        setActionMessage(null);
+
+        try {
+            const res = await fetch("/api/teams/leave", {
+                method: "POST",
+            });
+            const json = await res.json();
+
+            if (json.success) {
+                setActionMessage({ type: "success", text: json.message });
+                await fetchUser();
+            } else {
+                setActionMessage({ type: "error", text: json.message });
+            }
+        } catch {
+            setActionMessage({ type: "error", text: "Network error. Please try again." });
+        } finally {
+            setActionLoading(false);
+        }
+    };
+
     if (!isLoaded || loading) {
         return (
             <div className="min-h-screen bg-black grid-pattern" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -411,6 +439,19 @@ export default function DashboardPage() {
                                     <Link href={`/team/${userData.team.id}`} className="btn btn-secondary btn-sm">
                                         View Profile
                                     </Link>
+                                    <button
+                                        onClick={handleLeaveTeam}
+                                        className="btn btn-sm"
+                                        disabled={actionLoading}
+                                        style={{
+                                            background: 'rgba(239, 68, 68, 0.1)',
+                                            color: '#ef4444',
+                                            border: '1px solid rgba(239, 68, 68, 0.3)'
+                                        }}
+                                    >
+                                        {actionLoading ? <Loader2 size={14} className="spinner" /> : <LogOut size={14} />}
+                                        Leave Team
+                                    </button>
                                 </div>
                             </div>
 
