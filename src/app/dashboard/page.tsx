@@ -16,7 +16,9 @@ import {
     ChevronRight,
     Shield,
     AlertCircle,
-    UserPlus
+    UserPlus,
+    UserCheck,
+    UserX
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -69,6 +71,22 @@ export default function DashboardPage() {
     const [actionMessage, setActionMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
     const [copied, setCopied] = useState(false);
 
+    // Join requests (for team leaders)
+    interface JoinRequest {
+        id: string;
+        user: {
+            id: string;
+            username: string;
+            email: string;
+            avatarUrl: string | null;
+            totalPoints: number;
+            solvedCount: number;
+        };
+        createdAt: string;
+    }
+    const [joinRequests, setJoinRequests] = useState<JoinRequest[]>([]);
+    const [requestsLoading, setRequestsLoading] = useState(false);
+
     const fetchUser = async () => {
         try {
             const res = await fetch("/api/user");
@@ -93,6 +111,53 @@ export default function DashboardPage() {
             setLoading(false);
         }
     }, [isLoaded, clerkUser]);
+
+    // Fetch join requests for team leaders
+    const fetchJoinRequests = async () => {
+        if (!userData?.isTeamLeader) return;
+        setRequestsLoading(true);
+        try {
+            const res = await fetch("/api/teams/requests");
+            const json = await res.json();
+            if (json.success) {
+                setJoinRequests(json.requests);
+            }
+        } catch {
+            console.error("Failed to fetch join requests");
+        } finally {
+            setRequestsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (userData?.isTeamLeader) {
+            fetchJoinRequests();
+        }
+    }, [userData?.isTeamLeader]);
+
+    const handleRequestAction = async (requestId: string, action: "accept" | "decline") => {
+        setActionLoading(true);
+        setActionMessage(null);
+        try {
+            const res = await fetch("/api/teams/requests", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ requestId, action }),
+            });
+            const json = await res.json();
+            if (json.success) {
+                setActionMessage({ type: "success", text: json.message });
+                await fetchJoinRequests();
+                await fetchUser();
+            } else {
+                setActionMessage({ type: "error", text: json.message });
+            }
+        } catch {
+            setActionMessage({ type: "error", text: "Network error" });
+        } finally {
+            setActionLoading(false);
+        }
+    };
 
     const handleCreateTeam = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -385,6 +450,102 @@ export default function DashboardPage() {
                                             {copied ? "Copied!" : "Copy"}
                                         </button>
                                     </div>
+                                </div>
+                            )}
+
+                            {/* Join Requests for Team Leaders */}
+                            {userData.isTeamLeader && (
+                                <div style={{ marginTop: '24px' }}>
+                                    <h3 style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1rem' }}>
+                                        <UserPlus size={20} className="text-yellow" />
+                                        Pending Join Requests
+                                        {joinRequests.length > 0 && (
+                                            <span style={{
+                                                background: 'var(--yellow)',
+                                                color: 'var(--black)',
+                                                padding: '2px 8px',
+                                                borderRadius: '12px',
+                                                fontSize: '12px',
+                                                fontWeight: 700
+                                            }}>
+                                                {joinRequests.length}
+                                            </span>
+                                        )}
+                                    </h3>
+                                    {requestsLoading ? (
+                                        <div style={{ textAlign: 'center', padding: '24px' }}>
+                                            <Loader2 size={24} className="spinner text-yellow" />
+                                        </div>
+                                    ) : joinRequests.length === 0 ? (
+                                        <div style={{
+                                            padding: '24px',
+                                            textAlign: 'center',
+                                            color: 'var(--text-muted)',
+                                            background: 'var(--black-lighter)',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--black-border)'
+                                        }}>
+                                            No pending requests
+                                        </div>
+                                    ) : (
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                            {joinRequests.map((req) => (
+                                                <div
+                                                    key={req.id}
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'space-between',
+                                                        padding: '16px',
+                                                        background: 'var(--black-lighter)',
+                                                        border: '1px solid var(--black-border)',
+                                                        borderRadius: '8px'
+                                                    }}
+                                                >
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                                        <div style={{
+                                                            width: '40px',
+                                                            height: '40px',
+                                                            borderRadius: '50%',
+                                                            background: 'var(--yellow)',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            color: 'var(--black)',
+                                                            fontWeight: 700
+                                                        }}>
+                                                            {req.user.username[0]?.toUpperCase()}
+                                                        </div>
+                                                        <div>
+                                                            <div style={{ fontWeight: 600 }}>{req.user.username}</div>
+                                                            <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                                                                {req.user.email}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ display: 'flex', gap: '8px' }}>
+                                                        <button
+                                                            onClick={() => handleRequestAction(req.id, "accept")}
+                                                            className="btn btn-primary btn-sm"
+                                                            disabled={actionLoading || (userData.team?.memberCount ?? 0) >= 4}
+                                                            title={(userData.team?.memberCount ?? 0) >= 4 ? "Team is full" : "Accept"}
+                                                        >
+                                                            <UserCheck size={16} />
+                                                            Accept
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleRequestAction(req.id, "decline")}
+                                                            className="btn btn-secondary btn-sm"
+                                                            disabled={actionLoading}
+                                                        >
+                                                            <UserX size={16} />
+                                                            Decline
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>
