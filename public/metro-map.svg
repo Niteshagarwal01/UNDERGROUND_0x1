@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <rect width="1200" height="800" fill="#000"/>
+  
+  <!-- Yellow Line - Main -->
+  <path d="M 50 400 L 150 400 L 250 300 L 400 300 L 550 400 L 750 400 L 900 300 L 1100 300" 
+        stroke="#facc15" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Blue Line -->
+  <path d="M 100 100 L 100 250 L 250 400 L 250 600 L 400 750" 
+        stroke="#3b82f6" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Red Line -->
+  <path d="M 200 50 L 350 200 L 550 200 L 700 100 L 850 200 L 1050 200" 
+        stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Green Line -->
+  <path d="M 550 50 L 550 200 L 550 400 L 650 550 L 650 750" 
+        stroke="#22c55e" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Magenta Line -->
+  <path d="M 750 100 L 750 300 L 900 450 L 900 650 L 1050 750" 
+        stroke="#d946ef" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Orange Line (Aqua) -->
+  <path d="M 1000 100 L 1000 250 L 1100 400 L 1150 550" 
+        stroke="#f97316" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Violet Line -->
+  <path d="M 150 500 L 350 500 L 550 600 L 750 600 L 950 700 L 1100 700" 
+        stroke="#8b5cf6" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Grey Line -->
+  <path d="M 100 650 L 250 600 L 400 500 L 550 400" 
+        stroke="#6b7280" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Pink Line -->
+  <path d="M 350 100 L 400 200 L 400 400 L 550 500 L 750 500" 
+        stroke="#ec4899" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Major Interchange Stations -->
+  <circle cx="250" cy="400" r="12" fill="#facc15" stroke="#000" stroke-width="3"/>
+  <circle cx="550" cy="400" r="12" fill="#facc15" stroke="#000" stroke-width="3"/>
+  <circle cx="750" cy="400" r="12" fill="#facc15" stroke="#000" stroke-width="3"/>
+  <circle cx="550" cy="200" r="12" fill="#facc15" stroke="#000" stroke-width="3"/>
+  <circle cx="400" cy="300" r="10" fill="#facc15" stroke="#000" stroke-width="2"/>
+  <circle cx="900" cy="300" r="10" fill="#facc15" stroke="#000" stroke-width="2"/>
+  
+  <!-- Regular Stations -->
+  <circle cx="150" cy="400" r="6" fill="#facc15"/>
+  <circle cx="350" cy="200" r="6" fill="#facc15"/>
+  <circle cx="100" cy="250" r="6" fill="#facc15"/>
+  <circle cx="750" cy="300" r="6" fill="#facc15"/>
+  <circle cx="750" cy="500" r="6" fill="#facc15"/>
+  <circle cx="650" cy="550" r="6" fill="#facc15"/>
+  <circle cx="550" cy="600" r="6" fill="#facc15"/>
+  <circle cx="350" cy="500" r="6" fill="#facc15"/>
+  <circle cx="400" cy="400" r="6" fill="#facc15"/>
+  <circle cx="850" cy="200" r="6" fill="#facc15"/>
+  <circle cx="1050" cy="200" r="6" fill="#facc15"/>
+  <circle cx="1000" cy="250" r="6" fill="#facc15"/>
+  <circle cx="900" cy="450" r="6" fill="#facc15"/>
+</svg>

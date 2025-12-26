@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UNDERGROUND_0x1 CTF Platform
 
-## Getting Started
+A high-fidelity Delhi Metro operational compromise simulation. Elite-level Capture The Flag competition.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Authentication**: Clerk
+- **Database**: Neon PostgreSQL
+- **ORM**: Prisma
+- **Styling**: Tailwind CSS
+- **Validation**: Zod
+
+## 📁 Project Structure
+
+```
+underground-0x1/
+├── prisma/
+│   └── schema.prisma       # Database schema
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── challenges/ # Challenge list API
+│   │   │   └── submit/     # Flag submission API
+│   │   ├── challenges/     # Challenges page
+│   │   ├── dashboard/      # User dashboard
+│   │   ├── leaderboard/    # Leaderboard page
+│   │   ├── sign-in/        # Clerk sign-in
+│   │   ├── sign-up/        # Clerk sign-up
+│   │   ├── globals.css     # Global styles
+│   │   ├── layout.tsx      # Root layout
+│   │   └── page.tsx        # Landing page
+│   ├── components/         # Reusable components
+│   ├── lib/
+│   │   └── prisma.ts       # Prisma client
+│   └── middleware.ts       # Auth middleware
+├── env.template            # Environment template
+├── next.config.ts          # Next.js config with security
+└── package.json
+```
+
+## 🛠️ Setup
+
+### 1. Environment Variables
+
+Copy `env.template` to `.env` and fill in your values:
+
+```bash
+cp env.template .env
+```
+
+Required variables:
+- `DATABASE_URL`: Your Neon PostgreSQL connection string
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: From Clerk dashboard
+- `CLERK_SECRET_KEY`: From Clerk dashboard
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Setup Database
+
+```bash
+# Generate Prisma client
+npx prisma generate
+
+# Push schema to database
+npx prisma db push
+
+# (Optional) Open Prisma Studio
+npx prisma studio
+```
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Security Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Authentication**: Clerk with secure session handling
+- **Rate Limiting**: 5 flag submissions per minute per user
+- **Input Validation**: Zod schemas on all inputs
+- **CSRF Protection**: Next.js built-in
+- **Security Headers**: HSTS, CSP, X-Frame-Options, etc.
+- **Flag Hashing**: bcrypt for flag storage
+- **SQL Injection Prevention**: Prisma ORM
 
-## Learn More
+## 📊 Adding Challenges
 
-To learn more about Next.js, take a look at the following resources:
+1. Add challenge to database via Prisma Studio or API
+2. Generate flag hash:
+   ```javascript
+   const bcrypt = require('bcryptjs');
+   const hash = bcrypt.hashSync('UG0x1{your_flag}', 12);
+   console.log(hash);
+   ```
+3. Store hash in `flagHash` field
+4. Upload challenge files to storage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel (Recommended)
 
-## Deploy on Vercel
+1. Push to GitHub
+2. Import to Vercel
+3. Add environment variables
+4. Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Other Platforms
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build command: `npm run build`
+Start command: `npm start`
+
+## 📝 License
+
+MIT License - For educational purposes only.
+
+## ⚠️ Disclaimer
+
+This is an independent cybersecurity education competition. It is NOT affiliated with Delhi Metro Rail Corporation (DMRC). All scenarios are fictional.

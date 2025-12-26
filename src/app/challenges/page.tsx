@@ -1,0 +1,420 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
+import {
+    Search,
+    FileSearch,
+    Lock,
+    Cpu,
+    Globe,
+    ChevronDown,
+    X,
+    Send,
+    CheckCircle,
+    XCircle,
+    AlertTriangle,
+    Loader2,
+    Construction,
+} from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+// Category icon mapping
+const categoryIcons: Record<string, typeof Search> = {
+    osint: Search,
+    forensics: FileSearch,
+    crypto: Lock,
+    reversing: Cpu,
+    web: Globe,
+};
+
+// Category subtitle mapping
+const categorySubtitles: Record<string, string> = {
+    osint: "Ghost Corridors",
+    forensics: "Signal Black",
+    crypto: "Fare Matrix",
+    reversing: "Token Forge",
+    web: "OCC Portal",
+};
+
+type Challenge = {
+    id: string;
+    title: string;
+    difficulty: string;
+    points: number;
+    solves: number;
+    description: string;
+    slug: string;
+};
+
+type Category = {
+    id: string;
+    name: string;
+    subtitle: string;
+    icon: typeof Search;
+    points: number;
+    challenges: Challenge[];
+};
+
+function DifficultyBadge({ difficulty }: { difficulty: string }) {
+    const styles: Record<string, string> = {
+        MEDIUM: "badge badge-medium",
+        HARD: "badge badge-hard",
+        GOD_LEVEL: "badge badge-god",
+    };
+    const labels: Record<string, string> = {
+        MEDIUM: "Medium",
+        HARD: "Hard",
+        GOD_LEVEL: "God-Level",
+    };
+    return <span className={styles[difficulty]}>{labels[difficulty]}</span>;
+}
+
+function ChallengeModal({
+    challenge,
+    category,
+    onClose,
+    isAuthenticated,
+    hasTeam,
+}: {
+    challenge: Challenge;
+    category: Category;
+    onClose: () => void;
+    isAuthenticated: boolean;
+    hasTeam: boolean;
+}) {
+    const [flag, setFlag] = useState("");
+    const [submitting, setSubmitting] = useState(false);
+    const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubmitting(true);
+        setResult(null);
+
+        try {
+            const res = await fetch("/api/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ challengeId: challenge.slug, flag }),
+            });
+            const data = await res.json();
+            setResult(data);
+            if (data.success) setFlag("");
+        } catch {
+            setResult({ success: false, message: "Network error. Please try again." });
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ position: 'relative' }}>
+                {/* Close Button */}
+                <button onClick={onClose} className="modal-close">
+                    <X size={20} />
+                </button>
+
+                {/* Header */}
+                <div className="modal-header">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                        <div className="category-icon" style={{ width: '48px', height: '48px' }}>
+                            <category.icon size={24} />
+                        </div>
+                        <div>
+                            <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{category.name}</p>
+                            <h2 style={{ fontSize: '1.5rem' }}>{challenge.title}</h2>
+                        </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <DifficultyBadge difficulty={challenge.difficulty} />
+                        <span className="text-yellow" style={{ fontWeight: 700 }}>{challenge.points} pts</span>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>{challenge.solves} solves</span>
+                    </div>
+                </div>
+
+                {/* Body */}
+                <div className="modal-body">
+                    <div style={{ marginBottom: '32px' }}>
+                        <h4 style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>
+                            Briefing
+                        </h4>
+                        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+                            {challenge.description}
+                        </p>
+                    </div>
+
+                    {/* Flag Submission */}
+                    {!isAuthenticated ? (
+                        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+                            <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
+                            <h4 style={{ marginBottom: '8px' }}>Authentication Required</h4>
+                            <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                                Sign in to submit flags
+                            </p>
+                            <Link href="/enter" className="btn btn-primary">
+                                Sign In
+                            </Link>
+                        </div>
+                    ) : !hasTeam ? (
+                        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+                            <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
+                            <h4 style={{ marginBottom: '8px' }}>Team Required</h4>
+                            <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                                Create or join a team to submit flags
+                            </p>
+                            <Link href="/dashboard" className="btn btn-primary">
+                                Go to Dashboard
+                            </Link>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit}>
+                            <div className="input-group">
+                                <label className="input-label">Submit Flag</label>
+                                <div style={{ display: 'flex', gap: '12px' }}>
+                                    <input
+                                        type="text"
+                                        className="input"
+                                        placeholder="UG0x1{...}"
+                                        value={flag}
+                                        onChange={(e) => setFlag(e.target.value)}
+                                        disabled={submitting}
+                                        style={{ flex: 1 }}
+                                    />
+                                    <button type="submit" className="btn btn-primary" disabled={submitting || !flag.trim()}>
+                                        {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {result && (
+                                <div className={`alert ${result.success ? 'alert-success' : 'alert-error'}`} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
+                                    {result.success ? <CheckCircle size={18} /> : <XCircle size={18} />}
+                                    {result.message}
+                                </div>
+                            )}
+                        </form>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default function ChallengesPage() {
+    const { user, isLoaded } = useUser();
+    const [openCategories, setOpenCategories] = useState<string[]>([]);
+    const [selectedChallenge, setSelectedChallenge] = useState<{
+        challenge: Challenge;
+        category: Category;
+    } | null>(null);
+    const [hasTeam, setHasTeam] = useState(false);
+    const [categoriesData, setCategoriesData] = useState<Category[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [totalChallenges, setTotalChallenges] = useState(0);
+    const [totalPoints, setTotalPoints] = useState(0);
+
+    // Fetch challenges from API
+    useEffect(() => {
+        fetch("/api/challenges")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success && data.categories) {
+                    // Transform API data to match component format
+                    const transformed = data.categories.map((cat: any) => {
+                        const slug = cat.slug.toLowerCase();
+                        return {
+                            id: slug,
+                            name: cat.name,
+                            subtitle: categorySubtitles[slug] || "",
+                            icon: categoryIcons[slug] || Search,
+                            points: cat.challenges.reduce((sum: number, c: any) => sum + c.points, 0),
+                            challenges: cat.challenges.map((c: any) => ({
+                                id: c.slug,
+                                title: c.title,
+                                difficulty: c.difficulty,
+                                points: c.points,
+                                solves: c.solveCount || 0,
+                                description: c.description,
+                                slug: c.slug,
+                            })),
+                        };
+                    });
+                    setCategoriesData(transformed);
+                    setTotalChallenges(data.totalChallenges || 0);
+                    setTotalPoints(data.totalPoints || 0);
+                    // Open first category by default
+                    if (transformed.length > 0) {
+                        setOpenCategories([transformed[0].id]);
+                    }
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching challenges:", error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            fetch("/api/user")
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.success && data.user?.team) {
+                        setHasTeam(true);
+                    }
+                })
+                .catch(() => { });
+        }
+    }, [user]);
+
+    const toggleCategory = (id: string) => {
+        setOpenCategories((prev) =>
+            prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+        );
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-black grid-pattern">
+                <Navbar />
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '60vh',
+                    flexDirection: 'column',
+                    gap: '16px'
+                }}>
+                    <Loader2 size={40} className="spinner text-yellow" />
+                    <p style={{ color: 'var(--text-secondary)' }}>Loading challenges...</p>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-black grid-pattern">
+            <Navbar />
+
+            {/* Header */}
+            <section className="section" style={{ paddingTop: 'calc(var(--nav-height) + 60px)', paddingBottom: '40px' }}>
+                <div className="container">
+                    <div className="section-header" style={{ marginBottom: '40px' }}>
+                        <h1 className="section-title">
+                            <span style={{ color: 'var(--text-muted)' }}>[</span>
+                            Challenges
+                            <span style={{ color: 'var(--text-muted)' }}>]</span>
+                        </h1>
+                        <p className="section-subtitle">
+                            {totalChallenges} challenges • {totalPoints.toLocaleString()} total points
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Challenges Accordion */}
+            <section style={{ paddingBottom: '100px' }}>
+                <div className="container">
+                    {categoriesData.length === 0 ? (
+                        <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
+                            <Construction size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
+                            <h3 style={{ marginBottom: '12px' }}>Challenges Under Development</h3>
+                            <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
+                                Our team is crafting elite-level challenges. Check back soon for the full experience.
+                            </p>
+                        </div>
+                    ) : (
+                        categoriesData.map((category) => (
+                            <div key={category.id} id={category.id} className="accordion">
+                                {/* Accordion Header */}
+                                <div
+                                    className={`accordion-header ${openCategories.includes(category.id) ? 'active' : ''}`}
+                                    onClick={() => toggleCategory(category.id)}
+                                >
+                                    <div className="accordion-icon">
+                                        <category.icon size={24} />
+                                    </div>
+                                    <div className="accordion-info">
+                                        <h3 className="accordion-title">{category.name}</h3>
+                                        <p className="accordion-subtitle">{category.subtitle}</p>
+                                    </div>
+                                    <div className="accordion-meta hide-mobile">
+                                        <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+                                            {category.challenges.length} challenges
+                                        </span>
+                                        <span className="accordion-points">{category.points} pts</span>
+                                    </div>
+                                    <ChevronDown
+                                        size={24}
+                                        className={`accordion-toggle ${openCategories.includes(category.id) ? 'open' : ''}`}
+                                    />
+                                </div>
+
+                                {/* Accordion Content */}
+                                {openCategories.includes(category.id) && (
+                                    <div className="accordion-content">
+                                        {category.challenges.length === 0 ? (
+                                            <div style={{
+                                                textAlign: 'center',
+                                                padding: '48px 24px',
+                                                background: 'var(--black-lighter)',
+                                                borderRadius: '8px',
+                                                border: '1px dashed var(--black-border)'
+                                            }}>
+                                                <Construction size={36} className="text-yellow" style={{ marginBottom: '12px', opacity: 0.6 }} />
+                                                <h4 style={{ marginBottom: '8px', fontSize: '1rem' }}>Challenges Coming Soon</h4>
+                                                <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+                                                    {category.name} challenges are under development.
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="challenges-list">
+                                                {category.challenges.map((challenge) => (
+                                                    <div
+                                                        key={challenge.id}
+                                                        className="challenge-card"
+                                                        onClick={() => setSelectedChallenge({ challenge, category })}
+                                                    >
+                                                        <div className="challenge-header">
+                                                            <h4 className="challenge-title">{challenge.title}</h4>
+                                                            <DifficultyBadge difficulty={challenge.difficulty} />
+                                                        </div>
+                                                        <p className="challenge-description">{challenge.description}</p>
+                                                        <div className="challenge-footer">
+                                                            <span className="challenge-points">{challenge.points} pts</span>
+                                                            <span className="challenge-solves">{challenge.solves} solves</span>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        ))
+                    )}
+                </div>
+            </section>
+
+            {/* Modal */}
+            {selectedChallenge && (
+                <ChallengeModal
+                    challenge={selectedChallenge.challenge}
+                    category={selectedChallenge.category}
+                    onClose={() => setSelectedChallenge(null)}
+                    isAuthenticated={isLoaded && !!user}
+                    hasTeam={hasTeam}
+                />
+            )}
+
+            <Footer />
+        </div>
+    );
+}

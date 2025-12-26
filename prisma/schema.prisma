@@ -1,0 +1,320 @@
+// UNDERGROUND_0x1 CTF Platform Database Schema
+// Using Neon PostgreSQL with Prisma 7
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER & TEAM MODELS
+// ============================================
+
+model User {
+  id            String   @id @default(cuid())
+  clerkId       String   @unique
+  email         String   @unique
+  username      String   @unique
+  avatarUrl     String?
+  
+  // Team relationship
+  teamId        String?
+  team          Team?    @relation(fields: [teamId], references: [id])
+  isTeamLeader  Boolean  @default(false)
+  
+  // Stats
+  totalPoints   Int      @default(0)
+  solvedCount   Int      @default(0)
+  
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  lastActive    DateTime @default(now())
+  
+  // Relations
+  submissions   Submission[]
+  joinRequests  JoinRequest[]
+  feedback      Feedback[]
+  
+  role          Role     @default(USER)
+
+  @@index([clerkId])
+  @@index([teamId])
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+model Team {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  description   String?
+  avatarUrl     String?
+  inviteCode    String   @unique @default(cuid())
+  
+  // Stats
+  totalPoints   Int      @default(0)
+  solvedCount   Int      @default(0)
+  rank          Int?
+  
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relations
+  members       User[]
+  submissions   Submission[]
+  solves        Solve[]
+  joinRequests  JoinRequest[]
+  
+  @@index([totalPoints(sort: Desc)])
+}
+
+// ============================================
+// CHALLENGE MODELS
+// ============================================
+
+model Category {
+  id            String      @id @default(cuid())
+  name          String      @unique
+  slug          String      @unique
+  description   String?
+  icon          String?
+  color         String?
+  order         Int         @default(0)
+  
+  challenges    Challenge[]
+  
+  @@index([order])
+}
+
+model Challenge {
+  id            String      @id @default(cuid())
+  title         String
+  slug          String      @unique
+  description   String
+  
+  // Categorization
+  categoryId    String
+  category      Category    @relation(fields: [categoryId], references: [id])
+  difficulty    Difficulty  @default(MEDIUM)
+  
+  // Points
+  points        Int
+  
+  // Flag (hashed)
+  flagHash      String
+  
+  // Files & Resources
+  files         ChallengeFile[]
+  hints         Hint[]
+  resourceUrl   String?         // External link to resources/files
+  
+  // Status
+  isActive      Boolean     @default(true)
+  isHidden      Boolean     @default(false)
+  
+  // Stats
+  solveCount    Int         @default(0)
+  attemptCount  Int         @default(0)
+  
+  // Timestamps
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  releasedAt    DateTime    @default(now())
+  
+  // Relations
+  submissions   Submission[]
+  solves        Solve[]
+  firstBlood    Solve?      @relation("FirstBlood")
+  
+  @@index([categoryId])
+  @@index([difficulty])
+  @@index([isActive, isHidden])
+}
+
+model ChallengeFile {
+  id            String      @id @default(cuid())
+  challengeId   String
+  challenge     Challenge   @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  name          String
+  url           String
+  size          Int
+  
+  createdAt     DateTime    @default(now())
+  
+  @@index([challengeId])
+}
+
+model Hint {
+  id            String      @id @default(cuid())
+  challengeId   String
+  challenge     Challenge   @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  content       String
+  cost          Int         @default(0)
+  order         Int         @default(0)
+  
+  createdAt     DateTime    @default(now())
+  
+  @@index([challengeId])
+}
+
+enum Difficulty {
+  MEDIUM
+  HARD
+  GOD_LEVEL
+}
+
+// ============================================
+// SUBMISSION & SOLVE MODELS
+// ============================================
+
+model Submission {
+  id            String      @id @default(cuid())
+  
+  // Who submitted
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  teamId        String?
+  team          Team?       @relation(fields: [teamId], references: [id])
+  
+  // What was submitted
+  challengeId   String
+  challenge     Challenge   @relation(fields: [challengeId], references: [id])
+  flag          String
+  
+  // Result
+  isCorrect     Boolean
+  
+  // Metadata
+  ipAddress     String?
+  userAgent     String?
+  
+  // Timestamp
+  createdAt     DateTime    @default(now())
+  
+  @@index([userId])
+  @@index([teamId])
+  @@index([challengeId])
+  @@index([createdAt])
+}
+
+model Solve {
+  id            String      @id @default(cuid())
+  
+  // Who solved
+  teamId        String
+  team          Team        @relation(fields: [teamId], references: [id])
+  
+  // What was solved
+  challengeId   String
+  challenge     Challenge   @relation(fields: [challengeId], references: [id])
+  
+  // Points earned
+  points        Int
+  
+  // First blood tracking
+  isFirstBlood  Boolean     @default(false)
+  firstBloodFor Challenge?  @relation("FirstBlood", fields: [firstBloodId], references: [id])
+  firstBloodId  String?     @unique
+  
+  // Timestamp
+  solvedAt      DateTime    @default(now())
+  
+  @@unique([teamId, challengeId])
+  @@index([teamId])
+  @@index([challengeId])
+  @@index([solvedAt])
+}
+
+// ============================================
+// ANNOUNCEMENTS
+// ============================================
+
+model Announcement {
+  id            String      @id @default(cuid())
+  title         String
+  content       String
+  isPinned      Boolean     @default(false)
+  
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@index([isPinned, createdAt])
+}
+
+// ============================================
+// JOIN REQUEST MODEL
+// ============================================
+
+model JoinRequest {
+  id            String            @id @default(cuid())
+  
+  // Who is requesting
+  userId        String
+  user          User              @relation(fields: [userId], references: [id])
+  
+  // Which team
+  teamId        String
+  team          Team              @relation(fields: [teamId], references: [id])
+  
+  // Status
+  status        JoinRequestStatus @default(PENDING)
+  
+  // Timestamps
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  
+  @@unique([userId, teamId])
+  @@index([teamId, status])
+  @@index([userId])
+}
+
+enum JoinRequestStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+// ============================================
+// FEEDBACK MODEL
+// ============================================
+
+model Feedback {
+  id            String         @id @default(cuid())
+  
+  // Who submitted (optional - allow anonymous)
+  userId        String?
+  user          User?          @relation(fields: [userId], references: [id])
+  
+  // Feedback content
+  subject       String
+  message       String
+  rating        Int            @default(5)  // 1-5 star rating
+  
+  // Status for admin tracking
+  status        FeedbackStatus @default(NEW)
+  adminResponse String?
+  
+  // Timestamps
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  
+  @@index([status, createdAt])
+  @@index([userId])
+}
+
+enum FeedbackStatus {
+  NEW
+  REVIEWED
+  RESOLVED
+}
