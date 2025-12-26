@@ -26,11 +26,12 @@ async function checkAdmin() {
         return { isAdmin: false, error: "Forbidden" };
     }
 
+    // ADMIN and MODERATOR roles get admin access
+    // Team members get MODERATOR role when joining admin team
     const isDirectAdmin = user.role === "ADMIN";
     const isModerator = user.role === "MODERATOR";
-    const hasAdminInTeam = user.team?.members.some((m) => m.role === "ADMIN") || false;
 
-    if (!isDirectAdmin && !isModerator && !hasAdminInTeam) {
+    if (!isDirectAdmin && !isModerator) {
         return { isAdmin: false, error: "Forbidden" };
     }
 

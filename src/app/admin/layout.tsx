@@ -34,12 +34,12 @@ export default async function AdminLayout({
         redirect("/dashboard");
     }
 
-    // Check if user is admin, moderator, OR if user's team has at least one admin member
+    // Check if user is admin, moderator, OR if user is in a team with an admin
+    // Team members get MODERATOR role when joining admin team, so they'll have access
     const isDirectAdmin = dbUser.role === "ADMIN";
     const isModerator = dbUser.role === "MODERATOR";
-    const hasAdminInTeam = dbUser.team?.members.some((member) => member.role === "ADMIN") || false;
 
-    if (!isDirectAdmin && !isModerator && !hasAdminInTeam) {
+    if (!isDirectAdmin && !isModerator) {
         redirect("/dashboard");
     }
 
@@ -48,22 +48,22 @@ export default async function AdminLayout({
             <AdminSidebar />
 
             {/* Main Content */}
-            <main style={{ 
-                flex: 1, 
-                display: 'flex', 
-                flexDirection: 'column', 
+            <main style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
                 marginLeft: 0,
                 minWidth: 0
             }}
-            className="admin-main"
+                className="admin-main"
             >
-                <header style={{ 
-                    height: '72px', 
-                    borderBottom: '1px solid var(--black-border)', 
-                    background: 'var(--black-card)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'space-between', 
+                <header style={{
+                    height: '72px',
+                    borderBottom: '1px solid var(--black-border)',
+                    background: 'var(--black-card)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                     padding: '0 24px',
                     position: 'sticky',
                     top: 0,
@@ -83,7 +83,7 @@ export default async function AdminLayout({
                 </header>
 
                 <div style={{ flex: 1, overflow: 'auto', padding: '24px' }}
-                className="admin-content"
+                    className="admin-content"
                 >
                     {children}
                 </div>
