@@ -100,7 +100,7 @@ export async function GET() {
         // At this point user is guaranteed to exist
         const currentUserData = user!;
 
-        // Calculate rank properly (excluding admins, moderators, and users in admin teams from ranking)
+        // Calculate TEAM rank (not user rank) for consistency with leaderboard
         let userRank: number | null = null;
 
         // Check if user is admin, moderator, or in admin team
@@ -109,59 +109,30 @@ export async function GET() {
         const isInAdminTeam = currentUserData.team?.members?.some((member) => member.role === "ADMIN") || false;
 
         // Admins, moderators, and users in admin teams don't have ranks
-        if (!isAdmin && !isModerator && !isInAdminTeam) {
-            // Get all teams with their members to check for admin teams
+        if (!isAdmin && !isModerator && !isInAdminTeam && currentUserData.team) {
+            // Get all teams sorted by points (same as leaderboard)
             const allTeams = await prisma.team.findMany({
                 include: {
                     members: {
-                        select: {
-                            role: true,
-                        },
+                        select: { role: true },
                     },
-                },
-            });
-
-            // Get admin team IDs
-            const adminTeamIds = allTeams
-                .filter((team) => team.members.some((m) => m.role === "ADMIN"))
-                .map((team) => team.id);
-
-            // Get all users ordered by points, excluding admins, moderators, and users in admin teams
-            const allUsers = await prisma.user.findMany({
-                where: {
-                    role: { notIn: ["ADMIN", "MODERATOR"] },
-                    OR: [
-                        { teamId: null }, // Users without teams
-                        { teamId: { notIn: adminTeamIds } }, // Users in non-admin teams
-                    ],
                 },
                 orderBy: [
                     { totalPoints: "desc" },
-                    { solvedCount: "desc" },
-                    { createdAt: "asc" }, // Earlier registration breaks ties
+                    { updatedAt: "asc" },
                 ],
-                select: {
-                    id: true,
-                    totalPoints: true,
-                    solvedCount: true,
-                },
             });
 
-            // Find user's position in the ranking
-            for (let i = 0; i < allUsers.length; i++) {
-                if (allUsers[i].id === currentUserData.id) {
-                    // Handle ties: if previous users have same points and solves, share rank
-                    let rank = i + 1;
-                    for (let j = i - 1; j >= 0; j--) {
-                        if (allUsers[j].totalPoints === currentUserData.totalPoints &&
-                            allUsers[j].solvedCount === currentUserData.solvedCount) {
-                            rank = j + 1;
-                        } else {
-                            break;
-                        }
+            // Filter out admin teams and find rank
+            let position = 0;
+            for (const team of allTeams) {
+                const hasAdmin = team.members.some((m) => m.role === "ADMIN" || m.role === "MODERATOR");
+                if (!hasAdmin) {
+                    position++;
+                    if (team.id === currentUserData.team.id) {
+                        userRank = position;
+                        break;
                     }
-                    userRank = rank;
-                    break;
                 }
             }
         }
