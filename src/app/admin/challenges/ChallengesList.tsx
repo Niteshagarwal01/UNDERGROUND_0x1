@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Edit, EyeOff, Plus } from "lucide-react";
+import { Edit, EyeOff, Plus, Trash2, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import EditChallengeModal from "@/components/EditChallengeModal";
 import CreateChallengeModal from "@/components/CreateChallengeModal";
@@ -44,6 +44,7 @@ export default function ChallengesList({
     const [selectedChallenge, setSelectedChallenge] = useState<Challenge | null>(null);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [loadingChallenge, setLoadingChallenge] = useState(false);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const getDifficultyColor = (difficulty: string) => {
         switch (difficulty) {
@@ -73,6 +74,29 @@ export default function ChallengesList({
 
     const handleSuccess = () => {
         router.refresh();
+    };
+
+    const handleDelete = async (challengeId: string, title: string) => {
+        if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone and will remove all associated solves.`)) {
+            return;
+        }
+
+        setDeletingId(challengeId);
+        try {
+            const response = await fetch(`/api/admin/challenges/${challengeId}`, {
+                method: "DELETE",
+            });
+            const data = await response.json();
+            if (data.success) {
+                router.refresh();
+            } else {
+                alert(data.message || "Failed to delete challenge");
+            }
+        } catch (error) {
+            alert("Error deleting challenge");
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     return (
@@ -166,17 +190,17 @@ export default function ChallengesList({
                                                         padding: "4px 10px",
                                                         borderRadius: "4px",
                                                         background: `rgba(${challenge.difficulty === "MEDIUM"
-                                                                ? "250, 204, 21"
-                                                                : challenge.difficulty === "HARD"
-                                                                    ? "249, 115, 22"
-                                                                    : "239, 68, 68"
+                                                            ? "250, 204, 21"
+                                                            : challenge.difficulty === "HARD"
+                                                                ? "249, 115, 22"
+                                                                : "239, 68, 68"
                                                             }, 0.1)`,
                                                         color: getDifficultyColor(challenge.difficulty),
                                                         border: `1px solid rgba(${challenge.difficulty === "MEDIUM"
-                                                                ? "250, 204, 21"
-                                                                : challenge.difficulty === "HARD"
-                                                                    ? "249, 115, 22"
-                                                                    : "239, 68, 68"
+                                                            ? "250, 204, 21"
+                                                            : challenge.difficulty === "HARD"
+                                                                ? "249, 115, 22"
+                                                                : "239, 68, 68"
                                                             }, 0.2)`,
                                                         textTransform: "uppercase",
                                                         fontWeight: 600,
@@ -249,10 +273,34 @@ export default function ChallengesList({
                                                 className="btn btn-secondary btn-sm"
                                                 style={{ display: "flex", alignItems: "center", gap: "6px" }}
                                                 onClick={() => handleEdit(challenge.id)}
-                                                disabled={loadingChallenge}
+                                                disabled={loadingChallenge || deletingId === challenge.id}
                                             >
                                                 <Edit size={14} />
                                                 Edit
+                                            </button>
+                                            <button
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    gap: "6px",
+                                                    padding: "8px 12px",
+                                                    borderRadius: "6px",
+                                                    border: "1px solid rgba(239, 68, 68, 0.3)",
+                                                    background: "rgba(239, 68, 68, 0.1)",
+                                                    color: "#ef4444",
+                                                    fontSize: "12px",
+                                                    fontWeight: 500,
+                                                    cursor: "pointer",
+                                                }}
+                                                onClick={() => handleDelete(challenge.id, challenge.title)}
+                                                disabled={deletingId === challenge.id}
+                                            >
+                                                {deletingId === challenge.id ? (
+                                                    <Loader2 size={14} className="spinner" />
+                                                ) : (
+                                                    <Trash2 size={14} />
+                                                )}
+                                                Delete
                                             </button>
                                         </div>
                                     </div>
