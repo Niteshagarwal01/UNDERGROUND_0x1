@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FirstBloodCelebration from "@/components/FirstBloodCelebration";
 
 // Category icon mapping
 const categoryIcons: Record<string, typeof Search> = {
@@ -88,7 +89,8 @@ function ChallengeModal({
 }) {
     const [flag, setFlag] = useState("");
     const [submitting, setSubmitting] = useState(false);
-    const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+    const [result, setResult] = useState<{ success: boolean; message: string; isFirstBlood?: boolean } | null>(null);
+    const [showFirstBlood, setShowFirstBlood] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -103,7 +105,13 @@ function ChallengeModal({
             });
             const data = await res.json();
             setResult(data);
-            if (data.success) setFlag("");
+            if (data.success) {
+                setFlag("");
+                // Trigger first blood celebration if applicable
+                if (data.isFirstBlood) {
+                    setShowFirstBlood(true);
+                }
+            }
         } catch {
             setResult({ success: false, message: "Network error. Please try again." });
         } finally {
@@ -112,96 +120,106 @@ function ChallengeModal({
     };
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ position: 'relative' }}>
-                {/* Close Button */}
-                <button onClick={onClose} className="modal-close">
-                    <X size={20} />
-                </button>
+        <>
+            {/* First Blood Celebration */}
+            <FirstBloodCelebration
+                show={showFirstBlood}
+                onComplete={() => setShowFirstBlood(false)}
+                teamName=""
+                challengeTitle={challenge.title}
+            />
 
-                {/* Header */}
-                <div className="modal-header">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-                        <div className="category-icon" style={{ width: '48px', height: '48px' }}>
-                            <category.icon size={24} />
-                        </div>
-                        <div>
-                            <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{category.name}</p>
-                            <h2 style={{ fontSize: '1.5rem' }}>{challenge.title}</h2>
-                        </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                        <DifficultyBadge difficulty={challenge.difficulty} />
-                        <span className="text-yellow" style={{ fontWeight: 700 }}>{challenge.points} pts</span>
-                        <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>{challenge.solves} solves</span>
-                    </div>
-                </div>
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ position: 'relative' }}>
+                    {/* Close Button */}
+                    <button onClick={onClose} className="modal-close">
+                        <X size={20} />
+                    </button>
 
-                {/* Body */}
-                <div className="modal-body">
-                    <div style={{ marginBottom: '32px' }}>
-                        <h4 style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>
-                            Briefing
-                        </h4>
-                        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
-                            {challenge.description}
-                        </p>
-                    </div>
-
-                    {/* Flag Submission */}
-                    {!isAuthenticated ? (
-                        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
-                            <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
-                            <h4 style={{ marginBottom: '8px' }}>Authentication Required</h4>
-                            <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
-                                Sign in to submit flags
-                            </p>
-                            <Link href="/enter" className="btn btn-primary">
-                                Sign In
-                            </Link>
-                        </div>
-                    ) : !hasTeam ? (
-                        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
-                            <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
-                            <h4 style={{ marginBottom: '8px' }}>Team Required</h4>
-                            <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
-                                Create or join a team to submit flags
-                            </p>
-                            <Link href="/dashboard" className="btn btn-primary">
-                                Go to Dashboard
-                            </Link>
-                        </div>
-                    ) : (
-                        <form onSubmit={handleSubmit}>
-                            <div className="input-group">
-                                <label className="input-label">Submit Flag</label>
-                                <div style={{ display: 'flex', gap: '12px' }}>
-                                    <input
-                                        type="text"
-                                        className="input"
-                                        placeholder="UG0x1{...}"
-                                        value={flag}
-                                        onChange={(e) => setFlag(e.target.value)}
-                                        disabled={submitting}
-                                        style={{ flex: 1 }}
-                                    />
-                                    <button type="submit" className="btn btn-primary" disabled={submitting || !flag.trim()}>
-                                        {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
-                                    </button>
-                                </div>
+                    {/* Header */}
+                    <div className="modal-header">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                            <div className="category-icon" style={{ width: '48px', height: '48px' }}>
+                                <category.icon size={24} />
                             </div>
+                            <div>
+                                <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{category.name}</p>
+                                <h2 style={{ fontSize: '1.5rem' }}>{challenge.title}</h2>
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <DifficultyBadge difficulty={challenge.difficulty} />
+                            <span className="text-yellow" style={{ fontWeight: 700 }}>{challenge.points} pts</span>
+                            <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>{challenge.solves} solves</span>
+                        </div>
+                    </div>
 
-                            {result && (
-                                <div className={`alert ${result.success ? 'alert-success' : 'alert-error'}`} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
-                                    {result.success ? <CheckCircle size={18} /> : <XCircle size={18} />}
-                                    {result.message}
+                    {/* Body */}
+                    <div className="modal-body">
+                        <div style={{ marginBottom: '32px' }}>
+                            <h4 style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>
+                                Briefing
+                            </h4>
+                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+                                {challenge.description}
+                            </p>
+                        </div>
+
+                        {/* Flag Submission */}
+                        {!isAuthenticated ? (
+                            <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+                                <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
+                                <h4 style={{ marginBottom: '8px' }}>Authentication Required</h4>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                                    Sign in to submit flags
+                                </p>
+                                <Link href="/enter" className="btn btn-primary">
+                                    Sign In
+                                </Link>
+                            </div>
+                        ) : !hasTeam ? (
+                            <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+                                <AlertTriangle size={40} className="text-yellow" style={{ marginBottom: '16px' }} />
+                                <h4 style={{ marginBottom: '8px' }}>Team Required</h4>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                                    Create or join a team to submit flags
+                                </p>
+                                <Link href="/dashboard" className="btn btn-primary">
+                                    Go to Dashboard
+                                </Link>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubmit}>
+                                <div className="input-group">
+                                    <label className="input-label">Submit Flag</label>
+                                    <div style={{ display: 'flex', gap: '12px' }}>
+                                        <input
+                                            type="text"
+                                            className="input"
+                                            placeholder="UG0x1{...}"
+                                            value={flag}
+                                            onChange={(e) => setFlag(e.target.value)}
+                                            disabled={submitting}
+                                            style={{ flex: 1 }}
+                                        />
+                                        <button type="submit" className="btn btn-primary" disabled={submitting || !flag.trim()}>
+                                            {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                                        </button>
+                                    </div>
                                 </div>
-                            )}
-                        </form>
-                    )}
+
+                                {result && (
+                                    <div className={`alert ${result.success ? 'alert-success' : 'alert-error'}`} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
+                                        {result.success ? <CheckCircle size={18} /> : <XCircle size={18} />}
+                                        {result.message}
+                                    </div>
+                                )}
+                            </form>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

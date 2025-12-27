@@ -19,7 +19,8 @@ import {
     AlertCircle,
     UserPlus,
     UserCheck,
-    UserX
+    UserX,
+    Download
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -439,6 +440,15 @@ export default function DashboardPage() {
                                     <Link href={`/team/${userData.team.id}`} className="btn btn-secondary btn-sm">
                                         View Profile
                                     </Link>
+                                    <a
+                                        href="/api/export/team?format=csv"
+                                        download
+                                        className="btn btn-secondary btn-sm"
+                                        style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+                                    >
+                                        <Download size={14} />
+                                        Export
+                                    </a>
                                     <button
                                         onClick={handleLeaveTeam}
                                         className="btn btn-sm"
