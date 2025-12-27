@@ -245,7 +245,7 @@ export default function LeaderboardPage() {
             {leaderboard.length > 0 && (
                 <section style={{ paddingBottom: '40px' }}>
                     <div className="container" style={{ maxWidth: '1200px' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+                        <div className="charts-grid">
                             {/* Points Chart */}
                             <div className="card">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>

@@ -53,10 +53,15 @@ export async function GET() {
 
         // If user doesn't exist, create them
         if (!user) {
-            // Generate unique username if it already exists
+            // Generate unique username if it already exists (case-insensitive check)
             let username = clerkUser.username || clerkUser.firstName || `user_${userId.slice(-8)}`;
-            const usernameExists = await prisma.user.findUnique({
-                where: { username },
+            const usernameExists = await prisma.user.findFirst({
+                where: {
+                    username: {
+                        equals: username,
+                        mode: 'insensitive'
+                    }
+                },
             });
 
             // If username exists, append random suffix

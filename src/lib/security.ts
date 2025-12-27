@@ -410,5 +410,325 @@ export function applySecurityFirewalls(
         );
     }
 
+    // Firewall 3: Origin validation for API routes
+    const originCheck = validateOrigin(request);
+    if (!originCheck.valid) {
+        logSuspiciousActivity(request, originCheck.reason || "Invalid origin", userId);
+        return NextResponse.json(
+            { success: false, message: "Request blocked" },
+            { status: 403 }
+        );
+    }
+
+    // Firewall 4: IP blocklist check
+    if (isIPBlocked(getClientIP(request))) {
+        return NextResponse.json(
+            { success: false, message: "Access denied" },
+            { status: 403 }
+        );
+    }
+
     return null; // All checks passed
 }
+
+// ============================================
+// FIREWALL 5: Origin & Referer Validation
+// ============================================
+
+const ALLOWED_ORIGINS = [
+    "localhost",
+    "127.0.0.1",
+    "underground-0x1.vercel.app",
+    // Add your production domain here
+];
+
+/**
+ * Validates request origin to prevent CSRF attacks
+ */
+export function validateOrigin(request: NextRequest): { valid: boolean; reason?: string } {
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
+    const host = request.headers.get("host");
+
+    // Allow requests without origin (same-origin, non-CORS)
+    if (!origin) {
+        return { valid: true };
+    }
+
+    try {
+        const originUrl = new URL(origin);
+        const hostname = originUrl.hostname;
+
+        // Check if origin matches allowed origins or current host
+        const isAllowed = ALLOWED_ORIGINS.some(allowed =>
+            hostname === allowed || hostname.endsWith(`.${allowed}`)
+        ) || hostname === host?.split(":")[0];
+
+        if (!isAllowed) {
+            return { valid: false, reason: `Unauthorized origin: ${hostname}` };
+        }
+
+        return { valid: true };
+    } catch {
+        return { valid: false, reason: "Malformed origin header" };
+    }
+}
+
+// ============================================
+// FIREWALL 6: IP Blocklist
+// ============================================
+
+const blockedIPs = new Set<string>();
+const IP_BLOCK_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+const ipBlockExpiry = new Map<string, number>();
+
+/**
+ * Blocks an IP address
+ */
+export function blockIP(ip: string, duration: number = IP_BLOCK_DURATION): void {
+    blockedIPs.add(ip);
+    ipBlockExpiry.set(ip, Date.now() + duration);
+}
+
+/**
+ * Unblocks an IP address
+ */
+export function unblockIP(ip: string): void {
+    blockedIPs.delete(ip);
+    ipBlockExpiry.delete(ip);
+}
+
+/**
+ * Checks if an IP is blocked
+ */
+export function isIPBlocked(ip: string): boolean {
+    if (!blockedIPs.has(ip)) return false;
+
+    const expiry = ipBlockExpiry.get(ip);
+    if (expiry && Date.now() > expiry) {
+        unblockIP(ip);
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Gets all blocked IPs (for admin monitoring)
+ */
+export function getBlockedIPs(): string[] {
+    return Array.from(blockedIPs);
+}
+
+// ============================================
+// FIREWALL 7: Admin Action Audit Logging
+// ============================================
+
+interface AdminAuditLog {
+    adminId: string;
+    action: string;
+    targetType: string;
+    targetId: string;
+    details: string;
+    ip: string;
+    timestamp: Date;
+}
+
+const adminAuditLogs: AdminAuditLog[] = [];
+const MAX_AUDIT_LOGS = 5000;
+
+/**
+ * Logs an admin action for audit trail
+ */
+export function logAdminAction(
+    adminId: string,
+    action: string,
+    targetType: string,
+    targetId: string,
+    details: string,
+    request: NextRequest
+): void {
+    const log: AdminAuditLog = {
+        adminId,
+        action,
+        targetType,
+        targetId,
+        details,
+        ip: getClientIP(request),
+        timestamp: new Date(),
+    };
+
+    adminAuditLogs.push(log);
+
+    // Keep only recent logs
+    if (adminAuditLogs.length > MAX_AUDIT_LOGS) {
+        adminAuditLogs.shift();
+    }
+
+    // Log to console for server-side monitoring
+    console.log(`[ADMIN AUDIT] ${action} on ${targetType}:${targetId} by ${adminId} - ${details}`);
+}
+
+/**
+ * Gets recent admin audit logs (for admin monitoring)
+ */
+export function getAdminAuditLogs(limit: number = 100): AdminAuditLog[] {
+    return [...adminAuditLogs].reverse().slice(0, limit);
+}
+
+// ============================================
+// FIREWALL 8: Request Fingerprinting
+// ============================================
+
+interface ClientFingerprint {
+    ip: string;
+    userAgent: string;
+    acceptLanguage: string;
+    acceptEncoding: string;
+    hash: string;
+}
+
+/**
+ * Creates a fingerprint from request headers for tracking
+ */
+export function createRequestFingerprint(request: NextRequest): ClientFingerprint {
+    const ip = getClientIP(request);
+    const userAgent = request.headers.get("user-agent") || "";
+    const acceptLanguage = request.headers.get("accept-language") || "";
+    const acceptEncoding = request.headers.get("accept-encoding") || "";
+
+    // Simple hash for fingerprinting
+    const combined = `${ip}|${userAgent}|${acceptLanguage}`;
+    let hash = 0;
+    for (let i = 0; i < combined.length; i++) {
+        const char = combined.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    return {
+        ip,
+        userAgent: userAgent.substring(0, 200),
+        acceptLanguage: acceptLanguage.substring(0, 50),
+        acceptEncoding: acceptEncoding.substring(0, 50),
+        hash: Math.abs(hash).toString(36),
+    };
+}
+
+// ============================================
+// ENHANCED SECURITY HEADERS
+// ============================================
+
+/**
+ * Adds comprehensive security headers to response
+ */
+export function addEnhancedSecurityHeaders(response: NextResponse): NextResponse {
+    // Basic security headers
+    response.headers.set("X-Frame-Options", "DENY");
+    response.headers.set("X-Content-Type-Options", "nosniff");
+    response.headers.set("X-XSS-Protection", "1; mode=block");
+    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+
+    // Advanced security headers
+    response.headers.set("X-DNS-Prefetch-Control", "off");
+    response.headers.set("X-Download-Options", "noopen");
+    response.headers.set("X-Permitted-Cross-Domain-Policies", "none");
+
+    // Permissions policy (disable dangerous APIs)
+    response.headers.set(
+        "Permissions-Policy",
+        "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    );
+
+    // HSTS for production
+    if (process.env.NODE_ENV === "production") {
+        response.headers.set(
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains; preload"
+        );
+    }
+
+    return response;
+}
+
+// ============================================
+// FIREWALL 9: Sensitive Data Protection
+// ============================================
+
+const SENSITIVE_FIELDS = [
+    "password",
+    "token",
+    "secret",
+    "apiKey",
+    "flagHash",
+    "inviteCode",
+    "creditCard",
+    "ssn",
+];
+
+/**
+ * Sanitizes response data to remove/mask sensitive fields
+ */
+export function sanitizeResponseData(data: Record<string, unknown>): Record<string, unknown> {
+    const sanitized = { ...data };
+
+    for (const key of Object.keys(sanitized)) {
+        const lowerKey = key.toLowerCase();
+        if (SENSITIVE_FIELDS.some(field => lowerKey.includes(field.toLowerCase()))) {
+            sanitized[key] = "[REDACTED]";
+        } else if (typeof sanitized[key] === "object" && sanitized[key] !== null) {
+            sanitized[key] = sanitizeResponseData(sanitized[key] as Record<string, unknown>);
+        }
+    }
+
+    return sanitized;
+}
+
+// ============================================
+// AUTO-BLOCK SUSPICIOUS IPS
+// ============================================
+
+const suspiciousIPCounts = new Map<string, { count: number; firstSeen: number }>();
+const SUSPICIOUS_THRESHOLD = 10; // suspicious activities before auto-block
+const SUSPICIOUS_WINDOW = 10 * 60 * 1000; // 10 minutes
+
+/**
+ * Tracks suspicious activity and auto-blocks repeat offenders
+ */
+export function trackSuspiciousIP(request: NextRequest): void {
+    const ip = getClientIP(request);
+    const now = Date.now();
+
+    const entry = suspiciousIPCounts.get(ip);
+    if (!entry || now - entry.firstSeen > SUSPICIOUS_WINDOW) {
+        suspiciousIPCounts.set(ip, { count: 1, firstSeen: now });
+        return;
+    }
+
+    entry.count++;
+
+    if (entry.count >= SUSPICIOUS_THRESHOLD) {
+        blockIP(ip);
+        console.warn(`[SECURITY] Auto-blocked IP ${ip} after ${entry.count} suspicious activities`);
+        suspiciousIPCounts.delete(ip);
+    }
+}
+
+// Cleanup interval for expired data
+setInterval(() => {
+    const now = Date.now();
+
+    // Cleanup expired IP blocks
+    for (const [ip, expiry] of ipBlockExpiry.entries()) {
+        if (now > expiry) {
+            unblockIP(ip);
+        }
+    }
+
+    // Cleanup old suspicious IP tracking
+    for (const [ip, entry] of suspiciousIPCounts.entries()) {
+        if (now - entry.firstSeen > SUSPICIOUS_WINDOW) {
+            suspiciousIPCounts.delete(ip);
+        }
+    }
+}, 5 * 60 * 1000); // Every 5 minutes
+

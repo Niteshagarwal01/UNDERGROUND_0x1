@@ -51,9 +51,14 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Check if team name is taken
-        const existingTeam = await prisma.team.findUnique({
-            where: { name },
+        // Check if team name is taken (case-insensitive)
+        const existingTeam = await prisma.team.findFirst({
+            where: {
+                name: {
+                    equals: name,
+                    mode: 'insensitive'
+                }
+            },
         });
 
         if (existingTeam) {
