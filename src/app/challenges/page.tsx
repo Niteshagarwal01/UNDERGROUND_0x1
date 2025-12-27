@@ -17,6 +17,7 @@ import {
     AlertTriangle,
     Loader2,
     Construction,
+    Filter,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -217,6 +218,11 @@ export default function ChallengesPage() {
     const [totalChallenges, setTotalChallenges] = useState(0);
     const [totalPoints, setTotalPoints] = useState(0);
 
+    // Filter states
+    const [searchQuery, setSearchQuery] = useState("");
+    const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
+    const [showFilters, setShowFilters] = useState(false);
+
     // Fetch challenges from API
     useEffect(() => {
         fetch("/api/challenges")
@@ -279,6 +285,28 @@ export default function ChallengesPage() {
         );
     };
 
+    // Filter challenges
+    const getFilteredCategories = () => {
+        return categoriesData.map(category => ({
+            ...category,
+            challenges: category.challenges.filter(challenge => {
+                // Search filter
+                const matchesSearch = searchQuery === "" ||
+                    challenge.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    challenge.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+                // Difficulty filter
+                const matchesDifficulty = difficultyFilter === "ALL" ||
+                    challenge.difficulty === difficultyFilter;
+
+                return matchesSearch && matchesDifficulty;
+            })
+        })).filter(category => category.challenges.length > 0);
+    };
+
+    const filteredCategories = getFilteredCategories();
+    const filteredChallengeCount = filteredCategories.reduce((sum, cat) => sum + cat.challenges.length, 0);
+
     if (loading) {
         return (
             <div className="min-h-screen bg-black grid-pattern">
@@ -316,22 +344,123 @@ export default function ChallengesPage() {
                             {totalChallenges} challenges • {totalPoints.toLocaleString()} total points
                         </p>
                     </div>
+
+                    {/* Filter Bar */}
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '12px',
+                        alignItems: 'center',
+                        marginBottom: '32px'
+                    }}>
+                        {/* Search Input */}
+                        <div style={{
+                            flex: '1',
+                            minWidth: '200px',
+                            position: 'relative'
+                        }}>
+                            <Search size={18} style={{
+                                position: 'absolute',
+                                left: '14px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                color: 'var(--text-muted)'
+                            }} />
+                            <input
+                                type="text"
+                                placeholder="Search challenges..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px 14px 12px 44px',
+                                    background: 'var(--black-card)',
+                                    border: '1px solid var(--black-border)',
+                                    borderRadius: '8px',
+                                    color: 'var(--text-primary)',
+                                    fontSize: '14px',
+                                }}
+                            />
+                        </div>
+
+                        {/* Difficulty Filter */}
+                        <select
+                            value={difficultyFilter}
+                            onChange={(e) => setDifficultyFilter(e.target.value)}
+                            style={{
+                                padding: '12px 16px',
+                                background: 'var(--black-card)',
+                                border: '1px solid var(--black-border)',
+                                borderRadius: '8px',
+                                color: 'var(--text-primary)',
+                                fontSize: '14px',
+                                minWidth: '140px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            <option value="ALL">All Levels</option>
+                            <option value="MEDIUM">Medium</option>
+                            <option value="HARD">Hard</option>
+                            <option value="GOD_LEVEL">God-Level</option>
+                        </select>
+
+                        {/* Filter indicator */}
+                        {(searchQuery || difficultyFilter !== "ALL") && (
+                            <button
+                                onClick={() => { setSearchQuery(""); setDifficultyFilter("ALL"); }}
+                                style={{
+                                    padding: '12px 16px',
+                                    background: 'rgba(250, 204, 21, 0.1)',
+                                    border: '1px solid rgba(250, 204, 21, 0.3)',
+                                    borderRadius: '8px',
+                                    color: 'var(--yellow)',
+                                    fontSize: '13px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px',
+                                }}
+                            >
+                                <X size={14} />
+                                Clear ({filteredChallengeCount} shown)
+                            </button>
+                        )}
+                    </div>
                 </div>
             </section>
 
             {/* Challenges Accordion */}
             <section style={{ paddingBottom: '100px' }}>
                 <div className="container">
-                    {categoriesData.length === 0 ? (
+                    {filteredCategories.length === 0 ? (
                         <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
-                            <Construction size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
-                            <h3 style={{ marginBottom: '12px' }}>Challenges Under Development</h3>
-                            <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
-                                Our team is crafting elite-level challenges. Check back soon for the full experience.
-                            </p>
+                            {categoriesData.length === 0 ? (
+                                <>
+                                    <Construction size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
+                                    <h3 style={{ marginBottom: '12px' }}>Challenges Under Development</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
+                                        Our team is crafting elite-level challenges. Check back soon for the full experience.
+                                    </p>
+                                </>
+                            ) : (
+                                <>
+                                    <Search size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
+                                    <h3 style={{ marginBottom: '12px' }}>No Challenges Found</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
+                                        No challenges match your filters. Try adjusting your search or difficulty filter.
+                                    </p>
+                                    <button
+                                        onClick={() => { setSearchQuery(""); setDifficultyFilter("ALL"); }}
+                                        className="btn btn-primary btn-sm"
+                                        style={{ marginTop: '16px' }}
+                                    >
+                                        Clear Filters
+                                    </button>
+                                </>
+                            )}
                         </div>
                     ) : (
-                        categoriesData.map((category) => (
+                        filteredCategories.map((category) => (
                             <div key={category.id} id={category.id} className="accordion">
                                 {/* Accordion Header */}
                                 <div

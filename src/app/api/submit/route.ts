@@ -9,6 +9,7 @@ import {
     clearBruteForce,
     sanitizeFlag
 } from "@/lib/security";
+import { announceFirstBlood, announceSolve } from "@/lib/discord";
 
 // Database-based rate limiting
 async function checkRateLimit(userId: string): Promise<{ allowed: boolean; retryAfter?: number }> {
@@ -122,6 +123,9 @@ export async function POST(request: NextRequest) {
                 ],
                 isActive: true,
                 isHidden: false
+            },
+            include: {
+                category: true
             }
         });
 
@@ -277,7 +281,8 @@ export async function POST(request: NextRequest) {
                     alreadySolved: false,
                     points: totalPoints,
                     bonus,
-                    isFirstBlood
+                    isFirstBlood,
+                    solveNumber: solveCount + 1
                 };
             });
 
@@ -295,10 +300,33 @@ export async function POST(request: NextRequest) {
             let message = "";
             if (result.isFirstBlood) {
                 message = `🩸 FIRST BLOOD! +${result.points} points (includes +${result.bonus || 0} bonus). Challenge solved for your entire team!`;
+                // Send Discord first blood notification (async, don't wait)
+                announceFirstBlood(
+                    user.team!.name,
+                    challenge.title,
+                    challenge.category?.name || "Unknown",
+                    result.points || 0
+                ).catch(console.error);
             } else if ((result.bonus || 0) > 0) {
                 message = `✅ Challenge Solved! +${result.points} points (includes +${result.bonus} early solve bonus). This challenge is now complete for your entire team!`;
+                // Send Discord solve notification for early solvers
+                announceSolve(
+                    user.team!.name,
+                    challenge.title,
+                    challenge.category?.name || "Unknown",
+                    result.points || 0,
+                    result.solveNumber || 1
+                ).catch(console.error);
             } else {
                 message = `✅ Challenge Solved! +${result.points} points. This challenge is now complete for your entire team!`;
+                // Send Discord solve notification for milestone solves only
+                announceSolve(
+                    user.team!.name,
+                    challenge.title,
+                    challenge.category?.name || "Unknown",
+                    result.points || 0,
+                    result.solveNumber || 1
+                ).catch(console.error);
             }
 
             return NextResponse.json({
