@@ -451,17 +451,286 @@ export default function ChallengesPage() {
             <section style={{ paddingBottom: '100px' }}>
                 <div className="container">
                     {filteredCategories.length === 0 ? (
-                        <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
+                        <>
+                            {/* Show categories even when no challenges */}
                             {categoriesData.length === 0 ? (
                                 <>
-                                    <Construction size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
-                                    <h3 style={{ marginBottom: '12px' }}>Challenges Under Development</h3>
-                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
-                                        Our team is crafting elite-level challenges. Check back soon for the full experience.
-                                    </p>
+                                    {/* Hero Coming Soon Banner */}
+                                    <div className="card" style={{
+                                        textAlign: 'center',
+                                        padding: '40px 24px',
+                                        marginBottom: '32px',
+                                        background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%)',
+                                        border: '1px solid rgba(250, 204, 21, 0.2)',
+                                    }}>
+                                        <Construction size={56} className="text-yellow" style={{ margin: '0 auto 20px', opacity: 0.9 }} />
+                                        <h2 style={{
+                                            fontFamily: 'var(--font-heading)',
+                                            fontSize: '1.75rem',
+                                            marginBottom: '12px',
+                                            background: 'linear-gradient(90deg, var(--yellow), #fff)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                        }}>
+                                            Elite Challenges Coming Soon
+                                        </h2>
+                                        <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7 }}>
+                                            Our team of experts is crafting <strong style={{ color: 'var(--yellow)' }}>15+ challenges</strong> across all categories.
+                                            <br />No hints. No shortcuts. Only skill.
+                                        </p>
+                                    </div>
+
+                                    {/* Category Preview Grid */}
+                                    <h3 style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: '1.25rem',
+                                        marginBottom: '24px',
+                                        color: 'var(--text-primary)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px'
+                                    }}>
+                                        <span style={{ color: 'var(--yellow)' }}>▶</span> Challenge Categories
+                                    </h3>
+
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                                        gap: '20px'
+                                    }}>
+                                        {/* OSINT Category */}
+                                        <div className="card" style={{
+                                            padding: '24px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderColor: 'rgba(59, 130, 246, 0.3)',
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '-20px',
+                                                right: '-20px',
+                                                width: '80px',
+                                                height: '80px',
+                                                background: 'rgba(59, 130, 246, 0.1)',
+                                                borderRadius: '50%'
+                                            }} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                                <div style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    borderRadius: '12px',
+                                                    background: 'rgba(59, 130, 246, 0.15)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <Search size={24} style={{ color: '#3b82f6' }} />
+                                                </div>
+                                                <div>
+                                                    <h4 style={{ fontFamily: 'var(--font-heading)', color: '#3b82f6', marginBottom: '4px' }}>OSINT</h4>
+                                                    <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Ghost Corridors</span>
+                                                </div>
+                                            </div>
+                                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
+                                                Open source intelligence gathering. Track digital footprints and uncover hidden data.
+                                            </p>
+                                            <span className="badge" style={{
+                                                background: 'rgba(250, 204, 21, 0.15)',
+                                                color: 'var(--yellow)',
+                                                border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                fontSize: '11px'
+                                            }}>
+                                                Coming Soon
+                                            </span>
+                                        </div>
+
+                                        {/* Forensics Category */}
+                                        <div className="card" style={{
+                                            padding: '24px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderColor: 'rgba(34, 197, 94, 0.3)',
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '-20px',
+                                                right: '-20px',
+                                                width: '80px',
+                                                height: '80px',
+                                                background: 'rgba(34, 197, 94, 0.1)',
+                                                borderRadius: '50%'
+                                            }} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                                <div style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    borderRadius: '12px',
+                                                    background: 'rgba(34, 197, 94, 0.15)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <FileSearch size={24} style={{ color: '#22c55e' }} />
+                                                </div>
+                                                <div>
+                                                    <h4 style={{ fontFamily: 'var(--font-heading)', color: '#22c55e', marginBottom: '4px' }}>Forensics</h4>
+                                                    <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Signal Black</span>
+                                                </div>
+                                            </div>
+                                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
+                                                Analyze memory dumps, disk images, and network captures to solve mysteries.
+                                            </p>
+                                            <span className="badge" style={{
+                                                background: 'rgba(250, 204, 21, 0.15)',
+                                                color: 'var(--yellow)',
+                                                border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                fontSize: '11px'
+                                            }}>
+                                                Coming Soon
+                                            </span>
+                                        </div>
+
+                                        {/* Crypto Category */}
+                                        <div className="card" style={{
+                                            padding: '24px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderColor: 'rgba(250, 204, 21, 0.3)',
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '-20px',
+                                                right: '-20px',
+                                                width: '80px',
+                                                height: '80px',
+                                                background: 'rgba(250, 204, 21, 0.1)',
+                                                borderRadius: '50%'
+                                            }} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                                <div style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    borderRadius: '12px',
+                                                    background: 'rgba(250, 204, 21, 0.15)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <Lock size={24} style={{ color: 'var(--yellow)' }} />
+                                                </div>
+                                                <div>
+                                                    <h4 style={{ fontFamily: 'var(--font-heading)', color: 'var(--yellow)', marginBottom: '4px' }}>Cryptography</h4>
+                                                    <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Fare Matrix</span>
+                                                </div>
+                                            </div>
+                                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
+                                                Break ciphers, RSA, AES, and custom encryption schemes.
+                                            </p>
+                                            <span className="badge" style={{
+                                                background: 'rgba(250, 204, 21, 0.15)',
+                                                color: 'var(--yellow)',
+                                                border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                fontSize: '11px'
+                                            }}>
+                                                Coming Soon
+                                            </span>
+                                        </div>
+
+                                        {/* Reversing Category */}
+                                        <div className="card" style={{
+                                            padding: '24px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderColor: 'rgba(168, 85, 247, 0.3)',
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '-20px',
+                                                right: '-20px',
+                                                width: '80px',
+                                                height: '80px',
+                                                background: 'rgba(168, 85, 247, 0.1)',
+                                                borderRadius: '50%'
+                                            }} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                                <div style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    borderRadius: '12px',
+                                                    background: 'rgba(168, 85, 247, 0.15)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <Cpu size={24} style={{ color: '#a855f7' }} />
+                                                </div>
+                                                <div>
+                                                    <h4 style={{ fontFamily: 'var(--font-heading)', color: '#a855f7', marginBottom: '4px' }}>Reverse Engineering</h4>
+                                                    <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Token Forge</span>
+                                                </div>
+                                            </div>
+                                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
+                                                Disassemble binaries, analyze malware, and crack executables.
+                                            </p>
+                                            <span className="badge" style={{
+                                                background: 'rgba(250, 204, 21, 0.15)',
+                                                color: 'var(--yellow)',
+                                                border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                fontSize: '11px'
+                                            }}>
+                                                Coming Soon
+                                            </span>
+                                        </div>
+
+                                        {/* Web Category */}
+                                        <div className="card" style={{
+                                            padding: '24px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderColor: 'rgba(239, 68, 68, 0.3)',
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '-20px',
+                                                right: '-20px',
+                                                width: '80px',
+                                                height: '80px',
+                                                background: 'rgba(239, 68, 68, 0.1)',
+                                                borderRadius: '50%'
+                                            }} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                                <div style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    borderRadius: '12px',
+                                                    background: 'rgba(239, 68, 68, 0.15)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <Globe size={24} style={{ color: '#ef4444' }} />
+                                                </div>
+                                                <div>
+                                                    <h4 style={{ fontFamily: 'var(--font-heading)', color: '#ef4444', marginBottom: '4px' }}>Web Security</h4>
+                                                    <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>OCC Portal</span>
+                                                </div>
+                                            </div>
+                                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
+                                                Exploit web vulnerabilities, XSS, SQLi, and authentication flaws.
+                                            </p>
+                                            <span className="badge" style={{
+                                                background: 'rgba(250, 204, 21, 0.15)',
+                                                color: 'var(--yellow)',
+                                                border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                fontSize: '11px'
+                                            }}>
+                                                Coming Soon
+                                            </span>
+                                        </div>
+                                    </div>
                                 </>
                             ) : (
-                                <>
+                                <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
                                     <Search size={48} className="text-yellow" style={{ margin: '0 auto 16px', opacity: 0.7 }} />
                                     <h3 style={{ marginBottom: '12px' }}>No Challenges Found</h3>
                                     <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
@@ -474,9 +743,9 @@ export default function ChallengesPage() {
                                     >
                                         Clear Filters
                                     </button>
-                                </>
+                                </div>
                             )}
-                        </div>
+                        </>
                     ) : (
                         filteredCategories.map((category) => (
                             <div key={category.id} id={category.id} className="accordion">
