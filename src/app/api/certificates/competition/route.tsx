@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 
-export const runtime = "edge";
+// Use Node.js runtime (no size limit)
 
 export async function GET(request: NextRequest) {
     try {
