@@ -1,14 +1,41 @@
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
-import { checkAdmin } from "@/lib/admin";
+
+export const dynamic = "force-dynamic";
+
+// Check admin
+async function checkAdmin() {
+    const { userId } = await auth();
+    if (!userId) {
+        return { isAdmin: false, error: "Unauthorized" };
+    }
+
+    const user = await prisma.user.findUnique({
+        where: { clerkId: userId },
+    });
+
+    if (!user) {
+        return { isAdmin: false, error: "Forbidden" };
+    }
+
+    const isDirectAdmin = user.role === "ADMIN";
+    const isModerator = user.role === "MODERATOR";
+
+    if (!isDirectAdmin && !isModerator) {
+        return { isAdmin: false, error: "Forbidden" };
+    }
+
+    return { isAdmin: true };
+}
 
 export async function GET() {
     try {
         const adminCheck = await checkAdmin();
-        if (!adminCheck.authorized) {
+        if (!adminCheck.isAdmin) {
             return NextResponse.json(
-                { success: false, message: adminCheck.message },
-                { status: 403 }
+                { success: false, message: adminCheck.error },
+                { status: adminCheck.error === "Unauthorized" ? 401 : 403 }
             );
         }
 
