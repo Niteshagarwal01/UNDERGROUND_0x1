@@ -39,6 +39,7 @@ model User {
   submissions   Submission[]
   joinRequests  JoinRequest[]
   feedback      Feedback[]
+  achievements  UserAchievement[]
   
   role          Role     @default(USER)
 
@@ -354,6 +355,7 @@ model UserAchievement {
   id            String      @id @default(cuid())
   
   userId        String
+  user          User        @relation(fields: [userId], references: [id])
   achievementId String
   achievement   Achievement @relation(fields: [achievementId], references: [id])
   
