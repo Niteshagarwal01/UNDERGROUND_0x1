@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const mainAdminEmail = process.env.ADMIN_EMAIL || "musicniteshagarwal@gmail.com";
+        const mainAdminEmail = process.env.ADMIN_EMAIL;
         const wasInAdminTeam = user.team?.members.some(
             (member) => member.email === mainAdminEmail && member.role === "ADMIN"
         ) || false;
@@ -101,7 +101,6 @@ export async function POST(request: NextRequest) {
             });
         });
 
-        const roleChange = oldRole !== newRole ? ` (Role: ${oldRole} → ${newRole})` : '';
         // User left team successfully
 
         return NextResponse.json({

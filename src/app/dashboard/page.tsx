@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AchievementsDisplay from "@/components/AchievementsDisplay";
 
 interface UserData {
     id: string;
@@ -646,6 +647,11 @@ export default function DashboardPage() {
                                 </Link>
                             </div>
                         )}
+                    </div>
+
+                    {/* Achievements */}
+                    <div className="card">
+                        <AchievementsDisplay />
                     </div>
                 </div>
             </main>

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Users, Shield, Target, Flag, Layers, ChevronRight, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import Link from "next/link";
+import AnalyticsCharts from "@/components/admin/AnalyticsCharts";
 
 export const dynamic = "force-dynamic";
 
@@ -131,6 +132,9 @@ export default async function AdminDashboard() {
                     liveIndicator
                 />
             </div>
+
+            {/* Analytics Charts */}
+            <AnalyticsCharts />
 
             {/* Main Content Grid */}
             <div style={{

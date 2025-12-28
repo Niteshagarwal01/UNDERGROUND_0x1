@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "musicniteshagarwal@gmail.com";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 // GET: List pending requests for team leader
 export async function GET() {

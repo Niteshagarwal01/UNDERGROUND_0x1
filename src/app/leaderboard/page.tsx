@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { Trophy, Users, Target, Medal, Loader2, Plus, TrendingUp, BarChart3, RefreshCw, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ActivityFeed from "@/components/ActivityFeed";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -359,6 +360,13 @@ export default function LeaderboardPage() {
                     <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--text-muted)', marginTop: '24px' }}>
                         Auto-refreshes every 15 seconds
                     </p>
+                </div>
+            </section>
+
+            {/* Activity Feed Section */}
+            <section style={{ paddingBottom: '60px' }}>
+                <div className="container" style={{ maxWidth: '1200px' }}>
+                    <ActivityFeed limit={15} />
                 </div>
             </section>
 

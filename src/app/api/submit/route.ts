@@ -10,6 +10,7 @@ import {
     sanitizeFlag
 } from "@/lib/security";
 import { announceFirstBlood, announceSolve } from "@/lib/discord";
+import { checkAndAwardAchievements } from "@/lib/achievements";
 
 // Database-based rate limiting
 async function checkRateLimit(userId: string): Promise<{ allowed: boolean; retryAfter?: number }> {
@@ -329,6 +330,15 @@ export async function POST(request: NextRequest) {
                 ).catch(console.error);
             }
 
+            // Check and award achievements (async, don't block response)
+            checkAndAwardAchievements({
+                userId: user.id,
+                teamId: user.team!.id,
+                isFirstBlood: result.isFirstBlood,
+                challengeDifficulty: challenge.difficulty,
+                categorySlug: challenge.category?.slug
+            }).catch(console.error);
+
             return NextResponse.json({
                 success: true,
                 message,
@@ -336,6 +346,7 @@ export async function POST(request: NextRequest) {
                 isFirstBlood: result.isFirstBlood,
                 solved: true,
             });
+
 
         } catch (txError: any) {
             // Unique constraint violation = another team member solved it simultaneously

@@ -47,7 +47,7 @@ export async function sendDiscordWebhook(payload: DiscordWebhookPayload): Promis
             },
             body: JSON.stringify({
                 username: "UNDERGROUND_0x1 Bot",
-                avatar_url: "https://raw.githubusercontent.com/Niteshagarwal01/UNDERGROUND_0x1/master/public/logo.png",
+                avatar_url: process.env.DISCORD_AVATAR_URL || "https://i.imgur.com/underground0x1.png",
                 ...payload,
             }),
         });

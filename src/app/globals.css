@@ -1444,6 +1444,39 @@ select.input option {
   }
 }
 
+/* Challenges Page Mobile Overrides */
+@media (max-width: 767px) {
+
+  /* Make containers full-width on mobile */
+  .container[style*="maxWidth"] {
+    max-width: 100% !important;
+    padding: 0 16px !important;
+  }
+
+  /* Stack search and filter on mobile */
+  .container div[style*="display: flex"][style*="gap: '12px'"] {
+    flex-direction: column !important;
+  }
+
+  /* Full-width search input and dropdown */
+  .container input[type="text"],
+  .container select {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+
+  /* Category accordion smaller padding on mobile */
+  .card[style*="padding: '20px 24px'"] {
+    padding: 16px !important;
+  }
+
+  /* Modal full-width on mobile */
+  div[style*="maxWidth: '560px'"] {
+    max-width: calc(100vw - 32px) !important;
+    margin: 0 16px !important;
+  }
+}
+
 /* Modal Mobile Fixes */
 @media (max-width: 600px) {
   .modal-content {

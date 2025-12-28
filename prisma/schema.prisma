@@ -318,3 +318,152 @@ enum FeedbackStatus {
   REVIEWED
   RESOLVED
 }
+
+// ============================================
+// ACHIEVEMENTS SYSTEM
+// ============================================
+
+model Achievement {
+  id            String              @id @default(cuid())
+  
+  // Achievement info
+  slug          String              @unique
+  name          String
+  description   String
+  icon          String              // Emoji or icon name
+  
+  // Requirements
+  category      AchievementCategory
+  requirement   Int                 @default(1)  // e.g., 3 first bloods, 5 solves, etc.
+  
+  // Rarity
+  rarity        AchievementRarity   @default(COMMON)
+  
+  // Relations
+  users         UserAchievement[]
+  
+  createdAt     DateTime            @default(now())
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  
+  userId        String
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  
+  // When earned
+  earnedAt      DateTime    @default(now())
+  
+  // Unique per user per achievement
+  @@unique([userId, achievementId])
+  @@index([userId])
+}
+
+enum AchievementCategory {
+  FIRST_BLOOD    // Related to getting first bloods
+  SOLVES         // Related to number of solves
+  CATEGORY       // Related to completing a category
+  DIFFICULTY     // Related to solving certain difficulty
+  STREAK         // Related to solving in succession
+  SPECIAL        // Special/rare achievements
+}
+
+enum AchievementRarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+// ============================================
+// ACTIVITY LOG (for feed)
+// ============================================
+
+model ActivityLog {
+  id            String        @id @default(cuid())
+  
+  // Event type
+  type          ActivityType
+  
+  // Who did it
+  teamId        String?
+  teamName      String?
+  userId        String?
+  username      String?
+  
+  // What happened
+  challengeId   String?
+  challengeTitle String?
+  categoryName  String?
+  points        Int?
+  
+  // Extra data
+  isFirstBlood  Boolean       @default(false)
+  metadata      String?       // JSON for extra data
+  
+  createdAt     DateTime      @default(now())
+  
+  @@index([type, createdAt])
+  @@index([teamId])
+}
+
+enum ActivityType {
+  SOLVE
+  FIRST_BLOOD
+  TEAM_CREATED
+  ACHIEVEMENT_EARNED
+}
+
+// ============================================
+// PLATFORM SETTINGS (Singleton)
+// ============================================
+
+model PlatformSettings {
+  id                  String    @id @default("default")
+  
+  // Registration
+  registrationOpen    Boolean   @default(true)
+  
+  // Submissions
+  submissionsEnabled  Boolean   @default(true)
+  
+  // Rate limiting
+  submissionRateLimit Int       @default(5)  // attempts per minute
+  
+  // Team settings
+  maxTeamSize         Int       @default(4)
+  
+  // Competition timing
+  competitionStart    DateTime?
+  competitionEnd      DateTime?
+  
+  updatedAt           DateTime  @updatedAt
+}
+
+// ============================================
+// AUDIT LOG (Admin Actions)
+// ============================================
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  
+  // Who did it
+  adminId     String
+  adminEmail  String
+  
+  // What action
+  action      String   // CREATE_CHALLENGE, DELETE_USER, CHANGE_ROLE, etc.
+  entityType  String   // Challenge, User, Team, Announcement, etc.
+  entityId    String?
+  
+  // Details
+  details     String?  // JSON with before/after values
+  ipAddress   String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([adminId])
+  @@index([action])
+  @@index([createdAt])
+}

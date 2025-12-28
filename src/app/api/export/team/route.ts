@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
                                     }
                                 }
                             },
-                            orderBy: { createdAt: "desc" }
+                            orderBy: { solvedAt: "desc" }
                         }
                     }
                 }
@@ -66,23 +66,23 @@ export async function GET(request: NextRequest) {
                 solvedCount: team.solvedCount,
                 memberCount: team.members.length,
             },
-            members: team.members.map(m => ({
+            members: team.members.map((m: { username: string; email: string; totalPoints: number; solvedCount: number; isTeamLeader: boolean }) => ({
                 username: m.username,
                 email: m.email,
                 points: m.totalPoints,
                 solves: m.solvedCount,
                 isLeader: m.isTeamLeader,
             })),
-            solves: team.solves.map(s => ({
+            solves: team.solves.map((s: { challenge: { title: string; category: { name: string } | null }; points: number; isFirstBlood: boolean; solvedAt: Date }) => ({
                 challenge: s.challenge.title,
                 category: s.challenge.category?.name || "Unknown",
                 points: s.points,
                 isFirstBlood: s.isFirstBlood,
-                solvedAt: s.createdAt.toISOString(),
+                solvedAt: s.solvedAt.toISOString(),
             })),
             statistics: {
-                firstBloods: team.solves.filter(s => s.isFirstBlood).length,
-                categoriesPlayed: [...new Set(team.solves.map(s => s.challenge.category?.name))].length,
+                firstBloods: team.solves.filter((s: { isFirstBlood: boolean }) => s.isFirstBlood).length,
+                categoriesPlayed: [...new Set(team.solves.map((s: { challenge: { category: { name: string } | null } }) => s.challenge.category?.name))].length,
                 averagePointsPerSolve: team.solvedCount > 0
                     ? Math.round(team.totalPoints / team.solvedCount)
                     : 0,

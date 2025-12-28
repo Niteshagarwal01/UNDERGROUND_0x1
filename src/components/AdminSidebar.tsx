@@ -11,7 +11,11 @@ import {
     ShieldAlert,
     X,
     Menu,
-    MessageSquare
+    MessageSquare,
+    Megaphone,
+    FileText,
+    Upload,
+    Download
 } from "lucide-react";
 
 export default function AdminSidebar() {
@@ -22,7 +26,11 @@ export default function AdminSidebar() {
         { href: "/admin", icon: LayoutDashboard, label: "Overview" },
         { href: "/admin/users", icon: Users, label: "Users & Teams" },
         { href: "/admin/challenges", icon: Flag, label: "Challenges" },
+        { href: "/admin/announcements", icon: Megaphone, label: "Announcements" },
         { href: "/admin/feedback", icon: MessageSquare, label: "Feedback" },
+        { href: "/admin/audit-log", icon: FileText, label: "Audit Log" },
+        { href: "/admin/import", icon: Upload, label: "Import Data" },
+        { href: "/admin/export", icon: Download, label: "Export Data" },
         { href: "/admin/settings", icon: Settings, label: "Settings" },
     ];
 
