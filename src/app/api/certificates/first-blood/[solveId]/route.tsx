@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 
-export const runtime = "edge";
+// Use Node.js runtime (no size limit, unlike Edge which has 1MB limit)
 
 export async function GET(
     request: NextRequest,
