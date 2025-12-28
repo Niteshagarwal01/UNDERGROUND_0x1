@@ -732,3 +732,242 @@ setInterval(() => {
     }
 }, 5 * 60 * 1000); // Every 5 minutes
 
+// ============================================
+// FIREWALL 10: HTTP Parameter Pollution (HPP) Protection
+// ============================================
+
+/**
+ * Detects and prevents HTTP Parameter Pollution attacks
+ * where attackers send multiple parameters with the same name
+ */
+export function detectParameterPollution(
+    url: string,
+    body?: Record<string, unknown>
+): { valid: boolean; reason?: string } {
+    try {
+        // Check URL query parameters
+        const urlObj = new URL(url, "http://localhost");
+        const params = urlObj.searchParams;
+        const paramCounts = new Map<string, number>();
+
+        params.forEach((value, key) => {
+            paramCounts.set(key, (paramCounts.get(key) || 0) + 1);
+        });
+
+        // Check for duplicate parameters
+        for (const [key, count] of paramCounts.entries()) {
+            if (count > 1) {
+                return { valid: false, reason: `Duplicate parameter detected: ${key}` };
+            }
+        }
+
+        // Check for array injection in body
+        if (body) {
+            for (const [key, value] of Object.entries(body)) {
+                // Check for unexpected array when scalar expected
+                if (Array.isArray(value) && value.length > 100) {
+                    return { valid: false, reason: `Excessive array size in parameter: ${key}` };
+                }
+            }
+        }
+
+        return { valid: true };
+    } catch {
+        return { valid: false, reason: "Failed to parse parameters" };
+    }
+}
+
+// ============================================
+// FIREWALL 11: Session Hijacking Detection
+// ============================================
+
+interface SessionFingerprint {
+    ip: string;
+    userAgentHash: number;
+    createdAt: number;
+    lastSeen: number;
+}
+
+const sessionFingerprints = new Map<string, SessionFingerprint>();
+const SESSION_HIJACK_THRESHOLD = 30 * 60 * 1000; // 30 minutes
+
+/**
+ * Simple hash function for user agent
+ */
+function hashString(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    return Math.abs(hash);
+}
+
+/**
+ * Detects potential session hijacking by tracking session fingerprints
+ */
+export function detectSessionHijacking(
+    userId: string,
+    request: NextRequest
+): { suspicious: boolean; reason?: string } {
+    const ip = getClientIP(request);
+    const userAgent = request.headers.get("user-agent") || "";
+    const userAgentHash = hashString(userAgent);
+    const now = Date.now();
+
+    const existing = sessionFingerprints.get(userId);
+
+    if (!existing) {
+        // First request, store fingerprint
+        sessionFingerprints.set(userId, {
+            ip,
+            userAgentHash,
+            createdAt: now,
+            lastSeen: now,
+        });
+        return { suspicious: false };
+    }
+
+    // Update last seen
+    existing.lastSeen = now;
+
+    // Check for fingerprint changes within session window
+    if (now - existing.createdAt < SESSION_HIJACK_THRESHOLD) {
+        // IP changed drastically (different network)
+        const ipPrefix = ip.split(".").slice(0, 2).join(".");
+        const existingPrefix = existing.ip.split(".").slice(0, 2).join(".");
+
+        if (ipPrefix !== existingPrefix && existing.userAgentHash !== userAgentHash) {
+            // Both IP network AND user agent changed - highly suspicious
+            return {
+                suspicious: true,
+                reason: "Session fingerprint mismatch - potential hijacking"
+            };
+        }
+    } else {
+        // Session window expired, update fingerprint
+        sessionFingerprints.set(userId, {
+            ip,
+            userAgentHash,
+            createdAt: now,
+            lastSeen: now,
+        });
+    }
+
+    return { suspicious: false };
+}
+
+// Cleanup old session fingerprints
+setInterval(() => {
+    const now = Date.now();
+    const SESSION_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
+
+    for (const [userId, fingerprint] of sessionFingerprints.entries()) {
+        if (now - fingerprint.lastSeen > SESSION_EXPIRY) {
+            sessionFingerprints.delete(userId);
+        }
+    }
+}, 60 * 60 * 1000); // Every hour
+
+// ============================================
+// FIREWALL 12: Content-Type Validation
+// ============================================
+
+const ALLOWED_CONTENT_TYPES = [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data",
+    "text/plain",
+];
+
+/**
+ * Validates Content-Type header to prevent content-type confusion attacks
+ */
+export function validateContentType(request: NextRequest): { valid: boolean; reason?: string } {
+    const contentType = request.headers.get("content-type");
+    const method = request.method;
+
+    // Only check for methods that should have a body
+    if (!["POST", "PUT", "PATCH"].includes(method)) {
+        return { valid: true };
+    }
+
+    // Content-Type should be present for body-carrying requests
+    if (!contentType) {
+        return { valid: false, reason: "Missing Content-Type header" };
+    }
+
+    // Extract main content type (ignore charset and other params)
+    const mainType = contentType.split(";")[0].trim().toLowerCase();
+
+    // Check against whitelist
+    if (!ALLOWED_CONTENT_TYPES.some(allowed => mainType.startsWith(allowed))) {
+        return { valid: false, reason: `Unsupported Content-Type: ${mainType}` };
+    }
+
+    return { valid: true };
+}
+
+// ============================================
+// FIREWALL 13: Request Size Limits
+// ============================================
+
+const REQUEST_SIZE_LIMITS = {
+    default: 100 * 1024,        // 100KB for regular requests
+    flag: 1 * 1024,             // 1KB for flag submissions
+    feedback: 10 * 1024,        // 10KB for feedback
+    challenge: 500 * 1024,      // 500KB for admin challenge creation
+};
+
+/**
+ * Enforces request size limits based on endpoint
+ */
+export function checkRequestSize(
+    path: string,
+    bodySize: number
+): { valid: boolean; reason?: string } {
+    let limit = REQUEST_SIZE_LIMITS.default;
+
+    if (path.includes("/submit")) {
+        limit = REQUEST_SIZE_LIMITS.flag;
+    } else if (path.includes("/feedback")) {
+        limit = REQUEST_SIZE_LIMITS.feedback;
+    } else if (path.includes("/admin/challenges")) {
+        limit = REQUEST_SIZE_LIMITS.challenge;
+    }
+
+    if (bodySize > limit) {
+        return {
+            valid: false,
+            reason: `Request too large: ${bodySize} bytes (limit: ${limit})`
+        };
+    }
+
+    return { valid: true };
+}
+
+// ============================================
+// EXPORT SUMMARY OF ALL FIREWALLS
+// ============================================
+
+/**
+ * Returns a summary of all active security firewalls
+ */
+export function getFirewallsSummary(): { id: number; name: string; description: string }[] {
+    return [
+        { id: 1, name: "Request Validation", description: "XSS, SQL, NoSQL, Template & Path Traversal injection protection" },
+        { id: 2, name: "Input Sanitization", description: "Sanitizes user input and flag submissions" },
+        { id: 3, name: "Anti-Automation", description: "Detects bots and automated tools" },
+        { id: 4, name: "Brute-Force Protection", description: "Prevents flag brute-forcing with progressive lockout" },
+        { id: 5, name: "Origin Validation", description: "CSRF protection via origin/referer checking" },
+        { id: 6, name: "IP Blocklist", description: "Dynamic IP blocking with auto-expiry" },
+        { id: 7, name: "Admin Audit Logging", description: "Complete audit trail for admin actions" },
+        { id: 8, name: "Request Fingerprinting", description: "Tracks client fingerprints for anomaly detection" },
+        { id: 9, name: "Sensitive Data Protection", description: "Redacts sensitive fields from responses" },
+        { id: 10, name: "HPP Protection", description: "Prevents HTTP Parameter Pollution attacks" },
+        { id: 11, name: "Session Hijack Detection", description: "Detects session fingerprint changes" },
+        { id: 12, name: "Content-Type Validation", description: "Prevents content-type confusion attacks" },
+        { id: 13, name: "Request Size Limits", description: "Enforces endpoint-specific size limits" },
+    ];
+}

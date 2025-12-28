@@ -33,7 +33,8 @@ export default function AdminAnnouncementsPage() {
     const [formData, setFormData] = useState({
         title: "",
         content: "",
-        isPinned: false
+        isPinned: false,
+        notifyUsers: false
     });
 
     useEffect(() => {
@@ -60,11 +61,12 @@ export default function AdminAnnouncementsPage() {
             setFormData({
                 title: announcement.title,
                 content: announcement.content,
-                isPinned: announcement.isPinned
+                isPinned: announcement.isPinned,
+                notifyUsers: false
             });
         } else {
             setEditingId(null);
-            setFormData({ title: "", content: "", isPinned: false });
+            setFormData({ title: "", content: "", isPinned: false, notifyUsers: false });
         }
         setShowModal(true);
     };
@@ -452,6 +454,40 @@ export default function AdminAnnouncementsPage() {
                                 </button>
                                 <span style={{ fontSize: "14px" }}>Pin to top</span>
                             </div>
+
+                            {/* Notify Users Toggle - only for new announcements */}
+                            {!editingId && (
+                                <div style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "12px"
+                                }}>
+                                    <button
+                                        onClick={() => setFormData(f => ({ ...f, notifyUsers: !f.notifyUsers }))}
+                                        style={{
+                                            width: "48px",
+                                            height: "24px",
+                                            borderRadius: "12px",
+                                            border: "none",
+                                            cursor: "pointer",
+                                            background: formData.notifyUsers ? "#22c55e" : "var(--black-border)",
+                                            position: "relative"
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: "18px",
+                                            height: "18px",
+                                            borderRadius: "50%",
+                                            background: "white",
+                                            position: "absolute",
+                                            top: "3px",
+                                            left: formData.notifyUsers ? "27px" : "3px",
+                                            transition: "left 0.2s"
+                                        }} />
+                                    </button>
+                                    <span style={{ fontSize: "14px" }}>Send notification to all users</span>
+                                </div>
+                            )}
 
                             <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
                                 <button

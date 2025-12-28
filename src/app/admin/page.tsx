@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { Users, Shield, Target, Flag, Layers, ChevronRight, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Users, Shield, Target, Flag, Layers, ChevronRight, TrendingUp, TrendingDown, Minus, Trophy, Zap, Bell, Megaphone } from "lucide-react";
 import Link from "next/link";
 import AnalyticsCharts from "@/components/admin/AnalyticsCharts";
 
@@ -16,6 +16,14 @@ async function getStats() {
         const teamCount = await prisma.team.count();
         const challengeCount = await prisma.challenge.count();
         const submissionCount = await prisma.submission.count();
+
+        // New feature stats
+        const achievementCount = await prisma.userAchievement.count();
+        const firstBloodCount = await prisma.solve.count({
+            where: { isFirstBlood: true }
+        });
+        const notificationCount = await prisma.notification.count();
+        const announcementCount = await prisma.announcement.count();
 
         // Get counts from yesterday/last week for trend calculation
         const usersYesterday = await prisma.user.count({
@@ -51,6 +59,10 @@ async function getStats() {
             teamCount,
             challengeCount,
             submissionCount,
+            achievementCount,
+            firstBloodCount,
+            notificationCount,
+            announcementCount,
             userTrend,
             teamTrend,
             recentActivity,
@@ -130,6 +142,34 @@ export default async function AdminDashboard() {
                     color="var(--yellow)"
                     trend={null}
                     liveIndicator
+                />
+                <StatCard
+                    label="Achievements Earned"
+                    value={stats.achievementCount}
+                    icon={Trophy}
+                    color="var(--yellow)"
+                    trend={null}
+                />
+                <StatCard
+                    label="First Bloods"
+                    value={stats.firstBloodCount}
+                    icon={Zap}
+                    color="var(--yellow)"
+                    trend={null}
+                />
+                <StatCard
+                    label="Notifications Sent"
+                    value={stats.notificationCount}
+                    icon={Bell}
+                    color="var(--yellow)"
+                    trend={null}
+                />
+                <StatCard
+                    label="Announcements"
+                    value={stats.announcementCount}
+                    icon={Megaphone}
+                    color="var(--yellow)"
+                    trend={null}
                 />
             </div>
 

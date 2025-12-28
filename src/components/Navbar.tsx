@@ -3,13 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
-import { LogOut, Menu, X } from "lucide-react";
+import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
+import { LogOut, Menu, X, Flame, User } from "lucide-react";
+import NotificationBell from "@/components/NotificationBell";
 
 export default function Navbar() {
     const pathname = usePathname();
+    const { isSignedIn } = useAuth();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const isActive = (path: string) => pathname === path;
+    const [dbUsername, setDbUsername] = useState<string | null>(null);
+    const isActive = (path: string) => pathname === path || pathname?.startsWith(path + "/");
+
+    // Fetch database username for profile link
+    useEffect(() => {
+        if (isSignedIn) {
+            fetch("/api/user")
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.user?.username) {
+                        setDbUsername(data.user.username);
+                    }
+                })
+                .catch(() => { });
+        }
+    }, [isSignedIn]);
 
     // Close mobile menu on route change
     useEffect(() => {
@@ -50,6 +67,14 @@ export default function Navbar() {
                         Leaderboard
                     </Link>
                     <Link
+                        href="/hall-of-fame"
+                        className={`navbar-link ${isActive("/hall-of-fame") ? "active" : ""}`}
+                        style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                    >
+                        <Flame size={14} />
+                        Hall of Fame
+                    </Link>
+                    <Link
                         href="/feedback"
                         className={`navbar-link ${isActive("/feedback") ? "active" : ""}`}
                     >
@@ -63,6 +88,17 @@ export default function Navbar() {
                         >
                             Dashboard
                         </Link>
+                        {dbUsername && (
+                            <Link
+                                href={`/profile/${dbUsername}`}
+                                className={`navbar-link ${isActive("/profile") ? "active" : ""}`}
+                                style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                            >
+                                <User size={14} />
+                                Profile
+                            </Link>
+                        )}
+                        <NotificationBell />
                         <SignOutButton>
                             <button className="btn btn-secondary btn-sm">
                                 <LogOut size={16} />
@@ -105,6 +141,14 @@ export default function Navbar() {
                         Leaderboard
                     </Link>
                     <Link
+                        href="/hall-of-fame"
+                        className={`navbar-mobile-link ${isActive("/hall-of-fame") ? "active" : ""}`}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                    >
+                        <Flame size={16} className="text-yellow" />
+                        Hall of Fame
+                    </Link>
+                    <Link
                         href="/feedback"
                         className={`navbar-mobile-link ${isActive("/feedback") ? "active" : ""}`}
                     >
@@ -118,6 +162,16 @@ export default function Navbar() {
                         >
                             Dashboard
                         </Link>
+                        {dbUsername && (
+                            <Link
+                                href={`/profile/${dbUsername}`}
+                                className={`navbar-mobile-link ${isActive("/profile") ? "active" : ""}`}
+                                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                            >
+                                <User size={16} className="text-yellow" />
+                                My Profile
+                            </Link>
+                        )}
                         <div className="navbar-mobile-divider" />
                         <SignOutButton>
                             <button className="btn btn-secondary" style={{ width: '100%' }}>

@@ -20,6 +20,7 @@ export async function GET(
                         avatarUrl: true,
                         totalPoints: true,
                         isTeamLeader: true,
+                        role: true, // Include role for admin check
                     },
                 },
                 solves: {
@@ -47,10 +48,19 @@ export async function GET(
             );
         }
 
-        // Get team rank
-        const teamsAbove = await prisma.team.count({
-            where: { totalPoints: { gt: team.totalPoints } },
-        });
+        // Check if this is an admin team (has any admin/moderator members)
+        const isAdminTeam = team.members.some(
+            member => member.role === "ADMIN" || member.role === "MODERATOR"
+        );
+
+        // Get team rank only if not admin team
+        let teamRank: number | null = null;
+        if (!isAdminTeam) {
+            const teamsAbove = await prisma.team.count({
+                where: { totalPoints: { gt: team.totalPoints } },
+            });
+            teamRank = teamsAbove + 1;
+        }
 
         // Calculate category breakdown
         const categories = await prisma.category.findMany({
@@ -79,7 +89,8 @@ export async function GET(
             team: {
                 id: team.id,
                 name: team.name,
-                rank: teamsAbove + 1,
+                rank: teamRank, // null for admin teams
+                isAdminTeam, // flag for frontend
                 points: team.totalPoints,
                 members: team.members.map((m) => ({
                     name: m.username,
@@ -105,3 +116,4 @@ export async function GET(
         );
     }
 }
+

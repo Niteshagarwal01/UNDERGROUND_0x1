@@ -3,12 +3,29 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
-import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard } from "lucide-react";
+import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
+import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Bell } from "lucide-react";
+import NotificationBell from "@/components/NotificationBell";
 
 export default function MobileNavbar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const { isSignedIn } = useAuth();
+    const [dbUsername, setDbUsername] = useState<string | null>(null);
+
+    // Fetch database username for profile link
+    useEffect(() => {
+        if (isSignedIn) {
+            fetch("/api/user")
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.user?.username) {
+                        setDbUsername(data.user.username);
+                    }
+                })
+                .catch(() => { });
+        }
+    }, [isSignedIn]);
 
     // Close menu on route change
     useEffect(() => {
@@ -30,6 +47,7 @@ export default function MobileNavbar() {
     const navItems = [
         { href: "/challenges", icon: Target, label: "Challenges" },
         { href: "/leaderboard", icon: Trophy, label: "Leaderboard" },
+        { href: "/hall-of-fame", icon: Flame, label: "Hall of Fame" },
         { href: "/feedback", icon: MessageSquare, label: "Feedback" },
         { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", auth: true },
     ];
@@ -173,11 +191,42 @@ export default function MobileNavbar() {
                             </Link>
                         );
                     })}
+
+                    {/* Profile Link - only when signed in and username loaded */}
+                    <SignedIn>
+                        {dbUsername && (
+                            <Link
+                                href={`/profile/${dbUsername}`}
+                                onClick={() => setIsOpen(false)}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    padding: '14px 16px',
+                                    marginBottom: '8px',
+                                    borderRadius: '8px',
+                                    color: pathname?.startsWith('/profile') ? '#facc15' : '#a3a3a3',
+                                    textDecoration: 'none',
+                                    fontSize: '14px',
+                                    fontWeight: 500,
+                                    background: pathname?.startsWith('/profile') ? 'rgba(250, 204, 21, 0.1)' : 'transparent',
+                                    border: pathname?.startsWith('/profile') ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid transparent',
+                                }}
+                            >
+                                <User size={20} style={{ opacity: pathname?.startsWith('/profile') ? 1 : 0.6 }} />
+                                My Profile
+                            </Link>
+                        )}
+                    </SignedIn>
                 </nav>
 
                 {/* Footer Actions */}
                 <div style={{ padding: '16px', borderTop: '1px solid #1a1a1a' }}>
                     <SignedIn>
+                        {/* Notification Bell */}
+                        <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
+                            <NotificationBell />
+                        </div>
                         <SignOutButton>
                             <button
                                 style={{

@@ -50,7 +50,8 @@ ChartJS.register(
 interface TeamData {
     id: string;
     name: string;
-    rank: number;
+    rank: number | null; // null for admin teams
+    isAdminTeam?: boolean;
     points: number;
     members: {
         name: string;
@@ -184,9 +185,12 @@ export default function TeamProfilePage() {
             {/* Header */}
             <section className="section" style={{ paddingTop: 'calc(var(--nav-height) + 60px)', paddingBottom: '40px' }}>
                 <div className="container" style={{ maxWidth: '1200px' }}>
-                    <Link href="/leaderboard" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '32px' }}>
-                        <ChevronLeft size={16} /> Back to Leaderboard
-                    </Link>
+                    <button
+                        onClick={() => window.history.back()}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '32px', background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
+                    >
+                        <ChevronLeft size={16} /> Back
+                    </button>
 
                     <div className="card card-elevated" style={{ marginBottom: '32px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
@@ -198,7 +202,7 @@ export default function TeamProfilePage() {
                                 <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)' }}>
                                         <Trophy size={16} className="text-yellow" />
-                                        Rank #{team.rank}
+                                        {team.rank !== null ? `Rank #${team.rank}` : 'Admin Team'}
                                     </span>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)' }}>
                                         <Target size={16} />

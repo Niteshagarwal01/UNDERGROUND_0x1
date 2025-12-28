@@ -4,9 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import {
-    Trophy,
-    Target,
-    Hash,
     Users,
     Copy,
     Check,
@@ -20,11 +17,16 @@ import {
     UserPlus,
     UserCheck,
     UserX,
-    Download
+    Download,
+    Share2,
+    User,
+    Trophy,
+    Target
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AchievementsDisplay from "@/components/AchievementsDisplay";
+import ShareStatsModal from "@/components/ShareStatsModal";
+import TeamAchievementsDisplay from "@/components/TeamAchievementsDisplay";
 
 interface UserData {
     id: string;
@@ -33,7 +35,7 @@ interface UserData {
     avatarUrl: string | null;
     totalPoints: number;
     solvedCount: number;
-    rank: number;
+    rank: number | null;
     team: {
         id: string;
         name: string;
@@ -73,6 +75,7 @@ export default function DashboardPage() {
     const [actionLoading, setActionLoading] = useState(false);
     const [actionMessage, setActionMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
     const [copied, setCopied] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
 
     // Join requests (for team leaders)
     interface JoinRequest {
@@ -180,7 +183,6 @@ export default function DashboardPage() {
             if (json.success) {
                 setActionMessage({ type: "success", text: json.message });
                 setTeamName("");
-                // Refresh user data
                 await fetchUser();
             } else {
                 setActionMessage({ type: "error", text: json.message });
@@ -210,7 +212,6 @@ export default function DashboardPage() {
             if (json.success) {
                 setActionMessage({ type: "success", text: json.message });
                 setInviteCode("");
-                // Refresh user data
                 await fetchUser();
             } else {
                 setActionMessage({ type: "error", text: json.message });
@@ -284,7 +285,6 @@ export default function DashboardPage() {
         <div className="min-h-screen bg-black grid-pattern">
             <Navbar />
 
-            {/* Main Content */}
             <main className="section" style={{ paddingTop: 'calc(var(--nav-height) + 60px)' }}>
                 <div className="container" style={{ maxWidth: '900px' }}>
                     {error ? (
@@ -294,48 +294,30 @@ export default function DashboardPage() {
                         </div>
                     ) : null}
 
-                    {/* Welcome Header */}
+                    {/* Welcome Header with quick links */}
                     <div className="card card-elevated" style={{ marginBottom: '32px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                            {clerkUser.imageUrl && (
-                                <img
-                                    src={clerkUser.imageUrl}
-                                    alt="Avatar"
-                                    style={{ width: '64px', height: '64px', borderRadius: '50%', border: '3px solid var(--yellow)' }}
-                                />
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                {clerkUser.imageUrl && (
+                                    <img
+                                        src={clerkUser.imageUrl}
+                                        alt="Avatar"
+                                        style={{ width: '64px', height: '64px', borderRadius: '50%', border: '3px solid var(--yellow)' }}
+                                    />
+                                )}
+                                <div>
+                                    <h1 style={{ fontSize: '1.75rem', marginBottom: '4px' }}>
+                                        Welcome, <span className="text-yellow">{userData?.username || clerkUser.username || "Operator"}</span>
+                                    </h1>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{userData?.email || clerkUser.primaryEmailAddress?.emailAddress}</p>
+                                </div>
+                            </div>
+                            {userData?.username && (
+                                <Link href={`/profile/${userData.username}`} className="btn btn-secondary">
+                                    <User size={16} />
+                                    View My Profile
+                                </Link>
                             )}
-                            <div style={{ flex: 1 }}>
-                                <h1 style={{ fontSize: '1.75rem', marginBottom: '4px' }}>
-                                    Welcome, <span className="text-yellow">{userData?.username || clerkUser.username || "Operator"}</span>
-                                </h1>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{userData?.email || clerkUser.primaryEmailAddress?.emailAddress}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Stats Grid */}
-                    <div className="stats-grid" style={{ marginBottom: '32px' }}>
-                        <div className="stat-card">
-                            <Trophy size={24} className="stat-icon" />
-                            <div className="stat-value">{userData?.totalPoints || 0}</div>
-                            <div className="stat-label">Points</div>
-                        </div>
-                        <div className="stat-card">
-                            <Target size={24} className="stat-icon" />
-                            <div className="stat-value">{userData?.solvedCount || 0}</div>
-                            <div className="stat-label">Solves</div>
-                        </div>
-                        <div className="stat-card">
-                            <Hash size={24} className="stat-icon" />
-                            <div className="stat-value">#{userData?.rank || "—"}</div>
-                            <div className="stat-label">Rank</div>
-                        </div>
-                        <div className="stat-card">
-                            <Users size={24} className="stat-icon" />
-                            <div className="stat-value" style={{ fontSize: userData?.team ? '1rem' : '2.5rem' }}>
-                                {userData?.team?.name || "—"}
-                            </div>
-                            <div className="stat-label">Team</div>
                         </div>
                     </div>
 
@@ -343,14 +325,14 @@ export default function DashboardPage() {
                     {actionMessage && (
                         <div
                             className={`alert ${actionMessage.type === "success" ? "alert-success" : "alert-error"}`}
-                            style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
+                            style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}
                         >
                             {actionMessage.type === "success" ? <Check size={20} /> : <AlertCircle size={20} />}
                             {actionMessage.text}
                         </div>
                     )}
 
-                    {/* ============ TEAM CREATION SECTION ============ */}
+                    {/* ============ NO TEAM - CREATION SECTION ============ */}
                     {!userData?.team ? (
                         <div className="card" style={{ marginBottom: '32px', borderColor: 'var(--yellow)', borderWidth: '2px' }}>
                             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
@@ -427,87 +409,92 @@ export default function DashboardPage() {
                             </div>
                         </div>
                     ) : (
-                        /* Team Info (if user has a team) */
-                        <div className="card" style={{ marginBottom: '32px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-                                <h2 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <Users size={24} className="text-yellow" />
-                                    Team: {userData.team.name}
-                                </h2>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    {userData.isTeamLeader && (
-                                        <span className="badge badge-medium">Leader</span>
-                                    )}
-                                    <Link href={`/team/${userData.team.id}`} className="btn btn-secondary btn-sm">
-                                        View Profile
-                                    </Link>
-                                    <a
-                                        href="/api/export/team?format=csv"
-                                        download
-                                        className="btn btn-secondary btn-sm"
-                                        style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-                                    >
-                                        <Download size={14} />
-                                        Export
-                                    </a>
-                                    <button
-                                        onClick={handleLeaveTeam}
-                                        className="btn btn-sm"
-                                        disabled={actionLoading}
-                                        style={{
-                                            background: 'rgba(239, 68, 68, 0.1)',
-                                            color: '#ef4444',
-                                            border: '1px solid rgba(239, 68, 68, 0.3)'
-                                        }}
-                                    >
-                                        {actionLoading ? <Loader2 size={14} className="spinner" /> : <LogOut size={14} />}
-                                        Leave Team
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
-                                <div className="card" style={{ textAlign: 'center', padding: '16px', background: 'var(--black-lighter)' }}>
-                                    <div className="text-yellow" style={{ fontSize: '1.5rem', fontWeight: 700 }}>
-                                        {userData.team.totalPoints}
+                        /* ============ HAS TEAM - TEAM MANAGEMENT ============ */
+                        <>
+                            {/* Team Info Card */}
+                            <div className="card" style={{ marginBottom: '32px' }}>
+                                {/* Team Header */}
+                                <div className="team-header">
+                                    <div className="team-title-section">
+                                        <h2 className="team-title">
+                                            <Users size={24} className="text-yellow" />
+                                            Team: {userData.team.name}
+                                        </h2>
+                                        {userData.isTeamLeader && (
+                                            <span className="badge badge-medium">Leader</span>
+                                        )}
                                     </div>
-                                    <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Points</div>
-                                </div>
-                                <div className="card" style={{ textAlign: 'center', padding: '16px', background: 'var(--black-lighter)' }}>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>
-                                        {userData.team.solveCount}
-                                    </div>
-                                    <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Solves</div>
-                                </div>
-                                <div className="card" style={{ textAlign: 'center', padding: '16px', background: 'var(--black-lighter)' }}>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>
-                                        {userData.team.memberCount}/4
-                                    </div>
-                                    <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Members</div>
-                                </div>
-                            </div>
-
-                            {/* Invite Code for Team Leaders */}
-                            {userData.isTeamLeader && userData.team.inviteCode && (
-                                <div style={{ background: 'var(--black-lighter)', border: '1px solid var(--black-border)', borderRadius: '8px', padding: '16px' }}>
-                                    <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px' }}>
-                                        Invite Code (share with teammates to join your team)
-                                    </p>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                        <code className="text-yellow" style={{ flex: 1, fontSize: '16px', fontWeight: 700, letterSpacing: '0.1em' }}>
-                                            {userData.team.inviteCode}
-                                        </code>
-                                        <button onClick={copyInviteCode} className="btn btn-secondary btn-sm">
-                                            {copied ? <Check size={16} /> : <Copy size={16} />}
-                                            {copied ? "Copied!" : "Copy"}
+                                    <div className="team-actions">
+                                        <Link href={`/team/${userData.team.id}`} className="btn btn-secondary btn-sm">
+                                            View Team
+                                        </Link>
+                                        <button
+                                            onClick={() => setShareModalOpen(true)}
+                                            className="btn btn-secondary btn-sm"
+                                        >
+                                            <Share2 size={14} />
+                                            Share
+                                        </button>
+                                        <a
+                                            href="/api/export/team?format=csv"
+                                            download
+                                            className="btn btn-secondary btn-sm"
+                                        >
+                                            <Download size={14} />
+                                            Export
+                                        </a>
+                                        <button
+                                            onClick={handleLeaveTeam}
+                                            className="btn btn-sm btn-danger"
+                                            disabled={actionLoading}
+                                        >
+                                            {actionLoading ? <Loader2 size={14} className="spinner" /> : <LogOut size={14} />}
+                                            Leave
                                         </button>
                                     </div>
                                 </div>
-                            )}
+
+                                {/* Team Stats */}
+                                <div className="team-stats-grid">
+                                    <div className="team-stat-box">
+                                        <Trophy size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
+                                        <div className="team-stat-value text-yellow">{userData.team.totalPoints}</div>
+                                        <div className="team-stat-label">Points</div>
+                                    </div>
+                                    <div className="team-stat-box">
+                                        <Target size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
+                                        <div className="team-stat-value">{userData.team.solveCount}</div>
+                                        <div className="team-stat-label">Solves</div>
+                                    </div>
+                                    <div className="team-stat-box">
+                                        <Users size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
+                                        <div className="team-stat-value">{userData.team.memberCount}/4</div>
+                                        <div className="team-stat-label">Members</div>
+                                    </div>
+                                </div>
+
+                                {/* Invite Code for Team Leaders */}
+                                {userData.isTeamLeader && userData.team.inviteCode && (
+                                    <div style={{ background: 'var(--black-lighter)', border: '1px solid var(--black-border)', borderRadius: '8px', padding: '16px', marginTop: '16px' }}>
+                                        <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                                            Invite Code (share with teammates to join your team)
+                                        </p>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                            <code className="text-yellow" style={{ flex: 1, fontSize: '16px', fontWeight: 700, letterSpacing: '0.1em' }}>
+                                                {userData.team.inviteCode}
+                                            </code>
+                                            <button onClick={copyInviteCode} className="btn btn-secondary btn-sm">
+                                                {copied ? <Check size={16} /> : <Copy size={16} />}
+                                                {copied ? "Copied!" : "Copy"}
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
                             {/* Join Requests for Team Leaders */}
                             {userData.isTeamLeader && (
-                                <div style={{ marginTop: '24px' }}>
+                                <div className="card" style={{ marginBottom: '32px' }}>
                                     <h3 style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1rem' }}>
                                         <UserPlus size={20} className="text-yellow" />
                                         Pending Join Requests
@@ -551,7 +538,9 @@ export default function DashboardPage() {
                                                         padding: '16px',
                                                         background: 'var(--black-lighter)',
                                                         border: '1px solid var(--black-border)',
-                                                        borderRadius: '8px'
+                                                        borderRadius: '8px',
+                                                        flexWrap: 'wrap',
+                                                        gap: '12px'
                                                     }}
                                                 >
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -600,63 +589,72 @@ export default function DashboardPage() {
                                     )}
                                 </div>
                             )}
-                        </div>
-                    )}
 
-                    {/* Recent Solves */}
-                    <div className="card">
-                        <h2 style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <Target size={24} className="text-yellow" />
-                            Recent Solves
-                        </h2>
+                            {/* Team's Recent Solves */}
+                            <div className="card">
+                                <h2 style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <Target size={24} className="text-yellow" />
+                                    Team&apos;s Recent Solves
+                                </h2>
 
-                        {userData?.recentSolves && userData.recentSolves.length > 0 ? (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                {userData.recentSolves.map((solve, index) => (
-                                    <div
-                                        key={index}
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'space-between',
-                                            padding: '16px',
-                                            background: 'var(--black-lighter)',
-                                            border: '1px solid var(--black-border)',
-                                            borderRadius: '8px'
-                                        }}
-                                    >
-                                        <div>
-                                            <div style={{ fontWeight: 600 }}>{solve.challengeTitle}</div>
-                                            <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{formatTimeAgo(solve.solvedAt)}</div>
-                                        </div>
-                                        <div className="text-yellow" style={{ fontWeight: 700 }}>+{solve.points}</div>
+                                {userData?.recentSolves && userData.recentSolves.length > 0 ? (
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        {userData.recentSolves.slice(0, 5).map((solve, index) => (
+                                            <div
+                                                key={index}
+                                                style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'space-between',
+                                                    padding: '16px',
+                                                    background: 'var(--black-lighter)',
+                                                    border: '1px solid var(--black-border)',
+                                                    borderRadius: '8px'
+                                                }}
+                                            >
+                                                <div>
+                                                    <div style={{ fontWeight: 600 }}>{solve.challengeTitle}</div>
+                                                    <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{formatTimeAgo(solve.solvedAt)}</div>
+                                                </div>
+                                                <div className="text-yellow" style={{ fontWeight: 700 }}>+{solve.points}</div>
+                                            </div>
+                                        ))}
+                                        <Link href={`/team/${userData.team.id}`} className="btn btn-secondary" style={{ alignSelf: 'flex-start' }}>
+                                            View All Solves <ChevronRight size={16} />
+                                        </Link>
                                     </div>
-                                ))}
+                                ) : (
+                                    <div className="empty-state" style={{ padding: '40px' }}>
+                                        <Target size={48} className="empty-state-icon" />
+                                        <h3 className="empty-state-title">No Solves Yet</h3>
+                                        <p className="empty-state-text">Start solving challenges to earn points!</p>
+                                        <Link href="/challenges" className="btn btn-primary">
+                                            View Challenges <ChevronRight size={18} />
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
-                        ) : (
-                            <div className="empty-state" style={{ padding: '40px' }}>
-                                <Target size={48} className="empty-state-icon" />
-                                <h3 className="empty-state-title">No Solves Yet</h3>
-                                <p className="empty-state-text">
-                                    {userData?.team
-                                        ? "Start solving challenges to earn points!"
-                                        : "Create or join a team first, then start solving!"}
-                                </p>
-                                <Link href="/challenges" className="btn btn-primary">
-                                    View Challenges <ChevronRight size={18} />
-                                </Link>
-                            </div>
-                        )}
-                    </div>
 
-                    {/* Achievements */}
-                    <div className="card">
-                        <AchievementsDisplay />
-                    </div>
+                            {/* Team Achievements */}
+                            <div className="card" style={{ marginTop: '32px' }}>
+                                <TeamAchievementsDisplay teamId={userData.team.id} />
+                            </div>
+                        </>
+                    )}
                 </div>
             </main>
 
             <Footer />
+
+            {/* Share Stats Modal */}
+            {userData?.team && (
+                <ShareStatsModal
+                    teamId={userData.team.id}
+                    teamName={userData.team.name}
+                    isOpen={shareModalOpen}
+                    onClose={() => setShareModalOpen(false)}
+                />
+            )}
         </div>
     );
 }

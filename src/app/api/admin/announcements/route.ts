@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await request.json();
-        const { title, content, isPinned = false } = body;
+        const { title, content, isPinned = false, notifyUsers = false } = body;
 
         if (!title || !content) {
             return NextResponse.json(
@@ -107,6 +107,24 @@ export async function POST(request: NextRequest) {
             }
         });
 
+        // Send notifications to all users if requested
+        if (notifyUsers) {
+            const allUsers = await prisma.user.findMany({
+                select: { id: true }
+            });
+
+            // Create notifications for all users
+            await prisma.notification.createMany({
+                data: allUsers.map(user => ({
+                    userId: user.id,
+                    type: "ANNOUNCEMENT",
+                    title: `📢 ${title}`,
+                    message: content.length > 100 ? content.substring(0, 100) + "..." : content,
+                    link: null
+                }))
+            });
+        }
+
         // Log the action
         await logAction(
             adminCheck.user.id,
@@ -114,12 +132,14 @@ export async function POST(request: NextRequest) {
             "CREATE_ANNOUNCEMENT",
             "Announcement",
             announcement.id,
-            JSON.stringify({ title, isPinned })
+            JSON.stringify({ title, isPinned, notifyUsers })
         );
 
         return NextResponse.json({
             success: true,
-            message: "Announcement created successfully",
+            message: notifyUsers
+                ? "Announcement created and notifications sent"
+                : "Announcement created successfully",
             announcement
         });
     } catch (error) {

@@ -19,10 +19,12 @@ import {
     Loader2,
     Target,
     Clock,
+    BookOpen,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FirstBloodCelebration from "@/components/FirstBloodCelebration";
+import WriteupModal from "@/components/WriteupModal";
 
 // Category configuration - consistent yellow theme
 const categoryConfig: Record<string, {
@@ -119,6 +121,8 @@ function ChallengeModal({
     const [submitting, setSubmitting] = useState(false);
     const [result, setResult] = useState<{ success: boolean; message: string; isFirstBlood?: boolean } | null>(null);
     const [showFirstBlood, setShowFirstBlood] = useState(false);
+    const [showWriteup, setShowWriteup] = useState(false);
+    const [hasSolved, setHasSolved] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -135,6 +139,7 @@ function ChallengeModal({
             setResult(data);
             if (data.success) {
                 setFlag("");
+                setHasSolved(true);
                 if (data.isFirstBlood) {
                     setShowFirstBlood(true);
                 }
@@ -348,11 +353,36 @@ function ChallengeModal({
                                         </span>
                                     </div>
                                 )}
+
+                                {/* View Write-up button after solve */}
+                                {hasSolved && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowWriteup(true)}
+                                        className="btn btn-secondary"
+                                        style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}
+                                    >
+                                        <BookOpen size={16} />
+                                        View Write-up
+                                    </button>
+                                )}
                             </form>
                         )}
                     </div>
                 </div>
             </div>
+
+            {/* Writeup Modal */}
+            <WriteupModal
+                challengeId={challenge.id}
+                challengeTitle={challenge.title}
+                challengeSlug={challenge.slug}
+                categoryName={category.name}
+                difficulty={challenge.difficulty}
+                isSolved={hasSolved}
+                isOpen={showWriteup}
+                onClose={() => setShowWriteup(false)}
+            />
         </>
     );
 }

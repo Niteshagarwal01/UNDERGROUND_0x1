@@ -149,6 +149,17 @@ export async function checkAndAwardAchievements(check: AchievementCheck): Promis
                     });
                     awardedAchievements.push(achievement.name);
                     console.log(`🏆 Achievement unlocked: ${achievement.name} for user ${check.userId}`);
+
+                    // Send notification to user
+                    await prisma.notification.create({
+                        data: {
+                            userId: check.userId,
+                            type: "ACHIEVEMENT_EARNED",
+                            title: `🏆 Achievement Unlocked!`,
+                            message: `You earned the "${achievement.name}" achievement!`,
+                            link: null
+                        }
+                    }).catch(() => { }); // Ignore errors
                 } catch (e) {
                     // Might already exist due to race condition, ignore
                 }

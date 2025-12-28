@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import { prisma } from "@/lib/prisma";
 
 // Category icon and subtitle mapping
@@ -89,6 +90,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
+      <AnnouncementBanner />
 
       {/* ============ HERO SECTION WITH METRO MAP ============ */}
       <section className="hero">

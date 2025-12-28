@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, Star, Send, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { MessageSquare, Star, Send, Loader2, ArrowLeft } from "lucide-react";
 
 export default function FeedbackPage() {
     const [loading, setLoading] = useState(false);
@@ -83,6 +84,28 @@ export default function FeedbackPage() {
 
     return (
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "40px 24px" }}>
+            {/* Back Button */}
+            <Link
+                href="/"
+                style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    color: "var(--text-muted)",
+                    textDecoration: "none",
+                    fontSize: "14px",
+                    marginBottom: "24px",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    border: "1px solid transparent",
+                    transition: "all 0.2s"
+                }}
+                className="btn-secondary"
+            >
+                <ArrowLeft size={16} />
+                Back to Home
+            </Link>
+
             {/* Header */}
             <div style={{ textAlign: "center", marginBottom: "40px" }}>
                 <div
