@@ -165,6 +165,8 @@ export async function POST(request: NextRequest) {
                 points: parseInt(points),
                 flagHash,
                 resourceUrl: resourceUrl?.trim() || null,
+                writeup: body.writeup || null,
+                writeupUrl: body.writeupUrl || null,
                 isActive,
                 isHidden,
             },

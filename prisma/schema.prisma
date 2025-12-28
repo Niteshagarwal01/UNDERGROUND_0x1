@@ -40,6 +40,7 @@ model User {
   joinRequests  JoinRequest[]
   feedback      Feedback[]
   achievements  UserAchievement[]
+  writeups      Writeup[]
   
   role          Role     @default(USER)
 
@@ -140,6 +141,7 @@ model Challenge {
   submissions   Submission[]
   solves        Solve[]
   firstBlood    Solve?      @relation("FirstBlood")
+  userWriteups  Writeup[]
   
   @@index([categoryId])
   @@index([difficulty])
@@ -337,6 +339,7 @@ model Achievement {
   name          String
   description   String
   icon          String              // Emoji or icon name
+  points        Int                 @default(50)  // Points awarded (25-150)
   
   // Requirements
   category      AchievementCategory
@@ -531,4 +534,29 @@ model Certificate {
 enum CertificateType {
   COMPETITION
   FIRST_BLOOD
+}
+
+// ============================================
+// USER WRITEUPS
+// ============================================
+
+model Writeup {
+  id          String   @id @default(cuid())
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  challengeId String
+  challenge   Challenge @relation(fields: [challengeId], references: [id])
+  
+  title       String?
+  content     String   // Markdown
+  isPublic    Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([userId, challengeId]) // One writeup per user per challenge
+  @@index([challengeId, isPublic])
+  @@index([userId])
 }

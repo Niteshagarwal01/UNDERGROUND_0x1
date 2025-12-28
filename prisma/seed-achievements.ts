@@ -3,37 +3,51 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // Icons are Lucide icon names (strings) that will be rendered in the UI
+// Points: COMMON=25-50, RARE=50-75, EPIC=75-100, LEGENDARY=100-150
 const achievements = [
-    // First Blood achievements
+    // ========== FIRST BLOOD ACHIEVEMENTS ==========
     {
         slug: "first-blood",
         name: "First Blood",
-        description: "Get your first first blood on any challenge",
+        description: "Get your first First Blood on any challenge",
         icon: "Droplet",
         category: "FIRST_BLOOD",
         requirement: 1,
-        rarity: "COMMON"
+        rarity: "COMMON",
+        points: 25
     },
     {
         slug: "blood-hunter",
         name: "Blood Hunter",
-        description: "Claim first blood on 3 different challenges",
+        description: "Claim First Blood on 3 different challenges",
         icon: "Sword",
         category: "FIRST_BLOOD",
         requirement: 3,
-        rarity: "RARE"
+        rarity: "RARE",
+        points: 50
     },
     {
         slug: "blood-lord",
         name: "Blood Lord",
-        description: "Claim first blood on 5 different challenges",
+        description: "Claim First Blood on 5 different challenges",
         icon: "Crown",
         category: "FIRST_BLOOD",
         requirement: 5,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 75
+    },
+    {
+        slug: "blood-legend",
+        name: "Blood Legend",
+        description: "Claim First Blood on 10 different challenges",
+        icon: "Flame",
+        category: "FIRST_BLOOD",
+        requirement: 10,
+        rarity: "LEGENDARY",
+        points: 150
     },
 
-    // Solve achievements
+    // ========== SOLVE COUNT ACHIEVEMENTS ==========
     {
         slug: "first-solve",
         name: "First Steps",
@@ -41,37 +55,51 @@ const achievements = [
         icon: "Target",
         category: "SOLVES",
         requirement: 1,
-        rarity: "COMMON"
+        rarity: "COMMON",
+        points: 25
     },
     {
-        slug: "solver",
+        slug: "solver-5",
         name: "Problem Solver",
         description: "Solve 5 challenges",
         icon: "Unlock",
         category: "SOLVES",
         requirement: 5,
-        rarity: "COMMON"
+        rarity: "COMMON",
+        points: 40
     },
     {
-        slug: "elite-solver",
+        slug: "solver-10",
         name: "Elite Solver",
         description: "Solve 10 challenges",
         icon: "Gem",
         category: "SOLVES",
         requirement: 10,
-        rarity: "RARE"
+        rarity: "RARE",
+        points: 60
     },
     {
-        slug: "master-solver",
+        slug: "solver-25",
         name: "Master Solver",
         description: "Solve 25 challenges",
         icon: "Trophy",
         category: "SOLVES",
         requirement: 25,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
+    },
+    {
+        slug: "solver-50",
+        name: "Unstoppable",
+        description: "Solve 50 challenges",
+        icon: "Zap",
+        category: "SOLVES",
+        requirement: 50,
+        rarity: "LEGENDARY",
+        points: 150
     },
 
-    // Difficulty achievements
+    // ========== DIFFICULTY ACHIEVEMENTS ==========
     {
         slug: "god-slayer",
         name: "God Slayer",
@@ -79,7 +107,8 @@ const achievements = [
         icon: "Skull",
         category: "DIFFICULTY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
     },
     {
         slug: "god-killer",
@@ -88,7 +117,8 @@ const achievements = [
         icon: "Swords",
         category: "DIFFICULTY",
         requirement: 3,
-        rarity: "LEGENDARY"
+        rarity: "LEGENDARY",
+        points: 150
     },
     {
         slug: "hard-worker",
@@ -97,10 +127,21 @@ const achievements = [
         icon: "Dumbbell",
         category: "DIFFICULTY",
         requirement: 5,
-        rarity: "RARE"
+        rarity: "RARE",
+        points: 60
+    },
+    {
+        slug: "hard-master",
+        name: "Hard Master",
+        description: "Complete 15 HARD challenges",
+        icon: "Shield",
+        category: "DIFFICULTY",
+        requirement: 15,
+        rarity: "EPIC",
+        points: 100
     },
 
-    // Category achievements
+    // ========== CATEGORY MASTERY ACHIEVEMENTS ==========
     {
         slug: "osint-master",
         name: "OSINT Master",
@@ -108,7 +149,8 @@ const achievements = [
         icon: "Search",
         category: "CATEGORY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
     },
     {
         slug: "forensics-master",
@@ -117,7 +159,8 @@ const achievements = [
         icon: "FileSearch",
         category: "CATEGORY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
     },
     {
         slug: "crypto-master",
@@ -126,7 +169,8 @@ const achievements = [
         icon: "Lock",
         category: "CATEGORY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
     },
     {
         slug: "reverse-master",
@@ -135,7 +179,8 @@ const achievements = [
         icon: "Cpu",
         category: "CATEGORY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
     },
     {
         slug: "web-master",
@@ -144,10 +189,21 @@ const achievements = [
         icon: "Globe",
         category: "CATEGORY",
         requirement: 1,
-        rarity: "EPIC"
+        rarity: "EPIC",
+        points: 100
+    },
+    {
+        slug: "pwn-master",
+        name: "Pwn Master",
+        description: "Complete all challenges in Binary Exploitation category",
+        icon: "Bug",
+        category: "CATEGORY",
+        requirement: 1,
+        rarity: "EPIC",
+        points: 100
     },
 
-    // Special achievements
+    // ========== SPECIAL ACHIEVEMENTS ==========
     {
         slug: "elite-operative",
         name: "Elite Operative",
@@ -155,16 +211,58 @@ const achievements = [
         icon: "Medal",
         category: "SPECIAL",
         requirement: 1,
-        rarity: "LEGENDARY"
+        rarity: "LEGENDARY",
+        points: 150
     },
     {
         slug: "speedrunner",
         name: "Speed Demon",
         description: "Solve 3 challenges within 1 hour",
-        icon: "Zap",
+        icon: "Timer",
         category: "STREAK",
         requirement: 3,
-        rarity: "RARE"
+        rarity: "RARE",
+        points: 50
+    },
+    {
+        slug: "consistent",
+        name: "Consistent",
+        description: "Solve at least 1 challenge every day for a week",
+        icon: "Calendar",
+        category: "STREAK",
+        requirement: 7,
+        rarity: "RARE",
+        points: 75
+    },
+    {
+        slug: "perfectionist",
+        name: "Perfectionist",
+        description: "Solve 5 challenges without any wrong submissions",
+        icon: "CheckCircle",
+        category: "SPECIAL",
+        requirement: 5,
+        rarity: "EPIC",
+        points: 100
+    },
+    {
+        slug: "night-owl",
+        name: "Night Owl",
+        description: "Solve a challenge between midnight and 5 AM",
+        icon: "Moon",
+        category: "SPECIAL",
+        requirement: 1,
+        rarity: "COMMON",
+        points: 25
+    },
+    {
+        slug: "completionist",
+        name: "Completionist",
+        description: "Earn 20 other achievements",
+        icon: "Star",
+        category: "SPECIAL",
+        requirement: 20,
+        rarity: "LEGENDARY",
+        points: 150
     },
 ];
 
@@ -177,10 +275,16 @@ async function seedAchievements() {
         });
 
         if (existing) {
-            // Update icon if changed
+            // Update existing achievement
             await prisma.achievement.update({
                 where: { slug: achievement.slug },
-                data: { icon: achievement.icon }
+                data: {
+                    icon: achievement.icon,
+                    points: achievement.points,
+                    name: achievement.name,
+                    description: achievement.description,
+                    rarity: achievement.rarity as any
+                }
             });
             console.log(`  ✓ ${achievement.name} updated`);
             continue;
@@ -192,6 +296,7 @@ async function seedAchievements() {
                 name: achievement.name,
                 description: achievement.description,
                 icon: achievement.icon,
+                points: achievement.points,
                 category: achievement.category as any,
                 requirement: achievement.requirement,
                 rarity: achievement.rarity as any
@@ -200,7 +305,7 @@ async function seedAchievements() {
         console.log(`  ✓ Created ${achievement.name}`);
     }
 
-    console.log("✅ Achievements seeded successfully!");
+    console.log(`✅ ${achievements.length} achievements seeded successfully!`);
 }
 
 seedAchievements()

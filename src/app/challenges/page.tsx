@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import {
     Search,
     FileSearch,
@@ -110,19 +111,27 @@ function ChallengeModal({
     onClose,
     isAuthenticated,
     hasTeam,
+    isSolved,
 }: {
     challenge: Challenge;
     category: Category;
     onClose: () => void;
     isAuthenticated: boolean;
     hasTeam: boolean;
+    isSolved: boolean;
 }) {
+    const router = useRouter();
     const [flag, setFlag] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [result, setResult] = useState<{ success: boolean; message: string; isFirstBlood?: boolean } | null>(null);
     const [showFirstBlood, setShowFirstBlood] = useState(false);
     const [showWriteup, setShowWriteup] = useState(false);
-    const [hasSolved, setHasSolved] = useState(false);
+    const [hasSolved, setHasSolved] = useState(isSolved); // Initialize from prop
+
+    // Update local state if prop changes (e.g. after refresh)
+    useEffect(() => {
+        setHasSolved(isSolved);
+    }, [isSolved]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -140,6 +149,7 @@ function ChallengeModal({
             if (data.success) {
                 setFlag("");
                 setHasSolved(true);
+                router.refresh(); // Refresh server data to update global UI
                 if (data.isFirstBlood) {
                     setShowFirstBlood(true);
                 }
@@ -291,6 +301,37 @@ function ChallengeModal({
                                 </p>
                                 <Link href="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
                             </div>
+                        ) : hasSolved ? (
+                            <div style={{
+                                textAlign: 'center',
+                                padding: '32px',
+                                background: 'rgba(34, 197, 94, 0.05)',
+                                border: '1px solid rgba(34, 197, 94, 0.2)',
+                                borderRadius: '8px',
+                                marginTop: '24px'
+                            }}>
+                                <CheckCircle size={48} style={{ color: '#22c55e', margin: '0 auto 16px' }} />
+                                <h4 style={{
+                                    fontFamily: 'var(--font-heading)',
+                                    color: 'white',
+                                    fontSize: '18px',
+                                    marginBottom: '8px'
+                                }}>
+                                    Challenge Solved!
+                                </h4>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                                    You have successfully completed this challenge.
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowWriteup(true)}
+                                    className="btn btn-secondary"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                                >
+                                    <BookOpen size={16} />
+                                    View Write-up
+                                </button>
+                            </div>
                         ) : (
                             <form onSubmit={handleSubmit}>
                                 <h4 style={{
@@ -354,18 +395,6 @@ function ChallengeModal({
                                     </div>
                                 )}
 
-                                {/* View Write-up button after solve */}
-                                {hasSolved && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowWriteup(true)}
-                                        className="btn btn-secondary"
-                                        style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}
-                                    >
-                                        <BookOpen size={16} />
-                                        View Write-up
-                                    </button>
-                                )}
                             </form>
                         )}
                     </div>
@@ -396,11 +425,13 @@ export default function ChallengesPage() {
     const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
     const [selectedChallenge, setSelectedChallenge] = useState<{ challenge: Challenge; category: Category } | null>(null);
     const [hasTeam, setHasTeam] = useState(false);
+    const [solvedChallengeIds, setSolvedChallengeIds] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
 
     // Fetch challenges from API
     useEffect(() => {
+        // ... (existing fetch logic remains same)
         fetch("/api/challenges")
             .then((res) => res.json())
             .then((data) => {
@@ -416,7 +447,7 @@ export default function ChallengesPage() {
                             description: config.description,
                             points: cat.challenges.reduce((sum: number, c: any) => sum + c.points, 0),
                             challenges: cat.challenges.map((c: any) => ({
-                                id: c.slug,
+                                id: c.id,
                                 title: c.title,
                                 difficulty: c.difficulty,
                                 points: c.points,
@@ -448,6 +479,9 @@ export default function ChallengesPage() {
                 .then((res) => res.json())
                 .then((data) => {
                     setHasTeam(!!data.user?.team);
+                    if (data.user?.solvedChallengeIds) {
+                        setSolvedChallengeIds(data.user.solvedChallengeIds);
+                    }
                 })
                 .catch(() => setHasTeam(false));
         }
@@ -850,6 +884,7 @@ export default function ChallengesPage() {
                     onClose={() => setSelectedChallenge(null)}
                     isAuthenticated={isLoaded && !!user}
                     hasTeam={hasTeam}
+                    isSolved={solvedChallengeIds.includes(selectedChallenge.challenge.id)} // Pass ID match
                 />
             )}
 

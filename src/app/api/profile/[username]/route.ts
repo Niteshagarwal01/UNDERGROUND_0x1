@@ -68,6 +68,7 @@ export async function GET(
             name: string;
             description: string;
             icon: string;
+            points: number;
             rarity: string;
             category: string;
             earnedAt: Date;
@@ -83,6 +84,7 @@ export async function GET(
                             name: true,
                             description: true,
                             icon: true,
+                            points: true,
                             rarity: true,
                             category: true
                         }
@@ -96,6 +98,7 @@ export async function GET(
                 name: ua.achievement.name,
                 description: ua.achievement.description,
                 icon: ua.achievement.icon,
+                points: ua.achievement.points,
                 rarity: ua.achievement.rarity,
                 category: ua.achievement.category,
                 earnedAt: ua.earnedAt

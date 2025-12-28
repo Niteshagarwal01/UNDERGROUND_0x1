@@ -19,10 +19,33 @@ import {
     Star,
     Award,
     User,
-    ArrowLeft
+    ArrowLeft,
+    Search,
+    FileSearch,
+    Cpu,
+    Globe,
+    Droplet,
+    Sword,
+    Unlock,
+    Gem,
+    Skull,
+    Swords,
+    Dumbbell,
+    Lock,
+    LucideIcon
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Icon mapping for achievements
+const iconMap: Record<string, LucideIcon> = {
+    Droplet, Sword, Crown, Target, Unlock, Gem, Trophy, Skull,
+    Swords, Dumbbell, Search, FileSearch, Lock, Cpu, Globe, Medal, Zap,
+    Star, Award, Shield, Users
+};
+
+// No longer needed - points come from API
+// const rarityPoints: Record<string, number> = {...}
 
 interface ProfileData {
     id: string;
@@ -49,6 +72,7 @@ interface ProfileData {
         name: string;
         description: string;
         icon: string;
+        points: number;
         rarity: string;
         category: string;
         earnedAt: string;
@@ -83,20 +107,31 @@ function formatDate(dateString: string): string {
 }
 
 function getRarityColor(rarity: string): string {
+    // Yellow and muted tones - higher rarity = more yellow
     switch (rarity) {
-        case "LEGENDARY": return "#facc15";
-        case "EPIC": return "#a855f7";
-        case "RARE": return "#3b82f6";
-        default: return "#71717a";
+        case "LEGENDARY": return "#facc15"; // bright yellow
+        case "EPIC": return "#d4a90a"; // gold yellow
+        case "RARE": return "#a38a08"; // muted gold
+        default: return "#666666"; // gray for common
     }
 }
 
 function getRarityBg(rarity: string): string {
+    // Yellow-tinted backgrounds with varying intensity
     switch (rarity) {
-        case "LEGENDARY": return "rgba(250, 204, 21, 0.1)";
-        case "EPIC": return "rgba(168, 85, 247, 0.1)";
-        case "RARE": return "rgba(59, 130, 246, 0.1)";
-        default: return "rgba(113, 113, 122, 0.1)";
+        case "LEGENDARY": return "rgba(250, 204, 21, 0.15)";
+        case "EPIC": return "rgba(250, 204, 21, 0.10)";
+        case "RARE": return "rgba(250, 204, 21, 0.06)";
+        default: return "rgba(255, 255, 255, 0.03)"; // subtle gray for common
+    }
+}
+
+function getRarityBorder(rarity: string): string {
+    switch (rarity) {
+        case "LEGENDARY": return "rgba(250, 204, 21, 0.5)";
+        case "EPIC": return "rgba(250, 204, 21, 0.3)";
+        case "RARE": return "rgba(250, 204, 21, 0.2)";
+        default: return "rgba(255, 255, 255, 0.1)";
     }
 }
 
@@ -256,24 +291,87 @@ export default function ProfilePage() {
 
                             {profile.achievements.length > 0 ? (
                                 <div className="achievements-grid">
-                                    {profile.achievements.map((achievement) => (
-                                        <div
-                                            key={achievement.id}
-                                            className="achievement-card"
-                                            style={{
-                                                background: getRarityBg(achievement.rarity),
-                                                borderColor: getRarityColor(achievement.rarity)
-                                            }}
-                                        >
-                                            <div className="achievement-icon">{achievement.icon}</div>
-                                            <div className="achievement-info">
-                                                <div className="achievement-name" style={{ color: getRarityColor(achievement.rarity) }}>
-                                                    {achievement.name}
+                                    {profile.achievements.map((achievement) => {
+                                        const IconComponent = iconMap[achievement.icon] || Award;
+                                        const points = achievement.points; // Use points from API
+                                        return (
+                                            <div
+                                                key={achievement.id}
+                                                className="achievement-card"
+                                                style={{
+                                                    background: getRarityBg(achievement.rarity),
+                                                    borderColor: getRarityColor(achievement.rarity)
+                                                }}
+                                            >
+                                                <div className="achievement-icon-wrapper" style={{
+                                                    width: '44px',
+                                                    height: '44px',
+                                                    borderRadius: '10px',
+                                                    background: `linear-gradient(135deg, ${getRarityBg(achievement.rarity)}, transparent)`,
+                                                    border: `1px solid ${getRarityColor(achievement.rarity)}`,
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    flexShrink: 0
+                                                }}>
+                                                    <IconComponent size={22} style={{ color: getRarityColor(achievement.rarity) }} />
                                                 </div>
-                                                <div className="achievement-description">{achievement.description}</div>
+                                                <div className="achievement-info" style={{ flex: 1, minWidth: 0 }}>
+                                                    <div className="achievement-name" style={{
+                                                        color: getRarityColor(achievement.rarity),
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '8px',
+                                                        marginBottom: '4px'
+                                                    }}>
+                                                        <span style={{ fontWeight: 600, fontSize: '14px' }}>{achievement.name}</span>
+                                                        <span style={{
+                                                            fontSize: '11px',
+                                                            fontWeight: 600,
+                                                            padding: '2px 6px',
+                                                            borderRadius: '4px',
+                                                            background: getRarityBg(achievement.rarity),
+                                                            border: `1px solid ${getRarityColor(achievement.rarity)}`,
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '0.05em'
+                                                        }}>
+                                                            {achievement.rarity}
+                                                        </span>
+                                                    </div>
+                                                    <div className="achievement-description" style={{
+                                                        fontSize: '12px',
+                                                        color: 'var(--text-muted)',
+                                                        marginBottom: '6px',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        whiteSpace: 'nowrap'
+                                                    }}>
+                                                        {achievement.description}
+                                                    </div>
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '12px',
+                                                        fontSize: '11px'
+                                                    }}>
+                                                        <span style={{
+                                                            color: 'var(--yellow)',
+                                                            fontWeight: 700,
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '4px'
+                                                        }}>
+                                                            <Zap size={12} />
+                                                            +{points} pts
+                                                        </span>
+                                                        <span style={{ color: '#666' }}>
+                                                            {formatTimeAgo(achievement.earnedAt)}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             ) : (
                                 <div className="empty-state" style={{ padding: '40px' }}>

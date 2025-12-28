@@ -62,7 +62,15 @@ export async function POST(request: NextRequest) {
         const user = await prisma.user.findUnique({
             where: { clerkId },
             include: { team: true },
+            // Note: user.role is available from the User model
         });
+
+        // Also get user role
+        const userWithRole = await prisma.user.findUnique({
+            where: { clerkId },
+            select: { role: true }
+        });
+        const userRole = userWithRole?.role || 'USER';
 
         if (!user) {
             return NextResponse.json(
@@ -230,9 +238,12 @@ export async function POST(request: NextRequest) {
                 const solveCount = currentChallenge.solveCount;
                 let bonus = 0;
 
-                // First 3 solves get bonuses
+                // Check if user is admin/moderator - no bonuses for them
+                const isAdminOrMod = userRole === 'ADMIN' || userRole === 'MODERATOR';
+
+                // First 3 solves get bonuses (only for regular users)
                 // Points: 300 (Medium), 500 (Hard), 800 (God-Level)
-                if (solveCount < 3) {
+                if (solveCount < 3 && !isAdminOrMod) {
                     const bonusMultipliers = [1.0, 0.6, 0.3]; // 100%, 60%, 30% of base bonus
                     const baseBonus = currentChallenge.points >= 800 ? 200
                         : currentChallenge.points >= 500 ? 100
@@ -240,7 +251,8 @@ export async function POST(request: NextRequest) {
                     bonus = Math.floor(baseBonus * bonusMultipliers[solveCount]);
                 }
 
-                const isFirstBlood = solveCount === 0;
+                // First blood is ONLY for non-admin users
+                const isFirstBlood = solveCount === 0 && !isAdminOrMod;
                 const totalPoints = currentChallenge.points + bonus;
 
                 // Create solve record
@@ -330,14 +342,16 @@ export async function POST(request: NextRequest) {
                 ).catch(console.error);
             }
 
-            // Check and award achievements (async, don't block response)
-            checkAndAwardAchievements({
-                userId: user.id,
-                teamId: user.team!.id,
-                isFirstBlood: result.isFirstBlood,
-                challengeDifficulty: challenge.difficulty,
-                categorySlug: challenge.category?.slug
-            }).catch(console.error);
+            // Check and award achievements ONLY for regular users (not admin/mod)
+            if (userRole === 'USER') {
+                checkAndAwardAchievements({
+                    userId: user.id,
+                    teamId: user.team!.id,
+                    isFirstBlood: result.isFirstBlood,
+                    challengeDifficulty: challenge.difficulty,
+                    categorySlug: challenge.category?.slug
+                }).catch(console.error);
+            }
 
             return NextResponse.json({
                 success: true,

@@ -31,6 +31,8 @@ export default function CreateChallengeModal({
         points: "300",
         flag: "",
         resourceUrl: "",
+        writeup: "",
+        writeupUrl: "",
         isActive: true,
         isHidden: false,
     });
@@ -338,6 +340,52 @@ export default function CreateChallengeModal({
                                     borderRadius: "8px",
                                     color: "var(--text-primary)",
                                     fontSize: "14px",
+                                }}
+                            />
+                        </div>
+
+                        {/* Writeup URL */}
+                        <div>
+                            <label style={{ display: "block", color: "var(--text-secondary)", fontSize: "13px", marginBottom: "8px" }}>
+                                Writeup Link <span style={{ color: "var(--text-muted)" }}>(Optional)</span>
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.writeupUrl}
+                                onChange={(e) => setFormData({ ...formData, writeupUrl: e.target.value })}
+                                placeholder="https://medium.com/writeup..."
+                                style={{
+                                    width: "100%",
+                                    padding: "12px 16px",
+                                    background: "var(--black-elevated)",
+                                    border: "1px solid var(--black-border)",
+                                    borderRadius: "8px",
+                                    color: "var(--text-primary)",
+                                    fontSize: "14px",
+                                }}
+                            />
+                        </div>
+
+                        {/* Writeup Content */}
+                        <div>
+                            <label style={{ display: "block", color: "var(--text-secondary)", fontSize: "13px", marginBottom: "8px" }}>
+                                Writeup Content <span style={{ color: "var(--text-muted)" }}>(Markdown supported)</span>
+                            </label>
+                            <textarea
+                                value={formData.writeup}
+                                onChange={(e) => setFormData({ ...formData, writeup: e.target.value })}
+                                rows={6}
+                                placeholder="Details about the solution..."
+                                style={{
+                                    width: "100%",
+                                    padding: "12px 16px",
+                                    background: "var(--black-elevated)",
+                                    border: "1px solid var(--black-border)",
+                                    borderRadius: "8px",
+                                    color: "var(--text-primary)",
+                                    fontSize: "14px",
+                                    fontFamily: "monospace",
+                                    resize: "vertical",
                                 }}
                             />
                         </div>

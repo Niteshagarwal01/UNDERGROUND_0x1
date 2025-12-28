@@ -13,10 +13,35 @@ import {
     Flame,
     Users,
     Target,
-    Star
+    Star,
+    Search,
+    FileSearch,
+    Cpu,
+    Globe,
+    Shield,
+    Lock,
+    Key,
+    Code,
+    Binary,
+    Bug,
+    Wifi,
+    Server,
+    Database,
+    LucideIcon
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Icon mapping for categories
+const iconMap: Record<string, LucideIcon> = {
+    Search, FileSearch, Cpu, Globe, Shield, Lock, Key, Code, Binary, Bug,
+    Wifi, Server, Database, Target, Trophy, Medal, Star, Flame, Users, Crown, Zap
+};
+
+function getCategoryIcon(iconName: string | null): LucideIcon {
+    if (!iconName) return Target;
+    return iconMap[iconName] || Target;
+}
 
 interface FirstBloodEntry {
     challengeId: string;
@@ -209,7 +234,12 @@ export default function HallOfFamePage() {
                                             onClick={() => toggleCategory(cat.category.id)}
                                         >
                                             <div className="category-title">
-                                                <span className="category-icon">{cat.category.icon || "📁"}</span>
+                                                <span className="category-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '6px', background: 'rgba(250, 204, 21, 0.1)', border: '1px solid rgba(250, 204, 21, 0.2)' }}>
+                                                    {(() => {
+                                                        const IconComp = getCategoryIcon(cat.category.icon);
+                                                        return <IconComp size={18} style={{ color: 'var(--yellow)' }} />;
+                                                    })()}
+                                                </span>
                                                 <h2>{cat.category.name}</h2>
                                                 <span className="fb-count">{cat.firstBloods.length} FB</span>
                                             </div>

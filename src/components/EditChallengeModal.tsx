@@ -13,6 +13,8 @@ interface Challenge {
     points: number;
     isActive: boolean;
     isHidden: boolean;
+    writeup?: string | null;
+    writeupUrl?: string | null;
     category?: {
         id: string;
         name: string;
@@ -46,6 +48,9 @@ export default function EditChallengeModal({
         difficulty: "MEDIUM",
         points: 300,
         flag: "", // New flag (optional - leave empty to keep existing)
+        resourceUrl: "",
+        writeup: "",
+        writeupUrl: "",
         isActive: true,
         isHidden: false,
     });
@@ -64,6 +69,9 @@ export default function EditChallengeModal({
                 difficulty: challenge.difficulty,
                 points: challenge.points,
                 flag: "", // Don't show existing flag for security
+                resourceUrl: (challenge as any).resourceUrl || "",
+                writeup: challenge.writeup || "",
+                writeupUrl: challenge.writeupUrl || "",
                 isActive: challenge.isActive,
                 isHidden: challenge.isHidden,
             });
@@ -280,6 +288,52 @@ export default function EditChallengeModal({
                             />
                             <p style={{ fontSize: "12px", color: "var(--text-muted)", marginTop: "4px" }}>
                                 Format: UG0x1{`{flag_content}`} (will be hashed automatically)
+                            </p>
+                        </div>
+
+                        {/* Resource URL */}
+                        <div className="input-group">
+                            <label className="input-label">Resource Link <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(Optional)</span></label>
+                            <input
+                                type="url"
+                                className="input"
+                                value={formData.resourceUrl || ""}
+                                onChange={(e) => setFormData({ ...formData, resourceUrl: e.target.value })}
+                                placeholder="https://drive.google.com/file..."
+                                disabled={loading}
+                            />
+                        </div>
+
+                        {/* Writeup URL */}
+                        <div className="input-group">
+                            <label className="input-label">Writeup Link <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(Optional - External Link)</span></label>
+                            <input
+                                type="url"
+                                className="input"
+                                value={formData.writeupUrl}
+                                onChange={(e) => setFormData({ ...formData, writeupUrl: e.target.value })}
+                                placeholder="https://medium.com/@user/writeup..."
+                                disabled={loading}
+                            />
+                        </div>
+
+                        {/* Writeup Content */}
+                        <div className="input-group">
+                            <label className="input-label">Writeup Content <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(Markdown supported)</span></label>
+                            <textarea
+                                className="input"
+                                rows={6}
+                                value={formData.writeup}
+                                onChange={(e) => setFormData({ ...formData, writeup: e.target.value })}
+                                placeholder="## Solution\n\n1. Analyze the pcap file...\n2. Extract the hidden data..."
+                                disabled={loading}
+                                style={{
+                                    fontFamily: "monospace",
+                                    fontSize: "13px"
+                                }}
+                            />
+                            <p style={{ fontSize: "12px", color: "var(--text-muted)", marginTop: "4px" }}>
+                                Shown to users only after they solve the challenge.
                             </p>
                         </div>
 

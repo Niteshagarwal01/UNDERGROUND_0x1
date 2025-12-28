@@ -148,15 +148,27 @@ export async function checkAndAwardAchievements(check: AchievementCheck): Promis
                         }
                     });
                     awardedAchievements.push(achievement.name);
-                    console.log(`🏆 Achievement unlocked: ${achievement.name} for user ${check.userId}`);
+                    console.log(`🏆 Achievement unlocked: ${achievement.name} for user ${check.userId} (+${achievement.points} pts)`);
 
-                    // Send notification to user
+                    // Add achievement points to user total
+                    await prisma.user.update({
+                        where: { id: check.userId },
+                        data: { totalPoints: { increment: achievement.points } }
+                    });
+
+                    // Add achievement points to team total
+                    await prisma.team.update({
+                        where: { id: check.teamId },
+                        data: { totalPoints: { increment: achievement.points } }
+                    });
+
+                    // Send notification to user with points
                     await prisma.notification.create({
                         data: {
                             userId: check.userId,
                             type: "ACHIEVEMENT_EARNED",
                             title: `🏆 Achievement Unlocked!`,
-                            message: `You earned the "${achievement.name}" achievement!`,
+                            message: `You earned the "${achievement.name}" achievement! +${achievement.points} points`,
                             link: null
                         }
                     }).catch(() => { }); // Ignore errors

@@ -26,30 +26,31 @@ const iconMap: Record<string, LucideIcon> = {
     Swords, Dumbbell, Search, FileSearch, Lock, Cpu, Globe, Medal, Zap
 };
 
+// Yellow/black theme with varying intensity based on rarity
 const rarityColors = {
     COMMON: {
-        bg: "rgba(107, 114, 128, 0.1)",
-        border: "rgba(107, 114, 128, 0.3)",
-        text: "#9ca3af",
+        bg: "rgba(255, 255, 255, 0.03)",
+        border: "rgba(255, 255, 255, 0.1)",
+        text: "#666666",
         glow: "none"
     },
     RARE: {
-        bg: "rgba(59, 130, 246, 0.1)",
-        border: "rgba(59, 130, 246, 0.3)",
-        text: "#3b82f6",
-        glow: "0 0 20px rgba(59, 130, 246, 0.2)"
+        bg: "rgba(250, 204, 21, 0.06)",
+        border: "rgba(250, 204, 21, 0.2)",
+        text: "#a38a08",
+        glow: "none"
     },
     EPIC: {
-        bg: "rgba(168, 85, 247, 0.1)",
-        border: "rgba(168, 85, 247, 0.3)",
-        text: "#a855f7",
-        glow: "0 0 20px rgba(168, 85, 247, 0.3)"
+        bg: "rgba(250, 204, 21, 0.10)",
+        border: "rgba(250, 204, 21, 0.3)",
+        text: "#d4a90a",
+        glow: "0 0 15px rgba(250, 204, 21, 0.2)"
     },
     LEGENDARY: {
-        bg: "rgba(250, 204, 21, 0.1)",
-        border: "rgba(250, 204, 21, 0.3)",
+        bg: "rgba(250, 204, 21, 0.15)",
+        border: "rgba(250, 204, 21, 0.5)",
         text: "#facc15",
-        glow: "0 0 30px rgba(250, 204, 21, 0.4)"
+        glow: "0 0 25px rgba(250, 204, 21, 0.3)"
     }
 };
 

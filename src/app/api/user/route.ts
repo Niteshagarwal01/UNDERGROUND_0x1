@@ -51,6 +51,12 @@ export async function GET() {
             },
         });
 
+        // Fetch all solved challenge IDs (separate query for efficiency)
+        const solvedIds = user ? await prisma.solve.findMany({
+            where: { teamId: user.teamId || "" },
+            select: { challengeId: true }
+        }) : [];
+
         // If user doesn't exist, create them
         if (!user) {
             // Generate unique username if it already exists (case-insensitive check)
@@ -168,6 +174,7 @@ export async function GET() {
                     points: s.challenge.points,
                     solvedAt: s.createdAt.toISOString(),
                 })),
+                solvedChallengeIds: solvedIds.map(s => s.challengeId),
             },
         });
     } catch (error) {
