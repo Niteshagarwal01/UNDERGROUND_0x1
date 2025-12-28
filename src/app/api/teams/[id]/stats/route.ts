@@ -79,8 +79,36 @@ export async function GET(
             }
         }
 
+        // Get first bloods with details
+        const firstBloodsData = await prisma.solve.findMany({
+            where: {
+                teamId: id,
+                isFirstBlood: true
+            },
+            include: {
+                challenge: {
+                    select: {
+                        id: true,
+                        title: true,
+                        category: { select: { name: true } }
+                    }
+                }
+            },
+            orderBy: { solvedAt: "desc" }
+        });
+
+        const firstBloods = firstBloodsData.map(fb => ({
+            id: fb.id,
+            challengeTitle: fb.challenge.title,
+            categoryName: fb.challenge.category?.name || "Other",
+            points: fb.points,
+            solvedAt: fb.solvedAt.toISOString()
+        }));
+
         return NextResponse.json({
             success: true,
+            rank: teamRank,
+            firstBloods,
             team: {
                 id: team.id,
                 name: team.name,

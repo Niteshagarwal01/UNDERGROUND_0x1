@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
-import { LogOut, Menu, X, Flame, User } from "lucide-react";
+import { LogOut, Menu, X, Flame, User, Award } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
 
 export default function Navbar() {
@@ -82,6 +82,14 @@ export default function Navbar() {
                     </Link>
 
                     <SignedIn>
+                        <Link
+                            href="/certificates"
+                            className={`navbar-link ${isActive("/certificates") ? "active" : ""}`}
+                            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                        >
+                            <Award size={14} />
+                            Certificates
+                        </Link>
                         <Link
                             href="/dashboard"
                             className={`navbar-link ${isActive("/dashboard") ? "active" : ""}`}

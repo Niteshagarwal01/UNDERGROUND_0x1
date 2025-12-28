@@ -2,10 +2,10 @@
 ## Complete Challenge Specification & Developer Guide
 
 **Classification:** RESTRICTED – EXERCISE MATERIAL  
-**Challenge ID:** OSINT-M-001  
-**Difficulty:** Medium  
+**Challenge ID:** OSINT-H-001  
+**Difficulty:** HARD  
 **Category:** Open Source Intelligence (OSINT)  
-**Points:** 300  
+**Points:** 500  
 
 ---
 
@@ -13,11 +13,12 @@
 
 | Item | Value |
 |------|-------|
-| **Plaintext Flag** | `UG0x1{gh0st_s1gn4l_r3c0v3r3d_x92}` |
-| **Ciphertext (ROT13)** | `HT0k1{tu0fg_f1ta4y_e3c0i3e3q_k92}` |
+| **Plaintext Flag** | `UG0x1{d34d_dr0p_tr4c3d_v1a_cach3_92}` |
+| **Encoding Chain** | Base64 → XOR(0x42) → ROT13 (3 layers) |
 | **Entry Point** | `/archives/forum_thread_cache.html` |
-| **Mirror Path** | `/archives/paste_mirror.html` |
-| **Points** | 300 |
+| **Secondary Source** | `/archives/paste_mirror.html` |
+| **Tertiary Source** | `/archives/dns_txt_records.html` (flag fragment 2) |
+| **Points** | 500 |
 
 ---
 
@@ -134,7 +135,7 @@ Intelligence indicates that a compromised insider left multiple "dead drops" acr
     
     <p>Don't use that old link—service nuked the post. Instead, I keep a "wayback" copy hosted on the internal mirror. Path: <code>/archives/paste_mirror.html</code></p>
     
-    <p>Everything in there is encoded with a standard rotation cipher—just rotate letters by 13 (you know what I mean). The final credential is labeled clearly.</p>
+    <p>Everything in there is encoded. Standard ops – you know the drill for dead drops. Multiple layers, no shortcuts. Don't forget to check the auxiliary DNS records for the second fragment.</p>
     
     <div class="metadata">
       <strong>Technical Notes (for reference):</strong><br>

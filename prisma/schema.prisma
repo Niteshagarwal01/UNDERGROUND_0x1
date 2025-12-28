@@ -73,6 +73,7 @@ model Team {
   submissions   Submission[]
   solves        Solve[]
   joinRequests  JoinRequest[]
+  certificates  Certificate[]
   
   @@index([totalPoints(sort: Desc)])
 }
@@ -501,4 +502,31 @@ enum NotificationType {
   FIRST_BLOOD
   ANNOUNCEMENT
   CHALLENGE_SOLVED
+}
+
+// ============================================
+// CERTIFICATE MODEL
+// ============================================
+
+model Certificate {
+  id              String   @id @default(cuid())
+  verificationId  String   @unique @default(cuid())
+  
+  teamId          String
+  team            Team     @relation(fields: [teamId], references: [id])
+  
+  type            CertificateType
+  
+  // Metadata stored as JSON (rank, points, categories, etc.)
+  metadata        Json?
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([teamId])
+  @@index([verificationId])
+}
+
+enum CertificateType {
+  COMPETITION
+  FIRST_BLOOD
 }

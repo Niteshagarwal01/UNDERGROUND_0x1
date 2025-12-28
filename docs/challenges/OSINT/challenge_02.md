@@ -2,10 +2,10 @@
 ## Complete Challenge Specification & Developer Guide
 
 **Classification:** RESTRICTED – EXERCISE MATERIAL  
-**Challenge ID:** OSINT-H-002  
-**Difficulty:** Hard  
+**Challenge ID:** OSINT-N-002  
+**Difficulty:** NIGHTMARE  
 **Category:** Open Source Intelligence (OSINT)  
-**Points:** 500  
+**Points:** 800  
 
 ---
 
@@ -13,12 +13,12 @@
 
 | Item | Value |
 |------|-------|
-| **Plaintext Flag** | `UG0x1{c8tk5_m3tro_1nfr4_3xf1ltr4t3d}` |
-| **Ciphertext (Base64)** | `VUcweDF7YzhrNV9tM3Ryb18xbmZyNF8zeFYxbHRyNHQzZH0=` |
+| **Plaintext Flag** | `UG0x1{1nfr4_c0rr3l4t10n_m4st3r_c8tk5}` |
+| **Encoding Chain** | AES-128-ECB(key from CT log) → Base32 → Split across 3 sources |
 | **Primary Entry Point** | `/public/leaked_slides.html` |
-| **Secondary Sources** | GitHub commit history, AWS S3 bucket listing, LinkedIn metadata |
-| **Tertiary Sources** | DNS records, infrastructure documentation, deployment logs |
-| **Points** | 500 |
+| **Required Correlation** | 7 sources minimum (GitHub, AWS, LinkedIn, DNS, CT logs, git diff, WHOIS) |
+| **Tertiary Sources** | DNS TXT, infrastructure docs, deployment logs, certificate metadata |
+| **Points** | 800 |
 
 ---
 
@@ -202,7 +202,7 @@ This advanced challenge requires correlating intelligence from **multiple unrela
 │                                                          │
 └─────────────────────────────────────────────────────────┘
     </pre>
-    <p class="hidden-text">Staging credential formula: UG0x1{c8tk5_m3tro_1nfr4_3xf1ltr4t3d}</p>
+    <p class="hidden-text">Credential staging requires multi-source correlation. Fragment 1 in DNS TXT. Fragment 2 in CT log metadata. Combine with project code for final key.</p>
   </div>
 
   <!-- SLIDE 7: Final Notes (REDACTED) -->
