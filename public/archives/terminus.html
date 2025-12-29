@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T E R M I N U S</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .terminal {
+            max-width: 700px;
+            padding: 48px;
+        }
+        h1 {
+            font-size: 36px;
+            letter-spacing: 12px;
+            margin-bottom: 32px;
+            text-shadow: 0 0 10px #0f0;
+        }
+        .message {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        .data-block {
+            background: #0a0a0a;
+            border: 1px solid #0f0;
+            padding: 24px;
+            margin: 24px 0;
+            font-size: 14px;
+            text-align: left;
+        }
+        .instructions {
+            font-size: 12px;
+            color: #0a0;
+            margin-top: 32px;
+            line-height: 1.6;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .decoy { color: #333; }
+        .warning { color: #f00; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>TERMINUS</h1>
+        
+        <div class="message">
+            You have followed the trail through the network.
+            <br>
+            The final fragments await.
+        </div>
+
+        <div class="data-block">
+<span class="decoy">ECHO_1: 6563686f5f66616b65</span>
+<span class="decoy">ECHO_2: 616e6f746865725f6661696c</span>
+TERMINUS_FINAL: 5f6c766c
+<span class="decoy">TERMINUS_ALT: 5f7772306e67</span>
+<span class="decoy">TERMINUS_BAK: 6f6c645f646174</span>
+
+<span class="warning">// WARNING: Only one of the above is genuine</span>
+<span style="color: #0a0;">// The final piece completes the level</span>
+        </div>
+
+        <div class="instructions">
+            ═══════════════════════════════════════════════
+            <br><br>
+            ASSEMBLY PROTOCOL:
+            <br><br>
+            1. You should have 5 fragments now
+            <br>
+            2. Order: Twitter → Gist → Discord → Pastebin → Terminus
+            <br>
+            3. Each location had ONE correct fragment
+            <br>
+            4. Decode hex → Concatenate → Flag format
+            <br><br>
+            ═══════════════════════════════════════════════
+            <br><br>
+            <span class="blink">END TRANSMISSION_</span>
+        </div>
+    </div>
+</body>
+</html>

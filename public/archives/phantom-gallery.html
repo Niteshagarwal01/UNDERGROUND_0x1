@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flickr - Delhi Metro Shots by phantom_shooter</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #0d0d0d;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .header {
+            background: #000;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #ff0084; }
+        .nav { display: flex; gap: 24px; }
+        .nav a { color: #999; text-decoration: none; font-size: 13px; }
+        .profile-header {
+            padding: 32px 24px;
+            border-bottom: 1px solid #222;
+        }
+        .profile-header h1 { font-size: 24px; margin-bottom: 8px; }
+        .profile-header p { color: #999; font-size: 14px; }
+        .stats { display: flex; gap: 24px; margin-top: 16px; }
+        .stat { color: #999; font-size: 13px; }
+        .stat span { color: #fff; font-weight: 600; }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2px;
+            padding: 2px;
+        }
+        .photo {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .photo:hover img { transform: scale(1.05); }
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .photo:hover .photo-overlay { opacity: 1; }
+        .photo-overlay p { font-size: 12px; color: #fff; }
+        .photo-overlay span { font-size: 11px; color: #999; }
+        .album-title {
+            padding: 24px;
+            font-size: 18px;
+            border-bottom: 1px solid #222;
+        }
+        .bio {
+            padding: 24px;
+            background: #111;
+            margin: 24px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">flickr</div>
+        <nav class="nav">
+            <a href="#">Explore</a>
+            <a href="#">Prints</a>
+            <a href="#">Get Pro</a>
+        </nav>
+    </header>
+
+    <div class="profile-header">
+        <h1>phantom_shooter</h1>
+        <p>Delhi, India · Joined 2019</p>
+        <div class="stats">
+            <div class="stat"><span>247</span> Photos</div>
+            <div class="stat"><span>1.2K</span> Followers</div>
+            <div class="stat"><span>89</span> Following</div>
+        </div>
+    </div>
+
+    <div class="bio">
+        Urban infrastructure photography. Documenting the veins of the city. 
+        Every image tells a story if you know how to read it. 
+        <br><br>
+        "The camera captures what the eye misses."
+    </div>
+
+    <h2 class="album-title">📸 Metro Collection - October 2024</h2>
+
+    <div class="gallery">
+        <div class="photo">
+            <a href="phantom/platform_vaishali.png" download>
+                <img src="phantom/platform_vaishali.png" alt="Platform">
+            </a>
+            <div class="photo-overlay">
+                <p>morning rush</p>
+                <span>Oct 15, 2024</span>
+            </div>
+        </div>
+
+        <div class="photo">
+            <a href="phantom/nehru_enclave.jpg" download>
+                <img src="phantom/nehru_enclave.jpg" alt="Station">
+            </a>
+            <div class="photo-overlay">
+                <p>gate 5</p>
+                <span>Oct 16, 2024</span>
+            </div>
+        </div>
+
+        <div class="photo">
+            <a href="phantom/interior_train.png" download>
+                <img src="phantom/interior_train.png" alt="Interior">
+            </a>
+            <div class="photo-overlay">
+                <p>empty coach</p>
+                <span>Oct 17, 2024</span>
+            </div>
+        </div>
+
+        <div class="photo">
+            <a href="phantom/tvm_machine.png" download>
+                <img src="phantom/tvm_machine.png" alt="Machine">
+            </a>
+            <div class="photo-overlay">
+                <p>in service</p>
+                <span>Oct 18, 2024</span>
+            </div>
+        </div>
+
+        <div class="photo">
+            <a href="phantom/metro_pillars.png" download>
+                <img src="phantom/metro_pillars.png" alt="Pillars">
+            </a>
+            <div class="photo-overlay">
+                <p>elevated dreams</p>
+                <span>Oct 19, 2024</span>
+            </div>
+        </div>
+
+        <div class="photo">
+            <a href="metro-crowd-archive.html">
+                <img src="phantom/platform_vaishali.png" alt="Crowd" style="filter: grayscale(100%);">
+            </a>
+            <div class="photo-overlay">
+                <p>deleted</p>
+                <span>Oct 14, 2024</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 48px 24px; color: #444; font-size: 11px; text-align: center;">
+        © 2024 phantom_shooter · All rights reserved
+    </div>
+</body>
+</html>

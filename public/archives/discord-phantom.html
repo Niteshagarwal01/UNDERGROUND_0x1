@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord - Metro Enthusiasts</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'gg sans', 'Noto Sans', sans-serif;
+            background: #313338;
+            color: #dbdee1;
+            min-height: 100vh;
+            display: flex;
+        }
+        .sidebar {
+            width: 240px;
+            background: #2b2d31;
+            padding: 12px 8px;
+        }
+        .server-name {
+            padding: 12px 8px;
+            font-weight: 600;
+            border-bottom: 1px solid #3f4147;
+            margin-bottom: 12px;
+        }
+        .channel {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #949ba4;
+            cursor: pointer;
+        }
+        .channel:hover { background: #35373c; color: #dbdee1; }
+        .channel.active { background: #404249; color: #fff; }
+        .channel::before { content: '# '; color: #949ba4; }
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .channel-header {
+            padding: 12px 16px;
+            background: #313338;
+            border-bottom: 1px solid #3f4147;
+            font-weight: 600;
+        }
+        .messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        .message {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .msg-content { flex: 1; }
+        .msg-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .msg-name { font-weight: 600; color: #f2f3f5; }
+        .msg-time { font-size: 12px; color: #949ba4; }
+        .msg-text { font-size: 14px; line-height: 1.4; }
+        .code-block {
+            background: #2b2d31;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            margin: 8px 0;
+        }
+        .emoji { font-size: 20px; }
+        .pinned-msg {
+            background: rgba(250, 168, 26, 0.1);
+            border-left: 3px solid #faa81a;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .pin-label {
+            font-size: 11px;
+            color: #faa81a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="server-name">Metro Enthusiasts 🚇</div>
+        <div class="channel">general</div>
+        <div class="channel">photography</div>
+        <div class="channel active">phantom-channel</div>
+        <div class="channel">off-topic</div>
+        <div class="channel">archived-secrets</div>
+    </div>
+
+    <div class="main">
+        <div class="channel-header"># phantom-channel</div>
+        
+        <div class="messages">
+            <div class="pinned-msg">
+                <div class="pin-label">📌 PINNED MESSAGE</div>
+                <div class="msg-header">
+                    <span class="msg-name">phantom_network</span>
+                    <span class="msg-time">10/14/2024 11:47 PM</span>
+                </div>
+                <div class="msg-text">
+                    🔐 Channel rules and data fragments:
+                    <div class="code-block">
+RULE_1: Check all sources
+RULE_2: Not everything is what it seems
+DATA_X: 6661696c5f73616665
+DATA_Y: 6e3374773072
+DATA_Z: 7472617031323334
+                    </div>
+                    Sequence matters. Y marks the spot.
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="avatar" style="background: linear-gradient(135deg, #5865f2, #eb459e);"></div>
+                <div class="msg-content">
+                    <div class="msg-header">
+                        <span class="msg-name">phantom_network</span>
+                        <span class="msg-time">10/15/2024 8:30 AM</span>
+                    </div>
+                    <div class="msg-text">
+                        For those asking - the pastebin has the next piece.
+                        <br><br>
+                        But there are multiple pastebins. 
+                        <div class="code-block">
+pastebin.com/ghost_key - one of these
+pastebin.com/metro_dump - might work
+pastebin.com/phantom_old - deprecated
+                        </div>
+                        Choose wisely. 👻
+                    </div>
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="avatar" style="background: linear-gradient(135deg, #3ba55d, #43b581);"></div>
+                <div class="msg-content">
+                    <div class="msg-header">
+                        <span class="msg-name">metro_hunter_99</span>
+                        <span class="msg-time">10/15/2024 9:15 AM</span>
+                    </div>
+                    <div class="msg-text">
+                        I decoded DATA_X and got "fail_safe" - is that the flag?
+                    </div>
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="avatar" style="background: linear-gradient(135deg, #5865f2, #eb459e);"></div>
+                <div class="msg-content">
+                    <div class="msg-header">
+                        <span class="msg-name">phantom_network</span>
+                        <span class="msg-time">10/15/2024 9:20 AM</span>
+                    </div>
+                    <div class="msg-text">
+                        No. Read the hint again. <span class="emoji">🎯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="avatar" style="background: linear-gradient(135deg, #fee75c, #f47b67);"></div>
+                <div class="msg-content">
+                    <div class="msg-header">
+                        <span class="msg-name">confused_player</span>
+                        <span class="msg-time">10/15/2024 2:00 PM</span>
+                    </div>
+                    <div class="msg-text">
+                        Found something on ghost_key pastebin! But not sure if real...
+                    </div>
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="avatar" style="background: linear-gradient(135deg, #5865f2, #eb459e);"></div>
+                <div class="msg-content">
+                    <div class="msg-header">
+                        <span class="msg-name">phantom_network</span>
+                        <span class="msg-time">10/15/2024 2:15 PM</span>
+                    </div>
+                    <div class="msg-text">
+                        All roads lead to terminus. Some roads are longer than others. <span class="emoji">🛤️</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

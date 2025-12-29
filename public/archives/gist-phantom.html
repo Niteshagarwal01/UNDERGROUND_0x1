@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>metro_notes.txt · GitHub Gist</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+        }
+        .header {
+            background: #161b22;
+            padding: 16px 24px;
+            border-bottom: 1px solid #30363d;
+        }
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo { font-size: 24px; color: #fff; }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .gist-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #238636, #1f6feb);
+        }
+        .gist-meta { font-size: 14px; }
+        .gist-meta a { color: #58a6ff; text-decoration: none; }
+        .gist-meta span { color: #8b949e; }
+        .file-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .file-header {
+            padding: 8px 16px;
+            background: #21262d;
+            border-bottom: 1px solid #30363d;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .file-name { color: #c9d1d9; }
+        .file-content {
+            padding: 16px;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .line { display: flex; }
+        .line-num {
+            min-width: 40px;
+            color: #484f58;
+            text-align: right;
+            padding-right: 16px;
+            user-select: none;
+        }
+        .line-content { flex: 1; }
+        .comment { color: #8b949e; }
+        .string { color: #a5d6ff; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <span class="logo">📋</span>
+            <span>Gist</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="gist-header">
+            <div class="avatar"></div>
+            <div class="gist-meta">
+                <a href="#">metro_ghost_delhi</a>
+                <span>/ metro_notes.txt</span>
+                <span style="margin-left: 16px;">Created Oct 14, 2024</span>
+            </div>
+        </div>
+
+        <div class="file-box">
+            <div class="file-header">
+                <span class="file-name">metro_notes.txt</span>
+                <span>Raw</span>
+            </div>
+            <div class="file-content">
+                <div class="line"><span class="line-num">1</span><span class="line-content comment"># Metro Research Notes</span></div>
+                <div class="line"><span class="line-num">2</span><span class="line-content comment"># phantom network project</span></div>
+                <div class="line"><span class="line-num">3</span><span class="line-content"></span></div>
+                <div class="line"><span class="line-num">4</span><span class="line-content">Station coverage: 256 nodes</span></div>
+                <div class="line"><span class="line-num">5</span><span class="line-content">Camera blind spots: documented</span></div>
+                <div class="line"><span class="line-num">6</span><span class="line-content">Network map: complete</span></div>
+                <div class="line"><span class="line-num">7</span><span class="line-content"></span></div>
+                <div class="line"><span class="line-num">8</span><span class="line-content comment"># DATA FRAGMENTS</span></div>
+                <div class="line"><span class="line-num">9</span><span class="line-content">FRAG_ALPHA: 7772306e6731</span></div>
+                <div class="line"><span class="line-num">10</span><span class="line-content">FRAG_BETA: 6e74306d5f</span></div>
+                <div class="line"><span class="line-num">11</span><span class="line-content">FRAG_GAMMA: 6465636f795f32</span></div>
+                <div class="line"><span class="line-num">12</span><span class="line-content">FRAG_DELTA: 6e6f745f74686973</span></div>
+                <div class="line"><span class="line-num">13</span><span class="line-content"></span></div>
+                <div class="line"><span class="line-num">14</span><span class="line-content comment"># Which one is real? Follow the sequence.</span></div>
+                <div class="line"><span class="line-num">15</span><span class="line-content comment"># A comes before B. B is what you need.</span></div>
+                <div class="line"><span class="line-num">16</span><span class="line-content"></span></div>
+                <div class="line"><span class="line-num">17</span><span class="line-content comment"># Next location hints:</span></div>
+                <div class="line"><span class="line-num">18</span><span class="line-content">Primary: discord server metro enthusiasts</span></div>
+                <div class="line"><span class="line-num">19</span><span class="line-content">Secondary: telegram @metro_underground (might be deprecated)</span></div>
+                <div class="line"><span class="line-num">20</span><span class="line-content"></span></div>
+                <div class="line"><span class="line-num">21</span><span class="line-content comment"># Remember: hex is just the surface</span></div>
+            </div>
+        </div>
+
+        <div class="file-box">
+            <div class="file-header">
+                <span class="file-name">config.json</span>
+                <span>Raw</span>
+            </div>
+            <div class="file-content">
+                <div class="line"><span class="line-num">1</span><span class="line-content">{</span></div>
+                <div class="line"><span class="line-num">2</span><span class="line-content">  "version": "2.4.1",</span></div>
+                <div class="line"><span class="line-num">3</span><span class="line-content">  "debug_key": "55473078317b64656275677d",</span></div>
+                <div class="line"><span class="line-num">4</span><span class="line-content">  "test_mode": true,</span></div>
+                <div class="line"><span class="line-num">5</span><span class="line-content">  "backup_location": "/archives/backup_old"</span></div>
+                <div class="line"><span class="line-num">6</span><span class="line-content">}</span></div>
+            </div>
+        </div>
+
+        <div style="margin-top: 24px; color: #8b949e; font-size: 12px;">
+            <span>2 comments</span> · <span>3 stars</span> · <span>1 fork</span>
+        </div>
+    </div>
+</body>
+</html>
