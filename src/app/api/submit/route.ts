@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
             // Challenge already solved by team - don't even count this submission
             return NextResponse.json({
                 success: true,
-                message: "🔒 This challenge has already been solved by your team!",
+                message: "This challenge has already been solved by your team!",
                 points: 0,
                 isFirstBlood: false,
                 alreadySolved: true,
@@ -201,7 +201,7 @@ export async function POST(request: NextRequest) {
 
             return NextResponse.json({
                 success: false,
-                message: "❌ Incorrect flag. Try again.",
+                message: "Incorrect flag. Try again.",
             });
         }
 
@@ -302,7 +302,7 @@ export async function POST(request: NextRequest) {
             if (result.alreadySolved) {
                 return NextResponse.json({
                     success: true,
-                    message: "🔒 This challenge was just solved by another team member! Points awarded to your team.",
+                    message: "This challenge was just solved by another team member! Points awarded to your team.",
                     points: 0,
                     isFirstBlood: false,
                     alreadySolved: true,
@@ -312,7 +312,7 @@ export async function POST(request: NextRequest) {
             // Build response message
             let message = "";
             if (result.isFirstBlood) {
-                message = `🩸 FIRST BLOOD! +${result.points} points (includes +${result.bonus || 0} bonus). Challenge solved for your entire team!`;
+                message = `FIRST BLOOD! +${result.points} points (includes +${result.bonus || 0} bonus). Challenge solved for your entire team!`;
                 // Send Discord first blood notification (async, don't wait)
                 announceFirstBlood(
                     user.team!.name,
@@ -321,7 +321,7 @@ export async function POST(request: NextRequest) {
                     result.points || 0
                 ).catch(console.error);
             } else if ((result.bonus || 0) > 0) {
-                message = `✅ Challenge Solved! +${result.points} points (includes +${result.bonus} early solve bonus). This challenge is now complete for your entire team!`;
+                message = `Challenge Solved! +${result.points} points (includes +${result.bonus} early solve bonus). This challenge is now complete for your entire team!`;
                 // Send Discord solve notification for early solvers
                 announceSolve(
                     user.team!.name,
@@ -331,7 +331,7 @@ export async function POST(request: NextRequest) {
                     result.solveNumber || 1
                 ).catch(console.error);
             } else {
-                message = `✅ Challenge Solved! +${result.points} points. This challenge is now complete for your entire team!`;
+                message = `Challenge Solved! +${result.points} points. This challenge is now complete for your entire team!`;
                 // Send Discord solve notification for milestone solves only
                 announceSolve(
                     user.team!.name,
@@ -367,7 +367,7 @@ export async function POST(request: NextRequest) {
             if (txError.code === 'P2002') {
                 return NextResponse.json({
                     success: true,
-                    message: "🔒 Another team member just solved this challenge! Points awarded to your team.",
+                    message: "Another team member just solved this challenge! Points awarded to your team.",
                     points: 0,
                     isFirstBlood: false,
                     alreadySolved: true,
