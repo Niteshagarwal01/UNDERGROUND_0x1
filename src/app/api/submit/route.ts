@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
         const normalizedFlag = sanitizeFlag(flag.trim().toLowerCase());
 
         // Validate flag format
-        const flagRegex = /^ug0x1\{[a-zA-Z0-9_]{10,50}\}$/i;
+        const flagRegex = /^ug0x1\{[a-zA-Z0-9_]{3,50}\}$/i;
         if (!flagRegex.test(normalizedFlag)) {
             return NextResponse.json(
                 { success: false, message: "Invalid flag format. Expected: UG0x1{...}" },

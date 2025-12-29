@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "A high-fidelity Delhi Metro operational compromise simulation. Elite-level Capture The Flag competition.",
   keywords: ["CTF", "Capture The Flag", "Cybersecurity", "Delhi Metro", "DMRC", "Hacking", "Security Competition"],
   authors: [{ name: "UNDERGROUND_0x1" }],
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
   openGraph: {
     title: "UNDERGROUND_0x1 | Elite CTF Platform",
     description: "Elite-level Capture The Flag competition. 15 challenges across OSINT, Forensics, Cryptography, Reverse Engineering, and Web Security.",
