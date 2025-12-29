@@ -231,18 +231,18 @@ export default function CertificatesPage() {
                                     background: teamData.rank === 1
                                         ? "linear-gradient(135deg, #FFD700, #FFA500)"
                                         : teamData.rank === 2
-                                            ? "linear-gradient(135deg, #C0C0C0, #808080)"
+                                            ? "linear-gradient(135deg, #E5C100, #B8980F)"
                                             : teamData.rank === 3
-                                                ? "linear-gradient(135deg, #CD7F32, #8B4513)"
+                                                ? "linear-gradient(135deg, #D4AF37, #AA8C2C)"
                                                 : teamData.rank <= 10
-                                                    ? "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.1))"
-                                                    : "linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))",
+                                                    ? "linear-gradient(135deg, rgba(250, 204, 21, 0.4), rgba(250, 204, 21, 0.2))"
+                                                    : "linear-gradient(135deg, rgba(250, 204, 21, 0.3), rgba(250, 204, 21, 0.1))",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
                                     flexShrink: 0
                                 }}>
-                                    <Award size={36} style={{ color: teamData.rank <= 3 ? "#000" : "#fff" }} />
+                                    <Award size={36} style={{ color: teamData.rank <= 3 ? "#000" : "var(--yellow)" }} />
                                 </div>
                                 <div style={{ flex: 1 }}>
                                     <h3 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "8px", display: "flex", alignItems: "center", gap: "12px" }}>
@@ -254,15 +254,15 @@ export default function CertificatesPage() {
                                             background: teamData.rank === 1
                                                 ? "linear-gradient(135deg, #FFD700, #FFA500)"
                                                 : teamData.rank === 2
-                                                    ? "linear-gradient(135deg, #C0C0C0, #808080)"
+                                                    ? "linear-gradient(135deg, #E5C100, #B8980F)"
                                                     : teamData.rank === 3
-                                                        ? "linear-gradient(135deg, #CD7F32, #8B4513)"
+                                                        ? "linear-gradient(135deg, #D4AF37, #AA8C2C)"
                                                         : teamData.rank <= 10
-                                                            ? "#8B5CF6"
+                                                            ? "rgba(250, 204, 21, 0.9)"
                                                             : teamData.rank <= 25
-                                                                ? "#06B6D4"
-                                                                : "#10B981",
-                                            color: teamData.rank <= 3 ? "#000" : "#fff",
+                                                                ? "rgba(250, 204, 21, 0.7)"
+                                                                : "rgba(250, 204, 21, 0.5)",
+                                            color: "#000",
                                             fontWeight: 700
                                         }}>
                                             {teamData.rank === 1 ? "CHAMPION"
@@ -312,7 +312,7 @@ export default function CertificatesPage() {
                         alignItems: "center",
                         gap: "12px"
                     }}>
-                        <Droplet size={20} style={{ color: "#ef4444" }} />
+                        <Droplet size={20} style={{ color: "var(--yellow)" }} />
                         First Blood Badges
                         <span style={{
                             fontSize: "14px",
@@ -333,20 +333,20 @@ export default function CertificatesPage() {
                                         display: "flex",
                                         alignItems: "center",
                                         gap: "16px",
-                                        borderLeft: "3px solid #ef4444"
+                                        borderLeft: "3px solid var(--yellow)"
                                     }}
                                 >
                                     <div style={{
                                         width: "48px",
                                         height: "48px",
                                         borderRadius: "8px",
-                                        background: "rgba(239, 68, 68, 0.1)",
+                                        background: "rgba(250, 204, 21, 0.1)",
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "center",
                                         flexShrink: 0
                                     }}>
-                                        <Droplet size={24} style={{ color: "#ef4444" }} />
+                                        <Droplet size={24} style={{ color: "var(--yellow)" }} />
                                     </div>
                                     <div style={{ flex: 1 }}>
                                         <h4 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "4px" }}>
