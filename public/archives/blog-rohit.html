@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Analysis Experiments - r0h1t_sh4rm4</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.8;
+        }
+        .blog-header {
+            background: linear-gradient(135deg, #161b22, #0d1117);
+            border-bottom: 1px solid #21262d;
+            padding: 24px;
+        }
+        .blog-title {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .blog-title h1 {
+            color: #58a6ff;
+            font-size: 1.2rem;
+        }
+        .blog-title a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        .post {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .post-title {
+            font-size: 1.5rem;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+        .post-meta {
+            color: #6e7681;
+            font-size: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #21262d;
+        }
+        .post-content p {
+            margin-bottom: 16px;
+            color: #8b949e;
+        }
+        .post-content h2 {
+            color: #58a6ff;
+            font-size: 1.1rem;
+            margin: 24px 0 12px;
+        }
+        .code-block {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        .code-block .comment { color: #6e7681; }
+        .code-block .string { color: #a5d6ff; }
+        .code-block .keyword { color: #ff7b72; }
+        .audio-player {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .audio-player p {
+            color: #8b949e;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        .audio-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #238636;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .audio-link:hover { background: #2ea043; }
+        .warning {
+            background: rgba(187, 128, 9, 0.15);
+            border: 1px solid rgba(187, 128, 9, 0.4);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 24px 0;
+            color: #d29922;
+            font-size: 13px;
+        }
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 4px 10px;
+            background: rgba(56, 139, 253, 0.15);
+            border-radius: 16px;
+            font-size: 11px;
+            color: #58a6ff;
+        }
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: #6e7681;
+            font-size: 11px;
+            border-top: 1px solid #21262d;
+        }
+    </style>
+</head>
+<body>
+    <header class="blog-header">
+        <div class="blog-title">
+            <h1>r0h1t_sh4rm4 // research notes</h1>
+            <a href="iotdev-portfolio.html">← Back to Portfolio</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="post">
+            <h1 class="post-title">Signal Analysis Experiments - Part 3</h1>
+            <div class="post-meta">
+                October 13, 2024 • 8 min read • Filed under: Security Research
+            </div>
+
+            <div class="post-content">
+                <p>
+                    After months of research into transit network security, I've developed 
+                    a new method for encoding sensitive data within audio signals. This 
+                    technique uses frequency modulation patterns that are inaudible to 
+                    humans but can be extracted using spectral analysis.
+                </p>
+
+                <h2>The Experiment</h2>
+                <p>
+                    I created a test signal that encodes data using frequency modulation 
+                    patterns. When analyzed properly, the hidden information becomes 
+                    visible. The technique I used is well-documented in amateur radio 
+                    circles from the 1800s.
+                </p>
+
+                <p>
+                    For this demonstration, I've encoded a message using the 
+                    following parameters:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Encoding parameters</span>
+<span class="keyword">carrier_freq</span> = 18000  <span class="comment"># Hz</span>
+<span class="keyword">encoding</span> = <span class="string">"LEGACY_TELEGRAPH"</span>
+<span class="keyword">secondary_cipher</span> = <span class="string">"ROTATION"</span>
+<span class="keyword">key_source</span> = <span class="string">"infrastructure_count"</span>
+                </div>
+
+                <div class="warning">
+                    ⚠️ <strong>Note:</strong> The data file contains multiple layers 
+                    of encoding. You'll need to understand historical communication 
+                    methods and do your research on the target infrastructure.
+                </div>
+
+                <div class="audio-player">
+                    <p>Download the test signal for analysis:</p>
+                    <a href="signal_experiment.txt" class="audio-link">
+                        📊 Download Signal Data
+                    </a>
+                    <p style="margin-top: 12px; font-size: 11px; color: #6e7681;">
+                        Format: Encoded text representation (decode with hex first)
+                    </p>
+                </div>
+
+                <h2>Analysis</h2>
+                <p>
+                    The data requires multiple decoding steps. I've left enough 
+                    context in the file for anyone with the right skills to figure 
+                    it out. Good luck.
+                </p>
+
+                <h2>Why This Matters</h2>
+                <p>
+                    This research demonstrates how easily data can be hidden in plain 
+                    sight. Critical infrastructure systems that rely on audio channels 
+                    for communication are vulnerable to this type of steganographic 
+                    exfiltration.
+                </p>
+
+                <p>
+                    My findings have been reported to the relevant authorities. I'm 
+                    publishing this now as a proof of concept after the disclosure 
+                    period has ended.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">steganography</span>
+                    <span class="tag">audio-analysis</span>
+                    <span class="tag">morse-code</span>
+                    <span class="tag">transit-security</span>
+                    <span class="tag">DMRC</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="post">
+            <h1 class="post-title">Taking a Break</h1>
+            <div class="post-meta">
+                October 14, 2024 • 1 min read
+            </div>
+            <div class="post-content">
+                <p>
+                    This will be my last post for a while. Certain parties are not 
+                    happy with my research. I've secured my findings and will resurface 
+                    when things cool down.
+                </p>
+                <p style="color: #6e7681; font-style: italic;">
+                    "The truth is in the signal. You just have to know how to listen."
+                </p>
+                <p style="color: #58a6ff; margin-top: 16px;">
+                    - r0h1t_sh4rm4, signing off
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 r0h1t_sh4rm4 | All research published under responsible disclosure</p>
+        <p style="margin-top: 8px;">This blog is no longer being updated.</p>
+    </footer>
+
+    <!-- Archive note: Main evidence backed up to signal_experiment.txt -->
+    <!-- Encoding: Hex -> Morse -> ROT-N (N=50 Blue Line stations, so N mod 26 = 24) -->
+</body>
+</html>

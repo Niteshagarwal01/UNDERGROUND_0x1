@@ -1,0 +1,41 @@
+================================================================================
+EXTRACTED SIGNAL DATA - INCIDENT BL-2024-1015-SEC-001
+================================================================================
+Timestamp: 2024-10-15 14:32:47 UTC
+Source: Unknown transmitter
+Capture Method: SDR @ 18kHz carrier
+================================================================================
+
+RAW INTERCEPT:
+--------------
+
+48455820535452454E475448203D20314232
+
+..- --. ----- -..- .---- -... .-.. ...-- ...-- ..--.- .-.. .---- -. ...-- ..--.- .---- -. -.-. .---- -.. ...-- -. - ..--.- .-. ----- .... .---- - ..--.- ----- -.-. - .---- .....
+
+================================================================================
+METADATA
+================================================================================
+Carrier: 18000 Hz
+Duration: 47.3 seconds
+Signal Type: UNKNOWN
+Pattern: REPEATING
+Modulation: AM-PULSE
+
+Notes: Signal appeared during camera blackout period.
+       Pattern shows distinct short/long pulse groupings.
+       Possible encoded message - requires analysis.
+
+================================================================================
+ADDITIONAL CONTEXT
+================================================================================
+The following numeric reference was found in the signal header:
+
+    BLUE_LINE_REFERENCE: 50
+
+This number may be significant for decoding. The Blue Line
+is the busiest corridor in the DMRC network.
+
+================================================================================
+END OF CAPTURE
+================================================================================

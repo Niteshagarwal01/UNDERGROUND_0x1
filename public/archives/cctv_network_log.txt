@@ -1,0 +1,2527 @@
+================================================================================
+DMRC CCTV NETWORK SERVER - SECURITY LOG EXPORT
+================================================================================
+Server: CCTV-CTRL-BL-01 (Blue Line Primary Controller)
+Export Date: 2024-10-16 09:15:32 IST
+Log Period: 2024-10-15 14:00:00 - 2024-10-15 15:00:00
+Total Entries: 2500+
+Classification: CONFIDENTIAL - INTERNAL INVESTIGATION ONLY
+Incident Reference: BL-2024-1015-SEC-001
+================================================================================
+
+NOTE: This log has been extracted for forensic analysis following the
+Blue Line network incident on October 15, 2024. All timestamps are IST.
+
+================================================================================
+
+[2024-10-15 14:00:00.494] [INFO] [CAM-BL-033] Infrared mode: AUTO
+[2024-10-15 14:00:01.413] [INFO] [CAM-BL-009] Heartbeat received from 10.0.9.100 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:00:02.809] [INFO] [SYNC] NTP sync successful - drift: -49ms
+[2024-10-15 14:00:04.210] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:00:05.637] [INFO] [CAM-BL-035] Lens calibration: OK
+[2024-10-15 14:00:07.204] [INFO] [SYNC] NTP sync successful - drift: -21ms
+[2024-10-15 14:00:08.480] [INFO] [CAM-BL-029] Recording status: ACTIVE
+[2024-10-15 14:00:10.358] [INFO] [CAM-BL-047] Heartbeat received from 10.0.9.51 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:00:11.130] [INFO] [CAM-BL-033] Lens calibration: OK
+[2024-10-15 14:00:12.671] [INFO] [CAM-BL-033] Heartbeat received from 10.0.7.178 (MAC: 00:16:3E:5A:2B:CA)
+[2024-10-15 14:00:14.075] [INFO] [CAM-BL-047] Heartbeat received from 10.0.9.86 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:00:15.876] [INFO] [CAM-BL-007] Lens calibration: OK
+[2024-10-15 14:00:17.555] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:00:18.173] [INFO] [CAM-BL-004] Infrared mode: AUTO
+[2024-10-15 14:00:20.675] [INFO] [CAM-BL-045] Infrared mode: AUTO
+[2024-10-15 14:00:21.131] [INFO] [CAM-BL-028] Motion detection: ACTIVE
+[2024-10-15 14:00:23.295] [INFO] [STORAGE] Disk usage: 79.6% - Normal
+[2024-10-15 14:00:24.712] [INFO] [CAM-BL-005] Lens calibration: OK
+[2024-10-15 14:00:25.154] [INFO] [CAM-BL-014] Motion detection: ACTIVE
+[2024-10-15 14:00:27.006] [INFO] [CAM-BL-009] Audio channel: MUTED
+[2024-10-15 14:00:28.244] [INFO] [CAM-BL-038] Heartbeat received from 10.0.1.28 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:00:30.464] [INFO] [SYNC] NTP sync successful - drift: 22ms
+[2024-10-15 14:00:31.334] [WARN] [CAM-BL-016] Frame drop detected - recovering
+[2024-10-15 14:00:33.950] [INFO] [CAM-BL-044] Connection established from 10.0.4.231 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:00:34.682] [INFO] [CAM-BL-042] Frame buffer sync - 30fps stable
+[2024-10-15 14:00:36.287] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:00:37.378] [INFO] [CAM-BL-013] Audio channel: MUTED
+[2024-10-15 14:00:38.743] [INFO] [CAM-BL-029] Video stream: H.264 @ 1080p
+[2024-10-15 14:00:40.143] [INFO] [CAM-BL-031] Frame buffer sync - 30fps stable
+[2024-10-15 14:00:41.133] [INFO] [CAM-BL-048] PTZ command received - Pan: 315deg
+[2024-10-15 14:00:43.039] [INFO] [CAM-BL-017] Motion detection: ACTIVE
+[2024-10-15 14:00:44.555] [INFO] [CAM-BL-001] Video stream: H.264 @ 1080p
+[2024-10-15 14:00:46.158] [INFO] [CAM-BL-040] Connection established from 10.0.10.100 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:00:47.167] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:00:48.636] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:00:50.843] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:00:51.585] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:00:53.352] [INFO] [CAM-BL-029] Frame buffer sync - 30fps stable
+[2024-10-15 14:00:54.109] [INFO] [CAM-BL-012] Recording status: ACTIVE
+[2024-10-15 14:00:56.382] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:00:57.019] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:00:59.661] [INFO] [CAM-BL-039] Connection established from 10.0.5.62 (MAC: 00:11:22:33:44:55) - Routine sync
+[2024-10-15 14:01:00.260] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:01:01.705] [INFO] [NET] Bandwidth utilization: 55.9 Mbps
+[2024-10-15 14:01:03.552] [INFO] [CAM-BL-046] Recording status: ACTIVE
+[2024-10-15 14:01:04.335] [INFO] [CAM-BL-006] Connection established from 10.0.10.164 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:01:06.976] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:07.187] [INFO] [NET] Bandwidth utilization: 41.9 Mbps
+[2024-10-15 14:01:09.434] [INFO] [CAM-BL-005] Recording status: ACTIVE
+[2024-10-15 14:01:10.685] [INFO] [SYNC] NTP sync successful - drift: 48ms
+[2024-10-15 14:01:12.995] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:01:13.975] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:01:14.980] [INFO] [CAM-BL-003] Lens calibration: OK
+[2024-10-15 14:01:16.335] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:01:17.426] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:01:19.154] [WARN] [CAM-BL-031] Frame drop detected - recovering
+[2024-10-15 14:01:20.048] [WARN] [CAM-BL-034] High CPU usage detected: 86%
+[2024-10-15 14:01:22.982] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:01:23.205] [INFO] [SYNC] NTP sync successful - drift: -13ms
+[2024-10-15 14:01:24.339] [INFO] [CAM-BL-009] Heartbeat received from 10.0.2.55 (MAC: 00:16:3E:5A:2B:CA)
+[2024-10-15 14:01:26.978] [INFO] [CAM-BL-035] Heartbeat received from 10.0.4.63 (MAC: 08:00:27:12:34:57)
+[2024-10-15 14:01:27.896] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:29.839] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:01:30.917] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:32.139] [INFO] [CAM-BL-013] Infrared mode: AUTO
+[2024-10-15 14:01:33.875] [INFO] [CAM-BL-005] Audio channel: MUTED
+[2024-10-15 14:01:35.618] [INFO] [NET] Bandwidth utilization: 37.6 Mbps
+[2024-10-15 14:01:36.283] [INFO] [NET] Bandwidth utilization: 39.3 Mbps
+[2024-10-15 14:01:37.370] [INFO] [CAM-BL-019] Recording status: ACTIVE
+[2024-10-15 14:01:39.960] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:40.397] [ERROR] [CAM-BL-022] Frame sync lost - reconnecting
+[2024-10-15 14:01:42.783] [INFO] [CAM-BL-017] Motion detection: ACTIVE
+[2024-10-15 14:01:43.378] [INFO] [CAM-BL-021] Recording status: ACTIVE
+[2024-10-15 14:01:45.106] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:46.495] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:01:48.531] [INFO] [CAM-BL-008] Frame buffer sync - 30fps stable
+[2024-10-15 14:01:49.954] [INFO] [CAM-BL-046] Motion detection: ACTIVE
+[2024-10-15 14:01:50.938] [WARN] [CAM-BL-049] High CPU usage detected: 95%
+[2024-10-15 14:01:52.312] [INFO] [SYNC] NTP sync successful - drift: -12ms
+[2024-10-15 14:01:53.627] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:01:55.590] [INFO] [CAM-BL-046] Frame buffer sync - 30fps stable
+[2024-10-15 14:01:56.346] [INFO] [CAM-BL-020] Recording status: ACTIVE
+[2024-10-15 14:01:58.308] [INFO] [CAM-BL-013] Frame buffer sync - 30fps stable
+[2024-10-15 14:01:59.868] [WARN] [CAM-BL-026] High CPU usage detected: 76%
+[2024-10-15 14:02:00.884] [INFO] [CAM-BL-008] Video stream: H.264 @ 1080p
+[2024-10-15 14:02:02.567] [INFO] [CAM-BL-026] Recording status: ACTIVE
+[2024-10-15 14:02:03.426] [INFO] [STORAGE] Disk usage: 78.9% - Normal
+[2024-10-15 14:02:05.779] [INFO] [CAM-BL-018] Motion detection: ACTIVE
+[2024-10-15 14:02:06.479] [INFO] [CAM-BL-033] Heartbeat received from 10.0.9.148 (MAC: 00:16:3E:5A:2B:C8)
+[2024-10-15 14:02:08.332] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:02:09.814] [INFO] [CAM-BL-008] Heartbeat received from 10.0.2.185 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:02:11.341] [INFO] [CAM-BL-032] Audio channel: MUTED
+[2024-10-15 14:02:12.258] [INFO] [CAM-BL-041] Recording status: ACTIVE
+[2024-10-15 14:02:13.926] [WARN] [CAM-BL-027] Frame drop detected - recovering
+[2024-10-15 14:02:15.184] [INFO] [STORAGE] Disk usage: 72.3% - Normal
+[2024-10-15 14:02:16.156] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:02:18.476] [INFO] [SYNC] NTP sync successful - drift: 37ms
+[2024-10-15 14:02:19.957] [INFO] [SYNC] NTP sync successful - drift: 50ms
+[2024-10-15 14:02:21.501] [INFO] [CAM-BL-029] Audio channel: MUTED
+[2024-10-15 14:02:22.586] [INFO] [CAM-BL-024] Motion detection: ACTIVE
+[2024-10-15 14:02:24.427] [WARN] [CAM-BL-001] Low light conditions detected
+[2024-10-15 14:02:25.887] [INFO] [CAM-BL-036] Connection established from 10.0.2.174 (MAC: 00:16:3E:5A:2B:CB) - Routine sync
+[2024-10-15 14:02:26.269] [INFO] [STORAGE] Disk usage: 75.4% - Normal
+[2024-10-15 14:02:28.672] [INFO] [CAM-BL-002] Audio channel: MUTED
+[2024-10-15 14:02:29.119] [INFO] [SYNC] NTP sync successful - drift: -20ms
+[2024-10-15 14:02:31.246] [INFO] [CAM-BL-030] Infrared mode: AUTO
+[2024-10-15 14:02:32.223] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:02:34.838] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:02:35.701] [INFO] [CAM-BL-006] Frame buffer sync - 30fps stable
+[2024-10-15 14:02:36.541] [WARN] [NET] Latency spike: 187ms
+[2024-10-15 14:02:38.669] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:02:39.178] [WARN] [CAM-BL-022] Low light conditions detected
+[2024-10-15 14:02:41.077] [INFO] [CAM-BL-033] Lens calibration: OK
+[2024-10-15 14:02:42.822] [ERROR] [NET] Packet loss detected: 0.7%
+[2024-10-15 14:02:44.223] [INFO] [CAM-BL-025] PTZ command received - Pan: 132deg
+[2024-10-15 14:02:45.920] [WARN] [CAM-BL-032] Low light conditions detected
+[2024-10-15 14:02:47.855] [INFO] [CAM-BL-027] Lens calibration: OK
+[2024-10-15 14:02:48.182] [WARN] [CAM-BL-043] High CPU usage detected: 81%
+[2024-10-15 14:02:49.428] [INFO] [CAM-BL-049] Heartbeat received from 10.0.7.121 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:02:51.636] [INFO] [SYNC] NTP sync successful - drift: -40ms
+[2024-10-15 14:02:52.438] [INFO] [CAM-BL-041] Recording status: ACTIVE
+[2024-10-15 14:02:54.291] [INFO] [CAM-BL-039] Lens calibration: OK
+[2024-10-15 14:02:55.645] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:02:57.335] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:02:58.536] [INFO] [CAM-BL-010] Infrared mode: AUTO
+[2024-10-15 14:03:00.938] [INFO] [CAM-BL-008] PTZ command received - Pan: 103deg
+[2024-10-15 14:03:01.193] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:02.457] [INFO] [CAM-BL-048] Lens calibration: OK
+[2024-10-15 14:03:04.933] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:03:05.151] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:03:07.526] [INFO] [CAM-BL-031] Infrared mode: AUTO
+[2024-10-15 14:03:08.081] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:03:10.720] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:11.459] [INFO] [CAM-BL-043] Frame buffer sync - 30fps stable
+[2024-10-15 14:03:12.885] [INFO] [NET] Bandwidth utilization: 31.2 Mbps
+[2024-10-15 14:03:14.165] [INFO] [STORAGE] Disk usage: 76.3% - Normal
+[2024-10-15 14:03:15.677] [INFO] [CAM-BL-020] Heartbeat received from 10.0.9.82 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:03:17.660] [INFO] [NET] Bandwidth utilization: 49.0 Mbps
+[2024-10-15 14:03:18.806] [WARN] [CAM-BL-020] Low light conditions detected
+[2024-10-15 14:03:20.054] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:21.991] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:23.363] [INFO] [CAM-BL-048] Lens calibration: OK
+[2024-10-15 14:03:24.878] [INFO] [STORAGE] Disk usage: 70.9% - Normal
+[2024-10-15 14:03:25.802] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:27.393] [INFO] [CAM-BL-036] Motion detection: ACTIVE
+[2024-10-15 14:03:28.985] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:03:30.984] [INFO] [CAM-BL-021] Motion detection: ACTIVE
+[2024-10-15 14:03:31.395] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:03:33.651] [INFO] [CAM-BL-032] Heartbeat received from 10.0.1.85 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:03:34.101] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:36.014] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:03:37.286] [INFO] [CAM-BL-001] Audio channel: MUTED
+[2024-10-15 14:03:38.488] [INFO] [CAM-BL-030] Frame buffer sync - 30fps stable
+[2024-10-15 14:03:40.116] [INFO] [CAM-BL-015] Infrared mode: AUTO
+[2024-10-15 14:03:41.899] [WARN] [CAM-BL-016] Frame drop detected - recovering
+[2024-10-15 14:03:43.680] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:03:44.843] [WARN] [CAM-BL-019] Low light conditions detected
+[2024-10-15 14:03:46.822] [INFO] [CAM-BL-013] Lens calibration: OK
+[2024-10-15 14:03:47.659] [WARN] [CAM-BL-015] Low light conditions detected
+[2024-10-15 14:03:48.530] [INFO] [CAM-BL-046] Audio channel: MUTED
+[2024-10-15 14:03:50.234] [INFO] [CAM-BL-044] Infrared mode: AUTO
+[2024-10-15 14:03:51.426] [ERROR] [CAM-BL-038] Frame sync lost - reconnecting
+[2024-10-15 14:03:53.518] [INFO] [NET] Bandwidth utilization: 54.2 Mbps
+[2024-10-15 14:03:54.814] [INFO] [CAM-BL-040] Connection established from 10.0.4.74 (MAC: 00:16:3E:5A:2B:C9) - Routine sync
+[2024-10-15 14:03:56.956] [ERROR] [CAM-BL-004] Connection timeout from 10.0.8.75
+[2024-10-15 14:03:57.376] [INFO] [CAM-BL-016] Infrared mode: AUTO
+[2024-10-15 14:03:59.369] [INFO] [CAM-BL-043] Heartbeat received from 10.0.3.213 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:04:00.797] [INFO] [CAM-BL-033] Audio channel: MUTED
+[2024-10-15 14:04:01.775] [INFO] [CAM-BL-015] Audio channel: MUTED
+[2024-10-15 14:04:03.829] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:04:04.364] [INFO] [SYNC] NTP sync successful - drift: -2ms
+[2024-10-15 14:04:06.692] [WARN] [CAM-BL-026] High CPU usage detected: 84%
+[2024-10-15 14:04:07.414] [INFO] [CAM-BL-017] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:09.489] [INFO] [CAM-BL-013] Audio channel: MUTED
+[2024-10-15 14:04:10.352] [INFO] [SYNC] NTP sync successful - drift: 5ms
+[2024-10-15 14:04:12.397] [INFO] [CAM-BL-049] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:13.874] [INFO] [CAM-BL-017] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:14.962] [WARN] [CAM-BL-018] Frame drop detected - recovering
+[2024-10-15 14:04:16.738] [INFO] [CAM-BL-022] Motion detection: ACTIVE
+[2024-10-15 14:04:17.922] [WARN] [CAM-BL-038] High CPU usage detected: 71%
+[2024-10-15 14:04:19.606] [INFO] [CAM-BL-038] Infrared mode: AUTO
+[2024-10-15 14:04:20.252] [INFO] [CAM-BL-033] PTZ command received - Pan: 291deg
+[2024-10-15 14:04:22.194] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:04:23.982] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:04:24.360] [INFO] [NET] Bandwidth utilization: 36.6 Mbps
+[2024-10-15 14:04:26.226] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:04:27.941] [INFO] [CAM-BL-028] Recording status: ACTIVE
+[2024-10-15 14:04:29.462] [INFO] [CAM-BL-022] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:30.525] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:04:32.399] [WARN] [CAM-BL-036] Low light conditions detected
+[2024-10-15 14:04:33.697] [INFO] [STORAGE] Disk usage: 66.2% - Normal
+[2024-10-15 14:04:35.831] [INFO] [CAM-BL-025] Lens calibration: OK
+[2024-10-15 14:04:36.386] [INFO] [CAM-BL-045] Heartbeat received from 10.0.6.246 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:04:37.166] [INFO] [CAM-BL-037] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:39.709] [INFO] [CAM-BL-011] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:40.391] [ERROR] [CAM-BL-023] Frame sync lost - reconnecting
+[2024-10-15 14:04:42.254] [ERROR] [CAM-BL-010] Connection timeout from 10.0.1.97
+[2024-10-15 14:04:43.166] [INFO] [CAM-BL-036] Lens calibration: OK
+[2024-10-15 14:04:45.669] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:04:46.663] [INFO] [CAM-BL-048] PTZ command received - Pan: 166deg
+[2024-10-15 14:04:48.073] [INFO] [STORAGE] Disk usage: 79.2% - Normal
+[2024-10-15 14:04:49.390] [INFO] [CAM-BL-048] Video stream: H.264 @ 1080p
+[2024-10-15 14:04:50.511] [WARN] [CAM-BL-001] Frame drop detected - recovering
+[2024-10-15 14:04:52.744] [INFO] [CAM-BL-014] Motion detection: ACTIVE
+[2024-10-15 14:04:53.885] [INFO] [CAM-BL-042] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:55.333] [WARN] [CAM-BL-029] Frame drop detected - recovering
+[2024-10-15 14:04:56.147] [INFO] [CAM-BL-046] Frame buffer sync - 30fps stable
+[2024-10-15 14:04:58.624] [INFO] [STORAGE] Disk usage: 79.4% - Normal
+[2024-10-15 14:04:59.297] [INFO] [CAM-BL-039] Frame buffer sync - 30fps stable
+[2024-10-15 14:05:00.101] [INFO] [CAM-BL-006] PTZ command received - Pan: 198deg
+[2024-10-15 14:05:02.500] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:05:03.870] [INFO] [NET] Bandwidth utilization: 30.1 Mbps
+[2024-10-15 14:05:05.421] [INFO] [CAM-BL-021] Frame buffer sync - 30fps stable
+[2024-10-15 14:05:06.144] [INFO] [CAM-BL-029] Frame buffer sync - 30fps stable
+[2024-10-15 14:05:08.879] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:05:09.265] [ERROR] [CAM-BL-033] Connection timeout from 10.0.8.136
+[2024-10-15 14:05:11.607] [INFO] [CAM-BL-011] Lens calibration: OK
+[2024-10-15 14:05:12.831] [INFO] [CAM-BL-012] Video stream: H.264 @ 1080p
+[2024-10-15 14:05:13.664] [INFO] [CAM-BL-018] Recording status: ACTIVE
+[2024-10-15 14:05:15.316] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:05:16.348] [INFO] [CAM-BL-025] Infrared mode: AUTO
+[2024-10-15 14:05:18.162] [INFO] [CAM-BL-010] Video stream: H.264 @ 1080p
+[2024-10-15 14:05:19.709] [WARN] [CAM-BL-034] Frame drop detected - recovering
+[2024-10-15 14:05:21.310] [INFO] [CAM-BL-017] Frame buffer sync - 30fps stable
+[2024-10-15 14:05:22.648] [INFO] [CAM-BL-007] Connection established from 10.0.9.71 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:05:24.231] [INFO] [CAM-BL-033] Recording status: ACTIVE
+[2024-10-15 14:05:25.165] [INFO] [CAM-BL-009] Lens calibration: OK
+[2024-10-15 14:05:26.996] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:05:28.949] [INFO] [CAM-BL-022] Frame buffer sync - 30fps stable
+[2024-10-15 14:05:29.671] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:05:31.406] [INFO] [CAM-BL-001] Video stream: H.264 @ 1080p
+[2024-10-15 14:05:32.040] [INFO] [CAM-BL-039] Audio channel: MUTED
+[2024-10-15 14:05:34.850] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:05:35.135] [INFO] [NET] Bandwidth utilization: 42.3 Mbps
+[2024-10-15 14:05:36.914] [INFO] [STORAGE] Disk usage: 68.6% - Normal
+[2024-10-15 14:05:38.216] [INFO] [CAM-BL-041] Connection established from 10.0.3.53 (MAC: 00:16:3E:5A:2B:C9) - Routine sync
+[2024-10-15 14:05:39.814] [INFO] [STORAGE] Disk usage: 68.3% - Normal
+[2024-10-15 14:05:41.246] [INFO] [CAM-BL-003] Motion detection: ACTIVE
+[2024-10-15 14:05:42.130] [INFO] [CAM-BL-037] Audio channel: MUTED
+[2024-10-15 14:05:44.114] [INFO] [SYNC] NTP sync successful - drift: -38ms
+[2024-10-15 14:05:45.409] [INFO] [CAM-BL-018] Motion detection: ACTIVE
+[2024-10-15 14:05:47.059] [INFO] [CAM-BL-034] Lens calibration: OK
+[2024-10-15 14:05:48.768] [INFO] [NET] Bandwidth utilization: 31.0 Mbps
+[2024-10-15 14:05:49.380] [INFO] [CAM-BL-012] Lens calibration: OK
+[2024-10-15 14:05:51.645] [INFO] [CAM-BL-037] Video stream: H.264 @ 1080p
+[2024-10-15 14:05:52.669] [INFO] [CAM-BL-027] Connection established from 10.0.1.41 (MAC: 00:16:3E:5A:2B:CA) - Routine sync
+[2024-10-15 14:05:54.997] [INFO] [CAM-BL-013] Video stream: H.264 @ 1080p
+[2024-10-15 14:05:55.256] [INFO] [STORAGE] Disk usage: 64.9% - Normal
+[2024-10-15 14:05:57.219] [ERROR] [CAM-BL-002] Connection timeout from 10.0.9.170
+[2024-10-15 14:05:58.900] [ERROR] [CAM-BL-033] Connection timeout from 10.0.4.193
+[2024-10-15 14:06:00.045] [INFO] [CAM-BL-029] PTZ command received - Pan: 126deg
+[2024-10-15 14:06:01.966] [INFO] [CAM-BL-039] PTZ command received - Pan: 308deg
+[2024-10-15 14:06:02.249] [INFO] [CAM-BL-020] Recording status: ACTIVE
+[2024-10-15 14:06:04.109] [INFO] [CAM-BL-038] Infrared mode: AUTO
+[2024-10-15 14:06:05.014] [INFO] [CAM-BL-032] Video stream: H.264 @ 1080p
+[2024-10-15 14:06:07.585] [INFO] [CAM-BL-026] Lens calibration: OK
+[2024-10-15 14:06:08.307] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:06:10.322] [INFO] [CAM-BL-002] Motion detection: ACTIVE
+[2024-10-15 14:06:11.332] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:06:12.666] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:06:14.633] [INFO] [CAM-BL-003] Motion detection: ACTIVE
+[2024-10-15 14:06:15.053] [ERROR] [CAM-BL-032] Connection timeout from 10.0.6.100
+[2024-10-15 14:06:17.329] [INFO] [SYNC] NTP sync successful - drift: -41ms
+[2024-10-15 14:06:18.037] [INFO] [CAM-BL-029] Infrared mode: AUTO
+[2024-10-15 14:06:20.342] [INFO] [CAM-BL-010] Heartbeat received from 10.0.1.40 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:06:21.524] [INFO] [CAM-BL-047] Motion detection: ACTIVE
+[2024-10-15 14:06:23.894] [INFO] [CAM-BL-004] Video stream: H.264 @ 1080p
+[2024-10-15 14:06:24.177] [INFO] [NET] Bandwidth utilization: 33.7 Mbps
+[2024-10-15 14:06:25.696] [INFO] [CAM-BL-028] Audio channel: MUTED
+[2024-10-15 14:06:27.583] [INFO] [CAM-BL-028] Motion detection: ACTIVE
+[2024-10-15 14:06:28.064] [INFO] [CAM-BL-010] PTZ command received - Pan: 135deg
+[2024-10-15 14:06:30.142] [INFO] [CAM-BL-040] Audio channel: MUTED
+[2024-10-15 14:06:31.605] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:06:33.861] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:06:34.496] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:06:36.298] [ERROR] [CAM-BL-020] Frame sync lost - reconnecting
+[2024-10-15 14:06:37.174] [INFO] [CAM-BL-023] Recording status: ACTIVE
+[2024-10-15 14:06:38.056] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:06:40.142] [INFO] [CAM-BL-013] PTZ command received - Pan: 155deg
+[2024-10-15 14:06:41.768] [INFO] [SYNC] NTP sync successful - drift: -16ms
+[2024-10-15 14:06:43.327] [INFO] [CAM-BL-010] Lens calibration: OK
+[2024-10-15 14:06:44.884] [INFO] [CAM-BL-046] Infrared mode: AUTO
+[2024-10-15 14:06:46.757] [INFO] [SYNC] NTP sync successful - drift: -33ms
+[2024-10-15 14:06:47.318] [INFO] [CAM-BL-014] Frame buffer sync - 30fps stable
+[2024-10-15 14:06:48.783] [WARN] [NET] Latency spike: 500ms
+[2024-10-15 14:06:50.451] [INFO] [CAM-BL-006] Video stream: H.264 @ 1080p
+[2024-10-15 14:06:51.933] [INFO] [CAM-BL-046] Infrared mode: AUTO
+[2024-10-15 14:06:53.451] [INFO] [CAM-BL-036] PTZ command received - Pan: 212deg
+[2024-10-15 14:06:54.743] [INFO] [CAM-BL-021] Video stream: H.264 @ 1080p
+[2024-10-15 14:06:56.145] [INFO] [STORAGE] Disk usage: 79.7% - Normal
+[2024-10-15 14:06:57.948] [INFO] [CAM-BL-041] PTZ command received - Pan: 188deg
+[2024-10-15 14:06:59.561] [INFO] [NET] Bandwidth utilization: 30.7 Mbps
+[2024-10-15 14:07:00.650] [INFO] [STORAGE] Disk usage: 69.4% - Normal
+[2024-10-15 14:07:01.761] [INFO] [CAM-BL-045] Video stream: H.264 @ 1080p
+[2024-10-15 14:07:03.208] [WARN] [CAM-BL-008] High CPU usage detected: 71%
+[2024-10-15 14:07:04.836] [INFO] [CAM-BL-009] PTZ command received - Pan: 190deg
+[2024-10-15 14:07:06.651] [ERROR] [CAM-BL-016] Connection timeout from 10.0.10.28
+[2024-10-15 14:07:07.441] [INFO] [CAM-BL-001] PTZ command received - Pan: 193deg
+[2024-10-15 14:07:09.834] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:07:10.423] [INFO] [CAM-BL-045] PTZ command received - Pan: 94deg
+[2024-10-15 14:07:12.907] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:07:13.066] [INFO] [CAM-BL-003] Frame buffer sync - 30fps stable
+[2024-10-15 14:07:14.003] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:16.814] [INFO] [CAM-BL-020] Motion detection: ACTIVE
+[2024-10-15 14:07:17.145] [ERROR] [CAM-BL-010] Frame sync lost - reconnecting
+[2024-10-15 14:07:19.308] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:07:20.024] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:22.105] [INFO] [CAM-BL-020] Infrared mode: AUTO
+[2024-10-15 14:07:23.994] [INFO] [CAM-BL-019] Connection established from 10.0.7.31 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:07:24.189] [ERROR] [NET] Packet loss detected: 1.5%
+[2024-10-15 14:07:26.762] [INFO] [CAM-BL-032] Frame buffer sync - 30fps stable
+[2024-10-15 14:07:27.690] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:07:29.442] [INFO] [NET] Bandwidth utilization: 54.4 Mbps
+[2024-10-15 14:07:30.795] [INFO] [CAM-BL-020] Heartbeat received from 10.0.7.68 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:07:32.082] [INFO] [CAM-BL-037] Lens calibration: OK
+[2024-10-15 14:07:33.847] [INFO] [CAM-BL-006] Lens calibration: OK
+[2024-10-15 14:07:35.555] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:36.962] [INFO] [STORAGE] Disk usage: 63.5% - Normal
+[2024-10-15 14:07:37.762] [WARN] [CAM-BL-016] High CPU usage detected: 89%
+[2024-10-15 14:07:39.931] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:40.844] [INFO] [CAM-BL-021] Heartbeat received from 10.0.8.35 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:07:42.955] [INFO] [NET] Bandwidth utilization: 49.2 Mbps
+[2024-10-15 14:07:43.723] [INFO] [CAM-BL-009] Connection established from 10.0.6.215 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:07:45.271] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:46.596] [INFO] [CAM-BL-007] Infrared mode: AUTO
+[2024-10-15 14:07:48.917] [ERROR] [CAM-BL-019] Frame sync lost - reconnecting
+[2024-10-15 14:07:49.089] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:07:50.551] [INFO] [STORAGE] Disk usage: 78.9% - Normal
+[2024-10-15 14:07:52.353] [INFO] [CAM-BL-028] Connection established from 10.0.4.28 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:07:53.346] [INFO] [CAM-BL-029] Motion detection: ACTIVE
+[2024-10-15 14:07:55.127] [INFO] [CAM-BL-009] Infrared mode: AUTO
+[2024-10-15 14:07:56.452] [INFO] [SYNC] NTP sync successful - drift: -29ms
+[2024-10-15 14:07:58.038] [INFO] [CAM-BL-023] Frame buffer sync - 30fps stable
+[2024-10-15 14:07:59.906] [INFO] [CAM-BL-027] Audio channel: MUTED
+[2024-10-15 14:08:00.645] [INFO] [CAM-BL-014] Infrared mode: AUTO
+[2024-10-15 14:08:02.991] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:08:03.027] [WARN] [NET] Latency spike: 315ms
+[2024-10-15 14:08:05.076] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:08:06.942] [INFO] [CAM-BL-012] Heartbeat received from 10.0.9.151 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:08:08.609] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:08:09.823] [INFO] [NET] Bandwidth utilization: 58.7 Mbps
+[2024-10-15 14:08:11.808] [INFO] [CAM-BL-045] Heartbeat received from 10.0.4.144 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:08:12.452] [INFO] [CAM-BL-018] Lens calibration: OK
+[2024-10-15 14:08:13.525] [INFO] [CAM-BL-046] Infrared mode: AUTO
+[2024-10-15 14:08:15.487] [INFO] [STORAGE] Disk usage: 60.3% - Normal
+[2024-10-15 14:08:16.858] [INFO] [CAM-BL-047] PTZ command received - Pan: 201deg
+[2024-10-15 14:08:18.368] [INFO] [NET] Bandwidth utilization: 43.0 Mbps
+[2024-10-15 14:08:19.305] [WARN] [CAM-BL-021] Low light conditions detected
+[2024-10-15 14:08:21.764] [WARN] [CAM-BL-021] Frame drop detected - recovering
+[2024-10-15 14:08:22.404] [INFO] [STORAGE] Disk usage: 79.4% - Normal
+[2024-10-15 14:08:24.215] [WARN] [CAM-BL-004] Low light conditions detected
+[2024-10-15 14:08:25.254] [INFO] [STORAGE] Disk usage: 61.7% - Normal
+[2024-10-15 14:08:26.891] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:08:28.605] [INFO] [CAM-BL-012] Connection established from 10.0.3.195 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:08:29.403] [INFO] [NET] Bandwidth utilization: 32.5 Mbps
+[2024-10-15 14:08:31.752] [INFO] [CAM-BL-001] PTZ command received - Pan: 86deg
+[2024-10-15 14:08:32.494] [INFO] [CAM-BL-025] Infrared mode: AUTO
+[2024-10-15 14:08:34.717] [INFO] [CAM-BL-004] PTZ command received - Pan: 167deg
+[2024-10-15 14:08:35.362] [INFO] [CAM-BL-049] Heartbeat received from 10.0.2.12 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:08:36.317] [INFO] [STORAGE] Disk usage: 61.6% - Normal
+[2024-10-15 14:08:38.343] [INFO] [CAM-BL-014] Video stream: H.264 @ 1080p
+[2024-10-15 14:08:39.336] [INFO] [CAM-BL-027] Audio channel: MUTED
+[2024-10-15 14:08:41.698] [INFO] [STORAGE] Disk usage: 78.3% - Normal
+[2024-10-15 14:08:42.390] [WARN] [CAM-BL-007] Low light conditions detected
+[2024-10-15 14:08:44.186] [ERROR] [CAM-BL-028] Frame sync lost - reconnecting
+[2024-10-15 14:08:45.972] [WARN] [CAM-BL-032] Low light conditions detected
+[2024-10-15 14:08:47.253] [INFO] [CAM-BL-030] Video stream: H.264 @ 1080p
+[2024-10-15 14:08:48.778] [INFO] [SYNC] NTP sync successful - drift: 15ms
+[2024-10-15 14:08:49.758] [INFO] [CAM-BL-012] Connection established from 10.0.3.113 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:08:51.431] [INFO] [NET] Bandwidth utilization: 55.0 Mbps
+[2024-10-15 14:08:52.643] [INFO] [CAM-BL-044] Audio channel: MUTED
+[2024-10-15 14:08:54.985] [INFO] [CAM-BL-032] Infrared mode: AUTO
+[2024-10-15 14:08:55.822] [INFO] [CAM-BL-022] Infrared mode: AUTO
+[2024-10-15 14:08:57.542] [INFO] [CAM-BL-045] PTZ command received - Pan: 150deg
+[2024-10-15 14:08:58.705] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:09:00.580] [WARN] [CAM-BL-045] High CPU usage detected: 80%
+[2024-10-15 14:09:01.860] [INFO] [CAM-BL-001] Frame buffer sync - 30fps stable
+[2024-10-15 14:09:02.517] [INFO] [CAM-BL-002] Audio channel: MUTED
+[2024-10-15 14:09:04.975] [INFO] [CAM-BL-005] Video stream: H.264 @ 1080p
+[2024-10-15 14:09:05.225] [INFO] [CAM-BL-035] Infrared mode: AUTO
+[2024-10-15 14:09:07.685] [INFO] [CAM-BL-011] Infrared mode: AUTO
+[2024-10-15 14:09:08.425] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:09:10.945] [INFO] [CAM-BL-013] Lens calibration: OK
+[2024-10-15 14:09:11.172] [INFO] [CAM-BL-047] Video stream: H.264 @ 1080p
+[2024-10-15 14:09:12.079] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:09:14.608] [INFO] [CAM-BL-007] Heartbeat received from 10.0.8.200 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:09:15.460] [INFO] [CAM-BL-017] Lens calibration: OK
+[2024-10-15 14:09:17.831] [WARN] [CAM-BL-013] Low light conditions detected
+[2024-10-15 14:09:18.582] [INFO] [CAM-BL-010] Infrared mode: AUTO
+[2024-10-15 14:09:20.627] [INFO] [SYNC] NTP sync successful - drift: -48ms
+[2024-10-15 14:09:21.452] [INFO] [CAM-BL-036] PTZ command received - Pan: 153deg
+[2024-10-15 14:09:23.550] [INFO] [STORAGE] Disk usage: 62.0% - Normal
+[2024-10-15 14:09:24.931] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:09:25.206] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:09:27.742] [INFO] [CAM-BL-048] Heartbeat received from 10.0.10.96 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:09:28.327] [INFO] [CAM-BL-007] PTZ command received - Pan: 311deg
+[2024-10-15 14:09:30.548] [INFO] [CAM-BL-029] Connection established from 10.0.7.216 (MAC: 00:16:3E:5A:2B:C2) - Routine sync
+[2024-10-15 14:09:31.911] [INFO] [SYNC] NTP sync successful - drift: -5ms
+[2024-10-15 14:09:33.414] [INFO] [SYNC] NTP sync successful - drift: -31ms
+[2024-10-15 14:09:34.857] [ERROR] [CAM-BL-019] Frame sync lost - reconnecting
+[2024-10-15 14:09:36.517] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:09:37.998] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:09:38.521] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:09:40.985] [INFO] [CAM-BL-027] Lens calibration: OK
+[2024-10-15 14:09:41.082] [INFO] [CAM-BL-033] PTZ command received - Pan: 34deg
+[2024-10-15 14:09:43.814] [INFO] [CAM-BL-041] Heartbeat received from 10.0.9.223 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:09:44.225] [INFO] [CAM-BL-002] Frame buffer sync - 30fps stable
+[2024-10-15 14:09:46.306] [INFO] [CAM-BL-038] Infrared mode: AUTO
+[2024-10-15 14:09:47.252] [INFO] [CAM-BL-014] Lens calibration: OK
+[2024-10-15 14:09:48.760] [INFO] [STORAGE] Disk usage: 67.4% - Normal
+[2024-10-15 14:09:50.869] [INFO] [CAM-BL-015] Motion detection: ACTIVE
+[2024-10-15 14:09:51.671] [INFO] [CAM-BL-016] Audio channel: MUTED
+[2024-10-15 14:09:53.695] [WARN] [CAM-BL-006] High CPU usage detected: 80%
+[2024-10-15 14:09:54.174] [INFO] [CAM-BL-039] Frame buffer sync - 30fps stable
+[2024-10-15 14:09:56.094] [WARN] [CAM-BL-018] Frame drop detected - recovering
+[2024-10-15 14:09:57.792] [INFO] [STORAGE] Disk usage: 70.3% - Normal
+[2024-10-15 14:09:59.057] [ERROR] [CAM-BL-044] Frame sync lost - reconnecting
+[2024-10-15 14:10:00.372] [INFO] [CAM-BL-014] Connection established from 10.0.2.32 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:10:01.351] [INFO] [CAM-BL-006] Frame buffer sync - 30fps stable
+[2024-10-15 14:10:03.383] [ERROR] [CAM-BL-043] Connection timeout from 10.0.4.83
+[2024-10-15 14:10:04.192] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:10:06.081] [INFO] [CAM-BL-009] Video stream: H.264 @ 1080p
+[2024-10-15 14:10:07.692] [INFO] [NET] Bandwidth utilization: 54.1 Mbps
+[2024-10-15 14:10:09.115] [INFO] [CAM-BL-045] Connection established from 10.0.1.74 (MAC: 00:1C:42:AA:BB:01) - Routine sync
+[2024-10-15 14:10:10.665] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:10:12.971] [INFO] [NET] Bandwidth utilization: 32.3 Mbps
+[2024-10-15 14:10:13.286] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:10:14.119] [INFO] [SYNC] NTP sync successful - drift: -2ms
+[2024-10-15 14:10:16.944] [INFO] [CAM-BL-003] Connection established from 10.0.7.150 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:10:17.798] [INFO] [NET] Bandwidth utilization: 32.1 Mbps
+[2024-10-15 14:10:19.570] [INFO] [SYNC] NTP sync successful - drift: -10ms
+[2024-10-15 14:10:20.050] [INFO] [CAM-BL-004] Lens calibration: OK
+[2024-10-15 14:10:22.786] [INFO] [CAM-BL-050] Heartbeat received from 10.0.8.154 (MAC: 00:16:3E:5A:2B:C1)
+[2024-10-15 14:10:23.601] [INFO] [CAM-BL-005] Motion detection: ACTIVE
+[2024-10-15 14:10:24.601] [INFO] [CAM-BL-022] Infrared mode: AUTO
+[2024-10-15 14:10:26.592] [INFO] [STORAGE] Disk usage: 68.9% - Normal
+[2024-10-15 14:10:27.014] [INFO] [CAM-BL-043] Video stream: H.264 @ 1080p
+[2024-10-15 14:10:29.238] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:10:30.179] [INFO] [CAM-BL-019] Motion detection: ACTIVE
+[2024-10-15 14:10:32.402] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:10:33.697] [WARN] [NET] Latency spike: 421ms
+[2024-10-15 14:10:35.703] [INFO] [CAM-BL-001] PTZ command received - Pan: 120deg
+[2024-10-15 14:10:36.914] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:10:37.759] [INFO] [CAM-BL-041] Audio channel: MUTED
+[2024-10-15 14:10:39.318] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:10:40.503] [INFO] [CAM-BL-026] Video stream: H.264 @ 1080p
+[2024-10-15 14:10:42.181] [INFO] [CAM-BL-010] PTZ command received - Pan: 119deg
+[2024-10-15 14:10:43.247] [INFO] [CAM-BL-014] Lens calibration: OK
+[2024-10-15 14:10:45.998] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:10:46.303] [INFO] [CAM-BL-023] Lens calibration: OK
+[2024-10-15 14:10:48.360] [WARN] [CAM-BL-010] Low light conditions detected
+[2024-10-15 14:10:49.531] [ERROR] [CAM-BL-007] Frame sync lost - reconnecting
+[2024-10-15 14:10:50.050] [INFO] [CAM-BL-030] Frame buffer sync - 30fps stable
+[2024-10-15 14:10:52.800] [INFO] [CAM-BL-013] Lens calibration: OK
+[2024-10-15 14:10:53.931] [WARN] [NET] Latency spike: 379ms
+[2024-10-15 14:10:55.162] [INFO] [CAM-BL-017] Recording status: ACTIVE
+[2024-10-15 14:10:56.947] [ERROR] [CAM-BL-042] Connection timeout from 10.0.5.146
+[2024-10-15 14:10:58.993] [INFO] [CAM-BL-017] Recording status: ACTIVE
+[2024-10-15 14:10:59.708] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:11:00.208] [INFO] [CAM-BL-008] Heartbeat received from 10.0.2.135 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:11:02.703] [INFO] [CAM-BL-015] Lens calibration: OK
+[2024-10-15 14:11:03.233] [INFO] [CAM-BL-021] Video stream: H.264 @ 1080p
+[2024-10-15 14:11:05.524] [INFO] [CAM-BL-001] Audio channel: MUTED
+[2024-10-15 14:11:06.123] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:11:08.921] [INFO] [CAM-BL-010] Audio channel: MUTED
+[2024-10-15 14:11:09.514] [INFO] [CAM-BL-032] Audio channel: MUTED
+[2024-10-15 14:11:11.775] [INFO] [CAM-BL-049] Audio channel: MUTED
+[2024-10-15 14:11:12.547] [INFO] [CAM-BL-036] Motion detection: ACTIVE
+[2024-10-15 14:11:13.994] [INFO] [NET] Bandwidth utilization: 51.5 Mbps
+[2024-10-15 14:11:15.283] [INFO] [STORAGE] Disk usage: 77.4% - Normal
+[2024-10-15 14:11:16.320] [WARN] [CAM-BL-025] Low light conditions detected
+[2024-10-15 14:11:18.029] [WARN] [CAM-BL-034] High CPU usage detected: 77%
+[2024-10-15 14:11:19.899] [INFO] [SYNC] NTP sync successful - drift: -43ms
+[2024-10-15 14:11:21.165] [INFO] [CAM-BL-037] Recording status: ACTIVE
+[2024-10-15 14:11:22.820] [INFO] [CAM-BL-029] Connection established from 10.0.5.161 (MAC: 00:16:3E:5A:2B:CA) - Routine sync
+[2024-10-15 14:11:24.683] [INFO] [CAM-BL-021] Lens calibration: OK
+[2024-10-15 14:11:25.892] [INFO] [CAM-BL-037] Video stream: H.264 @ 1080p
+[2024-10-15 14:11:26.196] [INFO] [CAM-BL-048] Lens calibration: OK
+[2024-10-15 14:11:28.123] [INFO] [CAM-BL-015] Frame buffer sync - 30fps stable
+[2024-10-15 14:11:29.678] [INFO] [CAM-BL-018] PTZ command received - Pan: 283deg
+[2024-10-15 14:11:31.294] [INFO] [CAM-BL-006] Audio channel: MUTED
+[2024-10-15 14:11:32.061] [INFO] [CAM-BL-026] Frame buffer sync - 30fps stable
+[2024-10-15 14:11:34.752] [WARN] [NET] Latency spike: 170ms
+[2024-10-15 14:11:35.206] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:11:36.477] [ERROR] [CAM-BL-050] Frame sync lost - reconnecting
+[2024-10-15 14:11:38.938] [INFO] [SYNC] NTP sync successful - drift: 19ms
+[2024-10-15 14:11:39.576] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:11:41.968] [INFO] [CAM-BL-048] Lens calibration: OK
+[2024-10-15 14:11:42.363] [INFO] [CAM-BL-026] Recording status: ACTIVE
+[2024-10-15 14:11:44.266] [ERROR] [CAM-BL-033] Connection timeout from 10.0.6.156
+[2024-10-15 14:11:45.275] [ERROR] [CAM-BL-039] Frame sync lost - reconnecting
+[2024-10-15 14:11:47.605] [WARN] [NET] Latency spike: 268ms
+[2024-10-15 14:11:48.191] [INFO] [CAM-BL-029] Recording status: ACTIVE
+[2024-10-15 14:11:49.195] [INFO] [CAM-BL-015] Audio channel: MUTED
+[2024-10-15 14:11:51.360] [INFO] [CAM-BL-033] Lens calibration: OK
+[2024-10-15 14:11:52.359] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:11:54.939] [INFO] [SYNC] NTP sync successful - drift: 23ms
+[2024-10-15 14:11:55.569] [INFO] [STORAGE] Disk usage: 74.7% - Normal
+[2024-10-15 14:11:57.067] [INFO] [CAM-BL-044] Infrared mode: AUTO
+[2024-10-15 14:11:58.477] [INFO] [CAM-BL-030] Lens calibration: OK
+[2024-10-15 14:12:00.423] [INFO] [SYNC] NTP sync successful - drift: -17ms
+[2024-10-15 14:12:01.043] [INFO] [SYNC] NTP sync successful - drift: 43ms
+[2024-10-15 14:12:02.667] [INFO] [STORAGE] Disk usage: 63.0% - Normal
+[2024-10-15 14:12:04.648] [INFO] [CAM-BL-017] Audio channel: MUTED
+[2024-10-15 14:12:05.720] [INFO] [CAM-BL-024] PTZ command received - Pan: 278deg
+[2024-10-15 14:12:07.439] [ERROR] [NET] Packet loss detected: 0.2%
+[2024-10-15 14:12:08.563] [INFO] [CAM-BL-027] Connection established from 10.0.5.191 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:12:10.626] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:12:11.579] [ERROR] [CAM-BL-036] Connection timeout from 10.0.9.192
+[2024-10-15 14:12:12.392] [INFO] [NET] Bandwidth utilization: 30.3 Mbps
+[2024-10-15 14:12:14.273] [INFO] [CAM-BL-047] Frame buffer sync - 30fps stable
+[2024-10-15 14:12:15.204] [INFO] [NET] Bandwidth utilization: 42.8 Mbps
+[2024-10-15 14:12:17.754] [INFO] [CAM-BL-015] Lens calibration: OK
+[2024-10-15 14:12:18.949] [ERROR] [CAM-BL-005] Connection timeout from 10.0.10.168
+[2024-10-15 14:12:20.224] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:12:21.386] [INFO] [CAM-BL-049] Infrared mode: AUTO
+[2024-10-15 14:12:23.859] [INFO] [CAM-BL-004] Connection established from 10.0.10.92 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:12:24.840] [INFO] [CAM-BL-026] Heartbeat received from 10.0.5.226 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:12:25.582] [WARN] [CAM-BL-036] Low light conditions detected
+[2024-10-15 14:12:27.565] [INFO] [NET] Bandwidth utilization: 39.9 Mbps
+[2024-10-15 14:12:28.905] [INFO] [CAM-BL-049] PTZ command received - Pan: 282deg
+[2024-10-15 14:12:30.179] [INFO] [CAM-BL-044] PTZ command received - Pan: 280deg
+[2024-10-15 14:12:31.717] [INFO] [CAM-BL-026] Recording status: ACTIVE
+[2024-10-15 14:12:33.229] [INFO] [CAM-BL-044] Lens calibration: OK
+[2024-10-15 14:12:34.425] [INFO] [CAM-BL-002] Video stream: H.264 @ 1080p
+[2024-10-15 14:12:36.750] [INFO] [CAM-BL-013] Heartbeat received from 10.0.1.55 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:12:37.307] [WARN] [CAM-BL-013] Frame drop detected - recovering
+[2024-10-15 14:12:38.868] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:12:40.849] [INFO] [CAM-BL-034] Heartbeat received from 10.0.3.230 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:12:41.737] [INFO] [STORAGE] Disk usage: 68.5% - Normal
+[2024-10-15 14:12:43.319] [INFO] [CAM-BL-011] Audio channel: MUTED
+[2024-10-15 14:12:44.545] [INFO] [CAM-BL-034] Audio channel: MUTED
+[2024-10-15 14:12:46.194] [INFO] [CAM-BL-016] PTZ command received - Pan: 100deg
+[2024-10-15 14:12:47.231] [WARN] [CAM-BL-002] Low light conditions detected
+[2024-10-15 14:12:48.197] [INFO] [CAM-BL-050] Infrared mode: AUTO
+[2024-10-15 14:12:50.544] [WARN] [CAM-BL-027] Low light conditions detected
+[2024-10-15 14:12:51.536] [WARN] [CAM-BL-001] High CPU usage detected: 90%
+[2024-10-15 14:12:53.810] [INFO] [CAM-BL-013] Video stream: H.264 @ 1080p
+[2024-10-15 14:12:54.656] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:12:56.733] [INFO] [CAM-BL-028] Lens calibration: OK
+[2024-10-15 14:12:57.926] [INFO] [CAM-BL-050] Infrared mode: AUTO
+[2024-10-15 14:12:59.110] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:13:00.956] [INFO] [NET] Bandwidth utilization: 44.4 Mbps
+[2024-10-15 14:13:01.966] [INFO] [CAM-BL-017] Lens calibration: OK
+[2024-10-15 14:13:03.294] [INFO] [STORAGE] Disk usage: 77.3% - Normal
+[2024-10-15 14:13:04.160] [INFO] [CAM-BL-047] Recording status: ACTIVE
+[2024-10-15 14:13:06.245] [ERROR] [CAM-BL-005] Frame sync lost - reconnecting
+[2024-10-15 14:13:07.390] [INFO] [CAM-BL-036] Connection established from 10.0.4.222 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:13:09.035] [INFO] [CAM-BL-011] Frame buffer sync - 30fps stable
+[2024-10-15 14:13:10.724] [INFO] [CAM-BL-020] Connection established from 10.0.4.52 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:13:12.458] [INFO] [CAM-BL-024] Video stream: H.264 @ 1080p
+[2024-10-15 14:13:13.997] [INFO] [CAM-BL-020] Audio channel: MUTED
+[2024-10-15 14:13:14.885] [INFO] [CAM-BL-018] Video stream: H.264 @ 1080p
+[2024-10-15 14:13:16.843] [INFO] [CAM-BL-049] Motion detection: ACTIVE
+[2024-10-15 14:13:17.396] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:13:19.855] [ERROR] [NET] Packet loss detected: 1.6%
+[2024-10-15 14:13:20.378] [INFO] [CAM-BL-041] Connection established from 10.0.2.106 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:13:22.187] [INFO] [CAM-BL-005] Recording status: ACTIVE
+[2024-10-15 14:13:23.803] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:13:24.929] [INFO] [CAM-BL-010] Audio channel: MUTED
+[2024-10-15 14:13:26.036] [INFO] [CAM-BL-020] Motion detection: ACTIVE
+[2024-10-15 14:13:27.346] [INFO] [NET] Bandwidth utilization: 55.4 Mbps
+[2024-10-15 14:13:29.811] [INFO] [SYNC] NTP sync successful - drift: 15ms
+[2024-10-15 14:13:30.137] [INFO] [CAM-BL-032] Video stream: H.264 @ 1080p
+[2024-10-15 14:13:32.971] [INFO] [CAM-BL-037] Heartbeat received from 10.0.5.154 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:13:33.117] [INFO] [STORAGE] Disk usage: 79.4% - Normal
+[2024-10-15 14:13:35.443] [INFO] [STORAGE] Disk usage: 69.7% - Normal
+[2024-10-15 14:13:36.352] [INFO] [CAM-BL-004] Lens calibration: OK
+[2024-10-15 14:13:37.693] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:13:39.599] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:13:40.479] [WARN] [NET] Latency spike: 253ms
+[2024-10-15 14:13:42.916] [INFO] [CAM-BL-001] Audio channel: MUTED
+[2024-10-15 14:13:43.329] [INFO] [CAM-BL-027] PTZ command received - Pan: 26deg
+[2024-10-15 14:13:45.435] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:13:46.529] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:13:48.504] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:13:49.256] [INFO] [STORAGE] Disk usage: 73.9% - Normal
+[2024-10-15 14:13:50.756] [INFO] [CAM-BL-001] Connection established from 10.0.6.120 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:13:52.427] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:13:53.787] [WARN] [CAM-BL-001] High CPU usage detected: 82%
+[2024-10-15 14:13:55.045] [INFO] [CAM-BL-042] Motion detection: ACTIVE
+[2024-10-15 14:13:56.507] [INFO] [CAM-BL-040] Recording status: ACTIVE
+[2024-10-15 14:13:58.878] [INFO] [SYNC] NTP sync successful - drift: 19ms
+[2024-10-15 14:13:59.857] [INFO] [NET] Bandwidth utilization: 57.2 Mbps
+[2024-10-15 14:14:00.479] [INFO] [NET] Bandwidth utilization: 55.7 Mbps
+[2024-10-15 14:14:02.242] [INFO] [SYNC] NTP sync successful - drift: 5ms
+[2024-10-15 14:14:03.541] [INFO] [CAM-BL-024] Recording status: ACTIVE
+[2024-10-15 14:14:05.169] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:14:06.630] [INFO] [NET] Bandwidth utilization: 37.3 Mbps
+[2024-10-15 14:14:08.714] [INFO] [CAM-BL-031] Heartbeat received from 10.0.5.243 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:14:09.564] [INFO] [CAM-BL-009] Lens calibration: OK
+[2024-10-15 14:14:11.273] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:14:12.074] [INFO] [CAM-BL-042] Video stream: H.264 @ 1080p
+[2024-10-15 14:14:13.194] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:14:15.465] [ERROR] [CAM-BL-036] Frame sync lost - reconnecting
+[2024-10-15 14:14:16.714] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:14:18.617] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:14:19.495] [ERROR] [NET] Packet loss detected: 1.6%
+[2024-10-15 14:14:21.500] [INFO] [CAM-BL-019] Frame buffer sync - 30fps stable
+[2024-10-15 14:14:22.403] [INFO] [NET] Bandwidth utilization: 43.7 Mbps
+[2024-10-15 14:14:24.654] [INFO] [SYNC] NTP sync successful - drift: -33ms
+[2024-10-15 14:14:25.367] [INFO] [CAM-BL-048] PTZ command received - Pan: 210deg
+[2024-10-15 14:14:26.440] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:14:28.670] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:14:29.047] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:14:31.107] [WARN] [CAM-BL-012] Frame drop detected - recovering
+[2024-10-15 14:14:32.763] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:14:34.541] [INFO] [SYNC] NTP sync successful - drift: -40ms
+[2024-10-15 14:14:35.954] [ERROR] [NET] Packet loss detected: 0.2%
+[2024-10-15 14:14:36.873] [INFO] [CAM-BL-048] Video stream: H.264 @ 1080p
+[2024-10-15 14:14:38.852] [INFO] [CAM-BL-040] PTZ command received - Pan: 227deg
+[2024-10-15 14:14:39.316] [INFO] [CAM-BL-041] Motion detection: ACTIVE
+[2024-10-15 14:14:41.913] [WARN] [CAM-BL-003] Frame drop detected - recovering
+[2024-10-15 14:14:42.290] [INFO] [NET] Bandwidth utilization: 54.1 Mbps
+[2024-10-15 14:14:44.183] [INFO] [CAM-BL-015] Heartbeat received from 10.0.6.216 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:14:45.654] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:14:47.664] [INFO] [CAM-BL-041] Audio channel: MUTED
+[2024-10-15 14:14:48.160] [INFO] [CAM-BL-022] Infrared mode: AUTO
+[2024-10-15 14:14:49.132] [WARN] [CAM-BL-003] Frame drop detected - recovering
+[2024-10-15 14:14:51.006] [INFO] [CAM-BL-008] Connection established from 10.0.8.223 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:14:52.506] [INFO] [STORAGE] Disk usage: 65.1% - Normal
+[2024-10-15 14:14:54.783] [INFO] [CAM-BL-038] Heartbeat received from 10.0.9.183 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:14:55.230] [INFO] [CAM-BL-037] Heartbeat received from 10.0.2.171 (MAC: DE:AD:BE:EF:00:01)
+[2024-10-15 14:14:57.597] [WARN] [CAM-BL-042] Low light conditions detected
+[2024-10-15 14:14:58.651] [INFO] [CAM-BL-041] Audio channel: MUTED
+[2024-10-15 14:15:00.990] [INFO] [CAM-BL-031] Video stream: H.264 @ 1080p
+[2024-10-15 14:15:01.244] [INFO] [STORAGE] Disk usage: 77.5% - Normal
+[2024-10-15 14:15:02.944] [WARN] [CAM-BL-023] High CPU usage detected: 86%
+[2024-10-15 14:15:04.293] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:15:05.326] [INFO] [CAM-BL-031] Lens calibration: OK
+[2024-10-15 14:15:07.005] [INFO] [STORAGE] Disk usage: 70.5% - Normal
+[2024-10-15 14:15:08.695] [INFO] [CAM-BL-037] Motion detection: ACTIVE
+[2024-10-15 14:15:10.957] [INFO] [CAM-BL-041] Audio channel: MUTED
+[2024-10-15 14:15:11.294] [WARN] [NET] Latency spike: 290ms
+[2024-10-15 14:15:12.891] [INFO] [CAM-BL-029] Motion detection: ACTIVE
+[2024-10-15 14:15:14.728] [INFO] [STORAGE] Disk usage: 79.8% - Normal
+[2024-10-15 14:15:15.204] [INFO] [NET] Bandwidth utilization: 36.9 Mbps
+[2024-10-15 14:15:17.253] [INFO] [NET] Bandwidth utilization: 44.1 Mbps
+[2024-10-15 14:15:18.904] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:15:20.694] [INFO] [SYNC] NTP sync successful - drift: 5ms
+[2024-10-15 14:15:21.239] [INFO] [CAM-BL-040] Motion detection: ACTIVE
+[2024-10-15 14:15:23.548] [INFO] [CAM-BL-031] Connection established from 10.0.5.39 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:15:24.983] [INFO] [CAM-BL-049] Lens calibration: OK
+[2024-10-15 14:15:25.080] [INFO] [CAM-BL-012] Video stream: H.264 @ 1080p
+[2024-10-15 14:15:27.968] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:15:28.726] [INFO] [CAM-BL-027] Frame buffer sync - 30fps stable
+[2024-10-15 14:15:30.508] [INFO] [CAM-BL-044] Heartbeat received from 10.0.5.37 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:15:31.115] [WARN] [CAM-BL-040] Low light conditions detected
+[2024-10-15 14:15:33.856] [INFO] [CAM-BL-046] Connection established from 10.0.3.108 (MAC: 00:16:3E:5A:2B:CA) - Routine sync
+[2024-10-15 14:15:34.283] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:15:36.430] [ERROR] [CAM-BL-031] Connection timeout from 10.0.5.214
+[2024-10-15 14:15:37.264] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:15:38.201] [INFO] [CAM-BL-003] Heartbeat received from 10.0.10.222 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:15:40.376] [INFO] [CAM-BL-023] PTZ command received - Pan: 252deg
+[2024-10-15 14:15:41.449] [INFO] [CAM-BL-031] Connection established from 10.0.1.102 (MAC: 08:00:27:12:34:58) - Routine sync
+[2024-10-15 14:15:43.165] [INFO] [STORAGE] Disk usage: 61.3% - Normal
+[2024-10-15 14:15:44.826] [INFO] [STORAGE] Disk usage: 68.8% - Normal
+[2024-10-15 14:15:46.660] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:15:47.038] [INFO] [STORAGE] Disk usage: 77.6% - Normal
+[2024-10-15 14:15:48.009] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:15:50.213] [INFO] [STORAGE] Disk usage: 69.6% - Normal
+[2024-10-15 14:15:51.490] [WARN] [CAM-BL-027] Low light conditions detected
+[2024-10-15 14:15:53.083] [INFO] [CAM-BL-045] Frame buffer sync - 30fps stable
+[2024-10-15 14:15:54.559] [INFO] [CAM-BL-023] Motion detection: ACTIVE
+[2024-10-15 14:15:56.922] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:15:57.532] [INFO] [CAM-BL-023] Infrared mode: AUTO
+[2024-10-15 14:15:59.227] [INFO] [CAM-BL-042] Video stream: H.264 @ 1080p
+[2024-10-15 14:16:00.102] [INFO] [CAM-BL-004] Lens calibration: OK
+[2024-10-15 14:16:01.639] [INFO] [CAM-BL-010] Infrared mode: AUTO
+[2024-10-15 14:16:03.338] [INFO] [SYNC] NTP sync successful - drift: -7ms
+[2024-10-15 14:16:04.719] [WARN] [CAM-BL-038] High CPU usage detected: 78%
+[2024-10-15 14:16:06.362] [INFO] [CAM-BL-047] Frame buffer sync - 30fps stable
+[2024-10-15 14:16:07.322] [INFO] [CAM-BL-018] Heartbeat received from 10.0.4.140 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:16:09.000] [INFO] [CAM-BL-013] Heartbeat received from 10.0.6.42 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:16:10.069] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:16:12.509] [INFO] [CAM-BL-002] Infrared mode: AUTO
+[2024-10-15 14:16:13.997] [INFO] [CAM-BL-043] Connection established from 10.0.5.49 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:16:14.744] [INFO] [STORAGE] Disk usage: 64.6% - Normal
+[2024-10-15 14:16:16.741] [INFO] [CAM-BL-014] PTZ command received - Pan: 17deg
+[2024-10-15 14:16:17.343] [WARN] [CAM-BL-036] Frame drop detected - recovering
+[2024-10-15 14:16:19.545] [INFO] [CAM-BL-027] Connection established from 10.0.4.115 (MAC: 00:16:3E:5A:2B:C9) - Routine sync
+[2024-10-15 14:16:20.263] [INFO] [CAM-BL-012] Heartbeat received from 10.0.4.200 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:16:22.361] [WARN] [CAM-BL-017] Frame drop detected - recovering
+[2024-10-15 14:16:23.021] [INFO] [CAM-BL-017] PTZ command received - Pan: 231deg
+[2024-10-15 14:16:24.762] [INFO] [SYNC] NTP sync successful - drift: 7ms
+[2024-10-15 14:16:26.881] [WARN] [NET] Latency spike: 135ms
+[2024-10-15 14:16:27.161] [INFO] [CAM-BL-013] Connection established from 10.0.7.229 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:16:29.190] [INFO] [CAM-BL-028] Audio channel: MUTED
+[2024-10-15 14:16:30.798] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:16:32.322] [INFO] [NET] Bandwidth utilization: 50.7 Mbps
+[2024-10-15 14:16:33.619] [WARN] [CAM-BL-045] High CPU usage detected: 82%
+[2024-10-15 14:16:35.799] [INFO] [STORAGE] Disk usage: 70.1% - Normal
+[2024-10-15 14:16:36.213] [INFO] [CAM-BL-013] Motion detection: ACTIVE
+[2024-10-15 14:16:37.257] [INFO] [SYNC] NTP sync successful - drift: -31ms
+[2024-10-15 14:16:39.040] [INFO] [CAM-BL-025] Audio channel: MUTED
+[2024-10-15 14:16:40.155] [INFO] [SYNC] NTP sync successful - drift: -5ms
+[2024-10-15 14:16:42.360] [INFO] [SYNC] NTP sync successful - drift: 11ms
+[2024-10-15 14:16:43.568] [INFO] [CAM-BL-030] Video stream: H.264 @ 1080p
+[2024-10-15 14:16:45.274] [WARN] [CAM-BL-032] Frame drop detected - recovering
+[2024-10-15 14:16:46.858] [INFO] [CAM-BL-027] Connection established from 10.0.4.26 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:16:48.098] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:16:49.156] [INFO] [SYNC] NTP sync successful - drift: 42ms
+[2024-10-15 14:16:50.913] [INFO] [CAM-BL-039] Infrared mode: AUTO
+[2024-10-15 14:16:52.219] [INFO] [CAM-BL-007] Recording status: ACTIVE
+[2024-10-15 14:16:53.059] [INFO] [CAM-BL-023] Recording status: ACTIVE
+[2024-10-15 14:16:55.165] [INFO] [CAM-BL-016] Lens calibration: OK
+[2024-10-15 14:16:56.148] [INFO] [CAM-BL-002] Infrared mode: AUTO
+[2024-10-15 14:16:58.673] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:16:59.105] [INFO] [CAM-BL-047] Heartbeat received from 10.0.4.83 (MAC: 00:16:3E:5A:2B:C2)
+[2024-10-15 14:17:00.098] [INFO] [CAM-BL-044] Heartbeat received from 10.0.6.249 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:17:02.973] [INFO] [CAM-BL-047] Heartbeat received from 10.0.8.228 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:17:03.665] [INFO] [CAM-BL-014] Recording status: ACTIVE
+[2024-10-15 14:17:05.222] [INFO] [STORAGE] Disk usage: 76.0% - Normal
+[2024-10-15 14:17:06.569] [INFO] [CAM-BL-048] Motion detection: ACTIVE
+[2024-10-15 14:17:08.137] [WARN] [CAM-BL-006] Frame drop detected - recovering
+[2024-10-15 14:17:09.265] [INFO] [CAM-BL-008] Motion detection: ACTIVE
+[2024-10-15 14:17:11.072] [WARN] [CAM-BL-016] High CPU usage detected: 82%
+[2024-10-15 14:17:12.770] [INFO] [CAM-BL-029] Recording status: ACTIVE
+[2024-10-15 14:17:13.437] [INFO] [CAM-BL-035] PTZ command received - Pan: 239deg
+[2024-10-15 14:17:15.744] [INFO] [CAM-BL-008] Audio channel: MUTED
+[2024-10-15 14:17:16.326] [INFO] [CAM-BL-022] Connection established from 10.0.1.96 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:17:18.990] [WARN] [CAM-BL-044] High CPU usage detected: 73%
+[2024-10-15 14:17:19.089] [INFO] [NET] Bandwidth utilization: 35.4 Mbps
+[2024-10-15 14:17:21.057] [INFO] [CAM-BL-027] Frame buffer sync - 30fps stable
+[2024-10-15 14:17:22.387] [INFO] [NET] Bandwidth utilization: 32.9 Mbps
+[2024-10-15 14:17:24.537] [INFO] [NET] Bandwidth utilization: 55.4 Mbps
+[2024-10-15 14:17:25.282] [INFO] [NET] Bandwidth utilization: 54.2 Mbps
+[2024-10-15 14:17:26.043] [ERROR] [CAM-BL-028] Frame sync lost - reconnecting
+[2024-10-15 14:17:28.012] [INFO] [CAM-BL-028] Recording status: ACTIVE
+[2024-10-15 14:17:29.189] [INFO] [CAM-BL-035] Video stream: H.264 @ 1080p
+[2024-10-15 14:17:31.536] [INFO] [STORAGE] Disk usage: 62.7% - Normal
+[2024-10-15 14:17:32.885] [INFO] [STORAGE] Disk usage: 69.9% - Normal
+[2024-10-15 14:17:34.428] [INFO] [CAM-BL-039] PTZ command received - Pan: 117deg
+[2024-10-15 14:17:35.201] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:17:36.344] [INFO] [CAM-BL-034] Video stream: H.264 @ 1080p
+[2024-10-15 14:17:38.661] [INFO] [CAM-BL-009] Frame buffer sync - 30fps stable
+[2024-10-15 14:17:39.011] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:17:41.874] [ERROR] [CAM-BL-026] Connection timeout from 10.0.10.199
+[2024-10-15 14:17:42.340] [INFO] [NET] Bandwidth utilization: 45.5 Mbps
+[2024-10-15 14:17:44.822] [INFO] [CAM-BL-007] Frame buffer sync - 30fps stable
+[2024-10-15 14:17:45.266] [INFO] [SYNC] NTP sync successful - drift: -49ms
+[2024-10-15 14:17:47.317] [INFO] [CAM-BL-046] Heartbeat received from 10.0.8.183 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:17:48.554] [INFO] [CAM-BL-038] Connection established from 10.0.1.52 (MAC: 00:16:3E:5A:2B:C5) - Routine sync
+[2024-10-15 14:17:49.818] [INFO] [STORAGE] Disk usage: 75.4% - Normal
+[2024-10-15 14:17:51.242] [INFO] [CAM-BL-018] Audio channel: MUTED
+[2024-10-15 14:17:52.978] [INFO] [CAM-BL-040] Connection established from 10.0.10.145 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:17:54.373] [INFO] [CAM-BL-038] PTZ command received - Pan: 162deg
+[2024-10-15 14:17:55.012] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:17:57.556] [INFO] [CAM-BL-014] Video stream: H.264 @ 1080p
+[2024-10-15 14:17:58.368] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:18:00.818] [INFO] [SYNC] NTP sync successful - drift: 49ms
+[2024-10-15 14:18:01.319] [INFO] [CAM-BL-009] Lens calibration: OK
+[2024-10-15 14:18:02.597] [INFO] [STORAGE] Disk usage: 78.4% - Normal
+[2024-10-15 14:18:04.326] [INFO] [SYNC] NTP sync successful - drift: -38ms
+[2024-10-15 14:18:05.537] [INFO] [CAM-BL-008] Connection established from 10.0.7.217 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:18:07.412] [INFO] [STORAGE] Disk usage: 61.6% - Normal
+[2024-10-15 14:18:08.969] [INFO] [STORAGE] Disk usage: 69.3% - Normal
+[2024-10-15 14:18:10.810] [INFO] [STORAGE] Disk usage: 69.4% - Normal
+[2024-10-15 14:18:11.783] [INFO] [CAM-BL-032] Connection established from 10.0.10.31 (MAC: 00:16:3E:5A:2B:CB) - Routine sync
+[2024-10-15 14:18:12.634] [INFO] [CAM-BL-023] Video stream: H.264 @ 1080p
+[2024-10-15 14:18:14.491] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:18:15.731] [INFO] [CAM-BL-037] Infrared mode: AUTO
+[2024-10-15 14:18:17.724] [INFO] [CAM-BL-016] Motion detection: ACTIVE
+[2024-10-15 14:18:18.729] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:18:20.417] [INFO] [CAM-BL-024] Lens calibration: OK
+[2024-10-15 14:18:21.748] [ERROR] [NET] Packet loss detected: 1.2%
+[2024-10-15 14:18:23.054] [INFO] [CAM-BL-013] Video stream: H.264 @ 1080p
+[2024-10-15 14:18:24.810] [INFO] [NET] Bandwidth utilization: 55.2 Mbps
+[2024-10-15 14:18:25.055] [INFO] [CAM-BL-049] Connection established from 10.0.7.105 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:18:27.733] [WARN] [CAM-BL-036] Frame drop detected - recovering
+[2024-10-15 14:18:28.434] [INFO] [STORAGE] Disk usage: 71.9% - Normal
+[2024-10-15 14:18:30.335] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:18:31.965] [INFO] [CAM-BL-019] Audio channel: MUTED
+[2024-10-15 14:18:33.084] [WARN] [CAM-BL-012] Frame drop detected - recovering
+[2024-10-15 14:18:34.514] [INFO] [CAM-BL-047] Infrared mode: AUTO
+[2024-10-15 14:18:36.639] [INFO] [STORAGE] Disk usage: 77.5% - Normal
+[2024-10-15 14:18:37.142] [ERROR] [CAM-BL-045] Frame sync lost - reconnecting
+[2024-10-15 14:18:38.767] [INFO] [CAM-BL-049] Video stream: H.264 @ 1080p
+[2024-10-15 14:18:40.627] [INFO] [CAM-BL-018] Frame buffer sync - 30fps stable
+[2024-10-15 14:18:41.715] [INFO] [CAM-BL-016] Heartbeat received from 10.0.9.235 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:18:43.284] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:18:44.496] [INFO] [STORAGE] Disk usage: 76.5% - Normal
+[2024-10-15 14:18:46.201] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:18:47.054] [WARN] [CAM-BL-040] Low light conditions detected
+[2024-10-15 14:18:48.427] [INFO] [CAM-BL-014] Motion detection: ACTIVE
+[2024-10-15 14:18:50.413] [INFO] [CAM-BL-016] Heartbeat received from 10.0.6.225 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:18:51.972] [INFO] [CAM-BL-020] Heartbeat received from 10.0.10.194 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:18:53.616] [INFO] [STORAGE] Disk usage: 66.1% - Normal
+[2024-10-15 14:18:54.991] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:18:56.671] [INFO] [CAM-BL-024] Video stream: H.264 @ 1080p
+[2024-10-15 14:18:57.047] [INFO] [NET] Bandwidth utilization: 38.1 Mbps
+[2024-10-15 14:18:59.036] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:19:00.947] [INFO] [CAM-BL-022] Recording status: ACTIVE
+[2024-10-15 14:19:01.754] [INFO] [CAM-BL-009] Connection established from 10.0.8.193 (MAC: 08:00:27:12:34:58) - Routine sync
+[2024-10-15 14:19:03.021] [ERROR] [NET] Packet loss detected: 0.7%
+[2024-10-15 14:19:04.631] [INFO] [CAM-BL-005] Motion detection: ACTIVE
+[2024-10-15 14:19:06.701] [INFO] [CAM-BL-013] Video stream: H.264 @ 1080p
+[2024-10-15 14:19:07.448] [INFO] [CAM-BL-042] Lens calibration: OK
+[2024-10-15 14:19:09.015] [INFO] [CAM-BL-001] Audio channel: MUTED
+[2024-10-15 14:19:10.044] [INFO] [CAM-BL-031] Recording status: ACTIVE
+[2024-10-15 14:19:12.435] [INFO] [CAM-BL-025] Heartbeat received from 10.0.4.215 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:19:13.495] [INFO] [CAM-BL-042] Infrared mode: AUTO
+[2024-10-15 14:19:14.552] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:19:16.912] [WARN] [CAM-BL-030] High CPU usage detected: 91%
+[2024-10-15 14:19:17.014] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:19:19.948] [INFO] [CAM-BL-041] Recording status: ACTIVE
+[2024-10-15 14:19:20.749] [INFO] [CAM-BL-034] Recording status: ACTIVE
+[2024-10-15 14:19:22.270] [INFO] [CAM-BL-038] Video stream: H.264 @ 1080p
+[2024-10-15 14:19:23.367] [ERROR] [CAM-BL-038] Connection timeout from 10.0.4.25
+[2024-10-15 14:19:24.208] [INFO] [CAM-BL-043] Frame buffer sync - 30fps stable
+[2024-10-15 14:19:26.679] [INFO] [NET] Bandwidth utilization: 52.2 Mbps
+[2024-10-15 14:19:27.755] [INFO] [CAM-BL-039] Infrared mode: AUTO
+[2024-10-15 14:19:29.013] [INFO] [CAM-BL-031] Motion detection: ACTIVE
+[2024-10-15 14:19:30.266] [INFO] [CAM-BL-005] Lens calibration: OK
+[2024-10-15 14:19:32.384] [INFO] [CAM-BL-014] Infrared mode: AUTO
+[2024-10-15 14:19:33.444] [ERROR] [NET] Packet loss detected: 1.0%
+[2024-10-15 14:19:35.652] [INFO] [CAM-BL-034] Frame buffer sync - 30fps stable
+[2024-10-15 14:19:36.505] [WARN] [CAM-BL-002] Frame drop detected - recovering
+[2024-10-15 14:19:37.406] [INFO] [CAM-BL-016] Recording status: ACTIVE
+[2024-10-15 14:19:39.853] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:19:40.494] [INFO] [CAM-BL-050] PTZ command received - Pan: 12deg
+[2024-10-15 14:19:42.036] [INFO] [CAM-BL-030] Frame buffer sync - 30fps stable
+[2024-10-15 14:19:43.996] [INFO] [CAM-BL-041] Video stream: H.264 @ 1080p
+[2024-10-15 14:19:45.642] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:19:46.461] [INFO] [CAM-BL-009] Lens calibration: OK
+[2024-10-15 14:19:48.197] [WARN] [CAM-BL-029] Frame drop detected - recovering
+[2024-10-15 14:19:49.981] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:19:50.617] [INFO] [CAM-BL-015] Video stream: H.264 @ 1080p
+[2024-10-15 14:19:52.525] [INFO] [CAM-BL-049] Connection established from 10.0.9.11 (MAC: 00:16:3E:5A:2B:C1) - Routine sync
+[2024-10-15 14:19:53.932] [INFO] [CAM-BL-050] PTZ command received - Pan: 81deg
+[2024-10-15 14:19:55.904] [INFO] [STORAGE] Disk usage: 64.9% - Normal
+[2024-10-15 14:19:56.866] [INFO] [CAM-BL-023] Motion detection: ACTIVE
+[2024-10-15 14:19:58.217] [INFO] [CAM-BL-027] Heartbeat received from 10.0.3.57 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:19:59.042] [INFO] [CAM-BL-035] Frame buffer sync - 30fps stable
+[2024-10-15 14:20:00.552] [INFO] [STORAGE] Disk usage: 62.5% - Normal
+[2024-10-15 14:20:02.747] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:20:03.809] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:20:05.284] [INFO] [CAM-BL-023] Frame buffer sync - 30fps stable
+[2024-10-15 14:20:06.000] [INFO] [NET] Bandwidth utilization: 30.2 Mbps
+[2024-10-15 14:20:08.205] [INFO] [CAM-BL-001] Motion detection: ACTIVE
+[2024-10-15 14:20:09.376] [INFO] [CAM-BL-044] Connection established from 10.0.8.122 (MAC: 00:16:3E:5A:2B:CA) - Routine sync
+[2024-10-15 14:20:11.421] [INFO] [CAM-BL-044] PTZ command received - Pan: 233deg
+[2024-10-15 14:20:12.976] [INFO] [CAM-BL-014] Heartbeat received from 10.0.3.145 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:20:13.308] [INFO] [SYNC] NTP sync successful - drift: 6ms
+[2024-10-15 14:20:15.899] [INFO] [CAM-BL-004] Heartbeat received from 10.0.6.143 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:20:16.201] [INFO] [CAM-BL-037] PTZ command received - Pan: 298deg
+[2024-10-15 14:20:18.423] [INFO] [STORAGE] Disk usage: 63.1% - Normal
+[2024-10-15 14:20:19.392] [INFO] [STORAGE] Disk usage: 66.1% - Normal
+[2024-10-15 14:20:21.476] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:20:22.585] [INFO] [CAM-BL-024] Heartbeat received from 10.0.3.173 (MAC: 00:16:3E:5A:2B:CB)
+[2024-10-15 14:20:24.329] [INFO] [STORAGE] Disk usage: 69.7% - Normal
+[2024-10-15 14:20:25.501] [INFO] [CAM-BL-002] Recording status: ACTIVE
+[2024-10-15 14:20:26.200] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:20:28.879] [INFO] [CAM-BL-022] Heartbeat received from 10.0.7.144 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:20:29.363] [INFO] [CAM-BL-046] Recording status: ACTIVE
+[2024-10-15 14:20:31.771] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:20:32.423] [INFO] [CAM-BL-042] Lens calibration: OK
+[2024-10-15 14:20:34.634] [INFO] [CAM-BL-010] PTZ command received - Pan: 265deg
+[2024-10-15 14:20:35.215] [INFO] [CAM-BL-019] Lens calibration: OK
+[2024-10-15 14:20:36.051] [WARN] [CAM-BL-045] High CPU usage detected: 75%
+[2024-10-15 14:20:38.936] [INFO] [CAM-BL-008] Audio channel: MUTED
+[2024-10-15 14:20:39.729] [INFO] [SYNC] NTP sync successful - drift: 38ms
+[2024-10-15 14:20:41.362] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:20:42.158] [INFO] [CAM-BL-042] Frame buffer sync - 30fps stable
+[2024-10-15 14:20:44.447] [INFO] [CAM-BL-003] Connection established from 10.0.5.138 (MAC: 00:16:3E:5A:2B:C9) - Routine sync
+[2024-10-15 14:20:45.489] [INFO] [CAM-BL-026] Heartbeat received from 10.0.2.211 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:20:47.142] [INFO] [CAM-BL-016] Video stream: H.264 @ 1080p
+[2024-10-15 14:20:48.406] [INFO] [CAM-BL-004] Video stream: H.264 @ 1080p
+[2024-10-15 14:20:49.147] [INFO] [CAM-BL-002] Recording status: ACTIVE
+[2024-10-15 14:20:51.405] [INFO] [CAM-BL-031] Video stream: H.264 @ 1080p
+[2024-10-15 14:20:52.877] [INFO] [CAM-BL-047] Heartbeat received from 10.0.10.18 (MAC: 00:16:3E:5A:2B:C4)
+[2024-10-15 14:20:54.937] [INFO] [CAM-BL-033] Connection established from 10.0.7.238 (MAC: 00:16:3E:5A:2B:C6) - Routine sync
+[2024-10-15 14:20:55.461] [INFO] [CAM-BL-034] Recording status: ACTIVE
+[2024-10-15 14:20:57.299] [INFO] [CAM-BL-023] Lens calibration: OK
+[2024-10-15 14:20:58.240] [INFO] [NET] Bandwidth utilization: 58.0 Mbps
+[2024-10-15 14:21:00.131] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:21:01.763] [WARN] [CAM-BL-016] Low light conditions detected
+[2024-10-15 14:21:02.012] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:21:04.929] [INFO] [CAM-BL-011] Lens calibration: OK
+[2024-10-15 14:21:05.280] [INFO] [CAM-BL-016] Connection established from 10.0.7.235 (MAC: 00:1C:42:AA:BB:02) - Routine sync
+[2024-10-15 14:21:07.096] [INFO] [CAM-BL-027] Recording status: ACTIVE
+[2024-10-15 14:21:08.074] [ERROR] [NET] Packet loss detected: 1.8%
+[2024-10-15 14:21:10.858] [WARN] [NET] Latency spike: 157ms
+[2024-10-15 14:21:11.090] [INFO] [NET] Bandwidth utilization: 53.0 Mbps
+[2024-10-15 14:21:12.266] [INFO] [SYNC] NTP sync successful - drift: -9ms
+[2024-10-15 14:21:14.691] [ERROR] [CAM-BL-032] Connection timeout from 10.0.7.228
+[2024-10-15 14:21:15.254] [INFO] [CAM-BL-034] Audio channel: MUTED
+[2024-10-15 14:21:17.677] [INFO] [CAM-BL-042] Frame buffer sync - 30fps stable
+[2024-10-15 14:21:18.856] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:21:20.940] [INFO] [CAM-BL-011] PTZ command received - Pan: 319deg
+[2024-10-15 14:21:21.096] [INFO] [CAM-BL-043] Connection established from 10.0.4.198 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:21:23.751] [INFO] [CAM-BL-028] Audio channel: MUTED
+[2024-10-15 14:21:24.106] [INFO] [STORAGE] Disk usage: 70.1% - Normal
+[2024-10-15 14:21:25.424] [INFO] [CAM-BL-019] PTZ command received - Pan: 16deg
+[2024-10-15 14:21:27.890] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:21:28.573] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:21:30.945] [INFO] [CAM-BL-039] Heartbeat received from 10.0.2.13 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:21:31.855] [INFO] [CAM-BL-038] Recording status: ACTIVE
+[2024-10-15 14:21:33.229] [WARN] [CAM-BL-004] Low light conditions detected
+[2024-10-15 14:21:34.690] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:21:36.872] [WARN] [CAM-BL-038] Low light conditions detected
+[2024-10-15 14:21:37.260] [INFO] [CAM-BL-008] PTZ command received - Pan: 120deg
+[2024-10-15 14:21:38.622] [INFO] [CAM-BL-030] PTZ command received - Pan: 301deg
+[2024-10-15 14:21:40.394] [INFO] [NET] Bandwidth utilization: 59.6 Mbps
+[2024-10-15 14:21:41.388] [INFO] [CAM-BL-028] Frame buffer sync - 30fps stable
+[2024-10-15 14:21:43.564] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:21:44.626] [INFO] [CAM-BL-013] Motion detection: ACTIVE
+[2024-10-15 14:21:46.027] [WARN] [CAM-BL-012] High CPU usage detected: 84%
+[2024-10-15 14:21:47.936] [INFO] [STORAGE] Disk usage: 78.3% - Normal
+[2024-10-15 14:21:48.637] [INFO] [CAM-BL-012] Audio channel: MUTED
+[2024-10-15 14:21:50.950] [INFO] [CAM-BL-008] Connection established from 10.0.10.68 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:21:51.249] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:21:53.470] [INFO] [STORAGE] Disk usage: 74.7% - Normal
+[2024-10-15 14:21:54.866] [INFO] [STORAGE] Disk usage: 65.4% - Normal
+[2024-10-15 14:21:56.359] [ERROR] [CAM-BL-014] Connection timeout from 10.0.5.180
+[2024-10-15 14:21:57.731] [INFO] [CAM-BL-034] Connection established from 10.0.4.246 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:21:59.784] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:22:00.944] [INFO] [SYNC] NTP sync successful - drift: 28ms
+[2024-10-15 14:22:01.833] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:22:03.559] [INFO] [CAM-BL-040] Infrared mode: AUTO
+[2024-10-15 14:22:04.057] [INFO] [CAM-BL-031] Lens calibration: OK
+[2024-10-15 14:22:06.955] [WARN] [CAM-BL-003] Frame drop detected - recovering
+[2024-10-15 14:22:07.024] [ERROR] [CAM-BL-036] Frame sync lost - reconnecting
+[2024-10-15 14:22:09.431] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:22:10.392] [WARN] [CAM-BL-029] Low light conditions detected
+[2024-10-15 14:22:12.445] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:22:13.066] [INFO] [CAM-BL-049] PTZ command received - Pan: 169deg
+[2024-10-15 14:22:14.808] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:22:16.893] [INFO] [CAM-BL-012] Audio channel: MUTED
+[2024-10-15 14:22:17.666] [INFO] [CAM-BL-020] Recording status: ACTIVE
+[2024-10-15 14:22:19.502] [ERROR] [NET] Packet loss detected: 1.6%
+[2024-10-15 14:22:20.711] [INFO] [CAM-BL-045] Heartbeat received from 10.0.8.214 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:22:22.715] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:22:23.440] [INFO] [CAM-BL-047] Recording status: ACTIVE
+[2024-10-15 14:22:24.851] [INFO] [NET] Bandwidth utilization: 54.0 Mbps
+[2024-10-15 14:22:26.805] [WARN] [CAM-BL-020] High CPU usage detected: 78%
+[2024-10-15 14:22:27.302] [INFO] [CAM-BL-034] Recording status: ACTIVE
+[2024-10-15 14:22:29.075] [INFO] [CAM-BL-043] Motion detection: ACTIVE
+[2024-10-15 14:22:30.149] [INFO] [CAM-BL-046] PTZ command received - Pan: 89deg
+[2024-10-15 14:22:32.985] [INFO] [NET] Bandwidth utilization: 50.8 Mbps
+[2024-10-15 14:22:33.368] [INFO] [CAM-BL-041] Motion detection: ACTIVE
+[2024-10-15 14:22:35.716] [INFO] [SYNC] NTP sync successful - drift: -1ms
+[2024-10-15 14:22:36.238] [INFO] [CAM-BL-026] Connection established from 10.0.8.218 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:22:37.011] [INFO] [CAM-BL-045] Video stream: H.264 @ 1080p
+[2024-10-15 14:22:39.687] [INFO] [CAM-BL-004] Heartbeat received from 10.0.8.58 (MAC: 00:16:3E:5A:2B:C4)
+[2024-10-15 14:22:40.984] [INFO] [CAM-BL-019] Lens calibration: OK
+[2024-10-15 14:22:42.564] [INFO] [CAM-BL-014] Infrared mode: AUTO
+[2024-10-15 14:22:43.489] [INFO] [CAM-BL-014] Lens calibration: OK
+[2024-10-15 14:22:45.347] [INFO] [CAM-BL-032] PTZ command received - Pan: 105deg
+[2024-10-15 14:22:46.685] [WARN] [CAM-BL-050] High CPU usage detected: 77%
+[2024-10-15 14:22:48.796] [INFO] [CAM-BL-039] Recording status: ACTIVE
+[2024-10-15 14:22:49.448] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:22:50.901] [INFO] [CAM-BL-014] Recording status: ACTIVE
+[2024-10-15 14:22:52.161] [WARN] [CAM-BL-006] High CPU usage detected: 82%
+[2024-10-15 14:22:53.194] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:22:55.527] [INFO] [CAM-BL-017] Heartbeat received from 10.0.7.144 (MAC: 00:16:3E:5A:2B:C8)
+[2024-10-15 14:22:56.349] [ERROR] [CAM-BL-037] Frame sync lost - reconnecting
+[2024-10-15 14:22:58.403] [WARN] [CAM-BL-040] Frame drop detected - recovering
+[2024-10-15 14:22:59.296] [INFO] [CAM-BL-010] Connection established from 10.0.5.83 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:23:00.608] [INFO] [CAM-BL-043] Motion detection: ACTIVE
+[2024-10-15 14:23:02.169] [ERROR] [NET] Packet loss detected: 0.3%
+[2024-10-15 14:23:03.064] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:23:05.103] [INFO] [SYNC] NTP sync successful - drift: 50ms
+[2024-10-15 14:23:06.986] [INFO] [CAM-BL-032] Video stream: H.264 @ 1080p
+[2024-10-15 14:23:08.496] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:23:09.802] [INFO] [CAM-BL-019] PTZ command received - Pan: 36deg
+[2024-10-15 14:23:11.816] [INFO] [CAM-BL-005] Heartbeat received from 10.0.4.197 (MAC: 00:16:3E:5A:2B:C4)
+[2024-10-15 14:23:12.290] [ERROR] [NET] Packet loss detected: 1.9%
+[2024-10-15 14:23:13.289] [WARN] [NET] Latency spike: 477ms
+[2024-10-15 14:23:15.571] [INFO] [CAM-BL-037] Audio channel: MUTED
+[2024-10-15 14:23:16.254] [INFO] [CAM-BL-047] Frame buffer sync - 30fps stable
+[2024-10-15 14:23:18.956] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:23:19.136] [INFO] [CAM-BL-007] Lens calibration: OK
+[2024-10-15 14:23:21.103] [INFO] [STORAGE] Disk usage: 63.7% - Normal
+[2024-10-15 14:23:22.574] [INFO] [CAM-BL-034] Connection established from 10.0.5.127 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:23:24.525] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:23:25.769] [INFO] [CAM-BL-004] Frame buffer sync - 30fps stable
+[2024-10-15 14:23:26.443] [INFO] [CAM-BL-042] Motion detection: ACTIVE
+[2024-10-15 14:23:28.160] [ERROR] [CAM-BL-013] Frame sync lost - reconnecting
+[2024-10-15 14:23:29.593] [INFO] [NET] Bandwidth utilization: 58.5 Mbps
+[2024-10-15 14:23:31.080] [INFO] [CAM-BL-032] Frame buffer sync - 30fps stable
+[2024-10-15 14:23:32.849] [INFO] [CAM-BL-003] Lens calibration: OK
+[2024-10-15 14:23:34.640] [INFO] [CAM-BL-037] Heartbeat received from 10.0.9.58 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:23:35.036] [INFO] [CAM-BL-036] Infrared mode: AUTO
+[2024-10-15 14:23:36.346] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:23:38.877] [INFO] [CAM-BL-012] Recording status: ACTIVE
+[2024-10-15 14:23:39.225] [INFO] [CAM-BL-002] Heartbeat received from 10.0.8.93 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:23:41.003] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:23:42.675] [INFO] [CAM-BL-044] Video stream: H.264 @ 1080p
+[2024-10-15 14:23:44.891] [INFO] [NET] Bandwidth utilization: 32.3 Mbps
+[2024-10-15 14:23:45.021] [INFO] [CAM-BL-042] Lens calibration: OK
+[2024-10-15 14:23:47.678] [INFO] [CAM-BL-033] Connection established from 10.0.7.176 (MAC: 00:1C:42:AA:BB:01) - Routine sync
+[2024-10-15 14:23:48.615] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:23:49.040] [INFO] [CAM-BL-004] Recording status: ACTIVE
+[2024-10-15 14:23:51.807] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:23:52.730] [INFO] [NET] Bandwidth utilization: 38.6 Mbps
+[2024-10-15 14:23:54.145] [INFO] [CAM-BL-016] Motion detection: ACTIVE
+[2024-10-15 14:23:55.737] [INFO] [STORAGE] Disk usage: 79.0% - Normal
+[2024-10-15 14:23:57.841] [INFO] [CAM-BL-018] Connection established from 10.0.8.87 (MAC: 00:16:3E:5A:2B:C1) - Routine sync
+[2024-10-15 14:23:58.217] [INFO] [CAM-BL-014] Video stream: H.264 @ 1080p
+[2024-10-15 14:24:00.521] [INFO] [CAM-BL-022] Audio channel: MUTED
+[2024-10-15 14:24:01.180] [INFO] [CAM-BL-037] Motion detection: ACTIVE
+[2024-10-15 14:24:02.785] [INFO] [CAM-BL-019] Lens calibration: OK
+[2024-10-15 14:24:04.483] [INFO] [CAM-BL-029] Heartbeat received from 10.0.3.150 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:24:05.991] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:24:07.656] [INFO] [CAM-BL-023] Infrared mode: AUTO
+[2024-10-15 14:24:08.987] [INFO] [CAM-BL-047] Recording status: ACTIVE
+[2024-10-15 14:24:10.008] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:24:11.874] [INFO] [CAM-BL-046] Heartbeat received from 10.0.1.118 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:24:12.439] [INFO] [SYNC] NTP sync successful - drift: -11ms
+[2024-10-15 14:24:14.564] [INFO] [CAM-BL-006] Heartbeat received from 10.0.9.183 (MAC: 00:16:3E:5A:2B:C8)
+[2024-10-15 14:24:15.922] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:24:17.630] [WARN] [NET] Latency spike: 428ms
+[2024-10-15 14:24:18.212] [ERROR] [CAM-BL-037] Connection timeout from 10.0.6.41
+[2024-10-15 14:24:20.999] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:24:21.291] [INFO] [CAM-BL-021] Video stream: H.264 @ 1080p
+[2024-10-15 14:24:23.649] [INFO] [CAM-BL-025] Frame buffer sync - 30fps stable
+[2024-10-15 14:24:24.431] [INFO] [CAM-BL-004] Frame buffer sync - 30fps stable
+[2024-10-15 14:24:25.254] [INFO] [CAM-BL-023] Motion detection: ACTIVE
+[2024-10-15 14:24:27.646] [INFO] [CAM-BL-011] Video stream: H.264 @ 1080p
+[2024-10-15 14:24:28.331] [INFO] [CAM-BL-043] PTZ command received - Pan: 197deg
+[2024-10-15 14:24:30.779] [INFO] [CAM-BL-014] Motion detection: ACTIVE
+[2024-10-15 14:24:31.542] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:24:33.836] [INFO] [CAM-BL-017] Lens calibration: OK
+[2024-10-15 14:24:34.111] [ERROR] [CAM-BL-019] Connection timeout from 10.0.6.119
+[2024-10-15 14:24:36.262] [INFO] [CAM-BL-039] Audio channel: MUTED
+[2024-10-15 14:24:37.656] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:24:38.526] [INFO] [NET] Bandwidth utilization: 58.3 Mbps
+[2024-10-15 14:24:40.481] [INFO] [CAM-BL-037] Heartbeat received from 10.0.7.136 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:24:41.983] [ERROR] [CAM-BL-019] Connection timeout from 10.0.10.142
+[2024-10-15 14:24:43.269] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:24:44.609] [INFO] [CAM-BL-001] Video stream: H.264 @ 1080p
+[2024-10-15 14:24:46.847] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:24:47.270] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:24:48.856] [INFO] [CAM-BL-013] Infrared mode: AUTO
+[2024-10-15 14:24:50.424] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:24:51.186] [INFO] [CAM-BL-031] Audio channel: MUTED
+[2024-10-15 14:24:53.310] [INFO] [NET] Bandwidth utilization: 56.1 Mbps
+[2024-10-15 14:24:54.463] [INFO] [CAM-BL-030] Motion detection: ACTIVE
+[2024-10-15 14:24:56.959] [INFO] [CAM-BL-013] Recording status: ACTIVE
+[2024-10-15 14:24:57.593] [INFO] [CAM-BL-039] Video stream: H.264 @ 1080p
+[2024-10-15 14:24:59.277] [INFO] [CAM-BL-042] Audio channel: MUTED
+[2024-10-15 14:25:00.558] [INFO] [CAM-BL-023] Audio channel: MUTED
+[2024-10-15 14:25:01.068] [INFO] [NET] Bandwidth utilization: 50.7 Mbps
+[2024-10-15 14:25:03.019] [INFO] [CAM-BL-032] Infrared mode: AUTO
+[2024-10-15 14:25:04.986] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:25:06.985] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:07.315] [INFO] [CAM-BL-028] PTZ command received - Pan: 153deg
+[2024-10-15 14:25:09.319] [INFO] [CAM-BL-025] Video stream: H.264 @ 1080p
+[2024-10-15 14:25:10.044] [INFO] [CAM-BL-001] PTZ command received - Pan: 99deg
+[2024-10-15 14:25:12.706] [ERROR] [NET] Packet loss detected: 1.0%
+[2024-10-15 14:25:13.175] [INFO] [STORAGE] Disk usage: 71.9% - Normal
+[2024-10-15 14:25:14.916] [INFO] [SYNC] NTP sync successful - drift: -15ms
+[2024-10-15 14:25:16.858] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:25:17.810] [INFO] [STORAGE] Disk usage: 63.4% - Normal
+[2024-10-15 14:25:19.077] [INFO] [CAM-BL-006] Connection established from 10.0.3.102 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:25:20.535] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:25:22.063] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:25:23.839] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:25:24.787] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:25:26.119] [WARN] [CAM-BL-009] Frame drop detected - recovering
+[2024-10-15 14:25:27.725] [ERROR] [NET] Packet loss detected: 1.9%
+[2024-10-15 14:25:29.893] [INFO] [CAM-BL-047] Recording status: ACTIVE
+[2024-10-15 14:25:30.258] [INFO] [CAM-BL-026] Video stream: H.264 @ 1080p
+[2024-10-15 14:25:32.006] [INFO] [CAM-BL-011] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:33.495] [INFO] [CAM-BL-040] Infrared mode: AUTO
+[2024-10-15 14:25:35.390] [INFO] [CAM-BL-032] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:36.259] [INFO] [CAM-BL-016] Infrared mode: AUTO
+[2024-10-15 14:25:37.489] [INFO] [CAM-BL-019] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:39.982] [INFO] [STORAGE] Disk usage: 75.5% - Normal
+[2024-10-15 14:25:40.773] [INFO] [CAM-BL-017] Lens calibration: OK
+[2024-10-15 14:25:42.149] [INFO] [CAM-BL-019] Connection established from 10.0.2.132 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:25:43.616] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:45.707] [INFO] [CAM-BL-016] Frame buffer sync - 30fps stable
+[2024-10-15 14:25:46.631] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:25:48.564] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:25:49.931] [INFO] [CAM-BL-019] Infrared mode: AUTO
+[2024-10-15 14:25:50.976] [INFO] [CAM-BL-048] Audio channel: MUTED
+[2024-10-15 14:25:52.613] [INFO] [CAM-BL-025] Audio channel: MUTED
+[2024-10-15 14:25:53.727] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:25:55.547] [WARN] [CAM-BL-041] Frame drop detected - recovering
+[2024-10-15 14:25:56.233] [INFO] [NET] Bandwidth utilization: 30.3 Mbps
+[2024-10-15 14:25:58.883] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:25:59.954] [INFO] [CAM-BL-044] Video stream: H.264 @ 1080p
+[2024-10-15 14:26:00.494] [INFO] [CAM-BL-047] Frame buffer sync - 30fps stable
+[2024-10-15 14:26:02.358] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:26:03.789] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:26:05.935] [INFO] [SYNC] NTP sync successful - drift: -42ms
+[2024-10-15 14:26:06.929] [ERROR] [CAM-BL-047] Frame sync lost - reconnecting
+[2024-10-15 14:26:08.451] [WARN] [CAM-BL-006] High CPU usage detected: 86%
+[2024-10-15 14:26:09.224] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:26:11.482] [INFO] [CAM-BL-002] Connection established from 10.0.8.186 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:26:12.865] [INFO] [CAM-BL-006] Lens calibration: OK
+[2024-10-15 14:26:13.897] [INFO] [CAM-BL-003] Motion detection: ACTIVE
+[2024-10-15 14:26:15.147] [INFO] [CAM-BL-043] Connection established from 10.0.2.136 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:26:16.480] [INFO] [NET] Bandwidth utilization: 42.4 Mbps
+[2024-10-15 14:26:18.257] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:26:19.509] [INFO] [CAM-BL-024] Frame buffer sync - 30fps stable
+[2024-10-15 14:26:21.215] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:26:22.779] [WARN] [CAM-BL-010] Low light conditions detected
+[2024-10-15 14:26:24.085] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:26:25.469] [WARN] [CAM-BL-004] Low light conditions detected
+[2024-10-15 14:26:26.205] [INFO] [CAM-BL-042] Infrared mode: AUTO
+[2024-10-15 14:26:28.079] [WARN] [CAM-BL-041] High CPU usage detected: 92%
+[2024-10-15 14:26:29.270] [INFO] [CAM-BL-009] Motion detection: ACTIVE
+[2024-10-15 14:26:31.406] [INFO] [SYNC] NTP sync successful - drift: 32ms
+[2024-10-15 14:26:32.722] [INFO] [CAM-BL-020] Frame buffer sync - 30fps stable
+[2024-10-15 14:26:34.511] [INFO] [CAM-BL-034] PTZ command received - Pan: 306deg
+[2024-10-15 14:26:35.010] [INFO] [CAM-BL-035] Connection established from 10.0.5.179 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:26:36.080] [ERROR] [CAM-BL-023] Frame sync lost - reconnecting
+[2024-10-15 14:26:38.901] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:26:39.032] [INFO] [SYNC] NTP sync successful - drift: -4ms
+[2024-10-15 14:26:41.498] [WARN] [CAM-BL-021] Low light conditions detected
+[2024-10-15 14:26:42.187] [ERROR] [CAM-BL-043] Frame sync lost - reconnecting
+[2024-10-15 14:26:44.291] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:26:45.143] [INFO] [NET] Bandwidth utilization: 35.9 Mbps
+[2024-10-15 14:26:47.138] [WARN] [CAM-BL-047] High CPU usage detected: 90%
+[2024-10-15 14:26:48.206] [INFO] [CAM-BL-007] Heartbeat received from 10.0.2.155 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:26:49.018] [INFO] [CAM-BL-049] Heartbeat received from 10.0.4.148 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:26:51.372] [ERROR] [CAM-BL-030] Frame sync lost - reconnecting
+[2024-10-15 14:26:52.441] [INFO] [NET] Bandwidth utilization: 54.1 Mbps
+[2024-10-15 14:26:54.217] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:26:55.295] [INFO] [CAM-BL-001] Frame buffer sync - 30fps stable
+[2024-10-15 14:26:57.381] [INFO] [CAM-BL-039] Video stream: H.264 @ 1080p
+[2024-10-15 14:26:58.463] [ERROR] [CAM-BL-012] Connection timeout from 10.0.5.156
+[2024-10-15 14:27:00.881] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:27:01.609] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:27:02.293] [INFO] [CAM-BL-026] Frame buffer sync - 30fps stable
+[2024-10-15 14:27:04.211] [INFO] [CAM-BL-047] PTZ command received - Pan: 239deg
+[2024-10-15 14:27:05.601] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:27:07.132] [WARN] [CAM-BL-003] Low light conditions detected
+[2024-10-15 14:27:08.619] [INFO] [CAM-BL-038] Heartbeat received from 10.0.8.107 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:27:10.032] [INFO] [CAM-BL-017] Video stream: H.264 @ 1080p
+[2024-10-15 14:27:11.140] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:27:12.177] [WARN] [CAM-BL-004] Frame drop detected - recovering
+[2024-10-15 14:27:14.214] [INFO] [CAM-BL-049] Audio channel: MUTED
+[2024-10-15 14:27:15.931] [INFO] [CAM-BL-034] Video stream: H.264 @ 1080p
+[2024-10-15 14:27:17.681] [INFO] [NET] Bandwidth utilization: 58.5 Mbps
+[2024-10-15 14:27:18.262] [INFO] [CAM-BL-029] Lens calibration: OK
+[2024-10-15 14:27:20.358] [INFO] [CAM-BL-028] Recording status: ACTIVE
+[2024-10-15 14:27:21.289] [INFO] [CAM-BL-038] Heartbeat received from 10.0.9.17 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:27:23.553] [INFO] [CAM-BL-030] Motion detection: ACTIVE
+[2024-10-15 14:27:24.121] [INFO] [CAM-BL-019] Recording status: ACTIVE
+[2024-10-15 14:27:25.024] [INFO] [CAM-BL-033] Lens calibration: OK
+[2024-10-15 14:27:27.159] [INFO] [NET] Bandwidth utilization: 59.4 Mbps
+[2024-10-15 14:27:28.317] [INFO] [STORAGE] Disk usage: 72.3% - Normal
+[2024-10-15 14:27:30.694] [INFO] [NET] Bandwidth utilization: 37.1 Mbps
+[2024-10-15 14:27:31.511] [INFO] [CAM-BL-007] PTZ command received - Pan: 219deg
+[2024-10-15 14:27:33.071] [INFO] [CAM-BL-015] Infrared mode: AUTO
+[2024-10-15 14:27:34.354] [INFO] [CAM-BL-002] Infrared mode: AUTO
+[2024-10-15 14:27:36.545] [ERROR] [CAM-BL-019] Connection timeout from 10.0.8.211
+[2024-10-15 14:27:37.131] [INFO] [CAM-BL-005] PTZ command received - Pan: 67deg
+[2024-10-15 14:27:38.500] [INFO] [CAM-BL-018] Recording status: ACTIVE
+[2024-10-15 14:27:40.666] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:27:41.689] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:27:43.484] [INFO] [STORAGE] Disk usage: 73.5% - Normal
+[2024-10-15 14:27:44.246] [INFO] [CAM-BL-007] Audio channel: MUTED
+[2024-10-15 14:27:46.561] [INFO] [CAM-BL-021] Recording status: ACTIVE
+[2024-10-15 14:27:47.996] [INFO] [CAM-BL-007] Motion detection: ACTIVE
+[2024-10-15 14:27:48.865] [WARN] [CAM-BL-009] Low light conditions detected
+[2024-10-15 14:27:50.299] [INFO] [NET] Bandwidth utilization: 55.3 Mbps
+[2024-10-15 14:27:51.068] [INFO] [STORAGE] Disk usage: 79.9% - Normal
+[2024-10-15 14:27:53.929] [INFO] [STORAGE] Disk usage: 78.9% - Normal
+[2024-10-15 14:27:54.190] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:27:56.593] [WARN] [CAM-BL-006] Low light conditions detected
+[2024-10-15 14:27:57.861] [INFO] [NET] Bandwidth utilization: 38.2 Mbps
+[2024-10-15 14:27:59.892] [INFO] [SYNC] NTP sync successful - drift: -26ms
+[2024-10-15 14:28:00.330] [INFO] [CAM-BL-022] Recording status: ACTIVE
+[2024-10-15 14:28:01.229] [INFO] [CAM-BL-026] PTZ command received - Pan: 34deg
+[2024-10-15 14:28:03.861] [INFO] [CAM-BL-014] PTZ command received - Pan: 117deg
+[2024-10-15 14:28:04.176] [INFO] [STORAGE] Disk usage: 69.9% - Normal
+[2024-10-15 14:28:06.637] [INFO] [CAM-BL-046] Motion detection: ACTIVE
+[2024-10-15 14:28:07.854] [WARN] [NET] Latency spike: 480ms
+[2024-10-15 14:28:09.165] [INFO] [CAM-BL-012] PTZ command received - Pan: 177deg
+[2024-10-15 14:28:10.048] [INFO] [CAM-BL-029] Infrared mode: AUTO
+[2024-10-15 14:28:12.319] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:28:13.450] [WARN] [NET] Latency spike: 146ms
+[2024-10-15 14:28:14.078] [INFO] [CAM-BL-019] Motion detection: ACTIVE
+[2024-10-15 14:28:16.311] [INFO] [SYNC] NTP sync successful - drift: 37ms
+[2024-10-15 14:28:17.093] [INFO] [CAM-BL-047] Infrared mode: AUTO
+[2024-10-15 14:28:19.437] [INFO] [CAM-BL-046] Heartbeat received from 10.0.10.15 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:28:20.139] [WARN] [CAM-BL-031] High CPU usage detected: 90%
+[2024-10-15 14:28:22.512] [INFO] [CAM-BL-045] Infrared mode: AUTO
+[2024-10-15 14:28:23.136] [INFO] [CAM-BL-022] Audio channel: MUTED
+[2024-10-15 14:28:24.956] [WARN] [CAM-BL-017] High CPU usage detected: 93%
+[2024-10-15 14:28:26.157] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:28:27.809] [INFO] [CAM-BL-035] Infrared mode: AUTO
+[2024-10-15 14:28:29.827] [INFO] [STORAGE] Disk usage: 68.4% - Normal
+[2024-10-15 14:28:30.638] [INFO] [SYNC] NTP sync successful - drift: -49ms
+[2024-10-15 14:28:32.106] [WARN] [CAM-BL-012] Frame drop detected - recovering
+[2024-10-15 14:28:33.959] [INFO] [CAM-BL-005] Recording status: ACTIVE
+[2024-10-15 14:28:35.137] [INFO] [CAM-BL-015] Heartbeat received from 10.0.5.72 (MAC: 00:16:3E:5A:2B:C4)
+[2024-10-15 14:28:36.892] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:28:37.634] [INFO] [CAM-BL-009] Recording status: ACTIVE
+[2024-10-15 14:28:39.672] [INFO] [CAM-BL-023] Connection established from 10.0.3.175 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:28:40.444] [INFO] [NET] Bandwidth utilization: 45.6 Mbps
+[2024-10-15 14:28:42.364] [INFO] [CAM-BL-008] Heartbeat received from 10.0.10.221 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:28:43.845] [INFO] [CAM-BL-012] Infrared mode: AUTO
+[2024-10-15 14:28:45.080] [ERROR] [NET] Packet loss detected: 1.7%
+[2024-10-15 14:28:46.194] [INFO] [NET] Bandwidth utilization: 50.3 Mbps
+[2024-10-15 14:28:48.116] [INFO] [CAM-BL-010] PTZ command received - Pan: 115deg
+[2024-10-15 14:28:49.700] [INFO] [SYNC] NTP sync successful - drift: -9ms
+[2024-10-15 14:28:50.449] [INFO] [CAM-BL-022] Motion detection: ACTIVE
+[2024-10-15 14:28:52.078] [INFO] [NET] Bandwidth utilization: 53.8 Mbps
+[2024-10-15 14:28:53.529] [INFO] [CAM-BL-033] Infrared mode: AUTO
+[2024-10-15 14:28:55.925] [INFO] [NET] Bandwidth utilization: 50.0 Mbps
+[2024-10-15 14:28:56.743] [WARN] [CAM-BL-047] High CPU usage detected: 79%
+[2024-10-15 14:28:58.096] [INFO] [CAM-BL-018] Audio channel: MUTED
+[2024-10-15 14:28:59.931] [INFO] [CAM-BL-003] Infrared mode: AUTO
+[2024-10-15 14:29:00.539] [INFO] [SYNC] NTP sync successful - drift: 7ms
+[2024-10-15 14:29:02.060] [ERROR] [CAM-BL-014] Connection timeout from 10.0.1.177
+[2024-10-15 14:29:03.366] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:29:05.988] [WARN] [NET] Latency spike: 285ms
+[2024-10-15 14:29:06.711] [INFO] [CAM-BL-047] Connection established from 10.0.1.17 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:29:08.458] [INFO] [NET] Bandwidth utilization: 52.3 Mbps
+[2024-10-15 14:29:09.401] [INFO] [CAM-BL-001] Video stream: H.264 @ 1080p
+[2024-10-15 14:29:11.049] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:29:12.505] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:29:13.170] [INFO] [SYNC] NTP sync successful - drift: 32ms
+[2024-10-15 14:29:15.089] [INFO] [CAM-BL-014] Connection established from 10.0.9.115 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:29:16.294] [INFO] [CAM-BL-039] Video stream: H.264 @ 1080p
+[2024-10-15 14:29:18.216] [INFO] [CAM-BL-033] PTZ command received - Pan: 154deg
+[2024-10-15 14:29:19.583] [INFO] [NET] Bandwidth utilization: 47.3 Mbps
+[2024-10-15 14:29:21.498] [INFO] [CAM-BL-014] Connection established from 10.0.6.52 (MAC: 00:1C:42:AA:BB:01) - Routine sync
+[2024-10-15 14:29:22.327] [INFO] [SYNC] NTP sync successful - drift: 22ms
+[2024-10-15 14:29:24.595] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:29:25.842] [WARN] [CAM-BL-019] High CPU usage detected: 77%
+[2024-10-15 14:29:26.769] [INFO] [CAM-BL-037] Connection established from 10.0.5.46 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:29:28.148] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
+[2024-10-15 14:29:29.398] [INFO] [SYNC] NTP sync successful - drift: 44ms
+[2024-10-15 14:29:31.125] [INFO] [CAM-BL-001] Video stream: H.264 @ 1080p
+[2024-10-15 14:29:32.834] [INFO] [CAM-BL-034] Heartbeat received from 10.0.2.87 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:29:34.850] [INFO] [CAM-BL-024] Connection established from 10.0.3.104 (MAC: 00:16:3E:5A:2B:CC) - Routine sync
+[2024-10-15 14:29:35.989] [INFO] [CAM-BL-015] Recording status: ACTIVE
+[2024-10-15 14:29:36.489] [INFO] [CAM-BL-008] Frame buffer sync - 30fps stable
+[2024-10-15 14:29:38.008] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
+[2024-10-15 14:32:23.847] [WARN] [FIREWALL] Unusual traffic pattern from 192.168.47.133 (MAC: 00:1A:2B:3C:4D:5E)
+[2024-10-15 14:29:41.935] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:29:42.313] [INFO] [CAM-BL-030] Audio channel: MUTED
+[2024-10-15 14:29:44.018] [INFO] [CAM-BL-037] Heartbeat received from 10.0.6.22 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:29:45.760] [INFO] [STORAGE] Disk usage: 69.7% - Normal
+[2024-10-15 14:29:47.160] [WARN] [CAM-BL-006] High CPU usage detected: 91%
+[2024-10-15 14:29:48.630] [INFO] [NET] Bandwidth utilization: 34.2 Mbps
+[2024-10-15 14:29:49.007] [INFO] [STORAGE] Disk usage: 77.8% - Normal
+[2024-10-15 14:29:51.866] [WARN] [CAM-BL-008] High CPU usage detected: 94%
+[2024-10-15 14:29:52.160] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:29:54.809] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:29:55.790] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:29:57.628] [INFO] [CAM-BL-010] Frame buffer sync - 30fps stable
+[2024-10-15 14:29:58.772] [INFO] [CAM-BL-019] Video stream: H.264 @ 1080p
+[2024-10-15 14:30:00.973] [INFO] [CAM-BL-025] Heartbeat received from 10.0.4.240 (MAC: 08:00:27:12:34:57)
+[2024-10-15 14:30:01.588] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:30:02.876] [INFO] [CAM-BL-028] Recording status: ACTIVE
+[2024-10-15 14:30:04.483] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:30:05.456] [INFO] [SYNC] NTP sync successful - drift: 35ms
+[2024-10-15 14:30:07.949] [INFO] [CAM-BL-007] Lens calibration: OK
+[2024-10-15 14:30:08.129] [INFO] [CAM-BL-003] Video stream: H.264 @ 1080p
+[2024-10-15 14:30:10.495] [WARN] [CAM-BL-016] Frame drop detected - recovering
+[2024-10-15 14:30:11.292] [INFO] [CAM-BL-027] Connection established from 10.0.5.195 (MAC: 00:1C:42:AA:BB:02) - Routine sync
+[2024-10-15 14:30:12.787] [WARN] [CAM-BL-023] High CPU usage detected: 87%
+[2024-10-15 14:30:14.213] [INFO] [CAM-BL-023] Frame buffer sync - 30fps stable
+[2024-10-15 14:30:15.027] [INFO] [CAM-BL-011] Motion detection: ACTIVE
+[2024-10-15 14:30:17.776] [INFO] [CAM-BL-025] Audio channel: MUTED
+[2024-10-15 14:30:18.367] [INFO] [SYNC] NTP sync successful - drift: -25ms
+[2024-10-15 14:30:20.446] [ERROR] [NET] Packet loss detected: 1.1%
+[2024-10-15 14:30:21.435] [INFO] [CAM-BL-013] Connection established from 10.0.2.131 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:30:23.574] [INFO] [CAM-BL-011] Motion detection: ACTIVE
+[2024-10-15 14:30:24.102] [INFO] [CAM-BL-022] Motion detection: ACTIVE
+[2024-10-15 14:30:25.414] [INFO] [CAM-BL-031] Frame buffer sync - 30fps stable
+[2024-10-15 14:30:27.810] [INFO] [CAM-BL-044] Lens calibration: OK
+[2024-10-15 14:30:28.702] [INFO] [CAM-BL-033] Frame buffer sync - 30fps stable
+[2024-10-15 14:30:30.804] [INFO] [SYNC] NTP sync successful - drift: 0ms
+[2024-10-15 14:30:31.995] [INFO] [CAM-BL-049] Motion detection: ACTIVE
+[2024-10-15 14:30:33.348] [INFO] [CAM-BL-015] Video stream: H.264 @ 1080p
+[2024-10-15 14:30:34.279] [INFO] [CAM-BL-020] Audio channel: MUTED
+[2024-10-15 14:30:36.430] [INFO] [NET] Bandwidth utilization: 34.1 Mbps
+[2024-10-15 14:30:37.335] [INFO] [CAM-BL-005] Frame buffer sync - 30fps stable
+[2024-10-15 14:30:38.973] [INFO] [CAM-BL-050] Heartbeat received from 10.0.9.174 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:30:40.711] [ERROR] [CAM-BL-022] Frame sync lost - reconnecting
+[2024-10-15 14:30:41.758] [INFO] [SYNC] NTP sync successful - drift: -37ms
+[2024-10-15 14:30:43.695] [INFO] [CAM-BL-026] Heartbeat received from 10.0.3.134 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:30:44.536] [INFO] [CAM-BL-015] Audio channel: MUTED
+[2024-10-15 14:30:46.972] [INFO] [CAM-BL-001] PTZ command received - Pan: 38deg
+[2024-10-15 14:30:47.757] [ERROR] [CAM-BL-016] Frame sync lost - reconnecting
+[2024-10-15 14:30:48.969] [INFO] [CAM-BL-026] Recording status: ACTIVE
+[2024-10-15 14:30:50.790] [INFO] [CAM-BL-040] Connection established from 10.0.3.212 (MAC: 00:1C:42:AA:BB:02) - Routine sync
+[2024-10-15 14:30:51.458] [INFO] [CAM-BL-004] Connection established from 10.0.5.191 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:30:53.626] [WARN] [CAM-BL-029] High CPU usage detected: 95%
+[2024-10-15 14:30:54.600] [INFO] [CAM-BL-046] Audio channel: MUTED
+[2024-10-15 14:30:56.239] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:30:57.846] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:30:59.539] [INFO] [CAM-BL-009] Connection established from 10.0.1.121 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:31:00.552] [INFO] [CAM-BL-017] Heartbeat received from 10.0.3.156 (MAC: 00:16:3E:5A:2B:C8)
+[2024-10-15 14:31:01.153] [INFO] [STORAGE] Disk usage: 61.6% - Normal
+[2024-10-15 14:31:03.543] [INFO] [CAM-BL-033] Heartbeat received from 10.0.2.83 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:31:04.513] [INFO] [CAM-BL-023] Video stream: H.264 @ 1080p
+[2024-10-15 14:31:06.226] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:31:07.243] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:31:09.903] [INFO] [STORAGE] Disk usage: 62.0% - Normal
+[2024-10-15 14:31:10.987] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:31:12.722] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:31:13.750] [INFO] [NET] Bandwidth utilization: 30.5 Mbps
+[2024-10-15 14:31:14.346] [INFO] [CAM-BL-011] Heartbeat received from 10.0.2.232 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:31:16.605] [INFO] [CAM-BL-031] Lens calibration: OK
+[2024-10-15 14:31:17.685] [INFO] [CAM-BL-015] Lens calibration: OK
+[2024-10-15 14:31:19.527] [INFO] [CAM-BL-006] Audio channel: MUTED
+[2024-10-15 14:31:20.928] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:31:22.997] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:31:23.492] [WARN] [CAM-BL-025] Low light conditions detected
+[2024-10-15 14:31:24.822] [INFO] [CAM-BL-015] Motion detection: ACTIVE
+[2024-10-15 14:31:26.584] [INFO] [CAM-BL-012] Heartbeat received from 10.0.8.137 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:31:27.305] [INFO] [CAM-BL-038] Recording status: ACTIVE
+[2024-10-15 14:31:29.906] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:31:30.558] [INFO] [NET] Bandwidth utilization: 42.9 Mbps
+[2024-10-15 14:31:32.851] [INFO] [SYNC] NTP sync successful - drift: 10ms
+[2024-10-15 14:31:33.348] [INFO] [CAM-BL-031] Heartbeat received from 10.0.7.248 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:31:35.367] [INFO] [CAM-BL-006] Lens calibration: OK
+[2024-10-15 14:31:36.918] [ERROR] [CAM-BL-030] Frame sync lost - reconnecting
+[2024-10-15 14:31:37.188] [INFO] [SYNC] NTP sync successful - drift: 46ms
+[2024-10-15 14:31:39.478] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:31:40.997] [INFO] [CAM-BL-037] Recording status: ACTIVE
+[2024-10-15 14:31:42.703] [INFO] [NET] Bandwidth utilization: 46.0 Mbps
+[2024-10-15 14:31:43.203] [INFO] [STORAGE] Disk usage: 64.2% - Normal
+[2024-10-15 14:31:45.598] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:31:46.915] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:31:48.659] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:31:49.955] [INFO] [CAM-BL-043] Video stream: H.264 @ 1080p
+[2024-10-15 14:31:50.781] [INFO] [CAM-BL-042] Recording status: ACTIVE
+[2024-10-15 14:31:52.507] [INFO] [CAM-BL-030] Heartbeat received from 10.0.8.179 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:31:53.272] [INFO] [SYNC] NTP sync successful - drift: -14ms
+[2024-10-15 14:31:55.899] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:31:56.749] [INFO] [CAM-BL-009] PTZ command received - Pan: 56deg
+[2024-10-15 14:31:58.480] [INFO] [CAM-BL-036] Frame buffer sync - 30fps stable
+[2024-10-15 14:31:59.535] [WARN] [CAM-BL-007] Frame drop detected - recovering
+[2024-10-15 14:32:00.668] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:32:02.951] [INFO] [CAM-BL-033] Video stream: H.264 @ 1080p
+[2024-10-15 14:32:03.174] [INFO] [CAM-BL-007] Connection established from 10.0.3.221 (MAC: 00:1C:42:AA:BB:02) - Routine sync
+[2024-10-15 14:32:05.510] [WARN] [CAM-BL-039] High CPU usage detected: 93%
+[2024-10-15 14:32:06.023] [WARN] [NET] Latency spike: 253ms
+[2024-10-15 14:32:08.642] [INFO] [CAM-BL-004] PTZ command received - Pan: 20deg
+[2024-10-15 14:32:09.100] [INFO] [CAM-BL-033] Video stream: H.264 @ 1080p
+[2024-10-15 14:32:11.446] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:32:12.492] [INFO] [CAM-BL-048] PTZ command received - Pan: 129deg
+[2024-10-15 14:32:13.703] [INFO] [CAM-BL-003] Audio channel: MUTED
+[2024-10-15 14:32:15.563] [INFO] [CAM-BL-037] Frame buffer sync - 30fps stable
+[2024-10-15 14:32:16.475] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:32:18.371] [WARN] [NET] Latency spike: 345ms
+[2024-10-15 14:32:19.642] [INFO] [CAM-BL-027] Recording status: ACTIVE
+[2024-10-15 14:32:21.210] [CRITICAL] [CAM-BL-036] VIDEO FEED LOST
+[2024-10-15 14:32:22.486] [ERROR] [CAM-BL-042] Stream interrupted - source unavailable
+[2024-10-15 14:32:24.163] [CRITICAL] [CAM-BL-004] CONNECTION TERMINATED
+[2024-10-15 14:32:25.920] [ERROR] [CAM-BL-039] Stream interrupted - source unavailable
+[2024-10-15 14:32:26.830] [CRITICAL] [CAM-BL-014] VIDEO FEED LOST
+[2024-10-15 14:32:28.303] [CRITICAL] [CAM-BL-006] CONNECTION TERMINATED
+[2024-10-15 14:32:29.011] [ERROR] [CAM-BL-047] Stream interrupted - source unavailable
+[2024-10-15 14:32:31.580] [CRITICAL] [CAM-BL-042] VIDEO FEED LOST
+[2024-10-15 14:32:32.879] [CRITICAL] [CAM-BL-014] VIDEO FEED LOST
+[2024-10-15 14:32:34.748] [CRITICAL] [CAM-BL-028] CONNECTION TERMINATED
+[2024-10-15 14:32:35.443] [ERROR] [CAM-BL-043] Stream interrupted - source unavailable
+[2024-10-15 14:32:36.650] [CRITICAL] [CAM-BL-032] CONNECTION TERMINATED
+[2024-10-15 14:32:38.890] [CRITICAL] [CAM-BL-042] VIDEO FEED LOST
+[2024-10-15 14:32:39.215] [CRITICAL] [CAM-BL-010] CONNECTION TERMINATED
+[2024-10-15 14:32:41.593] [ERROR] [CAM-BL-010] Stream interrupted - source unavailable
+[2024-10-15 14:32:42.770] [CRITICAL] [CAM-BL-016] CONNECTION TERMINATED
+[2024-10-15 14:32:44.257] [ERROR] [CAM-BL-003] Stream interrupted - source unavailable
+[2024-10-15 14:32:45.196] [CRITICAL] [CAM-BL-004] CONNECTION TERMINATED
+[2024-10-15 14:32:47.108] [ERROR] [CAM-BL-010] Stream interrupted - source unavailable
+[2024-10-15 14:32:48.442] [ERROR] [CAM-BL-007] Stream interrupted - source unavailable
+[2024-10-15 14:32:49.564] [CRITICAL] [CAM-BL-019] CONNECTION TERMINATED
+[2024-10-15 14:32:51.478] [ERROR] [CAM-BL-034] Stream interrupted - source unavailable
+[2024-10-15 14:32:52.030] [ERROR] [CAM-BL-009] Stream interrupted - source unavailable
+[2024-10-15 14:32:54.601] [CRITICAL] [CAM-BL-024] VIDEO FEED LOST
+[2024-10-15 14:32:55.085] [CRITICAL] [CAM-BL-029] VIDEO FEED LOST
+[2024-10-15 14:32:57.454] [ERROR] [CAM-BL-042] Stream interrupted - source unavailable
+[2024-10-15 14:32:58.825] [ERROR] [CAM-BL-034] Stream interrupted - source unavailable
+[2024-10-15 14:33:00.884] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:33:01.091] [INFO] [NET] Bandwidth utilization: 37.8 Mbps
+[2024-10-15 14:33:02.825] [INFO] [CAM-BL-044] Audio channel: MUTED
+[2024-10-15 14:33:04.755] [INFO] [NET] Bandwidth utilization: 45.6 Mbps
+[2024-10-15 14:33:05.049] [INFO] [SYNC] NTP sync successful - drift: -29ms
+[2024-10-15 14:33:07.548] [INFO] [CAM-BL-014] Recording status: ACTIVE
+[2024-10-15 14:33:08.240] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:33:10.072] [INFO] [CAM-BL-031] Infrared mode: AUTO
+[2024-10-15 14:33:11.709] [INFO] [CAM-BL-023] Heartbeat received from 10.0.6.92 (MAC: 00:50:56:C0:00:02)
+[2024-10-15 14:33:12.426] [WARN] [NET] Latency spike: 485ms
+[2024-10-15 14:33:14.826] [INFO] [CAM-BL-044] Motion detection: ACTIVE
+[2024-10-15 14:33:15.860] [INFO] [CAM-BL-041] Frame buffer sync - 30fps stable
+[2024-10-15 14:33:17.358] [INFO] [CAM-BL-023] Audio channel: MUTED
+[2024-10-15 14:33:18.716] [INFO] [CAM-BL-041] Audio channel: MUTED
+[2024-10-15 14:33:20.576] [ERROR] [NET] Packet loss detected: 1.2%
+[2024-10-15 14:33:21.156] [INFO] [SYNC] NTP sync successful - drift: 25ms
+[2024-10-15 14:33:23.330] [INFO] [NET] Bandwidth utilization: 31.4 Mbps
+[2024-10-15 14:33:24.035] [INFO] [SYNC] NTP sync successful - drift: 42ms
+[2024-10-15 14:33:25.287] [WARN] [NET] Latency spike: 375ms
+[2024-10-15 14:33:27.815] [ERROR] [NET] Packet loss detected: 0.8%
+[2024-10-15 14:33:28.418] [INFO] [SYNC] NTP sync successful - drift: 12ms
+[2024-10-15 14:33:30.774] [INFO] [CAM-BL-016] Recording status: ACTIVE
+[2024-10-15 14:33:31.192] [INFO] [CAM-BL-018] Motion detection: ACTIVE
+[2024-10-15 14:33:33.736] [INFO] [CAM-BL-043] Heartbeat received from 10.0.5.88 (MAC: 00:16:3E:5A:2B:C1)
+[2024-10-15 14:33:34.563] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:33:36.666] [INFO] [CAM-BL-011] Recording status: ACTIVE
+[2024-10-15 14:33:37.152] [INFO] [CAM-BL-029] Frame buffer sync - 30fps stable
+[2024-10-15 14:33:38.281] [INFO] [NET] Bandwidth utilization: 55.8 Mbps
+[2024-10-15 14:33:40.443] [INFO] [CAM-BL-009] Video stream: H.264 @ 1080p
+[2024-10-15 14:33:41.521] [INFO] [CAM-BL-025] Lens calibration: OK
+[2024-10-15 14:33:43.783] [INFO] [STORAGE] Disk usage: 72.9% - Normal
+[2024-10-15 14:33:44.839] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:33:46.482] [INFO] [CAM-BL-050] PTZ command received - Pan: 336deg
+[2024-10-15 14:33:47.850] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:33:48.114] [INFO] [CAM-BL-006] Infrared mode: AUTO
+[2024-10-15 14:33:50.344] [INFO] [SYNC] NTP sync successful - drift: 15ms
+[2024-10-15 14:33:51.573] [INFO] [CAM-BL-017] Video stream: H.264 @ 1080p
+[2024-10-15 14:33:53.457] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:33:54.850] [INFO] [CAM-BL-009] Audio channel: MUTED
+[2024-10-15 14:33:56.618] [INFO] [CAM-BL-005] Lens calibration: OK
+[2024-10-15 14:33:57.459] [WARN] [NET] Latency spike: 381ms
+[2024-10-15 14:33:59.463] [ERROR] [CAM-BL-027] Connection timeout from 10.0.7.107
+[2024-10-15 14:34:00.585] [INFO] [CAM-BL-020] Frame buffer sync - 30fps stable
+[2024-10-15 14:34:01.424] [INFO] [NET] Bandwidth utilization: 47.1 Mbps
+[2024-10-15 14:34:03.059] [WARN] [CAM-BL-043] High CPU usage detected: 85%
+[2024-10-15 14:34:04.347] [INFO] [CAM-BL-032] Frame buffer sync - 30fps stable
+[2024-10-15 14:34:06.155] [WARN] [NET] Latency spike: 492ms
+[2024-10-15 14:34:07.709] [INFO] [CAM-BL-032] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:09.909] [INFO] [CAM-BL-050] PTZ command received - Pan: 359deg
+[2024-10-15 14:34:10.732] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:34:12.217] [INFO] [SYNC] NTP sync successful - drift: -10ms
+[2024-10-15 14:34:13.982] [INFO] [CAM-BL-009] Heartbeat received from 10.0.3.130 (MAC: 00:16:3E:5A:2B:CA)
+[2024-10-15 14:34:14.983] [INFO] [STORAGE] Disk usage: 73.7% - Normal
+[2024-10-15 14:34:16.971] [INFO] [CAM-BL-002] Lens calibration: OK
+[2024-10-15 14:34:17.505] [INFO] [CAM-BL-045] Infrared mode: AUTO
+[2024-10-15 14:34:19.109] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:34:20.741] [WARN] [NET] Latency spike: 363ms
+[2024-10-15 14:34:22.604] [INFO] [CAM-BL-029] Recording status: ACTIVE
+[2024-10-15 14:34:23.481] [INFO] [CAM-BL-025] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:24.978] [INFO] [CAM-BL-005] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:26.582] [INFO] [CAM-BL-016] Frame buffer sync - 30fps stable
+[2024-10-15 14:34:27.824] [INFO] [CAM-BL-028] Heartbeat received from 10.0.9.67 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:34:29.801] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:34:30.105] [INFO] [CAM-BL-038] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:32.896] [INFO] [CAM-BL-019] Audio channel: MUTED
+[2024-10-15 14:34:33.213] [INFO] [CAM-BL-031] Infrared mode: AUTO
+[2024-10-15 14:34:35.981] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:34:36.272] [INFO] [SYNC] NTP sync successful - drift: 0ms
+[2024-10-15 14:34:37.717] [INFO] [CAM-BL-026] Heartbeat received from 10.0.8.206 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:34:39.882] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:34:40.724] [INFO] [STORAGE] Disk usage: 60.6% - Normal
+[2024-10-15 14:34:42.190] [INFO] [SYNC] NTP sync successful - drift: 7ms
+[2024-10-15 14:34:43.156] [INFO] [CAM-BL-036] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:45.651] [INFO] [CAM-BL-038] Heartbeat received from 10.0.8.149 (MAC: 00:16:3E:5A:2B:CA)
+[2024-10-15 14:34:46.409] [INFO] [CAM-BL-044] Motion detection: ACTIVE
+[2024-10-15 14:34:48.599] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:34:49.566] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:34:50.224] [INFO] [NET] Bandwidth utilization: 49.7 Mbps
+[2024-10-15 14:34:52.006] [INFO] [SYNC] NTP sync successful - drift: -10ms
+[2024-10-15 14:34:53.459] [INFO] [CAM-BL-014] Motion detection: ACTIVE
+[2024-10-15 14:34:55.132] [WARN] [NET] Latency spike: 172ms
+[2024-10-15 14:34:56.027] [INFO] [CAM-BL-008] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:58.087] [INFO] [CAM-BL-046] Video stream: H.264 @ 1080p
+[2024-10-15 14:34:59.568] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:35:00.491] [INFO] [CAM-BL-038] Frame buffer sync - 30fps stable
+[2024-10-15 14:35:02.383] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:35:03.121] [INFO] [STORAGE] Disk usage: 77.3% - Normal
+[2024-10-15 14:35:05.458] [ERROR] [NET] Packet loss detected: 1.3%
+[2024-10-15 14:35:06.046] [INFO] [CAM-BL-028] Connection established from 10.0.1.34 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:35:08.516] [INFO] [STORAGE] Disk usage: 66.0% - Normal
+[2024-10-15 14:35:09.719] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:35:11.795] [INFO] [CAM-BL-043] Frame buffer sync - 30fps stable
+[2024-10-15 14:35:12.269] [INFO] [STORAGE] Disk usage: 64.4% - Normal
+[2024-10-15 14:35:13.241] [INFO] [CAM-BL-038] Connection established from 10.0.2.115 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:35:15.011] [INFO] [STORAGE] Disk usage: 72.3% - Normal
+[2024-10-15 14:35:16.672] [INFO] [CAM-BL-037] Audio channel: MUTED
+[2024-10-15 14:35:18.851] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:35:19.767] [INFO] [SYNC] NTP sync successful - drift: -27ms
+[2024-10-15 14:35:21.872] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:35:22.079] [INFO] [CAM-BL-013] PTZ command received - Pan: 109deg
+[2024-10-15 14:35:24.957] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:35:25.737] [INFO] [CAM-BL-029] PTZ command received - Pan: 85deg
+[2024-10-15 14:35:26.893] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:35:28.068] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:35:29.542] [INFO] [CAM-BL-018] Frame buffer sync - 30fps stable
+[2024-10-15 14:35:31.499] [INFO] [CAM-BL-030] Heartbeat received from 10.0.8.146 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:35:32.549] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:35:34.248] [INFO] [CAM-BL-045] Video stream: H.264 @ 1080p
+[2024-10-15 14:35:35.041] [INFO] [SYNC] NTP sync successful - drift: 0ms
+[2024-10-15 14:35:36.103] [INFO] [NET] Bandwidth utilization: 52.1 Mbps
+[2024-10-15 14:35:38.445] [INFO] [CAM-BL-021] PTZ command received - Pan: 57deg
+[2024-10-15 14:35:39.092] [INFO] [NET] Bandwidth utilization: 41.4 Mbps
+[2024-10-15 14:35:41.437] [INFO] [CAM-BL-012] Frame buffer sync - 30fps stable
+[2024-10-15 14:35:42.921] [INFO] [CAM-BL-020] Connection established from 10.0.10.165 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:35:44.352] [INFO] [STORAGE] Disk usage: 78.3% - Normal
+[2024-10-15 14:35:45.404] [INFO] [STORAGE] Disk usage: 75.2% - Normal
+[2024-10-15 14:35:47.254] [INFO] [CAM-BL-048] PTZ command received - Pan: 13deg
+[2024-10-15 14:35:48.778] [INFO] [STORAGE] Disk usage: 77.3% - Normal
+[2024-10-15 14:35:49.389] [INFO] [NET] Bandwidth utilization: 33.2 Mbps
+[2024-10-15 14:35:51.351] [INFO] [SYNC] NTP sync successful - drift: 24ms
+[2024-10-15 14:35:52.214] [INFO] [STORAGE] Disk usage: 69.0% - Normal
+[2024-10-15 14:35:54.104] [INFO] [CAM-BL-015] Heartbeat received from 10.0.6.131 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:35:55.273] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:35:57.977] [WARN] [CAM-BL-045] High CPU usage detected: 81%
+[2024-10-15 14:35:58.860] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:36:00.772] [INFO] [CAM-BL-041] Recording status: ACTIVE
+[2024-10-15 14:36:01.708] [INFO] [CAM-BL-012] Frame buffer sync - 30fps stable
+[2024-10-15 14:36:02.021] [INFO] [SYNC] NTP sync successful - drift: 15ms
+[2024-10-15 14:36:04.993] [WARN] [CAM-BL-030] Low light conditions detected
+[2024-10-15 14:36:05.299] [WARN] [CAM-BL-028] High CPU usage detected: 88%
+[2024-10-15 14:36:07.644] [WARN] [CAM-BL-031] High CPU usage detected: 89%
+[2024-10-15 14:36:08.351] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:36:10.864] [INFO] [CAM-BL-005] PTZ command received - Pan: 234deg
+[2024-10-15 14:36:11.278] [INFO] [CAM-BL-013] Connection established from 10.0.1.13 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:36:12.094] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:36:14.522] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:36:15.245] [INFO] [SYNC] NTP sync successful - drift: 35ms
+[2024-10-15 14:36:17.589] [INFO] [CAM-BL-027] Frame buffer sync - 30fps stable
+[2024-10-15 14:36:18.553] [INFO] [CAM-BL-020] Infrared mode: AUTO
+[2024-10-15 14:36:20.989] [INFO] [CAM-BL-009] Infrared mode: AUTO
+[2024-10-15 14:36:21.101] [INFO] [CAM-BL-033] Heartbeat received from 10.0.10.195 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:36:23.971] [WARN] [CAM-BL-046] Low light conditions detected
+[2024-10-15 14:36:24.025] [INFO] [CAM-BL-009] PTZ command received - Pan: 62deg
+[2024-10-15 14:36:25.227] [INFO] [CAM-BL-045] Infrared mode: AUTO
+[2024-10-15 14:36:27.218] [INFO] [CAM-BL-010] Video stream: H.264 @ 1080p
+[2024-10-15 14:36:28.946] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:36:30.098] [INFO] [CAM-BL-035] Video stream: H.264 @ 1080p
+[2024-10-15 14:36:31.817] [INFO] [STORAGE] Disk usage: 77.1% - Normal
+[2024-10-15 14:36:33.137] [INFO] [CAM-BL-031] Motion detection: ACTIVE
+[2024-10-15 14:36:34.076] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:36:36.487] [ERROR] [NET] Packet loss detected: 0.7%
+[2024-10-15 14:36:37.598] [WARN] [CAM-BL-041] High CPU usage detected: 89%
+[2024-10-15 14:36:38.959] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:36:40.147] [INFO] [STORAGE] Disk usage: 65.1% - Normal
+[2024-10-15 14:36:41.841] [INFO] [CAM-BL-012] Connection established from 10.0.2.45 (MAC: 00:16:3E:5A:2B:C5) - Routine sync
+[2024-10-15 14:36:43.147] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:36:44.273] [INFO] [STORAGE] Disk usage: 72.9% - Normal
+[2024-10-15 14:36:46.051] [INFO] [CAM-BL-004] Recording status: ACTIVE
+[2024-10-15 14:36:47.265] [INFO] [CAM-BL-039] PTZ command received - Pan: 176deg
+[2024-10-15 14:36:48.887] [WARN] [NET] Latency spike: 116ms
+[2024-10-15 14:36:50.744] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:36:51.929] [INFO] [CAM-BL-019] Motion detection: ACTIVE
+[2024-10-15 14:36:53.836] [WARN] [CAM-BL-029] High CPU usage detected: 78%
+[2024-10-15 14:36:54.796] [INFO] [SYNC] NTP sync successful - drift: -12ms
+[2024-10-15 14:36:56.006] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:36:57.501] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:36:59.490] [INFO] [CAM-BL-008] Video stream: H.264 @ 1080p
+[2024-10-15 14:37:00.177] [INFO] [SYNC] NTP sync successful - drift: -17ms
+[2024-10-15 14:37:01.692] [INFO] [CAM-BL-020] Connection established from 10.0.3.243 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:37:03.866] [INFO] [CAM-BL-034] Video stream: H.264 @ 1080p
+[2024-10-15 14:37:04.819] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:37:06.201] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:37:07.649] [INFO] [CAM-BL-008] Frame buffer sync - 30fps stable
+[2024-10-15 14:37:09.031] [INFO] [CAM-BL-017] Infrared mode: AUTO
+[2024-10-15 14:37:10.466] [INFO] [CAM-BL-032] Infrared mode: AUTO
+[2024-10-15 14:37:12.650] [WARN] [CAM-BL-042] Low light conditions detected
+[2024-10-15 14:37:13.504] [INFO] [STORAGE] Disk usage: 61.7% - Normal
+[2024-10-15 14:37:14.009] [INFO] [CAM-BL-004] Heartbeat received from 10.0.4.165 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:37:16.359] [INFO] [CAM-BL-008] Frame buffer sync - 30fps stable
+[2024-10-15 14:37:17.264] [INFO] [CAM-BL-004] PTZ command received - Pan: 323deg
+[2024-10-15 14:37:19.238] [WARN] [CAM-BL-045] Frame drop detected - recovering
+[2024-10-15 14:37:20.558] [INFO] [CAM-BL-007] PTZ command received - Pan: 94deg
+[2024-10-15 14:37:22.240] [INFO] [CAM-BL-038] Recording status: ACTIVE
+[2024-10-15 14:37:23.001] [INFO] [CAM-BL-022] Motion detection: ACTIVE
+[2024-10-15 14:37:24.522] [INFO] [CAM-BL-007] Motion detection: ACTIVE
+[2024-10-15 14:37:26.766] [INFO] [CAM-BL-016] Recording status: ACTIVE
+[2024-10-15 14:37:27.427] [ERROR] [CAM-BL-025] Connection timeout from 10.0.7.214
+[2024-10-15 14:37:29.674] [INFO] [NET] Bandwidth utilization: 38.2 Mbps
+[2024-10-15 14:37:30.380] [INFO] [CAM-BL-007] Motion detection: ACTIVE
+[2024-10-15 14:37:32.954] [WARN] [CAM-BL-037] High CPU usage detected: 72%
+[2024-10-15 14:37:33.434] [INFO] [CAM-BL-050] Connection established from 10.0.4.198 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:37:35.592] [INFO] [CAM-BL-020] Connection established from 10.0.6.151 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:37:36.630] [INFO] [CAM-BL-012] Connection established from 10.0.2.171 (MAC: 08:00:27:12:34:56) - Routine sync
+[2024-10-15 14:37:37.474] [INFO] [CAM-BL-034] Video stream: H.264 @ 1080p
+[2024-10-15 14:37:39.626] [INFO] [CAM-BL-012] PTZ command received - Pan: 342deg
+[2024-10-15 14:37:40.472] [INFO] [CAM-BL-023] Recording status: ACTIVE
+[2024-10-15 14:37:42.610] [INFO] [CAM-BL-045] Infrared mode: AUTO
+[2024-10-15 14:37:43.649] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:37:45.290] [INFO] [CAM-BL-027] Frame buffer sync - 30fps stable
+[2024-10-15 14:37:46.237] [INFO] [CAM-BL-035] Lens calibration: OK
+[2024-10-15 14:37:48.989] [WARN] [CAM-BL-049] Low light conditions detected
+[2024-10-15 14:37:49.134] [INFO] [CAM-BL-010] Frame buffer sync - 30fps stable
+[2024-10-15 14:37:50.839] [INFO] [CAM-BL-018] Motion detection: ACTIVE
+[2024-10-15 14:37:52.838] [INFO] [CAM-BL-002] Infrared mode: AUTO
+[2024-10-15 14:37:53.829] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:37:55.832] [INFO] [CAM-BL-007] Frame buffer sync - 30fps stable
+[2024-10-15 14:37:56.598] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:37:58.681] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:37:59.496] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:38:00.977] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:38:02.999] [INFO] [CAM-BL-047] Infrared mode: AUTO
+[2024-10-15 14:38:03.292] [INFO] [CAM-BL-033] Lens calibration: OK
+[2024-10-15 14:38:05.317] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:38:06.341] [INFO] [SYNC] NTP sync successful - drift: 5ms
+[2024-10-15 14:38:08.173] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:38:09.257] [INFO] [CAM-BL-037] Connection established from 10.0.10.157 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:38:11.800] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:38:12.382] [INFO] [NET] Bandwidth utilization: 31.3 Mbps
+[2024-10-15 14:38:13.389] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:38:15.196] [INFO] [CAM-BL-020] Motion detection: ACTIVE
+[2024-10-15 14:38:16.705] [INFO] [CAM-BL-034] Video stream: H.264 @ 1080p
+[2024-10-15 14:38:18.832] [INFO] [CAM-BL-017] PTZ command received - Pan: 247deg
+[2024-10-15 14:38:19.081] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:38:21.722] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:38:22.047] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:38:24.948] [INFO] [SYNC] NTP sync successful - drift: 10ms
+[2024-10-15 14:38:25.397] [INFO] [SYNC] NTP sync successful - drift: -19ms
+[2024-10-15 14:38:26.234] [INFO] [SYNC] NTP sync successful - drift: -12ms
+[2024-10-15 14:38:28.444] [INFO] [CAM-BL-026] Video stream: H.264 @ 1080p
+[2024-10-15 14:38:29.563] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:38:31.401] [WARN] [NET] Latency spike: 292ms
+[2024-10-15 14:38:32.943] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:38:34.421] [INFO] [NET] Bandwidth utilization: 33.1 Mbps
+[2024-10-15 14:38:35.114] [INFO] [NET] Bandwidth utilization: 48.2 Mbps
+[2024-10-15 14:38:36.343] [INFO] [STORAGE] Disk usage: 64.0% - Normal
+[2024-10-15 14:38:38.423] [INFO] [CAM-BL-022] Motion detection: ACTIVE
+[2024-10-15 14:38:39.184] [INFO] [CAM-BL-011] Frame buffer sync - 30fps stable
+[2024-10-15 14:38:41.687] [INFO] [NET] Bandwidth utilization: 33.3 Mbps
+[2024-10-15 14:38:42.147] [INFO] [CAM-BL-027] PTZ command received - Pan: 360deg
+[2024-10-15 14:38:44.965] [INFO] [CAM-BL-005] Infrared mode: AUTO
+[2024-10-15 14:38:45.455] [INFO] [CAM-BL-037] PTZ command received - Pan: 98deg
+[2024-10-15 14:38:47.014] [INFO] [CAM-BL-047] Video stream: H.264 @ 1080p
+[2024-10-15 14:38:48.051] [INFO] [NET] Bandwidth utilization: 51.3 Mbps
+[2024-10-15 14:38:49.050] [INFO] [CAM-BL-018] Audio channel: MUTED
+[2024-10-15 14:38:51.276] [WARN] [CAM-BL-040] Frame drop detected - recovering
+[2024-10-15 14:38:52.549] [WARN] [NET] Latency spike: 416ms
+[2024-10-15 14:38:54.927] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:38:55.129] [INFO] [CAM-BL-011] Lens calibration: OK
+[2024-10-15 14:38:57.262] [INFO] [CAM-BL-019] Heartbeat received from 10.0.5.70 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:38:58.434] [INFO] [CAM-BL-032] Motion detection: ACTIVE
+[2024-10-15 14:39:00.332] [INFO] [CAM-BL-032] PTZ command received - Pan: 176deg
+[2024-10-15 14:39:01.764] [INFO] [SYNC] NTP sync successful - drift: 25ms
+[2024-10-15 14:39:02.775] [INFO] [NET] Bandwidth utilization: 51.4 Mbps
+[2024-10-15 14:39:04.059] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:39:05.514] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:39:07.244] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:39:08.592] [INFO] [NET] Bandwidth utilization: 59.4 Mbps
+[2024-10-15 14:39:10.423] [INFO] [CAM-BL-046] PTZ command received - Pan: 205deg
+[2024-10-15 14:39:11.981] [INFO] [SYNC] NTP sync successful - drift: -6ms
+[2024-10-15 14:39:12.814] [INFO] [STORAGE] Disk usage: 68.3% - Normal
+[2024-10-15 14:39:14.153] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:39:15.723] [INFO] [CAM-BL-045] Frame buffer sync - 30fps stable
+[2024-10-15 14:39:17.388] [INFO] [CAM-BL-014] Recording status: ACTIVE
+[2024-10-15 14:39:18.892] [INFO] [SYNC] NTP sync successful - drift: 23ms
+[2024-10-15 14:39:20.772] [INFO] [CAM-BL-039] Frame buffer sync - 30fps stable
+[2024-10-15 14:39:21.006] [INFO] [CAM-BL-050] Audio channel: MUTED
+[2024-10-15 14:39:23.624] [INFO] [SYNC] NTP sync successful - drift: -47ms
+[2024-10-15 14:39:24.978] [INFO] [CAM-BL-004] Recording status: ACTIVE
+[2024-10-15 14:39:25.435] [INFO] [SYNC] NTP sync successful - drift: 39ms
+[2024-10-15 14:39:27.625] [INFO] [CAM-BL-013] Heartbeat received from 10.0.5.189 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:39:28.295] [INFO] [CAM-BL-028] Video stream: H.264 @ 1080p
+[2024-10-15 14:39:30.873] [INFO] [CAM-BL-036] Infrared mode: AUTO
+[2024-10-15 14:39:31.721] [INFO] [CAM-BL-013] Motion detection: ACTIVE
+[2024-10-15 14:39:33.806] [INFO] [CAM-BL-022] Audio channel: MUTED
+[2024-10-15 14:39:34.207] [INFO] [CAM-BL-034] Frame buffer sync - 30fps stable
+[2024-10-15 14:39:36.904] [INFO] [CAM-BL-015] PTZ command received - Pan: 2deg
+[2024-10-15 14:39:37.402] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:39:38.480] [INFO] [NET] Bandwidth utilization: 42.1 Mbps
+[2024-10-15 14:39:40.223] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:39:41.825] [INFO] [CAM-BL-027] Connection established from 10.0.8.22 (MAC: 08:00:27:12:34:58) - Routine sync
+[2024-10-15 14:39:43.696] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:39:44.018] [WARN] [CAM-BL-039] Low light conditions detected
+[2024-10-15 14:39:46.458] [ERROR] [CAM-BL-038] Connection timeout from 10.0.4.118
+[2024-10-15 14:39:47.129] [WARN] [CAM-BL-031] Low light conditions detected
+[2024-10-15 14:39:48.670] [INFO] [CAM-BL-040] Motion detection: ACTIVE
+[2024-10-15 14:39:50.992] [INFO] [CAM-BL-016] Connection established from 10.0.4.70 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:39:51.132] [INFO] [CAM-BL-026] Recording status: ACTIVE
+[2024-10-15 14:39:53.564] [INFO] [NET] Bandwidth utilization: 51.7 Mbps
+[2024-10-15 14:39:54.027] [WARN] [NET] Latency spike: 132ms
+[2024-10-15 14:39:56.473] [INFO] [SYNC] NTP sync successful - drift: 10ms
+[2024-10-15 14:39:57.301] [INFO] [CAM-BL-033] Frame buffer sync - 30fps stable
+[2024-10-15 14:39:59.283] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:40:00.196] [INFO] [CAM-BL-048] Audio channel: MUTED
+[2024-10-15 14:40:01.679] [WARN] [CAM-BL-027] Frame drop detected - recovering
+[2024-10-15 14:40:03.778] [INFO] [CAM-BL-022] Heartbeat received from 10.0.3.210 (MAC: 00:16:3E:5A:2B:C9)
+[2024-10-15 14:40:04.690] [INFO] [CAM-BL-025] Video stream: H.264 @ 1080p
+[2024-10-15 14:40:06.220] [INFO] [CAM-BL-038] Recording status: ACTIVE
+[2024-10-15 14:40:07.619] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:09.382] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:40:10.168] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:12.129] [ERROR] [CAM-BL-050] Connection timeout from 10.0.1.209
+[2024-10-15 14:40:13.852] [INFO] [STORAGE] Disk usage: 69.7% - Normal
+[2024-10-15 14:40:14.030] [INFO] [NET] Bandwidth utilization: 50.9 Mbps
+[2024-10-15 14:40:16.180] [INFO] [CAM-BL-033] Motion detection: ACTIVE
+[2024-10-15 14:40:17.256] [INFO] [CAM-BL-024] Motion detection: ACTIVE
+[2024-10-15 14:40:19.050] [INFO] [CAM-BL-027] Lens calibration: OK
+[2024-10-15 14:40:20.651] [INFO] [CAM-BL-041] PTZ command received - Pan: 40deg
+[2024-10-15 14:40:22.268] [INFO] [CAM-BL-002] Lens calibration: OK
+[2024-10-15 14:40:23.158] [WARN] [CAM-BL-033] Frame drop detected - recovering
+[2024-10-15 14:40:24.025] [INFO] [CAM-BL-018] Frame buffer sync - 30fps stable
+[2024-10-15 14:40:26.941] [WARN] [CAM-BL-005] Low light conditions detected
+[2024-10-15 14:40:27.695] [INFO] [CAM-BL-031] Lens calibration: OK
+[2024-10-15 14:40:29.428] [WARN] [NET] Latency spike: 454ms
+[2024-10-15 14:40:30.730] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:32.064] [INFO] [NET] Bandwidth utilization: 50.1 Mbps
+[2024-10-15 14:40:33.426] [INFO] [STORAGE] Disk usage: 72.8% - Normal
+[2024-10-15 14:40:35.039] [INFO] [CAM-BL-011] Lens calibration: OK
+[2024-10-15 14:40:36.697] [INFO] [SYNC] NTP sync successful - drift: 25ms
+[2024-10-15 14:40:37.682] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:39.957] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:40.985] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:42.460] [INFO] [NET] Bandwidth utilization: 55.1 Mbps
+[2024-10-15 14:40:43.807] [INFO] [CAM-BL-007] Video stream: H.264 @ 1080p
+[2024-10-15 14:40:45.673] [INFO] [NET] Bandwidth utilization: 40.9 Mbps
+[2024-10-15 14:40:46.685] [INFO] [STORAGE] Disk usage: 72.2% - Normal
+[2024-10-15 14:40:48.561] [INFO] [CAM-BL-002] Frame buffer sync - 30fps stable
+[2024-10-15 14:40:49.921] [INFO] [NET] Bandwidth utilization: 32.6 Mbps
+[2024-10-15 14:40:50.381] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:40:52.189] [INFO] [CAM-BL-017] Motion detection: ACTIVE
+[2024-10-15 14:40:53.010] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:40:55.855] [INFO] [CAM-BL-017] Video stream: H.264 @ 1080p
+[2024-10-15 14:40:56.979] [INFO] [CAM-BL-034] Lens calibration: OK
+[2024-10-15 14:40:58.808] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:40:59.458] [INFO] [CAM-BL-023] Motion detection: ACTIVE
+[2024-10-15 14:41:00.820] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:02.818] [WARN] [CAM-BL-023] High CPU usage detected: 89%
+[2024-10-15 14:41:03.314] [INFO] [CAM-BL-019] Frame buffer sync - 30fps stable
+[2024-10-15 14:41:05.559] [INFO] [CAM-BL-028] Infrared mode: AUTO
+[2024-10-15 14:41:06.307] [ERROR] [NET] Packet loss detected: 1.2%
+[2024-10-15 14:41:08.923] [ERROR] [NET] Packet loss detected: 0.5%
+[2024-10-15 14:41:09.124] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:41:11.608] [INFO] [CAM-BL-029] PTZ command received - Pan: 112deg
+[2024-10-15 14:41:12.685] [INFO] [CAM-BL-040] PTZ command received - Pan: 92deg
+[2024-10-15 14:41:13.282] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:41:15.549] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:16.209] [INFO] [CAM-BL-007] Video stream: H.264 @ 1080p
+[2024-10-15 14:41:18.040] [INFO] [CAM-BL-027] Motion detection: ACTIVE
+[2024-10-15 14:41:19.377] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:41:21.310] [INFO] [CAM-BL-031] Frame buffer sync - 30fps stable
+[2024-10-15 14:41:22.770] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:24.334] [ERROR] [CAM-BL-040] Connection timeout from 10.0.7.211
+[2024-10-15 14:41:25.433] [WARN] [CAM-BL-035] Frame drop detected - recovering
+[2024-10-15 14:41:26.320] [INFO] [SYNC] NTP sync successful - drift: -18ms
+[2024-10-15 14:41:28.166] [INFO] [CAM-BL-003] Connection established from 10.0.1.40 (MAC: 00:1C:42:AA:BB:01) - Routine sync
+[2024-10-15 14:41:29.822] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:41:31.171] [INFO] [CAM-BL-022] Connection established from 10.0.6.110 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:41:32.358] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:41:34.247] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:35.230] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:36.910] [INFO] [NET] Bandwidth utilization: 57.6 Mbps
+[2024-10-15 14:41:38.360] [ERROR] [CAM-BL-012] Connection timeout from 10.0.9.55
+[2024-10-15 14:41:39.435] [INFO] [CAM-BL-016] Recording status: ACTIVE
+[2024-10-15 14:41:41.012] [INFO] [CAM-BL-039] Recording status: ACTIVE
+[2024-10-15 14:41:42.304] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:41:44.521] [INFO] [CAM-BL-008] PTZ command received - Pan: 45deg
+[2024-10-15 14:41:45.997] [INFO] [CAM-BL-039] Motion detection: ACTIVE
+[2024-10-15 14:41:47.751] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:41:48.271] [INFO] [CAM-BL-016] Connection established from 10.0.4.181 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:41:49.561] [WARN] [CAM-BL-010] Frame drop detected - recovering
+[2024-10-15 14:41:51.898] [INFO] [CAM-BL-017] Connection established from 10.0.5.164 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:41:52.405] [INFO] [CAM-BL-031] Heartbeat received from 10.0.8.200 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:41:54.250] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:41:55.190] [INFO] [CAM-BL-047] Connection established from 10.0.7.169 (MAC: 00:16:3E:5A:2B:C5) - Routine sync
+[2024-10-15 14:41:57.901] [INFO] [NET] Bandwidth utilization: 52.4 Mbps
+[2024-10-15 14:41:58.473] [INFO] [CAM-BL-016] Infrared mode: AUTO
+[2024-10-15 14:42:00.057] [INFO] [SYNC] NTP sync successful - drift: 32ms
+[2024-10-15 14:42:01.151] [INFO] [SYNC] NTP sync successful - drift: -33ms
+[2024-10-15 14:42:02.258] [INFO] [CAM-BL-014] Infrared mode: AUTO
+[2024-10-15 14:42:04.885] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:42:05.430] [WARN] [NET] Latency spike: 359ms
+[2024-10-15 14:42:07.501] [INFO] [CAM-BL-029] Lens calibration: OK
+[2024-10-15 14:42:08.118] [INFO] [NET] Bandwidth utilization: 33.4 Mbps
+[2024-10-15 14:42:10.332] [INFO] [CAM-BL-042] Lens calibration: OK
+[2024-10-15 14:42:11.159] [WARN] [CAM-BL-049] Frame drop detected - recovering
+[2024-10-15 14:42:12.470] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:42:14.462] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:42:15.947] [INFO] [CAM-BL-031] Recording status: ACTIVE
+[2024-10-15 14:42:17.561] [INFO] [CAM-BL-017] Infrared mode: AUTO
+[2024-10-15 14:42:18.010] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:42:20.867] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:42:21.227] [INFO] [CAM-BL-023] Motion detection: ACTIVE
+[2024-10-15 14:42:23.683] [INFO] [CAM-BL-047] PTZ command received - Pan: 270deg
+[2024-10-15 14:42:24.257] [ERROR] [NET] Packet loss detected: 1.7%
+[2024-10-15 14:42:25.865] [ERROR] [CAM-BL-026] Frame sync lost - reconnecting
+[2024-10-15 14:42:27.277] [INFO] [STORAGE] Disk usage: 64.0% - Normal
+[2024-10-15 14:42:28.018] [INFO] [CAM-BL-022] Video stream: H.264 @ 1080p
+[2024-10-15 14:42:30.554] [INFO] [SYNC] NTP sync successful - drift: -31ms
+[2024-10-15 14:42:31.592] [ERROR] [CAM-BL-004] Frame sync lost - reconnecting
+[2024-10-15 14:42:33.338] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:42:34.703] [INFO] [CAM-BL-041] Video stream: H.264 @ 1080p
+[2024-10-15 14:42:36.584] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:42:37.186] [INFO] [CAM-BL-026] Connection established from 10.0.2.153 (MAC: 00:16:3E:5A:2B:C1) - Routine sync
+[2024-10-15 14:42:38.633] [INFO] [CAM-BL-016] Connection established from 10.0.2.112 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:42:40.883] [INFO] [CAM-BL-040] Connection established from 10.0.3.194 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:42:41.068] [INFO] [CAM-BL-028] Frame buffer sync - 30fps stable
+[2024-10-15 14:42:43.752] [INFO] [CAM-BL-014] Connection established from 10.0.8.73 (MAC: 00:16:3E:5A:2B:C2) - Routine sync
+[2024-10-15 14:42:44.680] [INFO] [CAM-BL-001] Motion detection: ACTIVE
+[2024-10-15 14:42:46.054] [INFO] [STORAGE] Disk usage: 76.3% - Normal
+[2024-10-15 14:42:47.726] [INFO] [CAM-BL-028] Lens calibration: OK
+[2024-10-15 14:42:48.021] [INFO] [CAM-BL-039] Lens calibration: OK
+[2024-10-15 14:42:50.309] [INFO] [CAM-BL-047] Frame buffer sync - 30fps stable
+[2024-10-15 14:42:51.147] [INFO] [CAM-BL-042] Motion detection: ACTIVE
+[2024-10-15 14:42:53.128] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:42:54.754] [INFO] [CAM-BL-037] Heartbeat received from 10.0.4.105 (MAC: 00:16:3E:5A:2B:CB)
+[2024-10-15 14:42:56.880] [INFO] [CAM-BL-007] Infrared mode: AUTO
+[2024-10-15 14:42:57.835] [INFO] [NET] Bandwidth utilization: 58.3 Mbps
+[2024-10-15 14:42:59.788] [INFO] [CAM-BL-012] Frame buffer sync - 30fps stable
+[2024-10-15 14:43:00.702] [WARN] [CAM-BL-019] High CPU usage detected: 95%
+[2024-10-15 14:43:01.495] [INFO] [CAM-BL-043] Motion detection: ACTIVE
+[2024-10-15 14:43:03.350] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:43:04.380] [WARN] [CAM-BL-043] High CPU usage detected: 86%
+[2024-10-15 14:43:06.622] [INFO] [CAM-BL-037] Motion detection: ACTIVE
+[2024-10-15 14:43:07.628] [WARN] [CAM-BL-016] Low light conditions detected
+[2024-10-15 14:43:09.954] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:43:10.485] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:43:12.387] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:43:13.867] [INFO] [CAM-BL-020] PTZ command received - Pan: 19deg
+[2024-10-15 14:43:14.344] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:43:16.400] [INFO] [STORAGE] Disk usage: 70.2% - Normal
+[2024-10-15 14:43:17.660] [ERROR] [CAM-BL-031] Connection timeout from 10.0.9.198
+[2024-10-15 14:43:19.310] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:43:20.720] [INFO] [CAM-BL-032] Heartbeat received from 10.0.5.200 (MAC: 00:16:3E:5A:2B:C1)
+[2024-10-15 14:43:22.188] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:43:23.844] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:43:24.173] [INFO] [CAM-BL-016] Audio channel: MUTED
+[2024-10-15 14:43:26.897] [WARN] [CAM-BL-009] Frame drop detected - recovering
+[2024-10-15 14:43:27.468] [INFO] [CAM-BL-026] Audio channel: MUTED
+[2024-10-15 14:43:29.461] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:43:30.426] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:43:32.757] [INFO] [CAM-BL-030] Heartbeat received from 10.0.3.90 (MAC: AA:BB:CC:DD:EE:FF)
+[2024-10-15 14:43:33.365] [INFO] [NET] Bandwidth utilization: 55.7 Mbps
+[2024-10-15 14:43:35.175] [INFO] [SYNC] NTP sync successful - drift: -10ms
+[2024-10-15 14:43:36.331] [INFO] [CAM-BL-019] Heartbeat received from 10.0.1.226 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:43:37.580] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:43:39.209] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:43:40.241] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:43:42.710] [INFO] [CAM-BL-020] Frame buffer sync - 30fps stable
+[2024-10-15 14:43:43.843] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:43:45.934] [INFO] [CAM-BL-033] PTZ command received - Pan: 168deg
+[2024-10-15 14:43:46.235] [INFO] [NET] Bandwidth utilization: 57.8 Mbps
+[2024-10-15 14:43:48.601] [INFO] [NET] Bandwidth utilization: 50.7 Mbps
+[2024-10-15 14:43:49.251] [INFO] [CAM-BL-036] PTZ command received - Pan: 220deg
+[2024-10-15 14:43:50.709] [INFO] [CAM-BL-011] Heartbeat received from 10.0.5.25 (MAC: DE:AD:BE:EF:00:01)
+[2024-10-15 14:43:52.028] [INFO] [CAM-BL-049] Frame buffer sync - 30fps stable
+[2024-10-15 14:43:53.329] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:43:55.745] [INFO] [CAM-BL-007] Heartbeat received from 10.0.8.209 (MAC: 00:11:22:33:44:55)
+[2024-10-15 14:43:56.230] [INFO] [CAM-BL-005] Recording status: ACTIVE
+[2024-10-15 14:43:58.375] [INFO] [CAM-BL-014] Video stream: H.264 @ 1080p
+[2024-10-15 14:43:59.962] [INFO] [CAM-BL-043] Recording status: ACTIVE
+[2024-10-15 14:44:00.613] [INFO] [CAM-BL-005] Infrared mode: AUTO
+[2024-10-15 14:44:02.734] [INFO] [CAM-BL-016] Video stream: H.264 @ 1080p
+[2024-10-15 14:44:03.262] [INFO] [SYNC] NTP sync successful - drift: 36ms
+[2024-10-15 14:44:05.286] [INFO] [SYNC] NTP sync successful - drift: 37ms
+[2024-10-15 14:44:06.720] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:44:08.350] [INFO] [CAM-BL-017] Infrared mode: AUTO
+[2024-10-15 14:44:09.162] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:44:11.631] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:44:12.736] [INFO] [SYNC] NTP sync successful - drift: 6ms
+[2024-10-15 14:44:13.142] [INFO] [CAM-BL-007] PTZ command received - Pan: 8deg
+[2024-10-15 14:44:15.614] [INFO] [CAM-BL-040] Infrared mode: AUTO
+[2024-10-15 14:44:16.539] [INFO] [CAM-BL-006] Lens calibration: OK
+[2024-10-15 14:44:18.329] [WARN] [CAM-BL-007] High CPU usage detected: 71%
+[2024-10-15 14:44:19.667] [INFO] [CAM-BL-030] Audio channel: MUTED
+[2024-10-15 14:44:21.899] [INFO] [CAM-BL-034] Lens calibration: OK
+[2024-10-15 14:44:22.796] [INFO] [CAM-BL-015] PTZ command received - Pan: 32deg
+[2024-10-15 14:44:24.482] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:44:25.910] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
+[2024-10-15 14:44:26.602] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:44:28.166] [INFO] [STORAGE] Disk usage: 64.2% - Normal
+[2024-10-15 14:44:29.017] [INFO] [CAM-BL-047] PTZ command received - Pan: 52deg
+[2024-10-15 14:44:31.758] [INFO] [SYNC] NTP sync successful - drift: 26ms
+[2024-10-15 14:44:32.151] [INFO] [CAM-BL-005] Frame buffer sync - 30fps stable
+[2024-10-15 14:44:34.357] [INFO] [CAM-BL-024] Lens calibration: OK
+[2024-10-15 14:44:35.355] [INFO] [CAM-BL-005] Video stream: H.264 @ 1080p
+[2024-10-15 14:44:36.276] [INFO] [CAM-BL-050] Video stream: H.264 @ 1080p
+[2024-10-15 14:44:38.215] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:44:39.086] [INFO] [CAM-BL-039] Recording status: ACTIVE
+[2024-10-15 14:44:41.914] [INFO] [CAM-BL-045] Video stream: H.264 @ 1080p
+[2024-10-15 14:44:42.533] [INFO] [SYNC] NTP sync successful - drift: 20ms
+[2024-10-15 14:44:44.418] [INFO] [CAM-BL-030] Connection established from 10.0.5.33 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:44:45.396] [INFO] [CAM-BL-002] Video stream: H.264 @ 1080p
+[2024-10-15 14:44:47.554] [WARN] [CAM-BL-006] Low light conditions detected
+[2024-10-15 14:44:48.594] [INFO] [CAM-BL-008] Connection established from 10.0.3.183 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:44:49.788] [INFO] [CAM-BL-033] Recording status: ACTIVE
+[2024-10-15 14:44:51.069] [INFO] [CAM-BL-017] Heartbeat received from 10.0.7.72 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:44:52.775] [INFO] [SYNC] NTP sync successful - drift: -36ms
+[2024-10-15 14:44:54.535] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:44:55.177] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:44:57.566] [INFO] [CAM-BL-011] PTZ command received - Pan: 223deg
+[2024-10-15 14:44:58.144] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:45:00.714] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:45:01.353] [INFO] [CAM-BL-042] PTZ command received - Pan: 188deg
+[2024-10-15 14:45:02.648] [INFO] [CAM-BL-019] Heartbeat received from 10.0.3.154 (MAC: 00:50:56:C0:00:01)
+[2024-10-15 14:45:04.384] [INFO] [NET] Bandwidth utilization: 53.8 Mbps
+[2024-10-15 14:45:05.004] [INFO] [CAM-BL-027] Recording status: ACTIVE
+[2024-10-15 14:45:07.820] [INFO] [CAM-BL-011] Motion detection: ACTIVE
+[2024-10-15 14:45:08.129] [INFO] [STORAGE] Disk usage: 70.9% - Normal
+[2024-10-15 14:45:10.605] [INFO] [CAM-BL-014] Heartbeat received from 10.0.2.121 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:45:11.515] [WARN] [CAM-BL-048] High CPU usage detected: 77%
+[2024-10-15 14:45:12.008] [INFO] [SYNC] NTP sync successful - drift: 29ms
+[2024-10-15 14:45:14.567] [WARN] [CAM-BL-019] High CPU usage detected: 90%
+[2024-10-15 14:45:15.282] [INFO] [CAM-BL-014] Lens calibration: OK
+[2024-10-15 14:45:17.112] [INFO] [STORAGE] Disk usage: 66.0% - Normal
+[2024-10-15 14:45:18.149] [INFO] [CAM-BL-008] PTZ command received - Pan: 300deg
+[2024-10-15 14:45:20.290] [INFO] [NET] Bandwidth utilization: 41.0 Mbps
+[2024-10-15 14:45:21.257] [INFO] [CAM-BL-020] Connection established from 10.0.8.118 (MAC: 00:16:3E:5A:2B:C4) - Routine sync
+[2024-10-15 14:45:23.937] [INFO] [CAM-BL-044] Motion detection: ACTIVE
+[2024-10-15 14:45:24.037] [ERROR] [CAM-BL-002] Connection timeout from 10.0.10.116
+[2024-10-15 14:45:25.794] [WARN] [CAM-BL-022] Low light conditions detected
+[2024-10-15 14:45:27.373] [INFO] [CAM-BL-005] Motion detection: ACTIVE
+[2024-10-15 14:45:28.486] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:45:30.235] [INFO] [NET] Bandwidth utilization: 31.4 Mbps
+[2024-10-15 14:45:31.525] [INFO] [NET] Bandwidth utilization: 46.3 Mbps
+[2024-10-15 14:45:33.447] [ERROR] [CAM-BL-040] Frame sync lost - reconnecting
+[2024-10-15 14:45:34.051] [INFO] [CAM-BL-004] Frame buffer sync - 30fps stable
+[2024-10-15 14:45:36.355] [INFO] [CAM-BL-028] Audio channel: MUTED
+[2024-10-15 14:45:37.113] [INFO] [CAM-BL-021] Motion detection: ACTIVE
+[2024-10-15 14:45:38.091] [INFO] [STORAGE] Disk usage: 61.5% - Normal
+[2024-10-15 14:45:40.087] [INFO] [CAM-BL-013] Motion detection: ACTIVE
+[2024-10-15 14:45:41.315] [INFO] [CAM-BL-043] Frame buffer sync - 30fps stable
+[2024-10-15 14:45:43.261] [INFO] [NET] Bandwidth utilization: 48.4 Mbps
+[2024-10-15 14:45:44.841] [INFO] [CAM-BL-023] Lens calibration: OK
+[2024-10-15 14:45:46.855] [INFO] [CAM-BL-040] Lens calibration: OK
+[2024-10-15 14:45:47.412] [INFO] [CAM-BL-050] Audio channel: MUTED
+[2024-10-15 14:45:48.480] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:45:50.689] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:45:51.415] [ERROR] [CAM-BL-021] Connection timeout from 10.0.6.160
+[2024-10-15 14:45:53.092] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:45:54.257] [INFO] [CAM-BL-023] Infrared mode: AUTO
+[2024-10-15 14:45:56.469] [INFO] [CAM-BL-024] PTZ command received - Pan: 115deg
+[2024-10-15 14:45:57.910] [INFO] [CAM-BL-050] PTZ command received - Pan: 120deg
+[2024-10-15 14:45:59.107] [INFO] [CAM-BL-018] Connection established from 10.0.9.134 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:46:00.139] [INFO] [CAM-BL-034] Frame buffer sync - 30fps stable
+[2024-10-15 14:46:01.669] [INFO] [STORAGE] Disk usage: 74.6% - Normal
+[2024-10-15 14:46:03.719] [INFO] [CAM-BL-010] Infrared mode: AUTO
+[2024-10-15 14:46:04.809] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:46:06.040] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:46:07.048] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:46:09.337] [INFO] [CAM-BL-040] Motion detection: ACTIVE
+[2024-10-15 14:46:10.227] [INFO] [CAM-BL-027] Frame buffer sync - 30fps stable
+[2024-10-15 14:46:12.480] [INFO] [CAM-BL-015] Frame buffer sync - 30fps stable
+[2024-10-15 14:46:13.452] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:46:14.595] [INFO] [NET] Bandwidth utilization: 51.5 Mbps
+[2024-10-15 14:46:16.450] [INFO] [CAM-BL-033] Infrared mode: AUTO
+[2024-10-15 14:46:17.197] [INFO] [CAM-BL-007] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:19.967] [INFO] [CAM-BL-007] Lens calibration: OK
+[2024-10-15 14:46:20.597] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:46:22.199] [INFO] [CAM-BL-047] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:23.512] [INFO] [CAM-BL-043] Recording status: ACTIVE
+[2024-10-15 14:46:24.400] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:46:26.056] [INFO] [CAM-BL-048] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:27.330] [INFO] [CAM-BL-004] Frame buffer sync - 30fps stable
+[2024-10-15 14:46:29.251] [ERROR] [CAM-BL-022] Frame sync lost - reconnecting
+[2024-10-15 14:46:30.225] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:46:32.475] [INFO] [CAM-BL-018] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:33.354] [INFO] [CAM-BL-012] Motion detection: ACTIVE
+[2024-10-15 14:46:35.330] [INFO] [SYNC] NTP sync successful - drift: 25ms
+[2024-10-15 14:46:36.811] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:46:37.930] [INFO] [CAM-BL-003] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:39.708] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:46:40.411] [INFO] [CAM-BL-030] Audio channel: MUTED
+[2024-10-15 14:46:42.606] [INFO] [CAM-BL-014] Infrared mode: AUTO
+[2024-10-15 14:46:43.730] [INFO] [CAM-BL-007] Audio channel: MUTED
+[2024-10-15 14:46:45.165] [INFO] [CAM-BL-045] PTZ command received - Pan: 282deg
+[2024-10-15 14:46:46.183] [INFO] [CAM-BL-050] Heartbeat received from 10.0.3.177 (MAC: 00:1C:42:AA:BB:01)
+[2024-10-15 14:46:48.873] [INFO] [CAM-BL-021] Heartbeat received from 10.0.9.242 (MAC: 00:16:3E:5A:2B:CA)
+[2024-10-15 14:46:49.315] [INFO] [CAM-BL-006] Video stream: H.264 @ 1080p
+[2024-10-15 14:46:50.173] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:46:52.902] [WARN] [CAM-BL-007] Low light conditions detected
+[2024-10-15 14:46:53.782] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:46:55.922] [INFO] [STORAGE] Disk usage: 68.3% - Normal
+[2024-10-15 14:46:56.746] [WARN] [CAM-BL-003] High CPU usage detected: 74%
+[2024-10-15 14:46:58.658] [INFO] [CAM-BL-025] Audio channel: MUTED
+[2024-10-15 14:46:59.152] [INFO] [STORAGE] Disk usage: 66.1% - Normal
+[2024-10-15 14:47:00.567] [INFO] [CAM-BL-041] Heartbeat received from 10.0.4.110 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:47:02.700] [INFO] [CAM-BL-035] Audio channel: MUTED
+[2024-10-15 14:47:03.074] [WARN] [CAM-BL-027] Frame drop detected - recovering
+[2024-10-15 14:47:05.212] [INFO] [CAM-BL-027] PTZ command received - Pan: 184deg
+[2024-10-15 14:47:06.774] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:47:08.236] [INFO] [STORAGE] Disk usage: 76.2% - Normal
+[2024-10-15 14:47:09.127] [INFO] [NET] Bandwidth utilization: 43.0 Mbps
+[2024-10-15 14:47:11.288] [WARN] [CAM-BL-040] High CPU usage detected: 86%
+[2024-10-15 14:47:12.080] [INFO] [CAM-BL-026] PTZ command received - Pan: 165deg
+[2024-10-15 14:47:13.464] [INFO] [CAM-BL-026] PTZ command received - Pan: 90deg
+[2024-10-15 14:47:15.351] [INFO] [CAM-BL-018] Frame buffer sync - 30fps stable
+[2024-10-15 14:47:16.383] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:47:18.735] [INFO] [CAM-BL-018] Lens calibration: OK
+[2024-10-15 14:47:19.786] [INFO] [NET] Bandwidth utilization: 31.5 Mbps
+[2024-10-15 14:47:21.683] [INFO] [CAM-BL-001] Motion detection: ACTIVE
+[2024-10-15 14:47:22.337] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:47:24.228] [INFO] [CAM-BL-021] Connection established from 10.0.1.27 (MAC: 00:16:3E:5A:2B:C1) - Routine sync
+[2024-10-15 14:47:25.127] [INFO] [CAM-BL-014] Heartbeat received from 10.0.4.131 (MAC: 00:16:3E:5A:2B:C2)
+[2024-10-15 14:47:26.297] [INFO] [CAM-BL-032] PTZ command received - Pan: 286deg
+[2024-10-15 14:47:28.685] [INFO] [CAM-BL-044] Motion detection: ACTIVE
+[2024-10-15 14:47:29.274] [INFO] [CAM-BL-039] Video stream: H.264 @ 1080p
+[2024-10-15 14:47:31.226] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:47:32.683] [INFO] [SYNC] NTP sync successful - drift: -32ms
+[2024-10-15 14:47:34.407] [INFO] [CAM-BL-021] Recording status: ACTIVE
+[2024-10-15 14:47:35.713] [INFO] [CAM-BL-036] PTZ command received - Pan: 146deg
+[2024-10-15 14:47:36.382] [INFO] [CAM-BL-023] Audio channel: MUTED
+[2024-10-15 14:47:38.318] [ERROR] [NET] Packet loss detected: 1.2%
+[2024-10-15 14:47:39.966] [ERROR] [CAM-BL-048] Connection timeout from 10.0.6.139
+[2024-10-15 14:47:41.510] [INFO] [CAM-BL-027] PTZ command received - Pan: 303deg
+[2024-10-15 14:47:42.538] [INFO] [CAM-BL-020] Video stream: H.264 @ 1080p
+[2024-10-15 14:47:44.017] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:47:45.429] [INFO] [CAM-BL-029] Video stream: H.264 @ 1080p
+[2024-10-15 14:47:47.762] [INFO] [NET] Bandwidth utilization: 45.6 Mbps
+[2024-10-15 14:47:48.562] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:47:49.587] [INFO] [CAM-BL-028] Infrared mode: AUTO
+[2024-10-15 14:47:51.312] [INFO] [CAM-BL-041] Connection established from 10.0.10.66 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:47:52.215] [INFO] [CAM-BL-001] Audio channel: MUTED
+[2024-10-15 14:47:54.316] [INFO] [CAM-BL-049] Motion detection: ACTIVE
+[2024-10-15 14:47:55.386] [INFO] [CAM-BL-036] Connection established from 10.0.6.14 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:47:57.499] [INFO] [CAM-BL-024] Audio channel: MUTED
+[2024-10-15 14:47:58.472] [INFO] [NET] Bandwidth utilization: 44.1 Mbps
+[2024-10-15 14:48:00.121] [INFO] [CAM-BL-006] Infrared mode: AUTO
+[2024-10-15 14:48:01.591] [WARN] [NET] Latency spike: 127ms
+[2024-10-15 14:48:02.728] [INFO] [CAM-BL-042] Audio channel: MUTED
+[2024-10-15 14:48:04.916] [INFO] [CAM-BL-003] PTZ command received - Pan: 184deg
+[2024-10-15 14:48:05.779] [INFO] [CAM-BL-003] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:07.006] [ERROR] [CAM-BL-046] Connection timeout from 10.0.1.136
+[2024-10-15 14:48:08.185] [WARN] [CAM-BL-001] Low light conditions detected
+[2024-10-15 14:48:10.256] [INFO] [NET] Bandwidth utilization: 57.9 Mbps
+[2024-10-15 14:48:11.128] [INFO] [CAM-BL-010] Infrared mode: AUTO
+[2024-10-15 14:48:12.151] [INFO] [CAM-BL-033] Motion detection: ACTIVE
+[2024-10-15 14:48:14.406] [INFO] [CAM-BL-004] PTZ command received - Pan: 91deg
+[2024-10-15 14:48:15.359] [INFO] [CAM-BL-041] Frame buffer sync - 30fps stable
+[2024-10-15 14:48:17.187] [WARN] [NET] Latency spike: 315ms
+[2024-10-15 14:48:18.224] [WARN] [CAM-BL-002] High CPU usage detected: 73%
+[2024-10-15 14:48:20.537] [INFO] [CAM-BL-050] Recording status: ACTIVE
+[2024-10-15 14:48:21.457] [INFO] [CAM-BL-020] Heartbeat received from 10.0.1.157 (MAC: 00:16:3E:5A:2B:C3)
+[2024-10-15 14:48:23.819] [INFO] [CAM-BL-035] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:24.771] [ERROR] [NET] Packet loss detected: 0.1%
+[2024-10-15 14:48:25.606] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:48:27.582] [INFO] [CAM-BL-026] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:28.782] [INFO] [CAM-BL-015] Audio channel: MUTED
+[2024-10-15 14:48:30.460] [INFO] [CAM-BL-043] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:31.162] [INFO] [CAM-BL-015] Lens calibration: OK
+[2024-10-15 14:48:33.463] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:48:34.735] [INFO] [CAM-BL-032] Motion detection: ACTIVE
+[2024-10-15 14:48:36.874] [INFO] [CAM-BL-030] Heartbeat received from 10.0.1.122 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:48:37.407] [INFO] [CAM-BL-026] Motion detection: ACTIVE
+[2024-10-15 14:48:38.131] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:48:40.666] [ERROR] [CAM-BL-010] Frame sync lost - reconnecting
+[2024-10-15 14:48:41.755] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:48:43.578] [INFO] [CAM-BL-043] Recording status: ACTIVE
+[2024-10-15 14:48:44.437] [INFO] [CAM-BL-033] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:46.457] [INFO] [CAM-BL-039] PTZ command received - Pan: 182deg
+[2024-10-15 14:48:47.200] [INFO] [CAM-BL-038] PTZ command received - Pan: 77deg
+[2024-10-15 14:48:48.121] [INFO] [CAM-BL-021] Frame buffer sync - 30fps stable
+[2024-10-15 14:48:50.145] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:48:51.631] [INFO] [CAM-BL-037] Recording status: ACTIVE
+[2024-10-15 14:48:53.722] [INFO] [CAM-BL-015] Infrared mode: AUTO
+[2024-10-15 14:48:54.565] [INFO] [CAM-BL-048] Heartbeat received from 10.0.5.188 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:48:56.610] [INFO] [CAM-BL-017] Video stream: H.264 @ 1080p
+[2024-10-15 14:48:57.152] [WARN] [NET] Latency spike: 196ms
+[2024-10-15 14:48:59.279] [INFO] [STORAGE] Disk usage: 78.6% - Normal
+[2024-10-15 14:49:00.823] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:49:01.264] [INFO] [CAM-BL-007] Connection established from 10.0.6.207 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:49:03.989] [INFO] [CAM-BL-023] PTZ command received - Pan: 148deg
+[2024-10-15 14:49:04.930] [INFO] [CAM-BL-030] Recording status: ACTIVE
+[2024-10-15 14:49:06.731] [WARN] [NET] Latency spike: 149ms
+[2024-10-15 14:49:07.282] [INFO] [CAM-BL-016] Audio channel: MUTED
+[2024-10-15 14:49:09.014] [INFO] [NET] Bandwidth utilization: 34.6 Mbps
+[2024-10-15 14:49:10.231] [ERROR] [NET] Packet loss detected: 0.7%
+[2024-10-15 14:49:12.662] [INFO] [CAM-BL-050] PTZ command received - Pan: 39deg
+[2024-10-15 14:49:13.937] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:49:14.385] [ERROR] [CAM-BL-030] Frame sync lost - reconnecting
+[2024-10-15 14:49:16.830] [INFO] [CAM-BL-022] Lens calibration: OK
+[2024-10-15 14:49:17.478] [WARN] [CAM-BL-011] Low light conditions detected
+[2024-10-15 14:49:19.373] [WARN] [CAM-BL-022] High CPU usage detected: 77%
+[2024-10-15 14:49:20.835] [ERROR] [CAM-BL-039] Connection timeout from 10.0.5.46
+[2024-10-15 14:49:22.340] [INFO] [CAM-BL-032] Motion detection: ACTIVE
+[2024-10-15 14:49:23.904] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:49:24.242] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:49:26.738] [INFO] [CAM-BL-047] Video stream: H.264 @ 1080p
+[2024-10-15 14:49:27.679] [WARN] [CAM-BL-010] Low light conditions detected
+[2024-10-15 14:49:29.707] [WARN] [CAM-BL-049] Frame drop detected - recovering
+[2024-10-15 14:49:30.474] [INFO] [CAM-BL-016] Motion detection: ACTIVE
+[2024-10-15 14:49:32.896] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:49:33.729] [INFO] [CAM-BL-038] Frame buffer sync - 30fps stable
+[2024-10-15 14:49:35.393] [INFO] [CAM-BL-007] Heartbeat received from 10.0.5.215 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:49:36.428] [WARN] [CAM-BL-019] Frame drop detected - recovering
+[2024-10-15 14:49:37.150] [INFO] [CAM-BL-007] Audio channel: MUTED
+[2024-10-15 14:49:39.631] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:49:40.795] [INFO] [NET] Bandwidth utilization: 52.0 Mbps
+[2024-10-15 14:49:42.668] [INFO] [STORAGE] Disk usage: 68.6% - Normal
+[2024-10-15 14:49:43.176] [INFO] [CAM-BL-038] Infrared mode: AUTO
+[2024-10-15 14:49:45.923] [INFO] [CAM-BL-036] Connection established from 10.0.6.96 (MAC: 08:00:27:12:34:57) - Routine sync
+[2024-10-15 14:49:46.400] [INFO] [CAM-BL-032] Connection established from 10.0.4.202 (MAC: 00:1C:42:AA:BB:01) - Routine sync
+[2024-10-15 14:49:48.496] [WARN] [CAM-BL-010] Low light conditions detected
+[2024-10-15 14:49:49.665] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:49:50.131] [INFO] [CAM-BL-022] Audio channel: MUTED
+[2024-10-15 14:49:52.725] [INFO] [CAM-BL-021] Frame buffer sync - 30fps stable
+[2024-10-15 14:49:53.949] [INFO] [CAM-BL-050] PTZ command received - Pan: 227deg
+[2024-10-15 14:49:55.772] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:49:56.677] [INFO] [STORAGE] Disk usage: 79.8% - Normal
+[2024-10-15 14:49:58.827] [INFO] [CAM-BL-029] Video stream: H.264 @ 1080p
+[2024-10-15 14:49:59.587] [WARN] [CAM-BL-007] High CPU usage detected: 73%
+[2024-10-15 14:50:00.913] [INFO] [CAM-BL-004] Video stream: H.264 @ 1080p
+[2024-10-15 14:50:02.153] [INFO] [CAM-BL-011] Lens calibration: OK
+[2024-10-15 14:50:03.325] [WARN] [NET] Latency spike: 340ms
+[2024-10-15 14:50:05.692] [INFO] [CAM-BL-002] Infrared mode: AUTO
+[2024-10-15 14:50:06.884] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:50:08.324] [INFO] [CAM-BL-017] PTZ command received - Pan: 68deg
+[2024-10-15 14:50:09.257] [INFO] [CAM-BL-035] Motion detection: ACTIVE
+[2024-10-15 14:50:11.462] [INFO] [CAM-BL-029] Infrared mode: AUTO
+[2024-10-15 14:50:12.082] [INFO] [CAM-BL-035] Connection established from 10.0.5.145 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:50:13.456] [WARN] [CAM-BL-024] High CPU usage detected: 91%
+[2024-10-15 14:50:15.411] [INFO] [CAM-BL-031] Video stream: H.264 @ 1080p
+[2024-10-15 14:50:16.835] [INFO] [CAM-BL-041] Heartbeat received from 10.0.10.120 (MAC: 08:00:27:12:34:57)
+[2024-10-15 14:50:18.220] [INFO] [CAM-BL-033] Heartbeat received from 10.0.8.83 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:50:19.449] [INFO] [CAM-BL-024] Connection established from 10.0.5.83 (MAC: 00:1C:42:AA:BB:02) - Routine sync
+[2024-10-15 14:50:21.773] [INFO] [CAM-BL-043] Motion detection: ACTIVE
+[2024-10-15 14:50:22.194] [INFO] [CAM-BL-028] Connection established from 10.0.1.216 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:50:24.733] [INFO] [NET] Bandwidth utilization: 59.6 Mbps
+[2024-10-15 14:50:25.492] [INFO] [CAM-BL-045] Video stream: H.264 @ 1080p
+[2024-10-15 14:50:26.964] [INFO] [CAM-BL-015] Connection established from 10.0.8.224 (MAC: 00:16:3E:5A:2B:C8) - Routine sync
+[2024-10-15 14:50:28.024] [INFO] [CAM-BL-045] Recording status: ACTIVE
+[2024-10-15 14:50:29.599] [WARN] [CAM-BL-030] Frame drop detected - recovering
+[2024-10-15 14:50:31.196] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:50:32.431] [INFO] [NET] Bandwidth utilization: 48.5 Mbps
+[2024-10-15 14:50:34.859] [INFO] [CAM-BL-031] Infrared mode: AUTO
+[2024-10-15 14:50:35.697] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:50:36.399] [INFO] [CAM-BL-036] PTZ command received - Pan: 13deg
+[2024-10-15 14:50:38.953] [INFO] [CAM-BL-013] Motion detection: ACTIVE
+[2024-10-15 14:50:39.214] [INFO] [CAM-BL-048] Video stream: H.264 @ 1080p
+[2024-10-15 14:50:41.462] [INFO] [CAM-BL-016] Audio channel: MUTED
+[2024-10-15 14:50:42.873] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:50:44.852] [WARN] [CAM-BL-010] Low light conditions detected
+[2024-10-15 14:50:45.881] [INFO] [CAM-BL-045] Frame buffer sync - 30fps stable
+[2024-10-15 14:50:47.138] [INFO] [NET] Bandwidth utilization: 47.7 Mbps
+[2024-10-15 14:50:48.450] [WARN] [CAM-BL-044] Frame drop detected - recovering
+[2024-10-15 14:50:49.827] [INFO] [CAM-BL-019] Lens calibration: OK
+[2024-10-15 14:50:51.898] [INFO] [STORAGE] Disk usage: 67.0% - Normal
+[2024-10-15 14:50:52.044] [INFO] [CAM-BL-050] Connection established from 10.0.4.111 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:50:54.833] [INFO] [CAM-BL-036] Heartbeat received from 10.0.7.107 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:50:55.771] [INFO] [CAM-BL-031] Heartbeat received from 10.0.5.102 (MAC: 08:00:27:12:34:58)
+[2024-10-15 14:50:57.351] [WARN] [CAM-BL-038] High CPU usage detected: 82%
+[2024-10-15 14:50:58.354] [INFO] [CAM-BL-024] Infrared mode: AUTO
+[2024-10-15 14:51:00.086] [INFO] [CAM-BL-011] Frame buffer sync - 30fps stable
+[2024-10-15 14:51:01.103] [INFO] [CAM-BL-015] Infrared mode: AUTO
+[2024-10-15 14:51:02.752] [INFO] [CAM-BL-004] Heartbeat received from 10.0.9.140 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:51:04.175] [WARN] [CAM-BL-001] Low light conditions detected
+[2024-10-15 14:51:05.042] [INFO] [CAM-BL-041] Infrared mode: AUTO
+[2024-10-15 14:51:07.083] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:08.118] [INFO] [CAM-BL-031] Audio channel: MUTED
+[2024-10-15 14:51:10.574] [INFO] [SYNC] NTP sync successful - drift: -10ms
+[2024-10-15 14:51:11.492] [WARN] [NET] Latency spike: 296ms
+[2024-10-15 14:51:12.487] [WARN] [CAM-BL-049] High CPU usage detected: 93%
+[2024-10-15 14:51:14.637] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:15.906] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:17.364] [INFO] [CAM-BL-006] Heartbeat received from 10.0.4.50 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:51:18.775] [INFO] [CAM-BL-002] PTZ command received - Pan: 121deg
+[2024-10-15 14:51:20.082] [INFO] [CAM-BL-007] Video stream: H.264 @ 1080p
+[2024-10-15 14:51:21.587] [INFO] [CAM-BL-037] Video stream: H.264 @ 1080p
+[2024-10-15 14:51:23.136] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:24.873] [WARN] [CAM-BL-048] Frame drop detected - recovering
+[2024-10-15 14:51:25.096] [INFO] [CAM-BL-018] Connection established from 10.0.10.201 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:51:27.378] [INFO] [CAM-BL-028] Audio channel: MUTED
+[2024-10-15 14:51:28.085] [INFO] [CAM-BL-024] Connection established from 10.0.5.54 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:51:30.589] [INFO] [CAM-BL-015] Infrared mode: AUTO
+[2024-10-15 14:51:31.852] [INFO] [STORAGE] Disk usage: 79.8% - Normal
+[2024-10-15 14:51:33.442] [WARN] [CAM-BL-050] Frame drop detected - recovering
+[2024-10-15 14:51:34.047] [INFO] [NET] Bandwidth utilization: 35.3 Mbps
+[2024-10-15 14:51:36.982] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:51:37.485] [INFO] [CAM-BL-028] Lens calibration: OK
+[2024-10-15 14:51:38.053] [INFO] [CAM-BL-024] Infrared mode: AUTO
+[2024-10-15 14:51:40.298] [INFO] [CAM-BL-014] PTZ command received - Pan: 285deg
+[2024-10-15 14:51:41.851] [INFO] [CAM-BL-033] Frame buffer sync - 30fps stable
+[2024-10-15 14:51:43.935] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:44.769] [INFO] [CAM-BL-025] Motion detection: ACTIVE
+[2024-10-15 14:51:46.701] [INFO] [CAM-BL-032] Infrared mode: AUTO
+[2024-10-15 14:51:47.046] [INFO] [CAM-BL-035] Infrared mode: AUTO
+[2024-10-15 14:51:48.688] [INFO] [CAM-BL-030] Frame buffer sync - 30fps stable
+[2024-10-15 14:51:50.386] [INFO] [CAM-BL-010] PTZ command received - Pan: 38deg
+[2024-10-15 14:51:51.144] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:51:53.179] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:51:54.528] [ERROR] [CAM-BL-041] Frame sync lost - reconnecting
+[2024-10-15 14:51:56.818] [INFO] [NET] Bandwidth utilization: 46.5 Mbps
+[2024-10-15 14:51:57.711] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:51:59.061] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:52:00.745] [INFO] [CAM-BL-002] Audio channel: MUTED
+[2024-10-15 14:52:01.936] [INFO] [SYNC] NTP sync successful - drift: -32ms
+[2024-10-15 14:52:03.492] [INFO] [SYNC] NTP sync successful - drift: 22ms
+[2024-10-15 14:52:04.035] [INFO] [CAM-BL-004] Infrared mode: AUTO
+[2024-10-15 14:52:06.116] [WARN] [NET] Latency spike: 380ms
+[2024-10-15 14:52:07.625] [INFO] [CAM-BL-033] Recording status: ACTIVE
+[2024-10-15 14:52:09.064] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:52:10.639] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:52:12.595] [INFO] [CAM-BL-039] Infrared mode: AUTO
+[2024-10-15 14:52:13.148] [INFO] [CAM-BL-001] Infrared mode: AUTO
+[2024-10-15 14:52:14.664] [INFO] [CAM-BL-047] Video stream: H.264 @ 1080p
+[2024-10-15 14:52:16.283] [INFO] [STORAGE] Disk usage: 66.2% - Normal
+[2024-10-15 14:52:17.475] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:52:19.983] [INFO] [CAM-BL-027] PTZ command received - Pan: 351deg
+[2024-10-15 14:52:20.358] [INFO] [CAM-BL-008] Connection established from 10.0.9.230 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:52:22.471] [ERROR] [NET] Packet loss detected: 0.5%
+[2024-10-15 14:52:23.472] [INFO] [SYNC] NTP sync successful - drift: -8ms
+[2024-10-15 14:52:24.833] [INFO] [CAM-BL-028] Motion detection: ACTIVE
+[2024-10-15 14:52:26.579] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:52:27.977] [INFO] [CAM-BL-039] Frame buffer sync - 30fps stable
+[2024-10-15 14:52:29.561] [INFO] [CAM-BL-013] PTZ command received - Pan: 89deg
+[2024-10-15 14:52:30.443] [INFO] [CAM-BL-017] Infrared mode: AUTO
+[2024-10-15 14:52:32.313] [INFO] [CAM-BL-019] Motion detection: ACTIVE
+[2024-10-15 14:52:33.763] [INFO] [NET] Bandwidth utilization: 50.2 Mbps
+[2024-10-15 14:52:35.776] [INFO] [CAM-BL-044] Audio channel: MUTED
+[2024-10-15 14:52:36.007] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:52:37.455] [INFO] [CAM-BL-049] Lens calibration: OK
+[2024-10-15 14:52:39.997] [INFO] [SYNC] NTP sync successful - drift: -3ms
+[2024-10-15 14:52:40.440] [INFO] [CAM-BL-012] PTZ command received - Pan: 238deg
+[2024-10-15 14:52:42.796] [INFO] [CAM-BL-016] Frame buffer sync - 30fps stable
+[2024-10-15 14:52:43.737] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:52:45.590] [INFO] [CAM-BL-019] Connection established from 10.0.9.65 (MAC: 00:16:3E:5A:2B:C7) - Routine sync
+[2024-10-15 14:52:46.617] [INFO] [CAM-BL-012] Video stream: H.264 @ 1080p
+[2024-10-15 14:52:48.150] [INFO] [CAM-BL-033] Audio channel: MUTED
+[2024-10-15 14:52:49.728] [INFO] [CAM-BL-008] Recording status: ACTIVE
+[2024-10-15 14:52:50.142] [INFO] [CAM-BL-030] Infrared mode: AUTO
+[2024-10-15 14:52:52.405] [INFO] [CAM-BL-030] Heartbeat received from 10.0.10.217 (MAC: 00:16:3E:5A:2B:C5)
+[2024-10-15 14:52:53.025] [WARN] [NET] Latency spike: 430ms
+[2024-10-15 14:52:55.859] [INFO] [CAM-BL-030] Lens calibration: OK
+[2024-10-15 14:52:56.108] [INFO] [CAM-BL-020] Frame buffer sync - 30fps stable
+[2024-10-15 14:52:58.096] [INFO] [CAM-BL-021] Heartbeat received from 10.0.10.70 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:52:59.684] [WARN] [CAM-BL-046] Low light conditions detected
+[2024-10-15 14:53:00.449] [INFO] [CAM-BL-036] Audio channel: MUTED
+[2024-10-15 14:53:02.088] [WARN] [NET] Latency spike: 251ms
+[2024-10-15 14:53:03.042] [INFO] [CAM-BL-022] Video stream: H.264 @ 1080p
+[2024-10-15 14:53:05.189] [INFO] [NET] Bandwidth utilization: 30.5 Mbps
+[2024-10-15 14:53:06.935] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:53:08.188] [INFO] [CAM-BL-007] Frame buffer sync - 30fps stable
+[2024-10-15 14:53:09.255] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:53:11.291] [WARN] [STORAGE] Write queue building up
+[2024-10-15 14:53:12.806] [INFO] [CAM-BL-008] PTZ command received - Pan: 47deg
+[2024-10-15 14:53:13.101] [INFO] [NET] Bandwidth utilization: 44.9 Mbps
+[2024-10-15 14:53:15.693] [INFO] [CAM-BL-027] Recording status: ACTIVE
+[2024-10-15 14:53:16.807] [INFO] [SYNC] NTP sync successful - drift: 4ms
+[2024-10-15 14:53:18.345] [INFO] [CAM-BL-002] PTZ command received - Pan: 272deg
+[2024-10-15 14:53:19.443] [INFO] [CAM-BL-027] Video stream: H.264 @ 1080p
+[2024-10-15 14:53:21.837] [INFO] [CAM-BL-024] Connection established from 10.0.8.36 (MAC: 00:16:3E:5A:2B:C9) - Routine sync
+[2024-10-15 14:53:22.026] [INFO] [CAM-BL-038] Recording status: ACTIVE
+[2024-10-15 14:53:24.167] [INFO] [STORAGE] Disk usage: 63.1% - Normal
+[2024-10-15 14:53:25.219] [INFO] [CAM-BL-002] Motion detection: ACTIVE
+[2024-10-15 14:53:26.711] [INFO] [CAM-BL-029] Frame buffer sync - 30fps stable
+[2024-10-15 14:53:28.790] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:53:29.893] [INFO] [CAM-BL-005] Audio channel: MUTED
+[2024-10-15 14:53:31.604] [INFO] [CAM-BL-029] Connection established from 10.0.10.160 (MAC: 00:50:56:C0:00:01) - Routine sync
+[2024-10-15 14:53:32.183] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:53:34.142] [ERROR] [CAM-BL-038] Connection timeout from 10.0.3.90
+[2024-10-15 14:53:35.146] [INFO] [CAM-BL-001] Recording status: ACTIVE
+[2024-10-15 14:53:36.974] [INFO] [CAM-BL-010] Motion detection: ACTIVE
+[2024-10-15 14:53:38.287] [INFO] [CAM-BL-011] Heartbeat received from 10.0.4.119 (MAC: 00:16:3E:5A:2B:C6)
+[2024-10-15 14:53:39.304] [INFO] [NET] Bandwidth utilization: 37.8 Mbps
+[2024-10-15 14:53:41.819] [INFO] [CAM-BL-050] Lens calibration: OK
+[2024-10-15 14:53:42.548] [INFO] [CAM-BL-039] Motion detection: ACTIVE
+[2024-10-15 14:53:44.287] [INFO] [CAM-BL-025] PTZ command received - Pan: 274deg
+[2024-10-15 14:53:45.554] [INFO] [CAM-BL-027] Lens calibration: OK
+[2024-10-15 14:53:47.838] [INFO] [CAM-BL-007] PTZ command received - Pan: 278deg
+[2024-10-15 14:53:48.020] [INFO] [CAM-BL-025] Heartbeat received from 10.0.10.25 (MAC: 00:16:3E:5A:2B:C7)
+[2024-10-15 14:53:49.797] [INFO] [CAM-BL-038] Infrared mode: AUTO
+[2024-10-15 14:53:51.909] [INFO] [CAM-BL-013] Lens calibration: OK
+[2024-10-15 14:53:52.751] [WARN] [CAM-BL-011] Frame drop detected - recovering
+[2024-10-15 14:53:54.884] [INFO] [CAM-BL-017] Heartbeat received from 10.0.10.22 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:53:55.195] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:53:57.518] [INFO] [CAM-BL-023] Video stream: H.264 @ 1080p
+[2024-10-15 14:53:58.198] [INFO] [CAM-BL-021] Video stream: H.264 @ 1080p
+[2024-10-15 14:54:00.529] [INFO] [CAM-BL-009] Recording status: ACTIVE
+[2024-10-15 14:54:01.155] [INFO] [SYNC] NTP sync successful - drift: 4ms
+[2024-10-15 14:54:02.795] [INFO] [CAM-BL-020] Frame buffer sync - 30fps stable
+[2024-10-15 14:54:04.735] [INFO] [CAM-BL-008] Infrared mode: AUTO
+[2024-10-15 14:54:05.911] [INFO] [CAM-BL-027] Connection established from 10.0.6.202 (MAC: 00:16:3E:5A:2B:CA) - Routine sync
+[2024-10-15 14:54:07.852] [INFO] [CAM-BL-010] PTZ command received - Pan: 226deg
+[2024-10-15 14:54:08.189] [INFO] [CAM-BL-042] Infrared mode: AUTO
+[2024-10-15 14:54:10.791] [INFO] [CAM-BL-021] Infrared mode: AUTO
+[2024-10-15 14:54:11.081] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:54:12.842] [INFO] [CAM-BL-013] PTZ command received - Pan: 330deg
+[2024-10-15 14:54:14.898] [INFO] [CAM-BL-043] Infrared mode: AUTO
+[2024-10-15 14:54:15.493] [INFO] [CAM-BL-035] Lens calibration: OK
+[2024-10-15 14:54:17.069] [INFO] [CAM-BL-040] Infrared mode: AUTO
+[2024-10-15 14:54:18.248] [INFO] [CAM-BL-030] Frame buffer sync - 30fps stable
+[2024-10-15 14:54:20.122] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:54:21.741] [INFO] [CAM-BL-001] Lens calibration: OK
+[2024-10-15 14:54:23.161] [INFO] [CAM-BL-037] Frame buffer sync - 30fps stable
+[2024-10-15 14:54:24.668] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:54:25.386] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:54:27.401] [WARN] [CAM-BL-006] Frame drop detected - recovering
+[2024-10-15 14:54:28.185] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:54:30.846] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:54:31.096] [INFO] [CAM-BL-012] PTZ command received - Pan: 210deg
+[2024-10-15 14:54:33.399] [ERROR] [NET] Packet loss detected: 0.4%
+[2024-10-15 14:54:34.333] [INFO] [CAM-BL-035] Audio channel: MUTED
+[2024-10-15 14:54:36.156] [INFO] [CAM-BL-018] PTZ command received - Pan: 19deg
+[2024-10-15 14:54:37.059] [INFO] [CAM-BL-008] Lens calibration: OK
+[2024-10-15 14:54:38.390] [INFO] [STORAGE] Disk usage: 63.7% - Normal
+[2024-10-15 14:54:40.347] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:54:41.314] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:54:43.654] [INFO] [STORAGE] Disk usage: 75.8% - Normal
+[2024-10-15 14:54:44.448] [INFO] [CAM-BL-045] Lens calibration: OK
+[2024-10-15 14:54:46.439] [INFO] [CAM-BL-031] Connection established from 10.0.5.50 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:54:47.421] [INFO] [SYNC] NTP sync successful - drift: 5ms
+[2024-10-15 14:54:48.089] [INFO] [NET] Bandwidth utilization: 45.5 Mbps
+[2024-10-15 14:54:50.310] [WARN] [CAM-BL-047] Frame drop detected - recovering
+[2024-10-15 14:54:51.946] [INFO] [CAM-BL-010] Frame buffer sync - 30fps stable
+[2024-10-15 14:54:53.545] [INFO] [CAM-BL-007] Recording status: ACTIVE
+[2024-10-15 14:54:54.784] [WARN] [CAM-BL-034] Frame drop detected - recovering
+[2024-10-15 14:54:56.583] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:54:57.325] [INFO] [CAM-BL-040] Video stream: H.264 @ 1080p
+[2024-10-15 14:54:59.505] [INFO] [CAM-BL-048] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:00.128] [INFO] [CAM-BL-022] Recording status: ACTIVE
+[2024-10-15 14:55:01.500] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:55:03.267] [INFO] [NET] Bandwidth utilization: 50.6 Mbps
+[2024-10-15 14:55:04.433] [INFO] [CAM-BL-012] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:06.081] [INFO] [CAM-BL-027] Infrared mode: AUTO
+[2024-10-15 14:55:07.835] [INFO] [CAM-BL-038] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:09.548] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:55:10.283] [WARN] [CAM-BL-042] Low light conditions detected
+[2024-10-15 14:55:12.289] [INFO] [CAM-BL-006] Recording status: ACTIVE
+[2024-10-15 14:55:13.304] [INFO] [CAM-BL-009] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:14.349] [INFO] [CAM-BL-040] Connection established from 10.0.1.153 (MAC: 00:16:3E:5A:2B:C5) - Routine sync
+[2024-10-15 14:55:16.650] [INFO] [CAM-BL-045] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:17.723] [ERROR] [CAM-BL-012] Connection timeout from 10.0.5.123
+[2024-10-15 14:55:19.666] [INFO] [CAM-BL-039] Heartbeat received from 10.0.2.13 (MAC: 00:1C:42:AA:BB:02)
+[2024-10-15 14:55:20.174] [ERROR] [CAM-BL-046] Frame sync lost - reconnecting
+[2024-10-15 14:55:22.480] [INFO] [NET] Bandwidth utilization: 48.6 Mbps
+[2024-10-15 14:55:23.478] [WARN] [CAM-BL-024] Low light conditions detected
+[2024-10-15 14:55:24.673] [WARN] [NET] Latency spike: 220ms
+[2024-10-15 14:55:26.720] [WARN] [CAM-BL-008] Frame drop detected - recovering
+[2024-10-15 14:55:27.354] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:55:29.444] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:55:30.726] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:55:32.772] [WARN] [CAM-BL-036] Frame drop detected - recovering
+[2024-10-15 14:55:33.706] [INFO] [CAM-BL-050] Motion detection: ACTIVE
+[2024-10-15 14:55:35.015] [INFO] [CAM-BL-026] PTZ command received - Pan: 58deg
+[2024-10-15 14:55:36.261] [INFO] [NET] Bandwidth utilization: 30.2 Mbps
+[2024-10-15 14:55:37.938] [INFO] [CAM-BL-024] PTZ command received - Pan: 267deg
+[2024-10-15 14:55:39.873] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:55:40.890] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:55:42.927] [INFO] [CAM-BL-037] Heartbeat received from 10.0.5.232 (MAC: 00:16:3E:5A:2B:CC)
+[2024-10-15 14:55:43.288] [WARN] [CAM-BL-022] Frame drop detected - recovering
+[2024-10-15 14:55:45.255] [INFO] [CAM-BL-048] Recording status: ACTIVE
+[2024-10-15 14:55:46.648] [INFO] [CAM-BL-015] Heartbeat received from 10.0.8.46 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:55:48.643] [INFO] [CAM-BL-025] Recording status: ACTIVE
+[2024-10-15 14:55:49.587] [INFO] [CAM-BL-019] PTZ command received - Pan: 341deg
+[2024-10-15 14:55:50.399] [ERROR] [CAM-BL-024] Frame sync lost - reconnecting
+[2024-10-15 14:55:52.713] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:55:53.756] [INFO] [CAM-BL-001] PTZ command received - Pan: 205deg
+[2024-10-15 14:55:55.557] [INFO] [CAM-BL-035] Recording status: ACTIVE
+[2024-10-15 14:55:56.185] [INFO] [CAM-BL-003] Video stream: H.264 @ 1080p
+[2024-10-15 14:55:58.279] [INFO] [CAM-BL-001] Frame buffer sync - 30fps stable
+[2024-10-15 14:55:59.759] [INFO] [CAM-BL-008] Connection established from 10.0.6.80 (MAC: 08:00:27:12:34:58) - Routine sync
+[2024-10-15 14:56:00.565] [INFO] [AUTH] Session validated for user: cctv_operator_05
+[2024-10-15 14:56:02.506] [INFO] [CAM-BL-034] Motion detection: ACTIVE
+[2024-10-15 14:56:03.232] [WARN] [CAM-BL-045] Low light conditions detected
+[2024-10-15 14:56:05.126] [INFO] [CAM-BL-024] Video stream: H.264 @ 1080p
+[2024-10-15 14:56:06.204] [INFO] [CAM-BL-034] Connection established from 10.0.9.58 (MAC: 00:16:3E:5A:2B:C6) - Routine sync
+[2024-10-15 14:56:08.938] [INFO] [CAM-BL-038] Audio channel: MUTED
+[2024-10-15 14:56:09.920] [ERROR] [CAM-BL-027] Connection timeout from 10.0.4.202
+[2024-10-15 14:56:11.257] [INFO] [CAM-BL-002] PTZ command received - Pan: 137deg
+[2024-10-15 14:56:12.780] [INFO] [CAM-BL-007] Frame buffer sync - 30fps stable
+[2024-10-15 14:56:13.163] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:56:15.270] [INFO] [SYNC] NTP sync successful - drift: 49ms
+[2024-10-15 14:56:16.905] [INFO] [NET] Bandwidth utilization: 57.4 Mbps
+[2024-10-15 14:56:18.297] [INFO] [CAM-BL-017] Motion detection: ACTIVE
+[2024-10-15 14:56:19.666] [WARN] [CAM-BL-005] Low light conditions detected
+[2024-10-15 14:56:21.882] [INFO] [STORAGE] Disk usage: 70.2% - Normal
+[2024-10-15 14:56:22.765] [INFO] [CAM-BL-038] PTZ command received - Pan: 41deg
+[2024-10-15 14:56:24.458] [INFO] [CAM-BL-044] Connection established from 10.0.3.125 (MAC: 00:50:56:C0:00:02) - Routine sync
+[2024-10-15 14:56:25.776] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:56:26.820] [INFO] [CAM-BL-050] Video stream: H.264 @ 1080p
+[2024-10-15 14:56:28.003] [INFO] [CAM-BL-022] Video stream: H.264 @ 1080p
+[2024-10-15 14:56:29.972] [INFO] [CAM-BL-006] Heartbeat received from 10.0.9.199 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:56:31.657] [INFO] [CAM-BL-006] Recording status: ACTIVE
+[2024-10-15 14:56:32.606] [INFO] [CAM-BL-007] Video stream: H.264 @ 1080p
+[2024-10-15 14:56:34.266] [INFO] [STORAGE] Disk usage: 67.8% - Normal
+[2024-10-15 14:56:35.836] [INFO] [CAM-BL-002] Heartbeat received from 10.0.6.179 (MAC: 08:00:27:12:34:57)
+[2024-10-15 14:56:36.595] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:56:38.064] [INFO] [NET] Bandwidth utilization: 51.5 Mbps
+[2024-10-15 14:56:39.369] [INFO] [CAM-BL-028] Infrared mode: AUTO
+[2024-10-15 14:56:41.283] [INFO] [NET] Bandwidth utilization: 47.7 Mbps
+[2024-10-15 14:56:42.965] [INFO] [CAM-BL-036] Video stream: H.264 @ 1080p
+[2024-10-15 14:56:44.368] [INFO] [SYNC] NTP sync successful - drift: -41ms
+[2024-10-15 14:56:45.890] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:56:47.018] [INFO] [SYNC] NTP sync successful - drift: -47ms
+[2024-10-15 14:56:48.380] [INFO] [CAM-BL-046] Frame buffer sync - 30fps stable
+[2024-10-15 14:56:49.153] [INFO] [NET] Bandwidth utilization: 55.6 Mbps
+[2024-10-15 14:56:51.494] [INFO] [STORAGE] Disk usage: 72.2% - Normal
+[2024-10-15 14:56:52.778] [WARN] [CAM-BL-050] Low light conditions detected
+[2024-10-15 14:56:54.995] [INFO] [NET] Bandwidth utilization: 47.1 Mbps
+[2024-10-15 14:56:55.060] [INFO] [NET] Bandwidth utilization: 43.4 Mbps
+[2024-10-15 14:56:57.795] [INFO] [CAM-BL-006] Heartbeat received from 10.0.2.16 (MAC: 00:1C:42:AA:BB:03)
+[2024-10-15 14:56:58.929] [INFO] [SYNC] NTP sync successful - drift: 13ms
+[2024-10-15 14:57:00.381] [INFO] [CAM-BL-043] Motion detection: ACTIVE
+[2024-10-15 14:57:01.766] [INFO] [CAM-BL-040] Recording status: ACTIVE
+[2024-10-15 14:57:02.049] [ERROR] [NET] Packet loss detected: 0.5%
+[2024-10-15 14:57:04.827] [INFO] [CAM-BL-039] Motion detection: ACTIVE
+[2024-10-15 14:57:05.114] [WARN] [CAM-BL-048] High CPU usage detected: 90%
+[2024-10-15 14:57:07.713] [INFO] [STORAGE] Disk usage: 68.5% - Normal
+[2024-10-15 14:57:08.579] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:57:10.016] [INFO] [CAM-BL-005] Motion detection: ACTIVE
+[2024-10-15 14:57:11.478] [INFO] [CAM-BL-005] Frame buffer sync - 30fps stable
+[2024-10-15 14:57:12.940] [INFO] [CAM-BL-018] Infrared mode: AUTO
+[2024-10-15 14:57:14.641] [INFO] [CAM-BL-017] Motion detection: ACTIVE
+[2024-10-15 14:57:15.681] [WARN] [CAM-BL-029] High CPU usage detected: 92%
+[2024-10-15 14:57:17.096] [INFO] [CAM-BL-019] Frame buffer sync - 30fps stable
+[2024-10-15 14:57:18.089] [INFO] [CAM-BL-044] Lens calibration: OK
+[2024-10-15 14:57:20.009] [INFO] [CAM-BL-014] Audio channel: MUTED
+[2024-10-15 14:57:21.775] [INFO] [CAM-BL-018] Frame buffer sync - 30fps stable
+[2024-10-15 14:57:23.494] [INFO] [CAM-BL-016] Video stream: H.264 @ 1080p
+[2024-10-15 14:57:24.424] [INFO] [CAM-BL-028] Connection established from 10.0.7.21 (MAC: 00:16:3E:5A:2B:C1) - Routine sync
+[2024-10-15 14:57:25.960] [INFO] [CAM-BL-014] Heartbeat received from 10.0.3.204 (MAC: 00:16:3E:5A:2B:C1)
+[2024-10-15 14:57:27.212] [ERROR] [NET] Packet loss detected: 0.8%
+[2024-10-15 14:57:28.032] [INFO] [NET] Bandwidth utilization: 59.1 Mbps
+[2024-10-15 14:57:30.397] [INFO] [CAM-BL-006] Motion detection: ACTIVE
+[2024-10-15 14:57:31.681] [INFO] [CAM-BL-011] Video stream: H.264 @ 1080p
+[2024-10-15 14:57:33.588] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:57:34.734] [INFO] [NET] Bandwidth utilization: 36.8 Mbps
+[2024-10-15 14:57:36.605] [WARN] [CAM-BL-005] High CPU usage detected: 77%
+[2024-10-15 14:57:37.295] [INFO] [CAM-BL-037] Connection established from 10.0.6.214 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:57:38.586] [INFO] [SYNC] NTP sync successful - drift: -15ms
+[2024-10-15 14:57:40.646] [INFO] [CAM-BL-011] Video stream: H.264 @ 1080p
+[2024-10-15 14:57:41.501] [INFO] [CAM-BL-032] Connection established from 10.0.7.153 (MAC: 00:16:3E:5A:2B:C5) - Routine sync
+[2024-10-15 14:57:43.286] [INFO] [CAM-BL-024] PTZ command received - Pan: 284deg
+[2024-10-15 14:57:44.546] [INFO] [CAM-BL-006] Heartbeat received from 10.0.3.233 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:57:46.338] [INFO] [SYNC] NTP sync successful - drift: 19ms
+[2024-10-15 14:57:47.669] [INFO] [CAM-BL-029] Audio channel: MUTED
+[2024-10-15 14:57:48.758] [WARN] [NET] Latency spike: 246ms
+[2024-10-15 14:57:50.852] [INFO] [CAM-BL-032] Lens calibration: OK
+[2024-10-15 14:57:51.052] [INFO] [SYNC] NTP sync successful - drift: -6ms
+[2024-10-15 14:57:53.994] [INFO] [CAM-BL-046] Lens calibration: OK
+[2024-10-15 14:57:54.753] [INFO] [CAM-BL-023] Heartbeat received from 10.0.10.210 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:57:56.286] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:57:57.468] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:57:59.761] [INFO] [AUTH] Session validated for user: cctv_operator_04
+[2024-10-15 14:58:00.791] [INFO] [NET] Bandwidth utilization: 39.8 Mbps
+[2024-10-15 14:58:01.153] [INFO] [SYNC] NTP sync successful - drift: -19ms
+[2024-10-15 14:58:03.636] [INFO] [CAM-BL-017] Frame buffer sync - 30fps stable
+[2024-10-15 14:58:04.429] [INFO] [CAM-BL-021] Lens calibration: OK
+[2024-10-15 14:58:06.737] [ERROR] [NET] Packet loss detected: 1.7%
+[2024-10-15 14:58:07.552] [INFO] [AUTH] Session validated for user: cctv_operator_03
+[2024-10-15 14:58:09.727] [ERROR] [CAM-BL-042] Connection timeout from 10.0.5.27
+[2024-10-15 14:58:10.298] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:58:12.341] [INFO] [CAM-BL-040] Recording status: ACTIVE
+[2024-10-15 14:58:13.189] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:58:14.709] [INFO] [CAM-BL-036] Connection established from 10.0.7.198 (MAC: 00:50:56:C0:00:03) - Routine sync
+[2024-10-15 14:58:16.282] [WARN] [CAM-BL-018] Frame drop detected - recovering
+[2024-10-15 14:58:17.421] [WARN] [NET] Latency spike: 478ms
+[2024-10-15 14:58:19.020] [ERROR] [CAM-BL-017] Frame sync lost - reconnecting
+[2024-10-15 14:58:20.211] [INFO] [CAM-BL-034] Frame buffer sync - 30fps stable
+[2024-10-15 14:58:22.300] [INFO] [CAM-BL-049] Video stream: H.264 @ 1080p
+[2024-10-15 14:58:23.621] [INFO] [CAM-BL-036] Infrared mode: AUTO
+[2024-10-15 14:58:24.166] [INFO] [CAM-BL-026] Motion detection: ACTIVE
+[2024-10-15 14:58:26.894] [INFO] [CAM-BL-015] Motion detection: ACTIVE
+[2024-10-15 14:58:27.693] [WARN] [CAM-BL-047] Low light conditions detected
+[2024-10-15 14:58:29.834] [ERROR] [CAM-BL-028] Frame sync lost - reconnecting
+[2024-10-15 14:58:30.436] [INFO] [CAM-BL-016] PTZ command received - Pan: 278deg
+[2024-10-15 14:58:32.803] [INFO] [CAM-BL-048] Heartbeat received from 10.0.10.64 (MAC: 08:00:27:12:34:56)
+[2024-10-15 14:58:33.618] [INFO] [CAM-BL-030] Video stream: H.264 @ 1080p
+[2024-10-15 14:58:35.193] [INFO] [CAM-BL-043] Recording status: ACTIVE
+[2024-10-15 14:58:36.207] [INFO] [STORAGE] Disk usage: 60.8% - Normal
+[2024-10-15 14:58:37.752] [INFO] [CAM-BL-010] Recording status: ACTIVE
+[2024-10-15 14:58:39.393] [WARN] [NET] Latency spike: 496ms
+[2024-10-15 14:58:40.652] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:58:42.757] [ERROR] [NET] Packet loss detected: 0.6%
+[2024-10-15 14:58:43.319] [INFO] [CAM-BL-029] Motion detection: ACTIVE
+[2024-10-15 14:58:45.763] [INFO] [NET] Bandwidth utilization: 40.6 Mbps
+[2024-10-15 14:58:46.244] [INFO] [SYNC] NTP sync successful - drift: 3ms
+[2024-10-15 14:58:48.474] [INFO] [CAM-BL-034] PTZ command received - Pan: 286deg
+[2024-10-15 14:58:49.259] [INFO] [CAM-BL-039] PTZ command received - Pan: 94deg
+[2024-10-15 14:58:50.582] [INFO] [CAM-BL-044] Frame buffer sync - 30fps stable
+[2024-10-15 14:58:52.463] [INFO] [SYNC] NTP sync successful - drift: -48ms
+[2024-10-15 14:58:53.508] [INFO] [CAM-BL-012] Recording status: ACTIVE
+[2024-10-15 14:58:55.017] [INFO] [CAM-BL-021] Infrared mode: AUTO
+[2024-10-15 14:58:56.736] [INFO] [CAM-BL-040] Audio channel: MUTED
+[2024-10-15 14:58:58.109] [INFO] [CAM-BL-032] Audio channel: MUTED
+[2024-10-15 14:58:59.375] [INFO] [STORAGE] Disk usage: 75.8% - Normal
+[2024-10-15 14:59:00.527] [ERROR] [CAM-BL-037] Connection timeout from 10.0.3.80
+[2024-10-15 14:59:02.550] [INFO] [NET] Bandwidth utilization: 53.7 Mbps
+[2024-10-15 14:59:03.885] [INFO] [STORAGE] Disk usage: 79.9% - Normal
+[2024-10-15 14:59:05.001] [INFO] [NET] Bandwidth utilization: 54.1 Mbps
+[2024-10-15 14:59:06.711] [INFO] [CAM-BL-019] Connection established from 10.0.1.137 (MAC: 00:16:3E:5A:2B:CC) - Routine sync
+[2024-10-15 14:59:08.322] [INFO] [CAM-BL-026] Video stream: H.264 @ 1080p
+[2024-10-15 14:59:09.956] [INFO] [CAM-BL-005] Connection established from 10.0.6.93 (MAC: 00:16:3E:5A:2B:C3) - Routine sync
+[2024-10-15 14:59:11.230] [INFO] [CAM-BL-039] Motion detection: ACTIVE
+[2024-10-15 14:59:12.629] [ERROR] [CAM-BL-027] Connection timeout from 10.0.6.40
+[2024-10-15 14:59:13.323] [INFO] [CAM-BL-001] Motion detection: ACTIVE
+[2024-10-15 14:59:15.359] [INFO] [CAM-BL-047] Recording status: ACTIVE
+[2024-10-15 14:59:16.599] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:59:18.891] [INFO] [SYNC] NTP sync successful - drift: -37ms
+[2024-10-15 14:59:19.381] [INFO] [CAM-BL-002] Audio channel: MUTED
+[2024-10-15 14:59:21.173] [INFO] [CAM-BL-005] Lens calibration: OK
+[2024-10-15 14:59:22.024] [INFO] [CAM-BL-038] Frame buffer sync - 30fps stable
+[2024-10-15 14:59:24.439] [INFO] [CAM-BL-037] Heartbeat received from 10.0.9.28 (MAC: 00:50:56:C0:00:03)
+[2024-10-15 14:59:25.130] [WARN] [CAM-BL-005] High CPU usage detected: 92%
+[2024-10-15 14:59:26.026] [INFO] [CAM-BL-003] Recording status: ACTIVE
+[2024-10-15 14:59:28.824] [INFO] [CAM-BL-009] Recording status: ACTIVE
+[2024-10-15 14:59:29.153] [INFO] [CAM-BL-039] PTZ command received - Pan: 164deg
+[2024-10-15 14:59:31.787] [INFO] [SYNC] NTP sync successful - drift: 34ms
+[2024-10-15 14:59:32.525] [WARN] [CAM-BL-007] Frame drop detected - recovering
+[2024-10-15 14:59:34.106] [INFO] [CAM-BL-043] Video stream: H.264 @ 1080p
+[2024-10-15 14:59:35.032] [WARN] [CAM-BL-050] Low light conditions detected
+[2024-10-15 14:59:36.920] [INFO] [CAM-BL-031] Infrared mode: AUTO
+[2024-10-15 14:59:38.893] [INFO] [CAM-BL-003] Video stream: H.264 @ 1080p
+[2024-10-15 14:59:39.313] [INFO] [CAM-BL-034] Infrared mode: AUTO
+[2024-10-15 14:59:41.995] [ERROR] [NET] Packet loss detected: 0.8%
+[2024-10-15 14:59:42.780] [INFO] [CAM-BL-039] Connection established from 10.0.5.78 (MAC: 00:1C:42:AA:BB:03) - Routine sync
+[2024-10-15 14:59:44.507] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:59:45.226] [INFO] [CAM-BL-030] Recording status: ACTIVE
+[2024-10-15 14:59:47.661] [INFO] [STORAGE] Disk usage: 70.9% - Normal
+[2024-10-15 14:59:48.823] [INFO] [NET] Bandwidth utilization: 59.9 Mbps
+[2024-10-15 14:59:49.288] [INFO] [CAM-BL-026] Infrared mode: AUTO
+[2024-10-15 14:59:51.978] [INFO] [AUTH] Session validated for user: cctv_operator_01
+[2024-10-15 14:59:52.349] [INFO] [AUTH] Session validated for user: cctv_operator_02
+[2024-10-15 14:59:54.078] [INFO] [CAM-BL-014] Recording status: ACTIVE
+[2024-10-15 14:59:55.102] [INFO] [STORAGE] Disk usage: 71.7% - Normal
+[2024-10-15 14:59:57.132] [INFO] [CAM-BL-039] Recording status: ACTIVE
+[2024-10-15 14:59:58.434] [INFO] [CAM-BL-014] Video stream: H.264 @ 1080p
+
+================================================================================
+END OF LOG EXPORT
+================================================================================
+Exported by: DMRC Security Operations Center
+Verified by: [REDACTED]
+Hash (SHA-256): 7f3b8c9a2e5d1f4c6b8a9e2d5f1c3b7a8e9f2d5c1b4a7e8f9c2d5b1a4e7f8c9d
+================================================================================
+NOTE: Any unauthorized access or distribution of this log is a violation of
+DMRC Security Protocol 7.3.1 and Indian IT Act, 2000.
+================================================================================

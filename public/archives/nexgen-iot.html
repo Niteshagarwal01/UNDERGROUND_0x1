@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen IoT Solutions Pvt Ltd - Smart Infrastructure Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #22d3ee;
+        }
+        .logo span { color: #f97316; }
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 14px;
+        }
+        .nav-links a:hover { color: #22d3ee; }
+        .hero {
+            text-align: center;
+            padding: 100px 24px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%2322d3ee" stroke-width="0.5" opacity="0.1"/></svg>') repeat;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #22d3ee, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 60px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            color: #f8fafc;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .card h3 {
+            color: #22d3ee;
+            margin-bottom: 12px;
+        }
+        .card p { color: #94a3b8; font-size: 14px; }
+        .team-member {
+            text-align: center;
+            padding: 24px;
+        }
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22d3ee, #f97316);
+            margin-bottom: 12px;
+        }
+        .team-member h4 { color: #f8fafc; margin-bottom: 4px; }
+        .team-member .role { color: #94a3b8; font-size: 13px; margin-bottom: 8px; }
+        .team-member .email { color: #22d3ee; font-size: 12px; text-decoration: none; }
+        .footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 32px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 13px;
+        }
+        .footer a { color: #22d3ee; text-decoration: none; }
+        .clients {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+        .client { font-size: 14px; color: #64748b; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">NexGen<span>IoT</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Solutions</a>
+            <a href="#">About</a>
+            <a href="#">Team</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Smart Infrastructure Solutions</h1>
+        <p>Leading provider of IoT sensors and monitoring systems for critical infrastructure across India.</p>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Our Solutions</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🚇 Transit Monitoring</h3>
+                <p>Real-time monitoring solutions for metro and railway systems. Deployed in 50+ stations across Delhi NCR.</p>
+            </div>
+            <div class="card">
+                <h3>🏢 Smart Buildings</h3>
+                <p>Integrated sensor networks for commercial buildings. Energy optimization and security systems.</p>
+            </div>
+            <div class="card">
+                <h3>🌊 Water Management</h3>
+                <p>IoT-based water quality and flow monitoring for municipal corporations.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ Power Grid</h3>
+                <p>Smart grid monitoring solutions for power distribution companies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Our Clients</h2>
+        <div class="clients">
+            <span class="client">Delhi Metro Rail Corporation</span>
+            <span class="client">Delhi Jal Board</span>
+            <span class="client">BSES Rajdhani</span>
+            <span class="client">Noida Authority</span>
+            <span class="client">Smart City Mission</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Leadership Team</h2>
+        <div class="grid">
+            <div class="card team-member">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#22d3ee,#f97316);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#0f172a;font-weight:700;">AK</div>
+                <h4>Amit Kumar</h4>
+                <p class="role">CEO & Founder</p>
+                <a href="#" class="email">amit.kumar@nexgen-iot.in</a>
+            </div>
+            <div class="card team-member">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#22d3ee,#f97316);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#0f172a;font-weight:700;">PS</div>
+                <h4>Priya Singh</h4>
+                <p class="role">CTO</p>
+                <a href="#" class="email">priya.singh@nexgen-iot.in</a>
+            </div>
+            <div class="card team-member">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#22d3ee,#f97316);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#0f172a;font-weight:700;">VM</div>
+                <h4>Vikram Malhotra</h4>
+                <p class="role">Head of Security</p>
+                <a href="#" class="email">vikram.malhotra@nexgen-iot.in</a>
+            </div>
+            <div class="card team-member">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#ec4899);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#0f172a;font-weight:700;">RS</div>
+                <h4>Rohit Sharma</h4>
+                <p class="role">IoT Solutions Architect</p>
+                <a href="#" class="email">rohit.sharma@iotdev.in</a>
+                <!-- Note: External contractor, uses personal domain -->
+            </div>
+            <div class="card team-member">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#22d3ee,#f97316);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#0f172a;font-weight:700;">NG</div>
+                <h4>Neha Gupta</h4>
+                <p class="role">Operations Director</p>
+                <a href="#" class="email">neha.gupta@nexgen-iot.in</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 NexGen IoT Solutions Pvt Ltd. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            CIN: U72900DL2019PTC123456 | 
+            <a href="robots.txt">robots.txt</a> | 
+            <a href="#">Privacy Policy</a>
+        </p>
+        <p style="margin-top: 16px; font-size: 11px;">
+            Registered Office: 4th Floor, Tech Park, Sector 62, Noida, UP 201301
+        </p>
+    </footer>
+
+    <!-- 
+    Internal Development Notes - DO NOT REMOVE
+    MAC Prefix Registration: 00:1A:2B (NexGen IoT Solutions)
+    Last firmware update: 2024-09-15
+    Production devices: 2,847 units deployed
+    -->
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers Archive - NexGen IoT Solutions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .terminal {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .terminal-header {
+            background: #222;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title { color: #888; font-size: 12px; margin-left: 12px; }
+        .terminal-body { padding: 24px; line-height: 1.8; }
+        .prompt { color: #00ff00; }
+        .path { color: #888; }
+        .output { color: #ccc; }
+        .file { color: #5af; }
+        .dir { color: #fa5; }
+        .error { color: #f55; }
+        .highlight { color: #ff0; background: rgba(255,255,0,0.1); padding: 2px 4px; }
+        table { border-collapse: collapse; margin: 16px 0; width: 100%; }
+        th, td { text-align: left; padding: 8px 16px; border-bottom: 1px solid #333; }
+        th { color: #888; font-weight: normal; }
+        .status-active { color: #27c93f; }
+        .status-inactive { color: #888; }
+        .status-terminated { color: #f55; }
+        a { color: #5af; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="terminal-title">careers_archive -- bash</span>
+        </div>
+        <div class="terminal-body">
+            <p><span class="prompt">admin@nexgen-hr:~$</span> ls -la /careers/archive/</p>
+            <br>
+            <p class="output">total 48K</p>
+            <p class="output">drwxr-xr-x 2 root root 4096 Oct 10 2024 <span class="dir">.</span></p>
+            <p class="output">drwxr-xr-x 5 root root 4096 Oct 01 2024 <span class="dir">..</span></p>
+            <p class="output">-rw-r--r-- 1 root root 2847 Sep 15 2024 <span class="file">contractor_records.csv</span></p>
+            <p class="output">-rw-r--r-- 1 root root 1024 Oct 05 2024 <span class="file">exit_interviews.enc</span></p>
+            <p class="output">-rw-r--r-- 1 root root 512  Oct 10 2024 <span class="file">README.txt</span></p>
+            <br>
+            <p><span class="prompt">admin@nexgen-hr:~$</span> cat contractor_records.csv</p>
+            <br>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Personal Domain</th>
+                </tr>
+                <tr>
+                    <td>C-2019-001</td>
+                    <td>Sanjay Verma</td>
+                    <td>Embedded Developer</td>
+                    <td>2019-03-15</td>
+                    <td>2021-06-30</td>
+                    <td class="status-inactive">COMPLETED</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>C-2020-015</td>
+                    <td>Meera Krishnan</td>
+                    <td>Cloud Architect</td>
+                    <td>2020-08-01</td>
+                    <td>2022-12-31</td>
+                    <td class="status-inactive">COMPLETED</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>C-2021-023</td>
+                    <td class="highlight">Rohit Sharma</td>
+                    <td>IoT Solutions Architect</td>
+                    <td>2021-04-10</td>
+                    <td>2024-10-14</td>
+                    <td class="status-terminated">TERMINATED</td>
+                    <td><a href="iotdev-portfolio.html">iotdev.in</a></td>
+                </tr>
+                <tr>
+                    <td>C-2022-007</td>
+                    <td>Ankit Sharma</td>
+                    <td>Network Engineer</td>
+                    <td>2022-01-20</td>
+                    <td>2023-08-15</td>
+                    <td class="status-inactive">COMPLETED</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>C-2023-042</td>
+                    <td>Divya Gupta</td>
+                    <td>Security Analyst</td>
+                    <td>2023-06-01</td>
+                    <td>CURRENT</td>
+                    <td class="status-active">ACTIVE</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <br>
+            <p><span class="prompt">admin@nexgen-hr:~$</span> cat README.txt</p>
+            <br>
+            <p class="output">ARCHIVED CONTRACTOR RECORDS</p>
+            <p class="output">==========================</p>
+            <p class="output">This directory contains records of external contractors.</p>
+            <p class="output">For security clearance verification, contact HR.</p>
+            <br>
+            <p class="error">NOTE: Contractor C-2021-023 terminated on 2024-10-14</p>
+            <p class="error">Reason: Security policy violation</p>
+            <p class="error">Action: All access credentials revoked</p>
+            <br>
+            <p><span class="prompt">admin@nexgen-hr:~$</span> <span style="animation: blink 1s infinite;">_</span></p>
+        </div>
+    </div>
+    <style>
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</body>
+</html>

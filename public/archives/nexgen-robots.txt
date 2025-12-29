@@ -1,0 +1,26 @@
+# robots.txt for NexGen IoT Solutions
+# Last updated: 2024-10-01
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /internal/
+Disallow: /dev/
+Disallow: /careers/archive/
+Disallow: /backup/
+Disallow: /logs/
+
+# Development and staging
+Disallow: /staging/
+Disallow: /test/
+
+# Legacy paths (deprecated)
+Disallow: /old-site/
+Disallow: /v1/
+Disallow: /2023/
+
+# Sitemap
+Sitemap: https://nexgen-iot.in/sitemap.xml
+
+# Note: For security assessment access, contact security@nexgen-iot.in
