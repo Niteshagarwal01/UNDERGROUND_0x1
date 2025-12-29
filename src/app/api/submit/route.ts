@@ -235,24 +235,38 @@ export async function POST(request: NextRequest) {
                     throw new Error("Challenge not found");
                 }
 
-                const solveCount = currentChallenge.solveCount;
+                // Count ONLY non-admin solves for bonus/first blood calculation
+                // This ensures admin testing doesn't affect regular player rewards
+                const nonAdminSolveCount = await tx.solve.count({
+                    where: {
+                        challengeId: challenge.id,
+                        team: {
+                            members: {
+                                none: {
+                                    role: { in: ['ADMIN', 'MODERATOR'] }
+                                }
+                            }
+                        }
+                    }
+                });
+
                 let bonus = 0;
 
                 // Check if user is admin/moderator - no bonuses for them
                 const isAdminOrMod = userRole === 'ADMIN' || userRole === 'MODERATOR';
 
-                // First 3 solves get bonuses (only for regular users)
+                // First 3 NON-ADMIN solves get bonuses (only for regular users)
                 // Points: 300 (Medium), 500 (Hard), 800 (God-Level)
-                if (solveCount < 3 && !isAdminOrMod) {
+                if (nonAdminSolveCount < 3 && !isAdminOrMod) {
                     const bonusMultipliers = [1.0, 0.6, 0.3]; // 100%, 60%, 30% of base bonus
                     const baseBonus = currentChallenge.points >= 800 ? 200
                         : currentChallenge.points >= 500 ? 100
                             : 50;
-                    bonus = Math.floor(baseBonus * bonusMultipliers[solveCount]);
+                    bonus = Math.floor(baseBonus * bonusMultipliers[nonAdminSolveCount]);
                 }
 
-                // First blood is ONLY for non-admin users
-                const isFirstBlood = solveCount === 0 && !isAdminOrMod;
+                // First blood is for the FIRST non-admin solve
+                const isFirstBlood = nonAdminSolveCount === 0 && !isAdminOrMod;
                 const totalPoints = currentChallenge.points + bonus;
 
                 // Create solve record
@@ -266,11 +280,14 @@ export async function POST(request: NextRequest) {
                     },
                 });
 
-                // Update challenge solve count
-                await tx.challenge.update({
-                    where: { id: challenge.id },
-                    data: { solveCount: { increment: 1 } },
-                });
+                // Update challenge solve count ONLY for non-admin users
+                // This keeps solveCount accurate for leaderboard display
+                if (!isAdminOrMod) {
+                    await tx.challenge.update({
+                        where: { id: challenge.id },
+                        data: { solveCount: { increment: 1 } },
+                    });
+                }
 
                 // Update team stats
                 await tx.team.update({
@@ -295,7 +312,7 @@ export async function POST(request: NextRequest) {
                     points: totalPoints,
                     bonus,
                     isFirstBlood,
-                    solveNumber: solveCount + 1
+                    solveNumber: nonAdminSolveCount + 1
                 };
             });
 

@@ -1,0 +1,12 @@
+Team: Xera (ID: cmjqzrk1c0001la04itfay8lt)
+Total Points (Team Record): 355
+Solved Count: 1
+--- Solves ---
+Challenge: Lost Token (Points: 300)
+  - Solve Points Awarded: 330
+  - Is First Blood: false
+  - Base Challenge Points: 300
+  - Calculated Bonus: 30
+---
+Calculated Score from Solves: 330
+Discrepancy: 25
