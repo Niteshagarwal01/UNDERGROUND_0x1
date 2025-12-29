@@ -21,6 +21,9 @@ import {
     Target,
     Clock,
     BookOpen,
+    ExternalLink,
+    FolderOpen,
+    Link as LinkIcon,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -68,6 +71,8 @@ type Challenge = {
     solves: number;
     description: string;
     slug: string;
+    driveUrl?: string;
+    linktreeUrl?: string;
 };
 
 type Category = {
@@ -270,6 +275,88 @@ function ChallengeModal({
                             </p>
                         </div>
 
+                        {/* Resource Links */}
+                        {(challenge.driveUrl || challenge.linktreeUrl) && (
+                            <div style={{ marginBottom: '28px' }}>
+                                <h4 style={{
+                                    fontSize: '11px',
+                                    color: 'var(--yellow)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                    marginBottom: '12px',
+                                    fontFamily: 'var(--font-heading)',
+                                }}>
+                                    Resources
+                                </h4>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    {challenge.driveUrl && (
+                                        <a
+                                            href={challenge.driveUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '12px',
+                                                padding: '12px 16px',
+                                                background: 'rgba(250, 204, 21, 0.05)',
+                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                borderRadius: '8px',
+                                                color: 'var(--yellow)',
+                                                textDecoration: 'none',
+                                                fontSize: '14px',
+                                                transition: 'all 0.2s',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)';
+                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.4)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.05)';
+                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.2)';
+                                            }}
+                                        >
+                                            <FolderOpen size={18} />
+                                            <span style={{ flex: 1 }}>Download Files</span>
+                                            <ExternalLink size={14} style={{ opacity: 0.6 }} />
+                                        </a>
+                                    )}
+                                    {challenge.linktreeUrl && (
+                                        <a
+                                            href={challenge.linktreeUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '12px',
+                                                padding: '12px 16px',
+                                                background: 'rgba(250, 204, 21, 0.05)',
+                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                borderRadius: '8px',
+                                                color: 'var(--yellow)',
+                                                textDecoration: 'none',
+                                                fontSize: '14px',
+                                                transition: 'all 0.2s',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)';
+                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.4)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.05)';
+                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.2)';
+                                            }}
+                                        >
+                                            <LinkIcon size={18} />
+                                            <span style={{ flex: 1 }}>Challenge Resources</span>
+                                            <ExternalLink size={14} style={{ opacity: 0.6 }} />
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
                         {/* Flag Submission */}
                         {!isAuthenticated ? (
                             <div style={{
@@ -454,6 +541,8 @@ export default function ChallengesPage() {
                                 solves: c.solveCount || 0,
                                 description: c.description,
                                 slug: c.slug,
+                                driveUrl: c.driveUrl,
+                                linktreeUrl: c.linktreeUrl,
                             })),
                         };
                     });

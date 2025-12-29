@@ -30,7 +30,8 @@ export default function CreateChallengeModal({
         difficulty: "MEDIUM",
         points: "300",
         flag: "",
-        resourceUrl: "",
+        driveUrl: "",
+        linktreeUrl: "",
         writeup: "",
         writeupUrl: "",
         isActive: true,
@@ -322,16 +323,38 @@ export default function CreateChallengeModal({
                             />
                         </div>
 
-                        {/* Resource URL */}
+                        {/* Google Drive Link */}
                         <div>
                             <label style={{ display: "block", color: "var(--text-secondary)", fontSize: "13px", marginBottom: "8px" }}>
-                                Resource Link <span style={{ color: "var(--text-muted)" }}>(Optional - link to files/resources)</span>
+                                📁 Google Drive Link <span style={{ color: "var(--text-muted)" }}>(For images, docs, zips)</span>
                             </label>
                             <input
                                 type="url"
-                                value={formData.resourceUrl}
-                                onChange={(e) => setFormData({ ...formData, resourceUrl: e.target.value })}
-                                placeholder="https://drive.google.com/file/... or https://example.com/files.zip"
+                                value={formData.driveUrl}
+                                onChange={(e) => setFormData({ ...formData, driveUrl: e.target.value })}
+                                placeholder="https://drive.google.com/file/d/..."
+                                style={{
+                                    width: "100%",
+                                    padding: "12px 16px",
+                                    background: "var(--black-elevated)",
+                                    border: "1px solid var(--black-border)",
+                                    borderRadius: "8px",
+                                    color: "var(--text-primary)",
+                                    fontSize: "14px",
+                                }}
+                            />
+                        </div>
+
+                        {/* Linktree Link */}
+                        <div>
+                            <label style={{ display: "block", color: "var(--text-secondary)", fontSize: "13px", marginBottom: "8px" }}>
+                                🔗 Linktree Link <span style={{ color: "var(--text-muted)" }}>(For HTML resources/pages)</span>
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.linktreeUrl}
+                                onChange={(e) => setFormData({ ...formData, linktreeUrl: e.target.value })}
+                                placeholder="https://linktr.ee/..."
                                 style={{
                                     width: "100%",
                                     padding: "12px 16px",

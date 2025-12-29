@@ -1,0 +1,58 @@
+═══════════════════════════════════════════════════════════════════
+                    GHOST PROTOCOL VERIFICATION v7734
+═══════════════════════════════════════════════════════════════════
+
+Protocol Status: BURNED
+Archive Status: PARTIAL CORRUPTION DETECTED
+Employee ID: 7734
+Last Known Station: RJCH
+
+───────────────────────────────────────────────────────────────────
+                         VERIFICATION CHAIN
+───────────────────────────────────────────────────────────────────
+
+The credential was fragmented for security. Reassembly required.
+
+Part 1: VUcweDE=
+Part 2: e20zdHIwXw==
+Part 3: Z2gwc3Rf
+Part 4: [CORRUPTED] - Substitution: Use Employee Protocol ID
+Part 5: [CORRUPTED] - Substitution: Use Station Code (lowercase)
+
+───────────────────────────────────────────────────────────────────
+                         ASSEMBLY PROTOCOL
+───────────────────────────────────────────────────────────────────
+
+STEP 1: Decode Part1 using standard Base64
+STEP 2: Insert opening brace character
+STEP 3: Decode Part2 using standard Base64
+STEP 4: Decode Part3 using standard Base64
+STEP 5: Insert Protocol ID (from token metadata)
+STEP 6: Insert underscore separator
+STEP 7: Insert Station Code in lowercase (from GPS coordinates)
+STEP 8: Insert closing brace character
+
+FORMAT: [decoded_part1]{[decoded_part2][decoded_part3][protocol_id]_[station_code]}
+
+───────────────────────────────────────────────────────────────────
+                          VALIDATION
+───────────────────────────────────────────────────────────────────
+
+If assembled correctly, the credential should:
+- Start with the standard prefix
+- Contain the initialization string
+- Include the checksum
+- Reference both the protocol and location
+
+Expected length: 31 characters
+Character set: alphanumeric + special ({}_)
+
+───────────────────────────────────────────────────────────────────
+
+Timestamp: 2024-10-12 09:47:23 UTC
+This file will be purged in 24 hours.
+
+"The ghost leaves no trace, except for those who know where to look."
+                                                        - Protocol 7734
+
+═══════════════════════════════════════════════════════════════════

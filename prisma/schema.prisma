@@ -118,7 +118,9 @@ model Challenge {
   // Files & Resources
   files         ChallengeFile[]
   hints         Hint[]
-  resourceUrl   String?         // External link to resources/files
+  resourceUrl   String?         // Legacy - external link
+  driveUrl      String?         // Google Drive link for files (images, docs, zips)
+  linktreeUrl   String?         // Linktree link for HTML pages/resources
   
   // Solution Write-up (visible after solving)
   writeup       String?         // Markdown content for solution writeup

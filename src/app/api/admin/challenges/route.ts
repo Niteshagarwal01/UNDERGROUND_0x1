@@ -105,7 +105,8 @@ export async function POST(request: NextRequest) {
             difficulty,
             points,
             flag, // Plain text flag (will be hashed)
-            resourceUrl,
+            driveUrl,
+            linktreeUrl,
             isActive = true,
             isHidden = false,
         } = body;
@@ -164,7 +165,8 @@ export async function POST(request: NextRequest) {
                 difficulty: difficulty || "MEDIUM",
                 points: parseInt(points),
                 flagHash,
-                resourceUrl: resourceUrl?.trim() || null,
+                driveUrl: driveUrl?.trim() || null,
+                linktreeUrl: linktreeUrl?.trim() || null,
                 writeup: body.writeup || null,
                 writeupUrl: body.writeupUrl || null,
                 isActive,

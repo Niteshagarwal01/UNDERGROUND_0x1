@@ -25,6 +25,8 @@ export async function GET() {
                         solveCount: true,
                         attemptCount: true,
                         resourceUrl: true,
+                        driveUrl: true,
+                        linktreeUrl: true,
                         files: {
                             select: {
                                 id: true,

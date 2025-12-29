@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avinash Mehta | Systems Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            border: 4px solid rgba(255,255,255,0.1);
+        }
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .title {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #ef4444;
+        }
+        .status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+        .section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #667eea;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .about-text {
+            font-size: 15px;
+            color: #b0b0b0;
+        }
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .project {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .project-name {
+            font-weight: 600;
+            color: #fff;
+        }
+        .project-year {
+            font-size: 13px;
+            color: #666;
+        }
+        .project-desc {
+            font-size: 14px;
+            color: #888;
+        }
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 4px 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 4px;
+            font-size: 11px;
+            color: #667eea;
+        }
+        .blog-section {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+        }
+        .blog-post {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+        .blog-title {
+            font-weight: 500;
+            color: #fff;
+        }
+        .blog-date {
+            font-size: 13px;
+            color: #666;
+        }
+        .blog-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .blog-link:hover {
+            text-decoration: underline;
+        }
+        .blog-archived {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 4px;
+            font-size: 11px;
+            color: #fbbf24;
+        }
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #444;
+            font-size: 12px;
+        }
+        .offline-banner {
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), transparent);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #ef4444;
+        }
+        @media (max-width: 600px) {
+            .name {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-banner">
+        ⚠️ This portfolio is no longer actively maintained. Last updated: October 2024
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="avatar">AM</div>
+            <h1 class="name">Avinash Mehta</h1>
+            <p class="title">Systems Developer | Transit Systems Specialist</p>
+            <span class="status">Currently Unavailable</span>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">
+                Experienced systems developer with 8+ years in embedded systems and 
+                transit infrastructure. Previously worked on AFC (Automatic Fare Collection) 
+                systems for major transit operators in South Asia. Specialized in RFID 
+                token systems, gate controllers, and backend settlement platforms.
+                <br><br>
+                Currently taking an indefinite break from the industry.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <div class="project-header">
+                        <span class="project-name">Delhi Transit Token Validator</span>
+                        <span class="project-year">2022-2024</span>
+                    </div>
+                    <p class="project-desc">
+                        Developed firmware for token validation units deployed across 
+                        200+ metro stations. Handled 2.8M+ daily transactions.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">RFID</span>
+                        <span class="tag">AFC Systems</span>
+                        <span class="tag">Transit</span>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-header">
+                        <span class="project-name">Fare Matrix Engine</span>
+                        <span class="project-year">2021</span>
+                    </div>
+                    <p class="project-desc">
+                        Backend service for dynamic fare calculation based on distance, 
+                        time-of-day, and passenger category. REST API serving 50K req/min.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-header">
+                        <span class="project-name">Station Monitoring Dashboard</span>
+                        <span class="project-year">2020</span>
+                    </div>
+                    <p class="project-desc">
+                        Real-time monitoring system for AFC gate status, token inventory, 
+                        and transaction anomalies across the network.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">WebSocket</span>
+                        <span class="tag">Grafana</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Blog</h2>
+            <div class="blog-section">
+                <div class="blog-post">
+                    <div>
+                        <p class="blog-title">The Ghost Protocol: A Token Story</p>
+                        <p class="blog-date">October 12, 2024</p>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span class="blog-archived">Archived</span>
+                        <a href="blog_archive_2024.html" class="blog-link">
+                            View Archive →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size: 13px; color: #555; margin-top: 16px; font-style: italic;">
+                Original blog deleted. Archived version available via Wayback Machine mirror.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>avinash.mehta [at] protonmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>🔗</span>
+                    <span style="text-decoration: line-through; color: #555;">LinkedIn (deactivated)</span>
+                </div>
+                <div class="contact-item">
+                    <span>💻</span>
+                    <span style="text-decoration: line-through; color: #555;">GitHub (private)</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2024 Avinash Mehta. All rights reserved.</p>
+            <p style="margin-top: 8px;">Last active: October 12, 2024</p>
+            <!-- emp:7734 | ghost-protocol | If you found this, you're on the right track -->
+        </footer>
+    </div>
+</body>
+</html>

@@ -48,7 +48,8 @@ export default function EditChallengeModal({
         difficulty: "MEDIUM",
         points: 300,
         flag: "", // New flag (optional - leave empty to keep existing)
-        resourceUrl: "",
+        driveUrl: "",
+        linktreeUrl: "",
         writeup: "",
         writeupUrl: "",
         isActive: true,
@@ -69,7 +70,8 @@ export default function EditChallengeModal({
                 difficulty: challenge.difficulty,
                 points: challenge.points,
                 flag: "", // Don't show existing flag for security
-                resourceUrl: (challenge as any).resourceUrl || "",
+                driveUrl: (challenge as any).driveUrl || "",
+                linktreeUrl: (challenge as any).linktreeUrl || "",
                 writeup: challenge.writeup || "",
                 writeupUrl: challenge.writeupUrl || "",
                 isActive: challenge.isActive,
@@ -291,15 +293,28 @@ export default function EditChallengeModal({
                             </p>
                         </div>
 
-                        {/* Resource URL */}
+                        {/* Google Drive Link */}
                         <div className="input-group">
-                            <label className="input-label">Resource Link <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(Optional)</span></label>
+                            <label className="input-label">📁 Google Drive Link <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(For files)</span></label>
                             <input
                                 type="url"
                                 className="input"
-                                value={formData.resourceUrl || ""}
-                                onChange={(e) => setFormData({ ...formData, resourceUrl: e.target.value })}
-                                placeholder="https://drive.google.com/file..."
+                                value={formData.driveUrl || ""}
+                                onChange={(e) => setFormData({ ...formData, driveUrl: e.target.value })}
+                                placeholder="https://drive.google.com/file/d/..."
+                                disabled={loading}
+                            />
+                        </div>
+
+                        {/* Linktree Link */}
+                        <div className="input-group">
+                            <label className="input-label">🔗 Linktree Link <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(For HTML pages)</span></label>
+                            <input
+                                type="url"
+                                className="input"
+                                value={formData.linktreeUrl || ""}
+                                onChange={(e) => setFormData({ ...formData, linktreeUrl: e.target.value })}
+                                placeholder="https://linktr.ee/..."
                                 disabled={loading}
                             />
                         </div>
