@@ -96,7 +96,7 @@ export default function AdminSidebar() {
                 }}
                 className="admin-sidebar"
             >
-                <div style={{ padding: '32px 24px', borderBottom: '1px solid var(--black-border)' }}>
+                <div style={{ padding: '32px 24px', borderBottom: '1px solid var(--black-border)', flexShrink: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--yellow)' }}>
                         <ShieldAlert size={24} />
                         <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.1em' }}>
@@ -105,7 +105,7 @@ export default function AdminSidebar() {
                     </div>
                 </div>
 
-                <nav style={{ flex: 1, padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <nav style={{ flex: 1, minHeight: 0, padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto' }}>
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         const isActive = pathname === item.href;
@@ -140,7 +140,7 @@ export default function AdminSidebar() {
                     })}
                 </nav>
 
-                <div style={{ padding: '24px', borderTop: '1px solid var(--black-border)' }}>
+                <div style={{ padding: '24px', borderTop: '1px solid var(--black-border)', flexShrink: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', fontSize: '13px', color: 'var(--text-muted)' }}>
                         <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
                         System Online

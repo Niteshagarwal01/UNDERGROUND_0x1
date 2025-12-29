@@ -1272,6 +1272,29 @@ select.input option {
   }
 }
 
+/* Admin Sidebar Scrollbar Styling */
+.admin-sidebar nav {
+  scrollbar-width: thin;
+  scrollbar-color: var(--yellow) transparent;
+}
+
+.admin-sidebar nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-sidebar nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-sidebar nav::-webkit-scrollbar-thumb {
+  background: rgba(250, 204, 21, 0.3);
+  border-radius: 3px;
+}
+
+.admin-sidebar nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(250, 204, 21, 0.5);
+}
+
 /* Alert Messages */
 .alert {
   padding: 16px 20px;
