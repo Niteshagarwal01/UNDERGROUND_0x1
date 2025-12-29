@@ -122,7 +122,7 @@ export async function GET(
                                 background: "linear-gradient(90deg, transparent 0%, rgba(239, 68, 68, 0.2) 50%, transparent 100%)",
                                 borderRadius: "24px"
                             }}>
-                                <span style={{ fontSize: "28px" }}>🩸</span>
+                                <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444", boxShadow: "0 0 10px #ef4444", display: "flex" }} />
                                 <span style={{
                                     fontSize: "18px",
                                     color: "#ef4444",
@@ -130,7 +130,7 @@ export async function GET(
                                     letterSpacing: "6px",
                                     textTransform: "uppercase"
                                 }}>FIRST BLOOD</span>
-                                <span style={{ fontSize: "28px" }}>🩸</span>
+                                <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444", boxShadow: "0 0 10px #ef4444", display: "flex" }} />
                             </div>
                         </div>
 

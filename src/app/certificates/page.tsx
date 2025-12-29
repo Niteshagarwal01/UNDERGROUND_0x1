@@ -73,9 +73,19 @@ export default function CertificatesPage() {
         setDownloading(key);
 
         try {
-            const url = type === "competition"
-                ? "/api/certificates/competition"
-                : `/api/certificates/first-blood/${solveId}`;
+            let url: string;
+            let filename: string;
+
+            if (type === "competition") {
+                url = "/api/certificates/competition";
+                filename = `underground-0x1-certificate-${teamData?.name}.png`;
+            } else if (type === "achievement") {
+                url = "/api/certificates/achievement";
+                filename = `underground-0x1-achievement-${teamData?.name}.png`;
+            } else {
+                url = `/api/certificates/first-blood/${solveId}`;
+                filename = `first-blood-badge-${solveId}.png`;
+            }
 
             const res = await fetch(url);
             if (!res.ok) throw new Error("Failed to generate certificate");
@@ -84,9 +94,7 @@ export default function CertificatesPage() {
             const downloadUrl = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = downloadUrl;
-            a.download = type === "competition"
-                ? `underground-0x1-certificate-${teamData?.name}.png`
-                : `first-blood-badge-${solveId}.png`;
+            a.download = filename;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -97,6 +105,7 @@ export default function CertificatesPage() {
             setDownloading(null);
         }
     };
+
 
     if (loading) {
         return (
@@ -210,6 +219,88 @@ export default function CertificatesPage() {
                             </button>
                         </div>
                     </div>
+
+                    {/* Achievement Certificate - Only for Top 50 */}
+                    {teamData && teamData.rank <= 50 && (
+                        <div className="card card-elevated" style={{ marginBottom: "32px", borderLeft: "3px solid #FFD700" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                                <div style={{
+                                    width: "80px",
+                                    height: "80px",
+                                    borderRadius: "12px",
+                                    background: teamData.rank === 1
+                                        ? "linear-gradient(135deg, #FFD700, #FFA500)"
+                                        : teamData.rank === 2
+                                            ? "linear-gradient(135deg, #C0C0C0, #808080)"
+                                            : teamData.rank === 3
+                                                ? "linear-gradient(135deg, #CD7F32, #8B4513)"
+                                                : teamData.rank <= 10
+                                                    ? "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.1))"
+                                                    : "linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexShrink: 0
+                                }}>
+                                    <Award size={36} style={{ color: teamData.rank <= 3 ? "#000" : "#fff" }} />
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                    <h3 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "8px", display: "flex", alignItems: "center", gap: "12px" }}>
+                                        Achievement Certificate
+                                        <span style={{
+                                            fontSize: "12px",
+                                            padding: "4px 10px",
+                                            borderRadius: "12px",
+                                            background: teamData.rank === 1
+                                                ? "linear-gradient(135deg, #FFD700, #FFA500)"
+                                                : teamData.rank === 2
+                                                    ? "linear-gradient(135deg, #C0C0C0, #808080)"
+                                                    : teamData.rank === 3
+                                                        ? "linear-gradient(135deg, #CD7F32, #8B4513)"
+                                                        : teamData.rank <= 10
+                                                            ? "#8B5CF6"
+                                                            : teamData.rank <= 25
+                                                                ? "#06B6D4"
+                                                                : "#10B981",
+                                            color: teamData.rank <= 3 ? "#000" : "#fff",
+                                            fontWeight: 700
+                                        }}>
+                                            {teamData.rank === 1 ? "CHAMPION"
+                                                : teamData.rank === 2 ? "RUNNER UP"
+                                                    : teamData.rank === 3 ? "THIRD PLACE"
+                                                        : teamData.rank <= 10 ? "TOP 10"
+                                                            : teamData.rank <= 25 ? "TOP 25"
+                                                                : "TOP 50"}
+                                        </span>
+                                    </h3>
+                                    <p style={{ color: "var(--text-secondary)", fontSize: "14px", marginBottom: "4px" }}>
+                                        Rank #{teamData.rank} • {teamData.totalPoints} pts • {teamData.solvedCount} solved
+                                    </p>
+                                    <p style={{ color: "var(--text-muted)", fontSize: "13px" }}>
+                                        Premium tier certificate with your achievement
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={() => downloadCertificate("achievement")}
+                                    disabled={downloading === "achievement"}
+                                    className="btn btn-primary"
+                                    style={{ display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}
+                                >
+                                    {downloading === "achievement" ? (
+                                        <>
+                                            <Loader2 size={16} className="spin" />
+                                            Generating...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Download size={16} />
+                                            Download
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     {/* First Blood Badges */}
                     <h2 style={{

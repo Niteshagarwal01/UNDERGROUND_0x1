@@ -280,7 +280,7 @@ export async function GET(request: NextRequest) {
                         }}>
                             <span style={{ fontSize: "14px", color: "#888", marginBottom: "8px", letterSpacing: "2px" }}>FIRST BLOOD</span>
                             <span style={{ fontSize: "56px", fontWeight: 900, color: "#ef4444" }}>{firstBloods}</span>
-                            <span style={{ fontSize: "12px", color: "#666" }}>🩸 achieved</span>
+                            <span style={{ fontSize: "12px", color: "#666" }}>achieved</span>
                         </div>
                     </div>
 
