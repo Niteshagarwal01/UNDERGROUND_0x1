@@ -15,7 +15,9 @@ import {
     Megaphone,
     FileText,
     Upload,
-    Download
+    Download,
+    Send,
+    Award
 } from "lucide-react";
 
 export default function AdminSidebar() {
@@ -26,6 +28,8 @@ export default function AdminSidebar() {
         { href: "/admin", icon: LayoutDashboard, label: "Overview" },
         { href: "/admin/users", icon: Users, label: "Users & Teams" },
         { href: "/admin/challenges", icon: Flag, label: "Challenges" },
+        { href: "/admin/submissions", icon: Send, label: "Submissions" },
+        { href: "/admin/certificates", icon: Award, label: "Certificates" },
         { href: "/admin/announcements", icon: Megaphone, label: "Announcements" },
         { href: "/admin/feedback", icon: MessageSquare, label: "Feedback" },
         { href: "/admin/audit-log", icon: FileText, label: "Audit Log" },

@@ -184,7 +184,7 @@ export async function POST(request: NextRequest) {
                 userId: user.id,
                 teamId: user.team.id,
                 challengeId: challenge.id,
-                flag: "[REDACTED]", // Don't store actual flags
+                flag: normalizedFlag, // Store actual flag for admin audit
                 isCorrect,
             }
         });

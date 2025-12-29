@@ -32,13 +32,12 @@ async function getSubmissions() {
 }
 
 function formatTime(date: Date): string {
-    const now = new Date();
-    const diff = now.getTime() - date.getTime();
-
-    if (diff < 60000) return "just now";
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    return date.toLocaleDateString();
+    return date.toLocaleDateString('en-IN', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 }
 
 export default async function AdminSubmissionsPage() {
@@ -149,6 +148,9 @@ export default async function AdminSubmissionsPage() {
                                 <th style={{ textAlign: 'left', padding: '16px 24px', fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                                     Challenge
                                 </th>
+                                <th style={{ textAlign: 'left', padding: '16px 24px', fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                                    Submitted Flag
+                                </th>
                                 <th style={{ textAlign: 'right', padding: '16px 24px', fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                                     Time
                                 </th>
@@ -190,6 +192,24 @@ export default async function AdminSubmissionsPage() {
                                                 +{sub.challenge.points}
                                             </span>
                                         )}
+                                    </td>
+                                    <td style={{ padding: '16px 24px' }}>
+                                        <code style={{
+                                            fontSize: '11px',
+                                            fontFamily: 'monospace',
+                                            background: 'var(--black-lighter)',
+                                            padding: '4px 8px',
+                                            borderRadius: '4px',
+                                            color: sub.isCorrect ? '#22c55e' : '#ef4444',
+                                            wordBreak: 'break-all',
+                                            maxWidth: '300px',
+                                            display: 'inline-block',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'
+                                        }}>
+                                            {sub.flag}
+                                        </code>
                                     </td>
                                     <td style={{ padding: '16px 24px', textAlign: 'right', color: 'var(--text-muted)', fontSize: '13px' }}>
                                         {formatTime(sub.createdAt)}
