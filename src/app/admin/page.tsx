@@ -51,6 +51,12 @@ async function getStats() {
             }
         });
 
+        // Map to include flag (it's already in the Submission model)
+        const activityWithFlags = recentActivity.map(sub => ({
+            ...sub,
+            submittedFlag: sub.flag
+        }));
+
         // Check database connection
         await prisma.$queryRaw`SELECT 1`;
 
@@ -65,7 +71,7 @@ async function getStats() {
             announcementCount,
             userTrend,
             teamTrend,
-            recentActivity,
+            recentActivity: activityWithFlags,
             dbConnected: true
         };
     } catch (error) {
@@ -259,6 +265,22 @@ export default async function AdminDashboard() {
                                                 fontFamily: 'var(--font-body)'
                                             }}>
                                                 {new Date(sub.createdAt).toLocaleString()}
+                                            </p>
+                                            {/* Show submitted flag */}
+                                            <p style={{
+                                                fontSize: '11px',
+                                                color: sub.isCorrect ? '#22c55e' : '#ef4444',
+                                                fontFamily: 'monospace',
+                                                marginTop: '4px',
+                                                background: 'var(--black-lighter)',
+                                                padding: '4px 8px',
+                                                borderRadius: '4px',
+                                                wordBreak: 'break-all',
+                                                maxWidth: '400px',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis'
+                                            }}>
+                                                {(sub as any).submittedFlag}
                                             </p>
                                         </div>
                                     </div>
