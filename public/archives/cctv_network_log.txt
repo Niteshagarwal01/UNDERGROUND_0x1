@@ -401,6 +401,10 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:09:12.079] [INFO] [BACKUP] Incremental backup in progress
 [2024-10-15 14:09:14.608] [INFO] [CAM-BL-007] Heartbeat received from 10.0.8.200 (MAC: 00:1C:42:AA:BB:03)
 [2024-10-15 14:09:15.460] [INFO] [CAM-BL-017] Lens calibration: OK
+[2024-10-15 14:09:16.112] [WARN] [SECURITY] Unusual MAC detected: AA:BB:CC:11:22:33 (IP: 10.0.5.99)
+[2024-10-15 14:09:16.543] [INFO] [AUTH] Device identified: Maintenance laptop - Vikram Singh (ID: DMRC-MT-2019)
+[2024-10-15 14:09:16.750] [INFO] [AUDIT] Personnel profile archived: aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy92aWtyYW0tc2VjdXJpdHktcHJvZmlsZS5odG1s
+[2024-10-15 14:09:16.891] [INFO] [SECURITY] Status: CLEARED - Authorized maintenance personnel
 [2024-10-15 14:09:17.831] [WARN] [CAM-BL-013] Low light conditions detected
 [2024-10-15 14:09:18.582] [INFO] [CAM-BL-010] Infrared mode: AUTO
 [2024-10-15 14:09:20.627] [INFO] [SYNC] NTP sync successful - drift: -48ms
@@ -718,7 +722,11 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:16:49.156] [INFO] [SYNC] NTP sync successful - drift: 42ms
 [2024-10-15 14:16:50.913] [INFO] [CAM-BL-039] Infrared mode: AUTO
 [2024-10-15 14:16:52.219] [INFO] [CAM-BL-007] Recording status: ACTIVE
-[2024-10-15 14:16:53.059] [INFO] [CAM-BL-023] Recording status: ACTIVE
+[2024-10-15 14:16:52.887] [ALERT] [AUTH] Multiple failed login attempts from 10.0.3.201 (User: admin_backup)
+[2024-10-15 14:16:53.012] [WARN] [SECURITY] Potential brute force detected - investigating
+[2024-10-15 14:16:53.234] [INFO] [AUDIT] Threat analysis archived: aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy9uZXR3b3JrLWV4cGxvaXQta2l0Lmh0bWw=
+[2024-10-15 14:16:53.445] [INFO] [AUTH] Source verified: IT department password reset procedure
+[2024-10-15 14:16:53.890] [INFO] [SECURITY] Status: FALSE POSITIVE - Routine IT operation
 [2024-10-15 14:16:55.165] [INFO] [CAM-BL-016] Lens calibration: OK
 [2024-10-15 14:16:56.148] [INFO] [CAM-BL-002] Infrared mode: AUTO
 [2024-10-15 14:16:58.673] [INFO] [BACKUP] Incremental backup in progress
@@ -1067,6 +1075,11 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:25:12.706] [ERROR] [NET] Packet loss detected: 1.0%
 [2024-10-15 14:25:13.175] [INFO] [STORAGE] Disk usage: 71.9% - Normal
 [2024-10-15 14:25:14.916] [INFO] [SYNC] NTP sync successful - drift: -15ms
+[2024-10-15 14:25:15.332] [WARN] [FIREWALL] External connection attempt from 203.45.67.89
+[2024-10-15 14:25:15.678] [ALERT] [SECURITY] Unknown external IP accessing camera firmware endpoint
+[2024-10-15 14:25:15.890] [INFO] [AUDIT] External connection logged: aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy90ZXJtaW51cy1iYWNrdXAuaHRtbA==
+[2024-10-15 14:25:16.012] [INFO] [NET] Connection traced: Hikvision firmware update server (verified certificate)
+[2024-10-15 14:25:16.445] [INFO] [SECURITY] Status: RESOLVED - Scheduled firmware update in progress
 [2024-10-15 14:25:16.858] [INFO] [BACKUP] Incremental backup in progress
 [2024-10-15 14:25:17.810] [INFO] [STORAGE] Disk usage: 63.4% - Normal
 [2024-10-15 14:25:19.077] [INFO] [CAM-BL-006] Connection established from 10.0.3.102 (MAC: 08:00:27:12:34:56) - Routine sync
@@ -1250,7 +1263,11 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:29:35.989] [INFO] [CAM-BL-015] Recording status: ACTIVE
 [2024-10-15 14:29:36.489] [INFO] [CAM-BL-008] Frame buffer sync - 30fps stable
 [2024-10-15 14:29:38.008] [INFO] [CAM-BL-040] Frame buffer sync - 30fps stable
-[2024-10-15 14:32:23.847] [WARN] [FIREWALL] Unusual traffic pattern from 192.168.47.133 (MAC: 00:1A:2B:3C:4D:5E)
+[2024-10-15 14:29:39.123] [WARN] [SECURITY] Unusual data packet detected on CAM-BL-040 stream
+[2024-10-15 14:29:39.456] [ALERT] [NET] Packet inspection: Possible data exfiltration attempt
+[2024-10-15 14:29:39.789] [INFO] [AUDIT] Captured traffic archived: aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy9tZXRyby1kdW1wLXBhc3RlLmh0bWw=
+[2024-10-15 14:29:40.234] [INFO] [NET] Analysis complete: Corrupted frame buffer data (not malicious)
+[2024-10-15 14:29:40.567] [INFO] [SECURITY] Status: BENIGN - Camera buffer overflow, auto-recovered
 [2024-10-15 14:29:41.935] [WARN] [STORAGE] Write queue building up
 [2024-10-15 14:29:42.313] [INFO] [CAM-BL-030] Audio channel: MUTED
 [2024-10-15 14:29:44.018] [INFO] [CAM-BL-037] Heartbeat received from 10.0.6.22 (MAC: 00:16:3E:5A:2B:C5)
@@ -1265,7 +1282,12 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:29:57.628] [INFO] [CAM-BL-010] Frame buffer sync - 30fps stable
 [2024-10-15 14:29:58.772] [INFO] [CAM-BL-019] Video stream: H.264 @ 1080p
 [2024-10-15 14:30:00.973] [INFO] [CAM-BL-025] Heartbeat received from 10.0.4.240 (MAC: 08:00:27:12:34:57)
+[2024-10-15 14:30:01.234] [ALERT] [SECURITY] Motion sensor triggered in restricted zone - CAM-BL-025
+[2024-10-15 14:30:01.456] [WARN] [CAM-BL-025] Anomalous readings from sensor array
 [2024-10-15 14:30:01.588] [INFO] [BACKUP] Incremental backup in progress
+[2024-10-15 14:30:01.890] [INFO] [MAINTENANCE] Sensor diagnostic initiated
+[2024-10-15 14:30:02.345] [INFO] [MAINTENANCE] Result: Infrared sensor calibration drift detected
+[2024-10-15 14:30:02.678] [INFO] [SECURITY] Status: HARDWARE MALFUNCTION - Scheduled for recalibration
 [2024-10-15 14:30:02.876] [INFO] [CAM-BL-028] Recording status: ACTIVE
 [2024-10-15 14:30:04.483] [WARN] [STORAGE] Write queue building up
 [2024-10-15 14:30:05.456] [INFO] [SYNC] NTP sync successful - drift: 35ms
@@ -1364,6 +1386,11 @@ Blue Line network incident on October 15, 2024. All timestamps are IST.
 [2024-10-15 14:32:19.642] [INFO] [CAM-BL-027] Recording status: ACTIVE
 [2024-10-15 14:32:21.210] [CRITICAL] [CAM-BL-036] VIDEO FEED LOST
 [2024-10-15 14:32:22.486] [ERROR] [CAM-BL-042] Stream interrupted - source unavailable
+[2024-10-15 14:32:23.847] [WARN] [SECURITY] Unregistered device detected on network segment BL-RJ-MH
+[2024-10-15 14:32:23.901] [ALERT] [AUTH] Connection attempt from unauthorized MAC: 00:1A:2B:3C:4D:5E (IP: 192.168.47.133)
+[2024-10-15 14:32:23.955] [INFO] [NET] Reverse DNS lookup: iot-gateway.nexgen-iot.in -> 192.168.47.133
+[2024-10-15 14:32:24.012] [CRITICAL] [FIREWALL] Blocking external device - vendor: NexGen IoT Solutions
+[2024-10-15 14:32:24.089] [INFO] [AUDIT] Vendor profile archived for investigation: aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy9uZXhnZW4taW90Lmh0bWw=
 [2024-10-15 14:32:24.163] [CRITICAL] [CAM-BL-004] CONNECTION TERMINATED
 [2024-10-15 14:32:25.920] [ERROR] [CAM-BL-039] Stream interrupted - source unavailable
 [2024-10-15 14:32:26.830] [CRITICAL] [CAM-BL-014] VIDEO FEED LOST

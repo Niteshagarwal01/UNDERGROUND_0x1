@@ -42,18 +42,34 @@ PRIORITY: HIGH
 
 ## Solve Path
 
-### Stage 1: Log Analysis (2500 lines)
-- Find the ONE suspicious entry at `14:32:23`
-- MAC: `00:1A:2B:3C:4D:5E`
-- IP: `192.168.47.133`
+### Stage 1: Log Analysis (2500+ lines)
+- Download log file from challenge description
+- Search for anomalies - there are multiple suspicious events, but only ONE is the real attack
+- **Decoy events** (all marked as CLEARED/RESOLVED/BENIGN):
+  - 14:09:16 - Vikram Singh maintenance laptop (CLEARED)
+  - 14:16:53 - Failed logins / brute force (FALSE POSITIVE)
+  - 14:25:15 - External firmware connection (RESOLVED)
+  - 14:29:39 - Data packet anomaly (BENIGN)
+- **REAL attack** at 14:32:23 - 14:32:24 (during the blackout):
+  - `[SECURITY] Unregistered device detected on network segment BL-RJ-MH`
+  - `[AUTH] Connection attempt from unauthorized MAC: 00:1A:2B:3C:4D:5E`
+  - `[FIREWALL] Blocking external device - vendor: NexGen IoT Solutions`
+  - `[AUDIT] Vendor profile archived...` (BASE64 ENCODED URL)
+- Player must decode BASE64: `aHR0cHM6Ly91bmRlcmdyb3VuZC0weDEudmVyY2VsLmFwcC9hcmNoaXZlcy9uZXhnZW4taW90Lmh0bWw=`
+  → `https://underground-0x1.vercel.app/archives/nexgen-iot.html`
 
-### Stage 2: MAC Vendor Lookup
-- `00:1A:2B` prefix → NexGen IoT Solutions
+### Stage 2: Filter the Noise
+- Players will find 5 encoded URLs scattered in the logs
+- 4 are decoys (events marked as cleared/resolved)
+- 1 is the real lead (the NexGen vendor during the actual attack)
+- Player visits: `https://underground-0x1.vercel.app/archives/nexgen-iot.html`
 
 ### Stage 3: Company Investigation
-- Visit nexgen-iot.html
-- Check robots.txt → find /careers/archive/
-- In careers archive, find Rohit Sharma (terminated, different email domain)
+- Visit nexgen-iot.html - explore the company site
+- Check robots.txt (`/archives/nexgen-robots.txt`) → find `/careers/archive/`
+- Visit careers archive (`/archives/nexgen-careers.html`)
+- Find Rohit Sharma (TERMINATED on 2024-10-14, one day before the incident!)
+- Notice his personal domain link: `iotdev-portfolio.html`
 
 ### Stage 4: Portfolio → Blog
 - Visit iotdev-portfolio.html
