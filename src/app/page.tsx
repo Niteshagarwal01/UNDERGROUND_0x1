@@ -13,7 +13,10 @@ import {
   ChevronRight,
   Train,
   Zap,
-  Users
+  Users,
+  Terminal,
+  Wifi,
+  Box
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -29,6 +32,9 @@ const categoryConfig: Record<string, { icon: any; subtitle: string }> = {
   reversing: { icon: Cpu, subtitle: "Token Forge" },
   web: { icon: Globe, subtitle: "OCC Portal" },
   stego: { icon: Target, subtitle: "Hidden Layers" },
+  pwn: { icon: Terminal, subtitle: "System Override" },
+  networking: { icon: Wifi, subtitle: "Packet Intercept" },
+  misc: { icon: Box, subtitle: "Wildcard" },
 };
 
 async function getHomeStats() {
