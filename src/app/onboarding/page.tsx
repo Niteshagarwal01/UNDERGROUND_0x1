@@ -22,7 +22,7 @@ const steps = [
     {
         id: 3,
         title: "Engage Targets",
-        description: "Solve challenges across 5 categories: OSINT, Forensics, Cryptography, Reverse Engineering, and Web Security. No hints provided.",
+        description: "Solve challenges across 6 categories: OSINT, Forensics, Cryptography, Reverse Engineering, Web Security, and Steganography. No hints provided.",
         icon: Target,
     },
     {

@@ -27,6 +27,7 @@ const categoryConfig: Record<string, { icon: any; subtitle: string }> = {
   crypto: { icon: Lock, subtitle: "Fare Matrix" },
   reversing: { icon: Cpu, subtitle: "Token Forge" },
   web: { icon: Globe, subtitle: "OCC Portal" },
+  stego: { icon: Target, subtitle: "Hidden Layers" },
 };
 
 async function getHomeStats() {
