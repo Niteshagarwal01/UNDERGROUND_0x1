@@ -41,6 +41,9 @@ export default function AdminUsersPage() {
             const json = await res.json();
             if (json.success) {
                 setUsers(json.users);
+                if (json.teams) {
+                    setTeams(json.teams);
+                }
             }
         } catch (error) {
             console.error("Error fetching users:", error);
@@ -195,6 +198,14 @@ export default function AdminUsersPage() {
                         Moderators
                     </div>
                 </div>
+                <div className="card" style={{ padding: '20px' }}>
+                    <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--yellow)', fontFamily: 'var(--font-heading)' }}>
+                        {teams.length}
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                        Total Teams
+                    </div>
+                </div>
             </div>
 
             {/* Users Table */}
@@ -290,6 +301,93 @@ export default function AdminUsersPage() {
                                 </td>
                             </tr>
                         ))}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Teams Table */}
+            <div style={{ marginTop: '40px', marginBottom: '20px' }}>
+                <h2 style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '1.5rem',
+                    fontWeight: 700,
+                    color: 'var(--text-primary)',
+                    marginBottom: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
+                }}>
+                    <Shield size={24} style={{ color: 'var(--yellow)' }} />
+                    Active Squads
+                </h2>
+            </div>
+
+            <div className="card" style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                        <tr style={{ borderBottom: '1px solid var(--black-border)' }}>
+                            <th style={{ padding: '16px', textAlign: 'left', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-heading)' }}>
+                                Team Name
+                            </th>
+                            <th style={{ padding: '16px', textAlign: 'center', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-heading)' }}>
+                                Members
+                            </th>
+                            <th style={{ padding: '16px', textAlign: 'center', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-heading)' }}>
+                                Rank
+                            </th>
+                            <th style={{ padding: '16px', textAlign: 'right', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-heading)' }}>
+                                Points
+                            </th>
+                            <th style={{ padding: '16px', textAlign: 'right', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-heading)' }}>
+                                Solves
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teams.length === 0 ? (
+                            <tr>
+                                <td colSpan={5} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-muted)' }}>
+                                    No teams formed yet.
+                                </td>
+                            </tr>
+                        ) : (
+                            teams.map((team) => (
+                                <tr key={team.id} style={{ borderBottom: '1px solid var(--black-border)' }}>
+                                    <td style={{ padding: '16px' }}>
+                                        <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '14px' }}>
+                                            {team.name}
+                                        </div>
+                                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                                            Code: {team.inviteCode}
+                                        </div>
+                                    </td>
+                                    <td style={{ padding: '16px', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                                        {team.members.length} / 4
+                                    </td>
+                                    <td style={{ padding: '16px', textAlign: 'center' }}>
+                                        {team.rank ? (
+                                            <span style={{
+                                                display: 'inline-block',
+                                                padding: '2px 8px',
+                                                borderRadius: '4px',
+                                                background: team.rank <= 3 ? 'rgba(250, 204, 21, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                                                color: team.rank <= 3 ? 'var(--yellow)' : 'var(--text-muted)',
+                                                fontSize: '12px',
+                                                fontWeight: 600
+                                            }}>
+                                                #{team.rank}
+                                            </span>
+                                        ) : '-'}
+                                    </td>
+                                    <td style={{ padding: '16px', textAlign: 'right', color: 'var(--yellow)', fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
+                                        {team.totalPoints}
+                                    </td>
+                                    <td style={{ padding: '16px', textAlign: 'right', color: 'var(--text-secondary)' }}>
+                                        {team.solvedCount}
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>

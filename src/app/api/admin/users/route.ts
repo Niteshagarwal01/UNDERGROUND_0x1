@@ -58,9 +58,26 @@ export async function GET() {
             orderBy: { totalPoints: "desc" }
         });
 
+        // Also fetch teams for stats
+        const teams = await prisma.team.findMany({
+            select: {
+                id: true,
+                name: true,
+                totalPoints: true,
+                solvedCount: true,
+                rank: true,
+                inviteCode: true,
+                members: {
+                    select: { id: true }
+                }
+            },
+            orderBy: { totalPoints: "desc" }
+        });
+
         return NextResponse.json({
             success: true,
             users,
+            teams,
         });
     } catch (error) {
         console.error("Error fetching users:", error);
