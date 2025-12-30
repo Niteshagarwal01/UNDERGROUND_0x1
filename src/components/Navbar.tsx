@@ -1,32 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
-import { LogOut, Menu, X, Flame, User, Award } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect, useCallback } from "react";
+import { SignedIn, SignedOut, useAuth, useClerk } from "@clerk/nextjs";
+import { LogOut, Menu, X, Flame, User, Award, Loader2 } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
 
 export default function Navbar() {
     const pathname = usePathname();
-    const { isSignedIn } = useAuth();
+    const router = useRouter();
+    const { isSignedIn, isLoaded } = useAuth();
+    const { signOut } = useClerk();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [dbUsername, setDbUsername] = useState<string | null>(null);
+    const [signingOut, setSigningOut] = useState(false);
     const isActive = (path: string) => pathname === path || pathname?.startsWith(path + "/");
 
     // Fetch database username for profile link
-    useEffect(() => {
+    const fetchUsername = useCallback(async () => {
         if (isSignedIn) {
-            fetch("/api/user")
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success && data.user?.username) {
-                        setDbUsername(data.user.username);
-                    }
-                })
-                .catch(() => { });
+            try {
+                const res = await fetch("/api/user");
+                const data = await res.json();
+                if (data.success && data.user?.username) {
+                    setDbUsername(data.user.username);
+                }
+            } catch (error) {
+                console.error("Failed to fetch username:", error);
+            }
+        } else {
+            setDbUsername(null);
         }
     }, [isSignedIn]);
+
+    useEffect(() => {
+        fetchUsername();
+    }, [fetchUsername]);
 
     // Close mobile menu on route change
     useEffect(() => {
@@ -44,6 +54,21 @@ export default function Navbar() {
             document.body.style.overflow = "";
         };
     }, [mobileMenuOpen]);
+
+    // Handle sign out with proper navigation
+    const handleSignOut = async () => {
+        setSigningOut(true);
+        try {
+            await signOut();
+            setDbUsername(null);
+            router.push("/");
+            router.refresh();
+        } catch (error) {
+            console.error("Sign out error:", error);
+        } finally {
+            setSigningOut(false);
+        }
+    };
 
     return (
         <nav className="navbar">
@@ -81,45 +106,56 @@ export default function Navbar() {
                         Feedback
                     </Link>
 
-                    <SignedIn>
-                        <Link
-                            href="/certificates"
-                            className={`navbar-link ${isActive("/certificates") ? "active" : ""}`}
-                            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
-                        >
-                            <Award size={14} />
-                            Certificates
-                        </Link>
-                        <Link
-                            href="/dashboard"
-                            className={`navbar-link ${isActive("/dashboard") ? "active" : ""}`}
-                        >
-                            Dashboard
-                        </Link>
-                        {dbUsername && (
+                    {/* Show loading state while Clerk loads */}
+                    {!isLoaded ? (
+                        <div style={{ padding: '8px 16px' }}>
+                            <Loader2 size={18} className="spinner" style={{ color: 'var(--text-muted)' }} />
+                        </div>
+                    ) : isSignedIn ? (
+                        <>
                             <Link
-                                href={`/profile/${dbUsername}`}
-                                className={`navbar-link ${isActive("/profile") ? "active" : ""}`}
+                                href="/certificates"
+                                className={`navbar-link ${isActive("/certificates") ? "active" : ""}`}
                                 style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
                             >
-                                <User size={14} />
-                                Profile
+                                <Award size={14} />
+                                Certificates
                             </Link>
-                        )}
-                        <NotificationBell />
-                        <SignOutButton>
-                            <button className="btn btn-secondary btn-sm">
-                                <LogOut size={16} />
+                            <Link
+                                href="/dashboard"
+                                className={`navbar-link ${isActive("/dashboard") ? "active" : ""}`}
+                            >
+                                Dashboard
+                            </Link>
+                            {dbUsername && (
+                                <Link
+                                    href={`/profile/${dbUsername}`}
+                                    className={`navbar-link ${isActive("/profile") ? "active" : ""}`}
+                                    style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                                >
+                                    <User size={14} />
+                                    Profile
+                                </Link>
+                            )}
+                            <NotificationBell />
+                            <button
+                                onClick={handleSignOut}
+                                disabled={signingOut}
+                                className="btn btn-secondary btn-sm"
+                            >
+                                {signingOut ? (
+                                    <Loader2 size={16} className="spinner" />
+                                ) : (
+                                    <LogOut size={16} />
+                                )}
                                 <span className="hide-mobile">Sign Out</span>
                             </button>
-                        </SignOutButton>
-                    </SignedIn>
-
-                    <SignedOut>
+                        </>
+                    ) : (
                         <Link href="/enter" className="btn btn-primary btn-sm">
                             Enter
                         </Link>
-                    </SignedOut>
+                    )}
                 </div>
 
                 {/* Mobile Hamburger Button */}
@@ -163,38 +199,51 @@ export default function Navbar() {
                         Feedback
                     </Link>
 
-                    <SignedIn>
-                        <Link
-                            href="/dashboard"
-                            className={`navbar-mobile-link ${isActive("/dashboard") ? "active" : ""}`}
-                        >
-                            Dashboard
-                        </Link>
-                        {dbUsername && (
+                    {!isLoaded ? (
+                        <div style={{ padding: '16px', textAlign: 'center' }}>
+                            <Loader2 size={24} className="spinner" style={{ color: 'var(--text-muted)' }} />
+                        </div>
+                    ) : isSignedIn ? (
+                        <>
                             <Link
-                                href={`/profile/${dbUsername}`}
-                                className={`navbar-mobile-link ${isActive("/profile") ? "active" : ""}`}
-                                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                                href="/dashboard"
+                                className={`navbar-mobile-link ${isActive("/dashboard") ? "active" : ""}`}
                             >
-                                <User size={16} className="text-yellow" />
-                                My Profile
+                                Dashboard
                             </Link>
-                        )}
-                        <div className="navbar-mobile-divider" />
-                        <SignOutButton>
-                            <button className="btn btn-secondary" style={{ width: '100%' }}>
-                                <LogOut size={18} />
+                            {dbUsername && (
+                                <Link
+                                    href={`/profile/${dbUsername}`}
+                                    className={`navbar-mobile-link ${isActive("/profile") ? "active" : ""}`}
+                                    style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                                >
+                                    <User size={16} className="text-yellow" />
+                                    My Profile
+                                </Link>
+                            )}
+                            <div className="navbar-mobile-divider" />
+                            <button
+                                onClick={handleSignOut}
+                                disabled={signingOut}
+                                className="btn btn-secondary"
+                                style={{ width: '100%' }}
+                            >
+                                {signingOut ? (
+                                    <Loader2 size={18} className="spinner" />
+                                ) : (
+                                    <LogOut size={18} />
+                                )}
                                 Sign Out
                             </button>
-                        </SignOutButton>
-                    </SignedIn>
-
-                    <SignedOut>
-                        <div className="navbar-mobile-divider" />
-                        <Link href="/enter" className="btn btn-primary" style={{ width: '100%' }}>
-                            Enter
-                        </Link>
-                    </SignedOut>
+                        </>
+                    ) : (
+                        <>
+                            <div className="navbar-mobile-divider" />
+                            <Link href="/enter" className="btn btn-primary" style={{ width: '100%' }}>
+                                Enter
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
 
@@ -209,4 +258,3 @@ export default function Navbar() {
         </nav>
     );
 }
-

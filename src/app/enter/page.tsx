@@ -2,11 +2,44 @@
 
 import Link from "next/link";
 import { SignIn, SignUp } from "@clerk/nextjs";
-import { useState } from "react";
-import { Terminal } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { Terminal, Loader2 } from "lucide-react";
 
 export default function EnterPage() {
     const [mode, setMode] = useState<"signin" | "signup">("signin");
+    const router = useRouter();
+    const { isSignedIn, isLoaded } = useAuth();
+
+    // If already signed in, redirect to dashboard
+    useEffect(() => {
+        if (isLoaded && isSignedIn) {
+            router.push("/dashboard");
+            router.refresh();
+        }
+    }, [isLoaded, isSignedIn, router]);
+
+    // Show loading while checking auth state
+    if (!isLoaded) {
+        return (
+            <div className="min-h-screen bg-black grid-pattern flex items-center justify-center">
+                <Loader2 size={32} className="spinner text-yellow" />
+            </div>
+        );
+    }
+
+    // If signed in, show loading while redirecting
+    if (isSignedIn) {
+        return (
+            <div className="min-h-screen bg-black grid-pattern flex items-center justify-center">
+                <div style={{ textAlign: 'center' }}>
+                    <Loader2 size={32} className="spinner text-yellow" style={{ marginBottom: '16px' }} />
+                    <p style={{ color: 'var(--text-muted)' }}>Redirecting to dashboard...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-black grid-pattern">
@@ -58,8 +91,9 @@ export default function EnterPage() {
                     }}>
                         {mode === "signin" ? (
                             <SignIn
-                                routing="hash"
-                                forceRedirectUrl="/dashboard"
+                                afterSignInUrl="/dashboard"
+                                afterSignUpUrl="/onboarding"
+                                signUpUrl="/enter"
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
@@ -81,8 +115,9 @@ export default function EnterPage() {
                             />
                         ) : (
                             <SignUp
-                                routing="hash"
-                                forceRedirectUrl="/dashboard"
+                                afterSignUpUrl="/onboarding"
+                                afterSignInUrl="/dashboard"
+                                signInUrl="/enter"
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",

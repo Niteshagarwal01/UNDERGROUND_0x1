@@ -58,6 +58,7 @@ export default function OnboardingPage() {
         // Small delay for visual feedback
         await new Promise(resolve => setTimeout(resolve, 500));
         router.push("/dashboard");
+        router.refresh(); // Refresh to sync auth state across UI
     };
 
     if (!isLoaded || !user) {

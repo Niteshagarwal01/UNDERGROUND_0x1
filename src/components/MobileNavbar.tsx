@@ -1,31 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
-import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Bell, Award } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth, useClerk } from "@clerk/nextjs";
+import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Award, Loader2 } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
 
 export default function MobileNavbar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const { isSignedIn } = useAuth();
+    const router = useRouter();
+    const { isSignedIn, isLoaded } = useAuth();
+    const { signOut } = useClerk();
     const [dbUsername, setDbUsername] = useState<string | null>(null);
+    const [signingOut, setSigningOut] = useState(false);
 
     // Fetch database username for profile link
-    useEffect(() => {
+    const fetchUsername = useCallback(async () => {
         if (isSignedIn) {
-            fetch("/api/user")
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success && data.user?.username) {
-                        setDbUsername(data.user.username);
-                    }
-                })
-                .catch(() => { });
+            try {
+                const res = await fetch("/api/user");
+                const data = await res.json();
+                if (data.success && data.user?.username) {
+                    setDbUsername(data.user.username);
+                }
+            } catch (error) {
+                console.error("Failed to fetch username:", error);
+            }
+        } else {
+            setDbUsername(null);
         }
     }, [isSignedIn]);
+
+    useEffect(() => {
+        fetchUsername();
+    }, [fetchUsername]);
 
     // Close menu on route change
     useEffect(() => {
@@ -43,6 +53,22 @@ export default function MobileNavbar() {
             document.body.style.overflow = "";
         };
     }, [isOpen]);
+
+    // Handle sign out with proper navigation
+    const handleSignOut = async () => {
+        setSigningOut(true);
+        try {
+            await signOut();
+            setDbUsername(null);
+            setIsOpen(false);
+            router.push("/");
+            router.refresh();
+        } catch (error) {
+            console.error("Sign out error:", error);
+        } finally {
+            setSigningOut(false);
+        }
+    };
 
     const navItems = [
         { href: "/challenges", icon: Target, label: "Challenges" },
@@ -139,32 +165,8 @@ export default function MobileNavbar() {
                         const isActive = pathname === item.href;
 
                         // Skip auth-required items for signed out users
-                        if (item.auth) {
-                            return (
-                                <SignedIn key={item.href}>
-                                    <Link
-                                        href={item.href}
-                                        onClick={() => setIsOpen(false)}
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '12px',
-                                            padding: '14px 16px',
-                                            marginBottom: '8px',
-                                            borderRadius: '8px',
-                                            color: isActive ? '#facc15' : '#a3a3a3',
-                                            textDecoration: 'none',
-                                            fontSize: '14px',
-                                            fontWeight: 500,
-                                            background: isActive ? 'rgba(250, 204, 21, 0.1)' : 'transparent',
-                                            border: isActive ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid transparent',
-                                        }}
-                                    >
-                                        <Icon size={20} style={{ opacity: isActive ? 1 : 0.6 }} />
-                                        {item.label}
-                                    </Link>
-                                </SignedIn>
-                            );
+                        if (item.auth && !isSignedIn) {
+                            return null;
                         }
 
                         return (
@@ -194,42 +196,46 @@ export default function MobileNavbar() {
                     })}
 
                     {/* Profile Link - only when signed in and username loaded */}
-                    <SignedIn>
-                        {dbUsername && (
-                            <Link
-                                href={`/profile/${dbUsername}`}
-                                onClick={() => setIsOpen(false)}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                    padding: '14px 16px',
-                                    marginBottom: '8px',
-                                    borderRadius: '8px',
-                                    color: pathname?.startsWith('/profile') ? '#facc15' : '#a3a3a3',
-                                    textDecoration: 'none',
-                                    fontSize: '14px',
-                                    fontWeight: 500,
-                                    background: pathname?.startsWith('/profile') ? 'rgba(250, 204, 21, 0.1)' : 'transparent',
-                                    border: pathname?.startsWith('/profile') ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid transparent',
-                                }}
-                            >
-                                <User size={20} style={{ opacity: pathname?.startsWith('/profile') ? 1 : 0.6 }} />
-                                My Profile
-                            </Link>
-                        )}
-                    </SignedIn>
+                    {isSignedIn && dbUsername && (
+                        <Link
+                            href={`/profile/${dbUsername}`}
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px',
+                                padding: '14px 16px',
+                                marginBottom: '8px',
+                                borderRadius: '8px',
+                                color: pathname?.startsWith('/profile') ? '#facc15' : '#a3a3a3',
+                                textDecoration: 'none',
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                background: pathname?.startsWith('/profile') ? 'rgba(250, 204, 21, 0.1)' : 'transparent',
+                                border: pathname?.startsWith('/profile') ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid transparent',
+                            }}
+                        >
+                            <User size={20} style={{ opacity: pathname?.startsWith('/profile') ? 1 : 0.6 }} />
+                            My Profile
+                        </Link>
+                    )}
                 </nav>
 
                 {/* Footer Actions */}
                 <div style={{ padding: '16px', borderTop: '1px solid #1a1a1a' }}>
-                    <SignedIn>
-                        {/* Notification Bell */}
-                        <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
-                            <NotificationBell />
+                    {!isLoaded ? (
+                        <div style={{ display: 'flex', justifyContent: 'center', padding: '14px' }}>
+                            <Loader2 size={24} className="spinner" style={{ color: '#a3a3a3' }} />
                         </div>
-                        <SignOutButton>
+                    ) : isSignedIn ? (
+                        <>
+                            {/* Notification Bell */}
+                            <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
+                                <NotificationBell />
+                            </div>
                             <button
+                                onClick={handleSignOut}
+                                disabled={signingOut}
                                 style={{
                                     width: '100%',
                                     display: 'flex',
@@ -242,16 +248,18 @@ export default function MobileNavbar() {
                                     borderRadius: '8px',
                                     color: '#a3a3a3',
                                     fontSize: '14px',
-                                    cursor: 'pointer',
+                                    cursor: signingOut ? 'wait' : 'pointer',
                                 }}
                             >
-                                <LogOut size={18} />
+                                {signingOut ? (
+                                    <Loader2 size={18} className="spinner" />
+                                ) : (
+                                    <LogOut size={18} />
+                                )}
                                 Sign Out
                             </button>
-                        </SignOutButton>
-                    </SignedIn>
-
-                    <SignedOut>
+                        </>
+                    ) : (
                         <Link
                             href="/enter"
                             onClick={() => setIsOpen(false)}
@@ -272,7 +280,7 @@ export default function MobileNavbar() {
                         >
                             Enter Platform
                         </Link>
-                    </SignedOut>
+                    )}
                 </div>
             </div>
         </>
