@@ -61,6 +61,11 @@ const categoryConfig: Record<string, {
         subtitle: "OCC Portal",
         description: "Exploit web vulnerabilities, XSS, SQLi, and authentication flaws."
     },
+    stego: {
+        icon: Target,
+        subtitle: "Hidden Layers",
+        description: "Uncover secrets concealed within images, audio, video, and text files."
+    },
 };
 
 type Challenge = {
