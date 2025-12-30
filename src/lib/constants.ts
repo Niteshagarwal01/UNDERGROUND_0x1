@@ -61,6 +61,13 @@ export const METRO_LINES = {
         ...YELLOW_THEME,
         description: "Lost & Found",
         aliases: ["miscellaneous", "misc"]
+    },
+    NETWORKING: {
+        id: "networking",
+        name: "Sector 9", // Networking
+        ...YELLOW_THEME,
+        description: "Wire Tap",
+        aliases: ["network", "networking", "pcap"]
     }
 } as const;
 

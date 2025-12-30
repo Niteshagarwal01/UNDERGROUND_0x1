@@ -87,7 +87,23 @@ export async function checkAndAwardAchievements(check: AchievementCheck): Promis
                             }
                         });
                         if (godSolves >= achievement.requirement) earned = true;
+                    } else if (achievement.slug === 'god-master') {
+                        const godSolves = await prisma.solve.count({
+                            where: {
+                                teamId: check.teamId,
+                                challenge: { difficulty: 'GOD_LEVEL' }
+                            }
+                        });
+                        if (godSolves >= achievement.requirement) earned = true;
                     } else if (achievement.slug === 'hard-worker') {
+                        const hardSolves = await prisma.solve.count({
+                            where: {
+                                teamId: check.teamId,
+                                challenge: { difficulty: 'HARD' }
+                            }
+                        });
+                        if (hardSolves >= achievement.requirement) earned = true;
+                    } else if (achievement.slug === 'hard-master') {
                         const hardSolves = await prisma.solve.count({
                             where: {
                                 teamId: check.teamId,
@@ -101,12 +117,24 @@ export async function checkAndAwardAchievements(check: AchievementCheck): Promis
                 case 'CATEGORY':
                     // Check if user completed an entire category
                     if (check.categorySlug) {
+                        // Map all 9 category slugs to their master achievements
                         const categorySlugToAchievement: Record<string, string> = {
                             'osint': 'osint-master',
                             'forensics': 'forensics-master',
                             'crypto': 'crypto-master',
+                            'cryptography': 'crypto-master',
+                            'steganography': 'stego-master',
+                            'stego': 'stego-master',
+                            'reverse-engineering': 'reverse-master',
                             'reversing': 'reverse-master',
-                            'web': 'web-master'
+                            'web': 'web-master',
+                            'web-exploitation': 'web-master',
+                            'pwn': 'pwn-master',
+                            'binary-exploitation': 'pwn-master',
+                            'misc': 'misc-master',
+                            'miscellaneous': 'misc-master',
+                            'networking': 'networking-master',
+                            'network': 'networking-master'
                         };
 
                         if (categorySlugToAchievement[check.categorySlug] === achievement.slug) {

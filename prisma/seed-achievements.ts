@@ -79,22 +79,22 @@ const achievements = [
         points: 60
     },
     {
-        slug: "solver-25",
+        slug: "solver-20",
         name: "Master Solver",
-        description: "Solve 25 challenges",
+        description: "Solve 20 challenges",
         icon: "Trophy",
         category: "SOLVES",
-        requirement: 25,
+        requirement: 20,
         rarity: "EPIC",
         points: 100
     },
     {
-        slug: "solver-50",
+        slug: "solver-27",
         name: "Unstoppable",
-        description: "Solve 50 challenges",
+        description: "Solve all 27 challenges",
         icon: "Zap",
         category: "SOLVES",
-        requirement: 50,
+        requirement: 27,
         rarity: "LEGENDARY",
         points: 150
     },
@@ -123,22 +123,32 @@ const achievements = [
     {
         slug: "hard-worker",
         name: "Hard Worker",
-        description: "Complete 5 HARD challenges",
+        description: "Complete 3 HARD challenges",
         icon: "Dumbbell",
         category: "DIFFICULTY",
-        requirement: 5,
+        requirement: 3,
         rarity: "RARE",
         points: 60
     },
     {
         slug: "hard-master",
         name: "Hard Master",
-        description: "Complete 15 HARD challenges",
+        description: "Complete all 9 HARD challenges",
         icon: "Shield",
         category: "DIFFICULTY",
-        requirement: 15,
+        requirement: 9,
         rarity: "EPIC",
         points: 100
+    },
+    {
+        slug: "god-master",
+        name: "God Master",
+        description: "Complete all 9 GOD_LEVEL challenges",
+        icon: "Crown",
+        category: "DIFFICULTY",
+        requirement: 9,
+        rarity: "LEGENDARY",
+        points: 150
     },
 
     // ========== CATEGORY MASTERY ACHIEVEMENTS ==========
@@ -173,6 +183,16 @@ const achievements = [
         points: 100
     },
     {
+        slug: "stego-master",
+        name: "Stego Master",
+        description: "Complete all challenges in Steganography category",
+        icon: "Image",
+        category: "CATEGORY",
+        requirement: 1,
+        rarity: "EPIC",
+        points: 100
+    },
+    {
         slug: "reverse-master",
         name: "Reverse Master",
         description: "Complete all challenges in Reverse Engineering category",
@@ -197,6 +217,26 @@ const achievements = [
         name: "Pwn Master",
         description: "Complete all challenges in Binary Exploitation category",
         icon: "Bug",
+        category: "CATEGORY",
+        requirement: 1,
+        rarity: "EPIC",
+        points: 100
+    },
+    {
+        slug: "misc-master",
+        name: "Misc Master",
+        description: "Complete all challenges in Miscellaneous category",
+        icon: "Puzzle",
+        category: "CATEGORY",
+        requirement: 1,
+        rarity: "EPIC",
+        points: 100
+    },
+    {
+        slug: "networking-master",
+        name: "Networking Master",
+        description: "Complete all challenges in Networking category",
+        icon: "Wifi",
         category: "CATEGORY",
         requirement: 1,
         rarity: "EPIC",
