@@ -13,9 +13,7 @@ import {
     ChevronDown,
     ChevronRight,
     X,
-    Send,
     CheckCircle,
-    XCircle,
     AlertTriangle,
     Loader2,
     Target,
@@ -29,6 +27,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FirstBloodCelebration from "@/components/FirstBloodCelebration";
 import WriteupModal from "@/components/WriteupModal";
+import TerminalFlagSubmit from "@/components/TerminalFlagSubmit";
 
 // Category configuration - consistent yellow theme
 const categoryConfig: Record<string, {
@@ -78,6 +77,12 @@ type Challenge = {
     slug: string;
     driveUrl?: string;
     linktreeUrl?: string;
+    // Challenge unlocking system
+    prerequisiteId?: string | null;
+    prerequisite?: {
+        id: string;
+        title: string;
+    } | null;
 };
 
 type Category = {
@@ -131,9 +136,6 @@ function ChallengeModal({
     isSolved: boolean;
 }) {
     const router = useRouter();
-    const [flag, setFlag] = useState("");
-    const [submitting, setSubmitting] = useState(false);
-    const [result, setResult] = useState<{ success: boolean; message: string; isFirstBlood?: boolean } | null>(null);
     const [showFirstBlood, setShowFirstBlood] = useState(false);
     const [showWriteup, setShowWriteup] = useState(false);
     const [hasSolved, setHasSolved] = useState(isSolved); // Initialize from prop
@@ -142,34 +144,6 @@ function ChallengeModal({
     useEffect(() => {
         setHasSolved(isSolved);
     }, [isSolved]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setSubmitting(true);
-        setResult(null);
-
-        try {
-            const res = await fetch("/api/submit", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ challengeId: challenge.slug, flag }),
-            });
-            const data = await res.json();
-            setResult(data);
-            if (data.success) {
-                setFlag("");
-                setHasSolved(true);
-                router.refresh(); // Refresh server data to update global UI
-                if (data.isFirstBlood) {
-                    setShowFirstBlood(true);
-                }
-            }
-        } catch {
-            setResult({ success: false, message: "Network error. Please try again." });
-        } finally {
-            setSubmitting(false);
-        }
-    };
 
     return (
         <>
@@ -425,69 +399,16 @@ function ChallengeModal({
                                 </button>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit}>
-                                <h4 style={{
-                                    fontSize: '11px',
-                                    color: 'var(--yellow)',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    marginBottom: '12px',
-                                    fontFamily: 'var(--font-heading)',
-                                }}>
-                                    Submit Flag
-                                </h4>
-                                <div style={{ display: 'flex', gap: '12px' }}>
-                                    <input
-                                        type="text"
-                                        value={flag}
-                                        onChange={(e) => setFlag(e.target.value)}
-                                        placeholder="UG0x1{...}"
-                                        disabled={submitting}
-                                        style={{
-                                            flex: 1,
-                                            padding: '12px 16px',
-                                            background: '#0d0d0d',
-                                            border: '1px solid #1a1a1a',
-                                            borderRadius: '8px',
-                                            color: 'white',
-                                            fontSize: '14px',
-                                            fontFamily: 'var(--font-mono)',
-                                        }}
-                                    />
-                                    <button
-                                        type="submit"
-                                        disabled={submitting || !flag.trim()}
-                                        className="btn btn-primary"
-                                        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-                                    >
-                                        {submitting ? <Loader2 size={16} className="spinner" /> : <Send size={16} />}
-                                        Submit
-                                    </button>
-                                </div>
-
-                                {result && (
-                                    <div style={{
-                                        marginTop: '16px',
-                                        padding: '12px 16px',
-                                        borderRadius: '8px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '12px',
-                                        background: result.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                                        border: `1px solid ${result.success ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
-                                    }}>
-                                        {result.success ? (
-                                            <CheckCircle size={20} style={{ color: '#22c55e' }} />
-                                        ) : (
-                                            <XCircle size={20} style={{ color: '#ef4444' }} />
-                                        )}
-                                        <span style={{ color: result.success ? '#22c55e' : '#ef4444', fontSize: '14px' }}>
-                                            {result.message}
-                                        </span>
-                                    </div>
-                                )}
-
-                            </form>
+                            <TerminalFlagSubmit
+                                challengeId={challenge.slug}
+                                onSuccess={(isFirstBlood) => {
+                                    setHasSolved(true);
+                                    router.refresh();
+                                    if (isFirstBlood) {
+                                        setShowFirstBlood(true);
+                                    }
+                                }}
+                            />
                         )}
                     </div>
                 </div>
@@ -548,6 +469,9 @@ export default function ChallengesPage() {
                                 slug: c.slug,
                                 driveUrl: c.driveUrl,
                                 linktreeUrl: c.linktreeUrl,
+                                // Challenge unlocking
+                                prerequisiteId: c.prerequisiteId,
+                                prerequisite: c.prerequisite,
                             })),
                         };
                     });
@@ -913,53 +837,72 @@ export default function ChallengesPage() {
                                                 flexDirection: 'column',
                                                 gap: '8px',
                                             }}>
-                                                {category.challenges.map((challenge) => (
-                                                    <button
-                                                        key={challenge.id}
-                                                        onClick={() => setSelectedChallenge({ challenge, category })}
-                                                        style={{
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            gap: '16px',
-                                                            padding: '16px 20px',
-                                                            background: '#0d0d0d',
-                                                            border: '1px solid #1a1a1a',
-                                                            borderRadius: '8px',
-                                                            cursor: 'pointer',
-                                                            textAlign: 'left',
-                                                            width: '100%',
-                                                            transition: 'border-color 0.2s',
-                                                        }}
-                                                        onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.3)'}
-                                                        onMouseLeave={(e) => e.currentTarget.style.borderColor = '#1a1a1a'}
-                                                    >
-                                                        <Target size={18} style={{ color: 'var(--yellow)', flexShrink: 0 }} />
-                                                        <div style={{ flex: 1 }}>
-                                                            <h4 style={{
-                                                                fontFamily: 'var(--font-heading)',
-                                                                fontWeight: 600,
-                                                                color: 'white',
+                                                {category.challenges.map((challenge) => {
+                                                    // Check if challenge is locked (has prerequisite that isn't solved)
+                                                    const isLocked = challenge.prerequisiteId &&
+                                                        !solvedChallengeIds.includes(challenge.prerequisiteId);
+
+                                                    return (
+                                                        <button
+                                                            key={challenge.id}
+                                                            onClick={() => !isLocked && setSelectedChallenge({ challenge, category })}
+                                                            disabled={!!isLocked}
+                                                            style={{
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                gap: '16px',
+                                                                padding: '16px 20px',
+                                                                background: isLocked ? '#080808' : '#0d0d0d',
+                                                                border: isLocked ? '1px solid #141414' : '1px solid #1a1a1a',
+                                                                borderRadius: '8px',
+                                                                cursor: isLocked ? 'not-allowed' : 'pointer',
+                                                                textAlign: 'left',
+                                                                width: '100%',
+                                                                transition: 'border-color 0.2s',
+                                                                opacity: isLocked ? 0.6 : 1,
+                                                            }}
+                                                            onMouseEnter={(e) => !isLocked && (e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.3)')}
+                                                            onMouseLeave={(e) => e.currentTarget.style.borderColor = isLocked ? '#141414' : '#1a1a1a'}
+                                                        >
+                                                            {isLocked ? (
+                                                                <Lock size={18} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
+                                                            ) : (
+                                                                <Target size={18} style={{ color: 'var(--yellow)', flexShrink: 0 }} />
+                                                            )}
+                                                            <div style={{ flex: 1 }}>
+                                                                <h4 style={{
+                                                                    fontFamily: 'var(--font-heading)',
+                                                                    fontWeight: 600,
+                                                                    color: isLocked ? 'var(--text-muted)' : 'white',
+                                                                    fontSize: '14px',
+                                                                    marginBottom: '2px',
+                                                                }}>
+                                                                    {challenge.title}
+                                                                </h4>
+                                                                <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                                                                    {isLocked ? (
+                                                                        <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                                            <Lock size={10} />
+                                                                            Solve &quot;{challenge.prerequisite?.title}&quot; first
+                                                                        </span>
+                                                                    ) : (
+                                                                        `${challenge.solves} solves`
+                                                                    )}
+                                                                </p>
+                                                            </div>
+                                                            <DifficultyBadge difficulty={challenge.difficulty} />
+                                                            <span style={{
+                                                                color: isLocked ? 'var(--text-muted)' : 'var(--yellow)',
+                                                                fontWeight: 700,
                                                                 fontSize: '14px',
-                                                                marginBottom: '2px',
+                                                                fontFamily: 'var(--font-heading)',
                                                             }}>
-                                                                {challenge.title}
-                                                            </h4>
-                                                            <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                                                                {challenge.solves} solves
-                                                            </p>
-                                                        </div>
-                                                        <DifficultyBadge difficulty={challenge.difficulty} />
-                                                        <span style={{
-                                                            color: 'var(--yellow)',
-                                                            fontWeight: 700,
-                                                            fontSize: '14px',
-                                                            fontFamily: 'var(--font-heading)',
-                                                        }}>
-                                                            {challenge.points} pts
-                                                        </span>
-                                                        <ChevronRight size={18} style={{ color: 'var(--text-muted)' }} />
-                                                    </button>
-                                                ))}
+                                                                {challenge.points} pts
+                                                            </span>
+                                                            <ChevronRight size={18} style={{ color: 'var(--text-muted)' }} />
+                                                        </button>
+                                                    );
+                                                })}
                                             </div>
                                         )}
                                     </div>

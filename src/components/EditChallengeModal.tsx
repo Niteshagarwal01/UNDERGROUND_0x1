@@ -15,6 +15,7 @@ interface Challenge {
     isHidden: boolean;
     writeup?: string | null;
     writeupUrl?: string | null;
+    prerequisiteId?: string | null;
     category?: {
         id: string;
         name: string;
@@ -30,6 +31,7 @@ interface Category {
 interface EditChallengeModalProps {
     challenge: Challenge | null;
     categories: Category[];
+    allChallenges?: Challenge[]; // For prerequisite selection
     onClose: () => void;
     onSuccess: () => void;
 }
@@ -37,6 +39,7 @@ interface EditChallengeModalProps {
 export default function EditChallengeModal({
     challenge,
     categories,
+    allChallenges = [],
     onClose,
     onSuccess,
 }: EditChallengeModalProps) {
@@ -52,6 +55,7 @@ export default function EditChallengeModal({
         linktreeUrl: "",
         writeup: "",
         writeupUrl: "",
+        prerequisiteId: "", // Challenge that must be solved first
         isActive: true,
         isHidden: false,
     });
@@ -74,6 +78,7 @@ export default function EditChallengeModal({
                 linktreeUrl: (challenge as any).linktreeUrl || "",
                 writeup: challenge.writeup || "",
                 writeupUrl: challenge.writeupUrl || "",
+                prerequisiteId: challenge.prerequisiteId || "",
                 isActive: challenge.isActive,
                 isHidden: challenge.isHidden,
             });
@@ -99,6 +104,7 @@ export default function EditChallengeModal({
                 body: JSON.stringify({
                     ...formData,
                     points: parseInt(formData.points.toString()),
+                    prerequisiteId: formData.prerequisiteId || null, // Convert empty string to null
                 }),
             });
 
@@ -275,6 +281,32 @@ export default function EditChallengeModal({
                                     disabled={loading}
                                 />
                             </div>
+                        </div>
+
+                        {/* Prerequisite Challenge (For Unlock System) */}
+                        <div className="input-group">
+                            <label className="input-label">
+                                🔒 Prerequisite Challenge <span style={{ color: "var(--text-muted)", fontWeight: "normal" }}>(Optional)</span>
+                            </label>
+                            <select
+                                className="input"
+                                value={formData.prerequisiteId}
+                                onChange={(e) => setFormData({ ...formData, prerequisiteId: e.target.value })}
+                                disabled={loading}
+                            >
+                                <option value="">No prerequisite (unlocked by default)</option>
+                                {allChallenges
+                                    .filter(c => c.id !== challenge?.id) // Can't be its own prerequisite
+                                    .map((c) => (
+                                        <option key={c.id} value={c.id}>
+                                            {c.title} ({c.difficulty})
+                                        </option>
+                                    ))
+                                }
+                            </select>
+                            <p style={{ fontSize: "12px", color: "var(--text-muted)", marginTop: "4px" }}>
+                                Users must solve the prerequisite challenge to unlock this one.
+                            </p>
                         </div>
 
                         {/* Flag (Optional - only update if provided) */}

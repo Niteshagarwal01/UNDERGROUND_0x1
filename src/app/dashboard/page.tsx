@@ -27,6 +27,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShareStatsModal from "@/components/ShareStatsModal";
 import TeamAchievementsDisplay from "@/components/TeamAchievementsDisplay";
+import IncidentTimeline from "@/components/IncidentTimeline";
 
 interface UserData {
     id: string;
@@ -77,6 +78,23 @@ export default function DashboardPage() {
     const [copied, setCopied] = useState(false);
     const [shareModalOpen, setShareModalOpen] = useState(false);
 
+    // Challenges data for timeline
+    interface TimelineCategory {
+        id: string;
+        name: string;
+        slug: string;
+        challenges: {
+            id: string;
+            title: string;
+            slug: string;
+            difficulty: string;
+            points: number;
+            solves: number;
+        }[];
+    }
+    const [categories, setCategories] = useState<TimelineCategory[]>([]);
+    const [solvedChallengeIds, setSolvedChallengeIds] = useState<string[]>([]);
+
     // Join requests (for team leaders)
     interface JoinRequest {
         id: string;
@@ -113,6 +131,31 @@ export default function DashboardPage() {
     useEffect(() => {
         if (isLoaded && clerkUser) {
             fetchUser();
+            // Fetch challenges for timeline
+            fetch("/api/challenges")
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.categories) {
+                        setCategories(data.categories.map((cat: any) => ({
+                            id: cat.id,
+                            name: cat.name,
+                            slug: cat.slug,
+                            challenges: cat.challenges.map((c: any) => ({
+                                id: c.id,
+                                title: c.title,
+                                slug: c.slug,
+                                difficulty: c.difficulty,
+                                points: c.points,
+                                solves: c.solveCount || 0,
+                            })),
+                        })));
+                        // Use solvedChallengeIds directly from API response
+                        if (data.solvedChallengeIds) {
+                            setSolvedChallengeIds(data.solvedChallengeIds);
+                        }
+                    }
+                })
+                .catch(err => console.error("Failed to fetch challenges:", err));
         } else if (isLoaded) {
             setLoading(false);
         }
@@ -587,6 +630,17 @@ export default function DashboardPage() {
                                             ))}
                                         </div>
                                     )}
+                                </div>
+                            )}
+
+                            {/* Incident Timeline - Metro Map Progress */}
+                            {categories.length > 0 && (
+                                <div style={{ marginBottom: '32px' }}>
+                                    <IncidentTimeline
+                                        categories={categories}
+                                        solvedChallengeIds={solvedChallengeIds}
+                                        onChallengeClick={(slug) => window.location.href = `/challenges?open=${slug}`}
+                                    />
                                 </div>
                             )}
 

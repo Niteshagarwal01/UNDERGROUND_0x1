@@ -250,6 +250,29 @@ UG0x1{...}
 
 ---
 
+## 🗺️ Development Roadmap
+
+### Phase 1: Core Gamification 🎮
+- [ ] **Challenge Unlocking System** - Progressive unlock based on difficulty
+- [ ] **Terminal-Style Flag Submission** - Hacker-aesthetic UI with animations
+- [ ] **Incident Timeline** - Delhi Metro map visualization for progress
+
+### Phase 2: Polish & UX ✨
+- [ ] **Enhanced Skeleton Loaders** - Smooth loading states everywhere
+- [ ] **Sound Effects & Animations** - Flag sounds, hover effects, confetti
+- [ ] **Quick Wins** - Unsolved filter, copy flag format, search shortcuts
+
+### Phase 3: Competition Features 🏆
+- [ ] **Live Competition Mode** - Start/end times, countdown, challenge releases
+- [ ] **Optional Hints System** - Point-based or time-based hint unlocks
+- [ ] **Difficulty Indicators** - Show solve rate percentages
+
+### Phase 4: Social Features 💬
+- [ ] **Team Chat** - Built-in messaging or Discord integration
+- [ ] **Enhanced Activity Feed** - More event types and real-time updates
+
+---
+
 ## ⚠️ Disclaimer
 
 > This is an **independent cybersecurity education competition**. It is NOT affiliated with Delhi Metro Rail Corporation (DMRC). All scenarios are purely fictional and designed for educational purposes only.

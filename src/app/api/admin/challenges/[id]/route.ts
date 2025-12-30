@@ -111,6 +111,7 @@ export async function PUT(
             difficulty,
             points,
             flag, // Plain text flag (will be hashed)
+            prerequisiteId, // Challenge that must be solved first
             isActive,
             isHidden,
         } = body;
@@ -169,6 +170,7 @@ export async function PUT(
                 linktreeUrl: body.linktreeUrl?.trim() || null,
                 writeup: body.writeup || null,
                 writeupUrl: body.writeupUrl || null,
+                prerequisiteId: prerequisiteId || null, // Challenge unlock system
                 isActive: isActive !== undefined ? isActive : existingChallenge.isActive,
                 isHidden: isHidden !== undefined ? isHidden : existingChallenge.isHidden,
             },

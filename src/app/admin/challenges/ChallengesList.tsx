@@ -316,6 +316,7 @@ export default function ChallengesList({
                 <EditChallengeModal
                     challenge={selectedChallenge}
                     categories={categories}
+                    allChallenges={challenges}
                     onClose={() => setSelectedChallenge(null)}
                     onSuccess={handleSuccess}
                 />

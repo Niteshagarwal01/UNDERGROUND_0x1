@@ -126,6 +126,11 @@ model Challenge {
   writeup       String?         // Markdown content for solution writeup
   writeupUrl    String?         // External URL for writeup (optional)
   
+  // Challenge Unlocking System (Linear: Medium → Hard → God-Level)
+  prerequisiteId String?        // Challenge that must be solved first
+  prerequisite   Challenge?     @relation("ChallengeDependency", fields: [prerequisiteId], references: [id])
+  unlocks        Challenge[]    @relation("ChallengeDependency")  // Challenges this unlocks
+  
   // Status
   isActive      Boolean     @default(true)
   isHidden      Boolean     @default(false)
@@ -148,6 +153,7 @@ model Challenge {
   @@index([categoryId])
   @@index([difficulty])
   @@index([isActive, isHidden])
+  @@index([prerequisiteId])
 }
 
 model ChallengeFile {
