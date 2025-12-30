@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import EditChallengeModal from "@/components/EditChallengeModal";
 import CreateChallengeModal from "@/components/CreateChallengeModal";
 import { SolveRateBadge } from "@/components/SolveRateIndicator";
+import { getLineColor as getMetroLineColor } from "@/lib/constants";
 
 interface Challenge {
     id: string;
@@ -49,14 +50,7 @@ export default function ChallengesList({
     const [loadingChallenge, setLoadingChallenge] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
-    const getDifficultyColor = (difficulty: string) => {
-        switch (difficulty) {
-            case 'MEDIUM': return 'var(--yellow)';
-            case 'HARD': return '#f97316';
-            case 'GOD_LEVEL': return '#ef4444';
-            default: return 'var(--text-secondary)';
-        }
-    };
+
 
     const handleEdit = async (challengeId: string) => {
         setLoadingChallenge(true);
@@ -151,7 +145,7 @@ export default function ChallengesList({
                                 gap: "12px",
                             }}
                         >
-                            <span style={{ color: category.color || "var(--yellow)" }}>{category.name}</span>
+                            <span style={{ color: getMetroLineColor(category.slug).primary }}>{category.name}</span>
                             <span style={{ fontSize: "14px", color: "var(--text-muted)", fontWeight: 400 }}>
                                 ({categoryChallenges.length} challenges)
                             </span>
@@ -192,19 +186,17 @@ export default function ChallengesList({
                                                         fontSize: "11px",
                                                         padding: "4px 10px",
                                                         borderRadius: "4px",
-                                                        background: `rgba(${challenge.difficulty === "MEDIUM"
-                                                            ? "250, 204, 21"
+                                                        background: `rgba(250, 204, 21, ${challenge.difficulty === "MEDIUM"
+                                                            ? 0.1
                                                             : challenge.difficulty === "HARD"
-                                                                ? "249, 115, 22"
-                                                                : "239, 68, 68"
-                                                            }, 0.1)`,
-                                                        color: getDifficultyColor(challenge.difficulty),
-                                                        border: `1px solid rgba(${challenge.difficulty === "MEDIUM"
-                                                            ? "250, 204, 21"
+                                                                ? 0.15
+                                                                : 0.2})`,
+                                                        color: "var(--yellow)",
+                                                        border: `1px solid rgba(250, 204, 21, ${challenge.difficulty === "MEDIUM"
+                                                            ? 0.3
                                                             : challenge.difficulty === "HARD"
-                                                                ? "249, 115, 22"
-                                                                : "239, 68, 68"
-                                                            }, 0.2)`,
+                                                                ? 0.4
+                                                                : 0.5})`,
                                                         textTransform: "uppercase",
                                                         fontWeight: 600,
                                                     }}

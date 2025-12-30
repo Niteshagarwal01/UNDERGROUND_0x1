@@ -29,6 +29,7 @@ import FirstBloodCelebration from "@/components/FirstBloodCelebration";
 import WriteupModal from "@/components/WriteupModal";
 import TerminalFlagSubmit from "@/components/TerminalFlagSubmit";
 import SolveRateIndicator from "@/components/SolveRateIndicator";
+import { getLineColor } from "@/lib/constants";
 
 // Category configuration - consistent yellow theme
 const categoryConfig: Record<string, {
@@ -148,6 +149,8 @@ function ChallengeModal({
         setHasSolved(isSolved);
     }, [isSolved]);
 
+    const lineColor = getLineColor(category.id);
+
     return (
         <>
             <FirstBloodCelebration
@@ -174,7 +177,7 @@ function ChallengeModal({
                 <div
                     style={{
                         background: '#0a0a0a',
-                        border: '1px solid var(--yellow)',
+                        border: `1px solid ${lineColor.primary}`,
                         borderRadius: '12px',
                         maxWidth: '600px',
                         width: '100%',
@@ -210,12 +213,12 @@ function ChallengeModal({
                                 width: '44px',
                                 height: '44px',
                                 borderRadius: '10px',
-                                background: 'rgba(250, 204, 21, 0.1)',
-                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                background: lineColor.secondary,
+                                border: `1px solid ${lineColor.primary}40`,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                color: 'var(--yellow)',
+                                color: lineColor.primary,
                             }}>
                                 <category.icon size={22} />
                             </div>
@@ -230,7 +233,7 @@ function ChallengeModal({
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
                             <DifficultyBadge difficulty={challenge.difficulty} />
-                            <span style={{ color: 'var(--yellow)', fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
+                            <span style={{ color: lineColor.primary, fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
                                 {challenge.points} pts
                             </span>
                             <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
@@ -250,7 +253,7 @@ function ChallengeModal({
                         <div style={{ marginBottom: '28px' }}>
                             <h4 style={{
                                 fontSize: '11px',
-                                color: 'var(--yellow)',
+                                color: lineColor.primary,
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.1em',
                                 marginBottom: '12px',
@@ -268,7 +271,7 @@ function ChallengeModal({
                             <div style={{ marginBottom: '28px' }}>
                                 <h4 style={{
                                     fontSize: '11px',
-                                    color: 'var(--yellow)',
+                                    color: lineColor.primary,
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     marginBottom: '12px',
@@ -287,21 +290,21 @@ function ChallengeModal({
                                                 alignItems: 'center',
                                                 gap: '12px',
                                                 padding: '12px 16px',
-                                                background: 'rgba(250, 204, 21, 0.05)',
-                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                background: `${lineColor.primary}0D`, // 0.05 opacity
+                                                border: `1px solid ${lineColor.primary}33`, // 0.2 opacity
                                                 borderRadius: '8px',
-                                                color: 'var(--yellow)',
+                                                color: lineColor.primary,
                                                 textDecoration: 'none',
                                                 fontSize: '14px',
                                                 transition: 'all 0.2s',
                                             }}
                                             onMouseEnter={(e) => {
-                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)';
-                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.4)';
+                                                e.currentTarget.style.background = `${lineColor.primary}1A`; // 0.1 opacity
+                                                e.currentTarget.style.borderColor = `${lineColor.primary}66`; // 0.4 opacity
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.05)';
-                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.2)';
+                                                e.currentTarget.style.background = `${lineColor.primary}0D`;
+                                                e.currentTarget.style.borderColor = `${lineColor.primary}33`;
                                             }}
                                         >
                                             <FolderOpen size={18} />
@@ -319,21 +322,21 @@ function ChallengeModal({
                                                 alignItems: 'center',
                                                 gap: '12px',
                                                 padding: '12px 16px',
-                                                background: 'rgba(250, 204, 21, 0.05)',
-                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                background: `${lineColor.primary}0D`,
+                                                border: `1px solid ${lineColor.primary}33`,
                                                 borderRadius: '8px',
-                                                color: 'var(--yellow)',
+                                                color: lineColor.primary,
                                                 textDecoration: 'none',
                                                 fontSize: '14px',
                                                 transition: 'all 0.2s',
                                             }}
                                             onMouseEnter={(e) => {
-                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)';
-                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.4)';
+                                                e.currentTarget.style.background = `${lineColor.primary}1A`;
+                                                e.currentTarget.style.borderColor = `${lineColor.primary}66`;
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.currentTarget.style.background = 'rgba(250, 204, 21, 0.05)';
-                                                e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.2)';
+                                                e.currentTarget.style.background = `${lineColor.primary}0D`;
+                                                e.currentTarget.style.borderColor = `${lineColor.primary}33`;
                                             }}
                                         >
                                             <LinkIcon size={18} />
@@ -380,12 +383,12 @@ function ChallengeModal({
                             <div style={{
                                 textAlign: 'center',
                                 padding: '32px',
-                                background: 'rgba(34, 197, 94, 0.05)',
-                                border: '1px solid rgba(34, 197, 94, 0.2)',
+                                background: 'rgba(250, 204, 21, 0.05)',
+                                border: '1px solid rgba(250, 204, 21, 0.2)',
                                 borderRadius: '8px',
                                 marginTop: '24px'
                             }}>
-                                <CheckCircle size={48} style={{ color: '#22c55e', margin: '0 auto 16px' }} />
+                                <CheckCircle size={48} style={{ color: 'var(--yellow)', margin: '0 auto 16px' }} />
                                 <h4 style={{
                                     fontFamily: 'var(--font-heading)',
                                     color: 'white',
@@ -669,6 +672,7 @@ export default function ChallengesPage() {
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 {categoriesData.map((category) => {
                                     const CategoryIcon = category.icon;
+                                    const lineColor = getLineColor(category.id);
                                     return (
                                         <div
                                             key={category.id}
@@ -679,18 +683,19 @@ export default function ChallengesPage() {
                                                 gap: '16px',
                                                 padding: '20px 24px',
                                                 cursor: 'default',
+                                                // borderRight: `2px solid ${lineColor.primary}`, // Removed as per request
                                             }}
                                         >
                                             <div style={{
                                                 width: '44px',
                                                 height: '44px',
                                                 borderRadius: '10px',
-                                                background: 'rgba(250, 204, 21, 0.1)',
-                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                background: lineColor.secondary, // Dynamic bg
+                                                border: `1px solid ${lineColor.primary}40`, // Dyamic border
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                color: 'var(--yellow)',
+                                                color: lineColor.primary, // Dynamic icon color
                                                 flexShrink: 0,
                                             }}>
                                                 <CategoryIcon size={20} />
@@ -718,17 +723,13 @@ export default function ChallengesPage() {
                                                 </p>
                                             </div>
                                             <span style={{
-                                                padding: '6px 12px',
-                                                fontSize: '11px',
-                                                fontFamily: 'var(--font-heading)',
+                                                fontSize: "13px",
+                                                fontFamily: "var(--font-heading)",
                                                 fontWeight: 600,
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.05em',
-                                                color: 'var(--yellow)',
-                                                background: 'rgba(250, 204, 21, 0.1)',
-                                                border: '1px solid rgba(250, 204, 21, 0.2)',
-                                                borderRadius: '6px',
-                                                whiteSpace: 'nowrap',
+                                                textTransform: "uppercase",
+                                                letterSpacing: "0.05em",
+                                                color: lineColor.primary,
+                                                whiteSpace: "nowrap",
                                             }}>
                                                 Upcoming
                                             </span>
@@ -757,13 +758,14 @@ export default function ChallengesPage() {
                             {filteredCategories.map((category) => {
                                 const isExpanded = expandedCategory === category.id;
                                 const CategoryIcon = category.icon;
+                                const lineColor = getLineColor(category.id);
 
                                 return (
                                     <div
                                         key={category.id}
                                         style={{
                                             background: '#0a0a0a',
-                                            border: isExpanded ? '1px solid var(--yellow)' : '1px solid #1a1a1a',
+                                            border: isExpanded ? `1px solid ${lineColor.primary}` : '1px solid #1a1a1a',
                                             borderRadius: '10px',
                                             overflow: 'hidden',
                                             transition: 'border-color 0.2s',
@@ -788,12 +790,12 @@ export default function ChallengesPage() {
                                                 width: '44px',
                                                 height: '44px',
                                                 borderRadius: '10px',
-                                                background: 'rgba(250, 204, 21, 0.1)',
-                                                border: '1px solid rgba(250, 204, 21, 0.2)',
+                                                background: lineColor.secondary,
+                                                border: `1px solid ${lineColor.primary}40`,
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                color: 'var(--yellow)',
+                                                color: lineColor.primary,
                                                 flexShrink: 0,
                                             }}>
                                                 <CategoryIcon size={20} />
@@ -872,13 +874,13 @@ export default function ChallengesPage() {
                                                                 transition: 'border-color 0.2s',
                                                                 opacity: isLocked ? 0.6 : 1,
                                                             }}
-                                                            onMouseEnter={(e) => !isLocked && (e.currentTarget.style.borderColor = 'rgba(250, 204, 21, 0.3)')}
+                                                            onMouseEnter={(e) => !isLocked && (e.currentTarget.style.borderColor = `${lineColor.primary}4D`)} // 0.3 opacity
                                                             onMouseLeave={(e) => e.currentTarget.style.borderColor = isLocked ? '#141414' : '#1a1a1a'}
                                                         >
                                                             {isLocked ? (
                                                                 <Lock size={18} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
                                                             ) : (
-                                                                <Target size={18} style={{ color: 'var(--yellow)', flexShrink: 0 }} />
+                                                                <Target size={18} style={{ color: lineColor.primary, flexShrink: 0 }} />
                                                             )}
                                                             <div style={{ flex: 1 }}>
                                                                 <h4 style={{
@@ -903,7 +905,7 @@ export default function ChallengesPage() {
                                                             </div>
                                                             <DifficultyBadge difficulty={challenge.difficulty} />
                                                             <span style={{
-                                                                color: isLocked ? 'var(--text-muted)' : 'var(--yellow)',
+                                                                color: isLocked ? 'var(--text-muted)' : lineColor.primary,
                                                                 fontWeight: 700,
                                                                 fontSize: '14px',
                                                                 fontFamily: 'var(--font-heading)',

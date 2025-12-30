@@ -19,6 +19,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import { prisma } from "@/lib/prisma";
+import { getLineColor as getMetroLineColor } from "@/lib/constants";
 
 // Category icon and subtitle mapping
 const categoryConfig: Record<string, { icon: any; subtitle: string }> = {
@@ -268,24 +269,48 @@ export default async function HomePage() {
 
           {categories.length > 0 ? (
             <div className="categories-grid">
-              {categories.map((cat) => (
-                <Link key={cat.id} href={`/challenges#${cat.id}`} className="category-card">
-                  <div className="category-icon">
-                    <cat.icon size={24} />
-                  </div>
-                  <h3 className="category-name">{cat.name}</h3>
-                  <p className="category-subtitle">{cat.subtitle}</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px', lineHeight: '1.6' }}>
-                    {cat.description}
-                  </p>
-                  <div className="category-meta">
-                    <span className="category-challenges">
-                      {cat.challenges > 0 ? `${cat.challenges} challenges` : "Coming soon"}
-                    </span>
-                    {cat.points > 0 && <span className="category-points">{cat.points} pts</span>}
-                  </div>
-                </Link>
-              ))}
+              {categories.map((cat) => {
+                const lineColor = getMetroLineColor(cat.id);
+                return (
+                  <Link
+                    key={cat.id}
+                    href={`/challenges#${cat.id}`}
+                    className="category-card"
+                    style={{
+                      // borderLeft: `4px solid ${lineColor.primary}`, // Removed as per user request
+                    }}
+                  >
+                    <div
+                      className="category-icon"
+                      style={{
+                        color: lineColor.primary,
+                        background: lineColor.secondary,
+                        border: `1px solid ${lineColor.primary}40`,
+                      }}
+                    >
+                      <cat.icon size={24} />
+                    </div>
+                    <h3 className="category-name">{cat.name}</h3>
+                    <p className="category-subtitle" style={{ color: lineColor.primary }}>{cat.subtitle}</p>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px', lineHeight: '1.6' }}>
+                      {cat.description}
+                    </p>
+                    <div className="category-meta">
+                      <span
+                        style={{
+                          color: lineColor.primary,
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          fontFamily: 'var(--font-heading)',
+                        }}
+                      >
+                        {cat.challenges > 0 ? `${cat.challenges} challenges` : "Coming soon"}
+                      </span>
+                      {cat.points > 0 && <span className="category-points">{cat.points} pts</span>}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>

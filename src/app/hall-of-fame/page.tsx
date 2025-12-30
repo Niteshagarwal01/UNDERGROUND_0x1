@@ -93,12 +93,12 @@ function formatDate(dateString: string): string {
 }
 
 function getDifficultyBadge(difficulty: string) {
-    const styles: Record<string, { bg: string; color: string; label: string }> = {
-        MEDIUM: { bg: "rgba(34, 197, 94, 0.15)", color: "#22c55e", label: "Medium" },
-        HARD: { bg: "rgba(249, 115, 22, 0.15)", color: "#f97316", label: "Hard" },
-        GOD_LEVEL: { bg: "rgba(239, 68, 68, 0.15)", color: "#ef4444", label: "God Level" }
+    const config: Record<string, { label: string; bg: string; border: string }> = {
+        MEDIUM: { label: "Medium", bg: "rgba(250, 204, 21, 0.1)", border: "rgba(250, 204, 21, 0.3)" },
+        HARD: { label: "Hard", bg: "rgba(250, 204, 21, 0.15)", border: "rgba(250, 204, 21, 0.4)" },
+        GOD_LEVEL: { label: "God Level", bg: "rgba(250, 204, 21, 0.2)", border: "rgba(250, 204, 21, 0.5)" }
     };
-    const style = styles[difficulty] || styles.MEDIUM;
+    const style = config[difficulty] || config.MEDIUM;
     return (
         <span
             style={{
@@ -107,7 +107,8 @@ function getDifficultyBadge(difficulty: string) {
                 fontSize: "11px",
                 fontWeight: 600,
                 background: style.bg,
-                color: style.color
+                color: "var(--yellow)",
+                border: `1px solid ${style.border}`
             }}
         >
             {style.label}

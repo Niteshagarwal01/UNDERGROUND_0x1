@@ -25,28 +25,7 @@ interface IncidentTimelineProps {
     onChallengeClick?: (challengeSlug: string) => void;
 }
 
-// Metro line colors matching actual Delhi Metro lines
-const lineColors: Record<string, { primary: string; secondary: string; name: string }> = {
-    // Exact slug matches
-    "osint": { primary: "#3b82f6", secondary: "rgba(59, 130, 246, 0.2)", name: "Blue Line" },
-    "forensics": { primary: "#facc15", secondary: "rgba(250, 204, 21, 0.2)", name: "Yellow Line" },
-    "cryptography": { primary: "#ef4444", secondary: "rgba(239, 68, 68, 0.2)", name: "Red Line" },
-    "crypto": { primary: "#ef4444", secondary: "rgba(239, 68, 68, 0.2)", name: "Red Line" },
-    "steganography": { primary: "#22c55e", secondary: "rgba(34, 197, 94, 0.2)", name: "Green Line" },
-    "stego": { primary: "#22c55e", secondary: "rgba(34, 197, 94, 0.2)", name: "Green Line" },
-    "web": { primary: "#a855f7", secondary: "rgba(168, 85, 247, 0.2)", name: "Violet Line" },
-    "web-security": { primary: "#a855f7", secondary: "rgba(168, 85, 247, 0.2)", name: "Violet Line" },
-    "websecurity": { primary: "#a855f7", secondary: "rgba(168, 85, 247, 0.2)", name: "Violet Line" },
-    "reverse-engineering": { primary: "#ec4899", secondary: "rgba(236, 72, 153, 0.2)", name: "Pink Line" },
-    "reverseengineering": { primary: "#ec4899", secondary: "rgba(236, 72, 153, 0.2)", name: "Pink Line" },
-    "reverse": { primary: "#ec4899", secondary: "rgba(236, 72, 153, 0.2)", name: "Pink Line" },
-    "pwn": { primary: "#f97316", secondary: "rgba(249, 115, 22, 0.2)", name: "Orange Line" },
-    "binary": { primary: "#f97316", secondary: "rgba(249, 115, 22, 0.2)", name: "Orange Line" },
-    "misc": { primary: "#06b6d4", secondary: "rgba(6, 182, 212, 0.2)", name: "Aqua Line" },
-    "miscellaneous": { primary: "#06b6d4", secondary: "rgba(6, 182, 212, 0.2)", name: "Aqua Line" },
-    "network": { primary: "#8b5cf6", secondary: "rgba(139, 92, 246, 0.2)", name: "Magenta Line" },
-    "default": { primary: "#f97316", secondary: "rgba(249, 115, 22, 0.2)", name: "Orange Line" },
-};
+import { getLineColor as getMetroLineColor } from "@/lib/constants";
 
 export default function IncidentTimeline({
     categories,
@@ -73,7 +52,7 @@ export default function IncidentTimeline({
     };
 
     const getLineColor = (slug: string) => {
-        return lineColors[slug.toLowerCase()] || lineColors.default;
+        return getMetroLineColor(slug);
     };
 
     const getCategoryProgress = (category: Category) => {
@@ -232,17 +211,7 @@ export default function IncidentTimeline({
                                         }}>
                                             {category.name}
                                         </span>
-                                        <span style={{
-                                            fontSize: "10px",
-                                            padding: "2px 8px",
-                                            borderRadius: "10px",
-                                            background: lineColor.secondary,
-                                            color: lineColor.primary,
-                                            fontWeight: 600,
-                                            textTransform: "uppercase",
-                                        }}>
-                                            {lineColor.name}
-                                        </span>
+
                                     </div>
                                     <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                                         <span style={{ fontSize: "12px", color: "#71717a" }}>
@@ -361,16 +330,9 @@ export default function IncidentTimeline({
                                                                         fontSize: "11px",
                                                                         padding: "2px 6px",
                                                                         borderRadius: "4px",
-                                                                        background: challenge.difficulty === "GOD_LEVEL"
-                                                                            ? "rgba(239, 68, 68, 0.2)"
-                                                                            : challenge.difficulty === "HARD"
-                                                                                ? "rgba(249, 115, 22, 0.2)"
-                                                                                : "rgba(250, 204, 21, 0.2)",
-                                                                        color: challenge.difficulty === "GOD_LEVEL"
-                                                                            ? "#ef4444"
-                                                                            : challenge.difficulty === "HARD"
-                                                                                ? "#f97316"
-                                                                                : "#facc15",
+                                                                        background: `rgba(250, 204, 21, ${challenge.difficulty === "GOD_LEVEL" ? 0.2 : challenge.difficulty === "HARD" ? 0.15 : 0.1})`,
+                                                                        color: "var(--yellow)",
+                                                                        border: `1px solid rgba(250, 204, 21, ${challenge.difficulty === "GOD_LEVEL" ? 0.5 : challenge.difficulty === "HARD" ? 0.4 : 0.3})`,
                                                                         fontWeight: 600,
                                                                     }}>
                                                                         {challenge.difficulty.replace("_", " ")}
@@ -392,7 +354,7 @@ export default function IncidentTimeline({
                                                                 {isSolved && (
                                                                     <div style={{
                                                                         fontSize: "10px",
-                                                                        color: "#22c55e",
+                                                                        color: lineColor.primary,
                                                                         fontWeight: 600,
                                                                         marginTop: "2px",
                                                                     }}>
