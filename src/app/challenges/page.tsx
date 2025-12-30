@@ -24,6 +24,9 @@ import {
     ExternalLink,
     FolderOpen,
     Link as LinkIcon,
+    Terminal,
+    Wifi,
+    Box,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -68,6 +71,36 @@ const categoryConfig: Record<string, {
         icon: Target,
         subtitle: "Hidden Layers",
         description: "Uncover secrets concealed within images, audio, video, and text files."
+    },
+    binary: {
+        icon: Terminal,
+        subtitle: "System Override",
+        description: "Exploit low-level vulnerabilities. Buffer overflows, ROP chains, and heap manipulation."
+    },
+    "binary-exploitation": {
+        icon: Terminal,
+        subtitle: "System Override",
+        description: "Exploit low-level vulnerabilities. Buffer overflows, ROP chains, and heap manipulation."
+    },
+    networking: {
+        icon: Wifi,
+        subtitle: "Packet Intercept",
+        description: "Analyze traffic, dissect protocols, and inspect packet captures."
+    },
+    network: {
+        icon: Wifi,
+        subtitle: "Packet Intercept",
+        description: "Analyze traffic, dissect protocols, and inspect packet captures."
+    },
+    misc: {
+        icon: Box,
+        subtitle: "Wildcard",
+        description: "Unconventional challenges involving logic, encoding, and exotic technologies."
+    },
+    miscellaneous: {
+        icon: Box,
+        subtitle: "Wildcard",
+        description: "Unconventional challenges involving logic, encoding, and exotic technologies."
     },
 };
 
