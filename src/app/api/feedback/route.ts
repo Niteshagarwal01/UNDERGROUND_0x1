@@ -7,6 +7,8 @@ const feedbackSchema = z.object({
     subject: z.string().min(5, "Subject must be at least 5 characters").max(100),
     message: z.string().min(20, "Message must be at least 20 characters").max(2000),
     rating: z.number().min(1).max(5).optional().default(5),
+    type: z.enum(["BUG", "FEATURE", "SUGGESTION", "GENERAL", "PRAISE"]).optional().default("GENERAL"),
+    priority: z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]).optional().default("MEDIUM"),
 });
 
 // POST - Submit feedback
@@ -25,7 +27,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const { subject, message, rating } = validation.data;
+        const { subject, message, rating, type, priority } = validation.data;
 
         // Get user if authenticated
         let userId: string | null = null;
@@ -44,6 +46,8 @@ export async function POST(request: NextRequest) {
                 subject: subject.trim(),
                 message: message.trim(),
                 rating,
+                type,
+                priority,
             }
         });
 
@@ -93,8 +97,11 @@ export async function GET() {
                 subject: true,
                 message: true,
                 rating: true,
+                type: true,
+                priority: true,
                 status: true,
                 adminResponse: true,
+                respondedAt: true,
                 createdAt: true,
             }
         });

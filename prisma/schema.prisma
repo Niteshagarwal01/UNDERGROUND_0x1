@@ -300,33 +300,53 @@ enum JoinRequestStatus {
 // ============================================
 
 model Feedback {
-  id            String         @id @default(cuid())
+  id            String           @id @default(cuid())
   
   // Who submitted (optional - allow anonymous)
   userId        String?
-  user          User?          @relation(fields: [userId], references: [id])
+  user          User?            @relation(fields: [userId], references: [id])
   
   // Feedback content
   subject       String
   message       String
-  rating        Int            @default(5)  // 1-5 star rating
+  rating        Int              @default(5)  // 1-5 star rating
+  type          FeedbackType     @default(GENERAL)
+  priority      FeedbackPriority @default(MEDIUM)
   
   // Status for admin tracking
-  status        FeedbackStatus @default(NEW)
+  status        FeedbackStatus   @default(NEW)
   adminResponse String?
+  respondedAt   DateTime?        // When admin responded
   
   // Timestamps
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
   
   @@index([status, createdAt])
   @@index([userId])
+  @@index([type])
+  @@index([priority])
 }
 
 enum FeedbackStatus {
   NEW
   REVIEWED
   RESOLVED
+}
+
+enum FeedbackType {
+  BUG
+  FEATURE
+  SUGGESTION
+  GENERAL
+  PRAISE
+}
+
+enum FeedbackPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
 }
 
 // ============================================
