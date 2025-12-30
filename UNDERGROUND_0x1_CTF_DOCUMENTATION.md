@@ -168,7 +168,7 @@ Each **FLAG** you recover represents a critical piece of the compromise puzzle.
 
 ### Objective
 
-Reconstruct the complete attack narrative by recovering all intelligence fragments (flags) across five operational domains:
+Reconstruct the complete attack narrative by recovering all intelligence fragments (flags) across six operational domains:
 
 ```
                     ┌─────────────────────┐
@@ -176,30 +176,24 @@ Reconstruct the complete attack narrative by recovering all intelligence fragmen
                     │   INTELLIGENCE MAP  │
                     └──────────┬──────────┘
                                │
-       ┌───────────┬───────────┼───────────┬───────────┐
-       │           │           │           │           │
-       ▼           ▼           ▼           ▼           ▼
-   ┌───────┐   ┌───────┐   ┌───────┐   ┌───────┐   ┌───────┐
-   │ OSINT │   │FORENS.│   │CRYPTO │   │  REV  │   │  WEB  │
-   │       │   │       │   │       │   │  ENG  │   │  SEC  │
-   └───┬───┘   └───┬───┘   └───┬───┘   └───┬───┘   └───┬───┘
-       │           │           │           │           │
-    ┌──┼──┐     ┌──┼──┐     ┌──┼──┐     ┌──┼──┐     ┌──┼──┐
-    │  │  │     │  │  │     │  │  │     │  │  │     │  │  │
-    M  H  G     M  H  G     M  H  G     M  H  G     M  H  G
-    
-    M = Medium | H = Hard | G = God-Level
+       ┌───────┬───────┬───────┼───────┬───────┬───────┐
+       │       │       │       │       │       │       │
+       ▼       ▼       ▼       ▼       ▼       ▼       ▼
+   ┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐
+   │OSINT ││FORENS││CRYPTO││ REV  ││ WEB  ││STEGO │
+   └──────┘└──────┘└──────┘└──────┘└──────┘└──────┘
 ```
 
-### Total Challenges: 15
+### Challenge Categories
 
-| Category | Medium | Hard | God-Level |
-|----------|--------|------|-----------|
-| OSINT | 1 | 1 | 1 |
-| Forensics | 1 | 1 | 1 |
-| Cryptography | 1 | 1 | 1 |
-| Reverse Engineering | 1 | 1 | 1 |
-| Web Security | 1 | 1 | 1 |
+| Category | Codename | Description |
+|----------|----------|-------------|
+| OSINT | Ghost Corridors | Open source intelligence gathering |
+| Forensics | Signal Black | Digital forensics and analysis |
+| Cryptography | Fare Matrix | Encryption and cipher breaking |
+| Reverse Engineering | Token Forge | Binary analysis |
+| Web Security | OCC Portal | Web application exploitation |
+| Steganography | Hidden Layers | Hidden data in media files |
 
 ---
 
@@ -383,38 +377,46 @@ Simulated replicas of DMRC internal portals used for operations management. Vuln
 
 ---
 
+### 6. Steganography — "Hidden Layers"
+
+**Domain Focus:** Information hiding techniques within various media formats including images, audio, video, and documents.
+
+**Operational Context:**
+The threat actor concealed exfiltrated data within innocuous-looking files that passed through security scanning undetected. Analyzing metadata, file structure, and hidden channels reveals the covert communication methods.
+
+**Skill Requirements:**
+- Image forensics (LSB, DCT analysis)
+- Audio spectrum analysis
+- File carving and format analysis
+- Metadata extraction
+- Encoding detection and reversal
+- Statistical steganalysis
+
+**Difficulty Progression:**
+
+| Level | Challenge | Description |
+|-------|-----------|-------------|
+| **Medium** | Pixel Perfect | Extract data hidden in image LSB channels |
+| **Hard** | Sound Waves | Decode message hidden in audio spectrogram |
+| **God-Level** | Deep Cover | Multi-layer steganography with encryption |
+
+---
+
 ## SCORING MATRIX
 
 ### Point Values
 
-| Difficulty | Base Points | Time Bonus (First 3 Solves) |
-|------------|-------------|----------------------------|
-| **Medium** | 300 pts | +50 / +30 / +15 |
-| **Hard** | 500 pts | +100 / +60 / +30 |
-| **God-Level** | 800 pts | +200 / +120 / +60 |
-
-### Maximum Points
-
-```
-Category Breakdown:
-├── OSINT:              300 + 500 + 800 = 1,600 pts
-├── Forensics:          300 + 500 + 800 = 1,600 pts  
-├── Cryptography:       300 + 500 + 800 = 1,600 pts
-├── Reverse Eng:        300 + 500 + 800 = 1,600 pts
-└── Web Security:       300 + 500 + 800 = 1,600 pts
-                                          ─────────
-                        TOTAL BASE:       8,000 pts
-                        
-First Blood Bonus Pool:               +1,755 pts max
-                                          ─────────
-                        MAXIMUM:          9,755 pts
-```
+| Difficulty | Base Points | First Blood Bonus |
+|------------|-------------|-------------------|
+| **Medium** | 100-300 pts | +20 pts |
+| **Hard** | 300-500 pts | +25 pts |
+| **God-Level** | 500-800 pts | +50 pts |
 
 ### Scoring Rules
 
-1. **Dynamic Scoring:** NOT used. Points are fixed to maintain difficulty integrity.
-2. **Partial Credit:** Not available. Only complete, correct flags score.
-3. **Time Bonus:** First three solvers per challenge receive bonus points.
+1. **Fixed Scoring:** Points are set per challenge to maintain difficulty integrity.
+2. **First Blood:** First team to solve gets bonus points.
+3. **Partial Credit:** Not available. Only complete, correct flags score.
 4. **Tie-Breaking:** Earlier final submission time wins.
 
 ---
