@@ -11,6 +11,7 @@ interface User {
     totalPoints: number;
     solvedCount: number;
     isTeamLeader: boolean;
+    isBanned: boolean; // Added
     team: {
         id: string;
         name: string;
@@ -24,6 +25,7 @@ interface Team {
     solvedCount: number;
     rank: number | null;
     inviteCode: string;
+    isBanned: boolean; // Added
     members: { id: string }[];
 }
 
@@ -75,6 +77,92 @@ export default function AdminUsersPage() {
             }
         } catch {
             setMessage({ type: "error", text: "Failed to update role" });
+        } finally {
+            setUpdating(null);
+        }
+    };
+
+
+
+    // New Handlers
+    const handleBanTeam = async (teamId: string, teamName: string, currentBanStatus: boolean) => {
+        if (!confirm(`Are you sure you want to ${currentBanStatus ? "UNBAN" : "BAN"} team "${teamName}"? This will also ban all its members.`)) return;
+
+        setUpdating(teamId);
+        setMessage(null);
+        try {
+            const res = await fetch(`/api/admin/teams/${teamId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ isBanned: !currentBanStatus }),
+            });
+            const json = await res.json();
+            if (json.success) {
+                setMessage({ type: "success", text: json.message || "Team status updated" });
+                fetchData();
+            } else {
+                setMessage({ type: "error", text: json.message });
+            }
+        } catch {
+            setMessage({ type: "error", text: "Failed to update team ban status" });
+        } finally {
+            setUpdating(null);
+        }
+    };
+
+    const handleDeleteTeam = async (teamId: string, teamName: string) => {
+        if (!confirm(`Are you sure you want to DELETE team "${teamName}"? This action cannot be undone.`)) return;
+
+        // Double confirm
+        if (!confirm(`Seriously, delete "${teamName}"? All data will be lost.`)) return;
+
+        setUpdating(teamId);
+        setMessage(null);
+        try {
+            const res = await fetch(`/api/admin/teams/${teamId}`, {
+                method: "DELETE",
+            });
+            const json = await res.json();
+            if (json.success) {
+                setMessage({ type: "success", text: json.message || "Team deleted" });
+                fetchData();
+            } else {
+                setMessage({ type: "error", text: json.message });
+            }
+        } catch {
+            setMessage({ type: "error", text: "Failed to delete team" });
+        } finally {
+            setUpdating(null);
+        }
+    };
+
+    const handleBanUser = async (userId: string, username: string, currentBanStatus: boolean) => {
+        // Implement User Ban similar to role change or separate endpoint
+        // For simplicity reusing PUT /api/admin/users if it supports it, or separate
+        if (!confirm(`Are you sure you want to ${currentBanStatus ? "UNBAN" : "BAN"} user "${username}"?`)) return;
+
+        setUpdating(userId);
+        try {
+            // Note: Currently /api/admin/users PUT only handles role. 
+            // We need to update that endpoint or create a new one.
+            // Let's assume we update /api/admin/users to handle isBanned.
+            const res = await fetch("/api/admin/users", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userId, isBanned: !currentBanStatus }),
+            });
+            const json = await res.json();
+            if (json.success) {
+                setMessage({ type: "success", text: json.message || "User status updated" });
+                // Optimistic update
+                setUsers(users.map(u => u.id === userId ? { ...u, isBanned: !currentBanStatus } : u));
+                // Also refresh to be safe
+                fetchData();
+            } else {
+                setMessage({ type: "error", text: json.message });
+            }
+        } catch {
+            setMessage({ type: "error", text: "Failed to ban/unban user" });
         } finally {
             setUpdating(null);
         }
@@ -237,9 +325,10 @@ export default function AdminUsersPage() {
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                         {user.role !== 'USER' && <Crown size={14} style={{ color: 'var(--yellow)' }} />}
                                         <div>
-                                            <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '14px' }}>
+                                            <div style={{ fontWeight: 600, color: user.isBanned ? '#ef4444' : 'var(--text-primary)', fontSize: '14px', textDecoration: user.isBanned ? 'line-through' : 'none' }}>
                                                 {user.username}
                                                 {user.isTeamLeader && <span style={{ color: 'var(--yellow)', marginLeft: '6px', fontSize: '10px' }}>(Leader)</span>}
+                                                {user.isBanned && <span style={{ color: '#ef4444', marginLeft: '6px', fontSize: '10px' }}>(BANNED)</span>}
                                             </div>
                                             <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{user.email}</div>
                                         </div>
@@ -277,27 +366,41 @@ export default function AdminUsersPage() {
                                     {user.totalPoints}
                                 </td>
                                 <td style={{ padding: '16px', textAlign: 'center' }}>
-                                    {user.team && (
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                                         <button
-                                            onClick={() => handleRemoveFromTeam(user.id, user.username)}
+                                            onClick={() => handleBanUser(user.id, user.username, user.isBanned)}
                                             disabled={updating === user.id}
-                                            title="Remove from team"
+                                            title={user.isBanned ? "Unban User" : "Ban User"}
                                             style={{
-                                                padding: '6px 10px',
-                                                fontSize: '11px',
+                                                padding: '6px',
                                                 borderRadius: '4px',
-                                                border: '1px solid rgba(239, 68, 68, 0.3)',
-                                                background: 'rgba(239, 68, 68, 0.1)',
-                                                color: '#ef4444',
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '4px'
+                                                border: `1px solid ${user.isBanned ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
+                                                background: user.isBanned ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                                                color: user.isBanned ? '#22c55e' : '#ef4444',
+                                                cursor: 'pointer'
                                             }}
                                         >
-                                            <UserMinus size={14} />
+                                            {user.isBanned ? <Shield size={14} /> : <UserMinus size={14} />}
                                         </button>
-                                    )}
+
+                                        {user.team && (
+                                            <button
+                                                onClick={() => handleRemoveFromTeam(user.id, user.username)}
+                                                disabled={updating === user.id}
+                                                title="Remove from team"
+                                                style={{
+                                                    padding: '6px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(250, 204, 21, 0.3)',
+                                                    background: 'rgba(250, 204, 21, 0.1)',
+                                                    color: 'var(--yellow)',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <X size={14} />
+                                            </button>
+                                        )}
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -384,6 +487,43 @@ export default function AdminUsersPage() {
                                     </td>
                                     <td style={{ padding: '16px', textAlign: 'right', color: 'var(--text-secondary)' }}>
                                         {team.solvedCount}
+                                    </td>
+                                    <td style={{ padding: '16px', textAlign: 'center' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                                            {/* Ban Team */}
+                                            <button
+                                                onClick={() => handleBanTeam(team.id, team.name, team.isBanned)}
+                                                disabled={updating === team.id}
+                                                title={team.isBanned ? "Unban Team" : "Ban Team"}
+                                                style={{
+                                                    padding: '6px',
+                                                    borderRadius: '4px',
+                                                    border: `1px solid ${team.isBanned ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
+                                                    background: team.isBanned ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                                                    color: team.isBanned ? '#22c55e' : '#ef4444',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <Shield size={14} />
+                                            </button>
+
+                                            {/* Delete Team */}
+                                            <button
+                                                onClick={() => handleDeleteTeam(team.id, team.name)}
+                                                disabled={updating === team.id}
+                                                title="Delete Team"
+                                                style={{
+                                                    padding: '6px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                                                    background: 'rgba(239, 68, 68, 0.1)',
+                                                    color: '#ef4444',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <X size={14} />
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))

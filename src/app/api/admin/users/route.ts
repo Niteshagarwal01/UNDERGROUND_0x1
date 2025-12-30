@@ -100,14 +100,29 @@ export async function PUT(request: NextRequest) {
         }
 
         const body = await request.json();
-        const { userId, role } = body;
+        const { userId, role, isBanned } = body;
 
-        // Validate role
-        if (!["USER", "MODERATOR", "ADMIN"].includes(role)) {
-            return NextResponse.json(
-                { success: false, message: "Invalid role" },
-                { status: 400 }
-            );
+        if (!userId) {
+            return NextResponse.json({ success: false, message: "User ID required" }, { status: 400 });
+        }
+
+        const updateData: any = {};
+
+        // Handle Role Update
+        if (role) {
+            if (!["USER", "MODERATOR", "ADMIN"].includes(role)) {
+                return NextResponse.json({ success: false, message: "Invalid role" }, { status: 400 });
+            }
+            updateData.role = role;
+        }
+
+        // Handle Ban Status Update
+        if (typeof isBanned === "boolean") {
+            updateData.isBanned = isBanned;
+        }
+
+        if (Object.keys(updateData).length === 0) {
+            return NextResponse.json({ success: false, message: "No fields to update. Provide 'role' or 'isBanned'." }, { status: 400 });
         }
 
         // Find user to update
@@ -123,11 +138,12 @@ export async function PUT(request: NextRequest) {
         }
 
         const oldRole = userToUpdate.role;
+        const oldBanStatus = userToUpdate.isBanned;
 
-        // Update user role
+        // Update user
         const updatedUser = await prisma.user.update({
             where: { id: userId },
-            data: { role },
+            data: updateData,
             include: {
                 team: {
                     select: {
@@ -139,18 +155,31 @@ export async function PUT(request: NextRequest) {
         });
 
         // Log admin action
+        let actionDetails = "";
+        let actionType = "UPDATE_USER";
+
+        if (isBanned !== undefined && isBanned !== oldBanStatus) {
+            actionType = isBanned ? "BAN_USER" : "UNBAN_USER";
+            actionDetails = `${isBanned ? "Banned" : "Unbanned"} user ${updatedUser.username}`;
+        } else if (role && role !== oldRole) {
+            actionType = "UPDATE_USER_ROLE";
+            actionDetails = `Changed ${updatedUser.username} role from ${oldRole} to ${role}`;
+        } else {
+            actionDetails = `Updated user ${updatedUser.username}`;
+        }
+
         logAdminAction(
             adminCheck.adminId!,
-            "UPDATE_USER_ROLE",
+            actionType,
             "USER",
             userId,
-            `Changed ${updatedUser.username} role from ${oldRole} to ${role}`,
+            actionDetails,
             request
         );
 
         return NextResponse.json({
             success: true,
-            message: `User role updated to ${role}`,
+            message: `User ${updatedUser.username} updated successfully.`,
             user: updatedUser,
         });
     } catch (error) {

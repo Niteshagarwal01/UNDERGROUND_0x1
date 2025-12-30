@@ -18,6 +18,8 @@ import {
     Loader2,
     Target,
     Clock,
+    Zap, // Added Zap
+    Share2,
     BookOpen,
     ExternalLink,
     FolderOpen,
@@ -246,6 +248,24 @@ function ChallengeModal({
                                 />
                             )}
                         </div>
+
+                        {/* Bonus Points Info */}
+                        {/* Bonus Points Calculation */}
+                        {(() => {
+                            const baseBonus = challenge.points >= 800 ? 200 : challenge.points >= 500 ? 100 : 50;
+                            const b1 = baseBonus;
+                            const b2 = Math.floor(baseBonus * 0.6);
+                            const b3 = Math.floor(baseBonus * 0.3);
+
+                            return (
+                                <div style={{ marginTop: '16px', padding: '10px', background: 'rgba(250, 204, 21, 0.05)', borderRadius: '8px', fontSize: '12px', color: 'var(--yellow)', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid rgba(250, 204, 21, 0.1)' }}>
+                                    <Zap size={14} fill="currentColor" fillOpacity={0.2} />
+                                    <span>
+                                        <strong>Early Solve Bonus:</strong> 1st (+{b1}), 2nd (+{b2}), 3rd (+{b3}) pts!
+                                    </span>
+                                </div>
+                            );
+                        })()}
                     </div>
 
                     {/* Body */}

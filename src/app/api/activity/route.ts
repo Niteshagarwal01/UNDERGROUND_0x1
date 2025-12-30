@@ -6,10 +6,19 @@ export const dynamic = "force-dynamic";
 // GET: Get recent activity feed
 export async function GET() {
     try {
-        // Get recent solves with first blood info
+        // Get recent solves with first blood info (filtered)
         const recentSolves = await prisma.solve.findMany({
             take: 20,
             orderBy: { solvedAt: 'desc' },
+            where: {
+                team: {
+                    members: {
+                        none: {
+                            role: { in: ['ADMIN', 'MODERATOR'] }
+                        }
+                    }
+                }
+            },
             include: {
                 team: {
                     select: { id: true, name: true }
@@ -46,11 +55,40 @@ export async function GET() {
             .filter(s => s.isFirstBlood)
             .slice(0, 10);
 
-        // Get stats
+        // Get stats (filtered)
         const stats = {
-            totalSolves: await prisma.solve.count(),
-            totalFirstBloods: await prisma.solve.count({ where: { isFirstBlood: true } }),
-            totalTeams: await prisma.team.count(),
+            totalSolves: await prisma.solve.count({
+                where: {
+                    team: {
+                        members: {
+                            none: {
+                                role: { in: ['ADMIN', 'MODERATOR'] }
+                            }
+                        }
+                    }
+                }
+            }),
+            totalFirstBloods: await prisma.solve.count({
+                where: {
+                    isFirstBlood: true,
+                    team: {
+                        members: {
+                            none: {
+                                role: { in: ['ADMIN', 'MODERATOR'] }
+                            }
+                        }
+                    }
+                }
+            }),
+            totalTeams: await prisma.team.count({
+                where: {
+                    members: {
+                        none: {
+                            role: { in: ['ADMIN', 'MODERATOR'] }
+                        }
+                    }
+                }
+            }),
             recentSolvesCount: recentSolves.length
         };
 

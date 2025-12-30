@@ -30,9 +30,9 @@ const iconMap: Record<string, LucideIcon> = {
 // Yellow/black theme with varying intensity based on rarity
 const rarityColors = {
     COMMON: {
-        bg: "rgba(255, 255, 255, 0.03)",
-        border: "rgba(255, 255, 255, 0.1)",
-        text: "#666666",
+        bg: "rgba(250, 204, 21, 0.03)", // Very subtle yellow
+        border: "rgba(250, 204, 21, 0.1)",
+        text: "rgba(250, 204, 21, 0.6)", // Muted yellow
     },
     RARE: {
         bg: "rgba(250, 204, 21, 0.06)",

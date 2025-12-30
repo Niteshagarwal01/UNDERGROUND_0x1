@@ -43,6 +43,7 @@ model User {
   writeups      Writeup[]
   
   role          Role     @default(USER)
+  isBanned      Boolean  @default(false)
 
   @@index([clerkId])
   @@index([teamId])
@@ -64,7 +65,9 @@ model Team {
   // Stats
   totalPoints   Int      @default(0)
   solvedCount   Int      @default(0)
-  rank          Int?
+  
+  // Status
+  isBanned      Boolean  @default(false)
   
   // Timestamps
   createdAt     DateTime @default(now())
