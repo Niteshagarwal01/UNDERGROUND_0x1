@@ -25,7 +25,6 @@ export async function GET(
                 avatarUrl: true,
                 totalPoints: true,
                 solvedCount: true,
-                rank: true,
                 createdAt: true,
                 _count: {
                     select: { members: true }
@@ -67,16 +66,12 @@ export async function GET(
         // Calculate team rank if not admin team
         let teamRank: number | null = null;
         if (!isAdminTeam) {
-            if (team.rank) {
-                teamRank = team.rank;
-            } else {
-                const teamsWithHigherPoints = await prisma.team.count({
-                    where: {
-                        totalPoints: { gt: team.totalPoints }
-                    }
-                });
-                teamRank = teamsWithHigherPoints + 1;
-            }
+            const teamsWithHigherPoints = await prisma.team.count({
+                where: {
+                    totalPoints: { gt: team.totalPoints }
+                }
+            });
+            teamRank = teamsWithHigherPoints + 1;
         }
 
         // Get first bloods with details

@@ -65,7 +65,6 @@ export async function GET() {
                 name: true,
                 totalPoints: true,
                 solvedCount: true,
-                rank: true,
                 inviteCode: true,
                 members: {
                     select: { id: true }

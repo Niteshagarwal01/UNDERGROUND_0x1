@@ -114,12 +114,12 @@ export async function GET(request: NextRequest) {
                 });
                 const headers = ["ID", "Name", "Total Points", "Solved Count", "Rank", "Member Count", "Members", "Created At"];
                 csv = headers.join(",") + "\n";
-                csv += teams.map(t => [
+                csv += teams.map((t, index) => [
                     escapeCSV(t.id),
                     escapeCSV(t.name),
                     escapeCSV(t.totalPoints),
                     escapeCSV(t.solvedCount),
-                    escapeCSV(t.rank || ""),
+                    escapeCSV(index + 1),
                     escapeCSV(t.members.length),
                     escapeCSV(t.members.map(m => m.username).join("; ")),
                     escapeCSV(formatDate(t.createdAt))

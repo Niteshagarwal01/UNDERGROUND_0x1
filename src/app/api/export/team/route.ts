@@ -54,6 +54,14 @@ export async function GET(request: NextRequest) {
         }
 
         const team = user.team;
+
+        // Calculate rank dynamically
+        const rank = await prisma.team.count({
+            where: {
+                totalPoints: { gt: team.totalPoints },
+            },
+        }) + 1;
+
         const format = request.nextUrl.searchParams.get("format") || "json";
 
         // Prepare export data
@@ -61,7 +69,7 @@ export async function GET(request: NextRequest) {
             exportedAt: new Date().toISOString(),
             team: {
                 name: team.name,
-                rank: team.rank,
+                rank: rank,
                 totalPoints: team.totalPoints,
                 solvedCount: team.solvedCount,
                 memberCount: team.members.length,
@@ -94,7 +102,7 @@ export async function GET(request: NextRequest) {
             const csvLines = [
                 "UNDERGROUND_0x1 CTF - Team Export",
                 `Team: ${team.name}`,
-                `Rank: #${team.rank || "N/A"}`,
+                `Rank: #${rank}`,
                 `Total Points: ${team.totalPoints}`,
                 `Total Solves: ${team.solvedCount}`,
                 `Exported: ${exportData.exportedAt}`,

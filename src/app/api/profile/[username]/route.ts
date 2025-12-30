@@ -33,7 +33,6 @@ export async function GET(
                         name: true,
                         totalPoints: true,
                         solvedCount: true,
-                        rank: true,
                         members: {
                             select: {
                                 role: true
@@ -154,6 +153,17 @@ export async function GET(
             userRank = usersWithHigherPoints + 1;
         }
 
+        // Calculate team rank if user has a team and not admin
+        let teamRank: number | null = null;
+        if (user.team && !shouldHideRankAndAchievements) {
+            const teamsWithHigherPoints = await prisma.team.count({
+                where: {
+                    totalPoints: { gt: user.team.totalPoints }
+                }
+            });
+            teamRank = teamsWithHigherPoints + 1;
+        }
+
         // Count first bloods for user's team
         let firstBloodCount = 0;
         if (user.team) {
@@ -183,7 +193,7 @@ export async function GET(
                     name: user.team.name,
                     totalPoints: user.team.totalPoints,
                     solvedCount: user.team.solvedCount,
-                    rank: shouldHideRankAndAchievements ? null : user.team.rank,
+                    rank: teamRank,
                     memberCount: user.team._count.members,
                     firstBloodCount
                 } : null,

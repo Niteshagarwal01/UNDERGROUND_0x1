@@ -20,7 +20,7 @@ async function checkIsAdmin() {
 // DELETE: Delete a team
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const { isAdmin, error, adminId } = await checkIsAdmin();
@@ -28,7 +28,8 @@ export async function DELETE(
             return NextResponse.json({ success: false, message: error }, { status: 403 });
         }
 
-        const teamId = params.id;
+        const { id } = await params;
+        const teamId = id;
         const team = await prisma.team.findUnique({ where: { id: teamId } });
 
         if (!team) {
@@ -51,7 +52,7 @@ export async function DELETE(
 
         // Submissions, Solves, Certificates usually cascade delete if relation is set up that way.
         // Let's assume standard cascade or error. Safe bet is deleting team now.
-        
+
         // Actually, we should check if Solves/Submissions hinder deletion. 
         // Typically in this codebase, we want to Keep solves? No, if team is deleted, solves should go.
         // We will attempt delete.
@@ -71,7 +72,7 @@ export async function DELETE(
 // PATCH: Ban/Unban Team (and its members?)
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const { isAdmin, error, adminId } = await checkIsAdmin();
@@ -79,7 +80,8 @@ export async function PATCH(
             return NextResponse.json({ success: false, message: error }, { status: 403 });
         }
 
-        const teamId = params.id;
+        const { id } = await params;
+        const teamId = id;
         const body = await request.json();
         const { isBanned } = body;
 
@@ -89,18 +91,18 @@ export async function PATCH(
 
         const team = await prisma.team.update({
             where: { id: teamId },
-            data: { 
+            data: {
                 // We don't have isBanned on Team yet? I just added it.
             }
         });
-        
+
         // Wait, I can't write code that uses a field I just pushed if I haven't verified it's there. 
         // But I trust my previous step. 
-        
+
         // Updating team ban status.
         // Should this also ban all members? 
         // Strict moderation: Yes.
-        
+
         const updatedTeam = await prisma.team.update({
             where: { id: teamId },
             data: { isBanned } // usage of new field
@@ -113,11 +115,11 @@ export async function PATCH(
         });
 
         logAdminAction(
-            adminId!, 
-            isBanned ? "BAN_TEAM" : "UNBAN_TEAM", 
-            "TEAM", 
-            teamId, 
-            `${isBanned ? "Banned" : "Unbanned"} team ${updatedTeam.name} and all members`, 
+            adminId!,
+            isBanned ? "BAN_TEAM" : "UNBAN_TEAM",
+            "TEAM",
+            teamId,
+            `${isBanned ? "Banned" : "Unbanned"} team ${updatedTeam.name} and all members`,
             request
         );
 
