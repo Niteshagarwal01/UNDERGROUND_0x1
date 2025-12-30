@@ -72,12 +72,7 @@ const categoryConfig: Record<string, {
         subtitle: "Hidden Layers",
         description: "Uncover secrets concealed within images, audio, video, and text files."
     },
-    binary: {
-        icon: Terminal,
-        subtitle: "System Override",
-        description: "Exploit low-level vulnerabilities. Buffer overflows, ROP chains, and heap manipulation."
-    },
-    "binary-exploitation": {
+    pwn: {
         icon: Terminal,
         subtitle: "System Override",
         description: "Exploit low-level vulnerabilities. Buffer overflows, ROP chains, and heap manipulation."
@@ -87,17 +82,7 @@ const categoryConfig: Record<string, {
         subtitle: "Packet Intercept",
         description: "Analyze traffic, dissect protocols, and inspect packet captures."
     },
-    network: {
-        icon: Wifi,
-        subtitle: "Packet Intercept",
-        description: "Analyze traffic, dissect protocols, and inspect packet captures."
-    },
     misc: {
-        icon: Box,
-        subtitle: "Wildcard",
-        description: "Unconventional challenges involving logic, encoding, and exotic technologies."
-    },
-    miscellaneous: {
         icon: Box,
         subtitle: "Wildcard",
         description: "Unconventional challenges involving logic, encoding, and exotic technologies."
