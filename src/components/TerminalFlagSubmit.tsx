@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Loader2, CheckCircle, XCircle } from "lucide-react";
+import { useSound } from "@/lib/sounds";
 
 interface TerminalFlagSubmitProps {
     challengeId: string;
@@ -25,6 +26,7 @@ export default function TerminalFlagSubmit({
     const [terminalLines, setTerminalLines] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
+    const { playSuccess, playError, playFirstBlood } = useSound();
 
     // Auto-scroll terminal to bottom when new lines are added
     useEffect(() => {
@@ -103,6 +105,13 @@ export default function TerminalFlagSubmit({
                 setResult(data);
                 setFlag("");
 
+                // Play success sound
+                if (data.isFirstBlood) {
+                    playFirstBlood();
+                } else {
+                    playSuccess();
+                }
+
                 // Trigger success callback after animation
                 setTimeout(() => {
                     onSuccess(data.isFirstBlood || false);
@@ -117,6 +126,7 @@ export default function TerminalFlagSubmit({
                 addLineInstant(`│  ${(data.message || "Invalid flag").substring(0, 36)}`.padEnd(40) + "│");
                 addLineInstant("└──────────────────────────────────────┘");
                 setResult(data);
+                playError(); // Play error sound
             }
         } catch (error) {
             clearInterval(progressInterval);

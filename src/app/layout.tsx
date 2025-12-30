@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import MobileNavbar from "@/components/MobileNavbar";
+import KeyboardShortcutProvider from "@/components/KeyboardShortcutProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,8 +56,10 @@ export default function RootLayout({
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         </head>
         <body className="antialiased">
-          <MobileNavbar />
-          {children}
+          <KeyboardShortcutProvider>
+            <MobileNavbar />
+            {children}
+          </KeyboardShortcutProvider>
         </body>
       </html>
     </ClerkProvider>
