@@ -93,10 +93,14 @@ export async function GET() {
             0
         );
 
+        // Get total teams count for solve rate calculation
+        const totalTeams = await prisma.team.count();
+
         return NextResponse.json({
             success: true,
             totalChallenges,
             totalPoints,
+            totalTeams,
             categories: categoriesWithSolveStatus,
             solvedChallengeIds, // Also return separately for convenience
         });

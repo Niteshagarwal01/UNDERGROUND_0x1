@@ -25,15 +25,17 @@ async function getChallenges() {
             orderBy: { order: 'asc' }
         });
 
-        return { challenges, categories };
+        const totalTeams = await prisma.team.count();
+
+        return { challenges, categories, totalTeams };
     } catch (error) {
         console.error("Error fetching challenges:", error);
-        return { challenges: [], categories: [] };
+        return { challenges: [], categories: [], totalTeams: 0 };
     }
 }
 
 export default async function AdminChallengesPage() {
-    const { challenges, categories } = await getChallenges();
+    const { challenges, categories, totalTeams } = await getChallenges();
 
     return (
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
@@ -106,7 +108,7 @@ export default async function AdminChallengesPage() {
             </div>
 
             {/* Challenges by Category - contains Create button inside */}
-            <ChallengesList challenges={challenges} categories={categories} />
+            <ChallengesList challenges={challenges} categories={categories} totalTeams={totalTeams} />
         </div>
     );
 }

@@ -28,6 +28,7 @@ import Footer from "@/components/Footer";
 import FirstBloodCelebration from "@/components/FirstBloodCelebration";
 import WriteupModal from "@/components/WriteupModal";
 import TerminalFlagSubmit from "@/components/TerminalFlagSubmit";
+import SolveRateIndicator from "@/components/SolveRateIndicator";
 
 // Category configuration - consistent yellow theme
 const categoryConfig: Record<string, {
@@ -127,6 +128,7 @@ function ChallengeModal({
     isAuthenticated,
     hasTeam,
     isSolved,
+    totalTeams,
 }: {
     challenge: Challenge;
     category: Category;
@@ -134,6 +136,7 @@ function ChallengeModal({
     isAuthenticated: boolean;
     hasTeam: boolean;
     isSolved: boolean;
+    totalTeams: number;
 }) {
     const router = useRouter();
     const [showFirstBlood, setShowFirstBlood] = useState(false);
@@ -233,6 +236,12 @@ function ChallengeModal({
                             <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
                                 {challenge.solves} solves
                             </span>
+                            {totalTeams > 0 && (
+                                <SolveRateIndicator
+                                    solves={challenge.solves}
+                                    totalTeams={totalTeams}
+                                />
+                            )}
                         </div>
                     </div>
 
@@ -441,6 +450,7 @@ export default function ChallengesPage() {
     const [solvedChallengeIds, setSolvedChallengeIds] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
+    const [totalTeams, setTotalTeams] = useState(0);
 
     // Fetch challenges from API
     useEffect(() => {
@@ -478,6 +488,7 @@ export default function ChallengesPage() {
                     setCategoriesData(transformed);
                     setTotalChallenges(data.totalChallenges || 0);
                     setTotalPoints(data.totalPoints || 0);
+                    setTotalTeams(data.totalTeams || 0);
                     if (transformed.length > 0) {
                         setExpandedCategory(transformed[0].id);
                     }
@@ -899,6 +910,13 @@ export default function ChallengesPage() {
                                                             }}>
                                                                 {challenge.points} pts
                                                             </span>
+                                                            {!isLocked && totalTeams > 0 && (
+                                                                <SolveRateIndicator
+                                                                    solves={challenge.solves}
+                                                                    totalTeams={totalTeams}
+                                                                    compact
+                                                                />
+                                                            )}
                                                             <ChevronRight size={18} style={{ color: 'var(--text-muted)' }} />
                                                         </button>
                                                     );
@@ -921,7 +939,8 @@ export default function ChallengesPage() {
                     onClose={() => setSelectedChallenge(null)}
                     isAuthenticated={isLoaded && !!user}
                     hasTeam={hasTeam}
-                    isSolved={solvedChallengeIds.includes(selectedChallenge.challenge.id)} // Pass ID match
+                    isSolved={solvedChallengeIds.includes(selectedChallenge.challenge.id)}
+                    totalTeams={totalTeams}
                 />
             )}
 

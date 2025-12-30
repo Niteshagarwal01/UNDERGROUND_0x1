@@ -5,6 +5,7 @@ import { Edit, EyeOff, Plus, Trash2, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import EditChallengeModal from "@/components/EditChallengeModal";
 import CreateChallengeModal from "@/components/CreateChallengeModal";
+import { SolveRateBadge } from "@/components/SolveRateIndicator";
 
 interface Challenge {
     id: string;
@@ -34,11 +35,13 @@ interface Category {
 interface ChallengesListProps {
     challenges: Challenge[];
     categories: Category[];
+    totalTeams?: number;
 }
 
 export default function ChallengesList({
     challenges,
     categories,
+    totalTeams = 0,
 }: ChallengesListProps) {
     const router = useRouter();
     const [selectedChallenge, setSelectedChallenge] = useState<Challenge | null>(null);
@@ -252,6 +255,12 @@ export default function ChallengesList({
                                                 <span>
                                                     Solves: <strong>{challenge.solveCount}</strong>
                                                 </span>
+                                                {totalTeams > 0 && (
+                                                    <SolveRateBadge
+                                                        solves={challenge.solveCount}
+                                                        totalTeams={totalTeams}
+                                                    />
+                                                )}
                                                 <span>
                                                     Attempts: <strong>{challenge.attemptCount}</strong>
                                                 </span>
