@@ -13,11 +13,11 @@ import {
     Sparkles,
     Heart,
     MessageCircle,
-    ChevronDown,
     Clock,
     CheckCircle,
     AlertCircle,
-    History
+    History,
+    AlertTriangle
 } from "lucide-react";
 
 interface PastFeedback {
@@ -34,18 +34,18 @@ interface PastFeedback {
 }
 
 const feedbackTypes = [
-    { value: "BUG", label: "Bug Report", icon: Bug, color: "#ef4444" },
-    { value: "FEATURE", label: "Feature Request", icon: Lightbulb, color: "#3b82f6" },
-    { value: "SUGGESTION", label: "Suggestion", icon: Sparkles, color: "#8b5cf6" },
-    { value: "GENERAL", label: "General", icon: MessageCircle, color: "#6b7280" },
-    { value: "PRAISE", label: "Praise", icon: Heart, color: "#22c55e" },
+    { value: "BUG", label: "Bug Report", icon: Bug },
+    { value: "FEATURE", label: "Feature Request", icon: Lightbulb },
+    { value: "SUGGESTION", label: "Suggestion", icon: Sparkles },
+    { value: "GENERAL", label: "General", icon: MessageCircle },
+    { value: "PRAISE", label: "Praise", icon: Heart },
 ];
 
 const priorityLevels = [
-    { value: "LOW", label: "Low", color: "#6b7280" },
-    { value: "MEDIUM", label: "Medium", color: "#f59e0b" },
-    { value: "HIGH", label: "High", color: "#f97316" },
-    { value: "CRITICAL", label: "Critical", color: "#ef4444" },
+    { value: "LOW", label: "Low" },
+    { value: "MEDIUM", label: "Medium" },
+    { value: "HIGH", label: "High" },
+    { value: "CRITICAL", label: "Critical" },
 ];
 
 const ratingLabels = ["Poor", "Fair", "Good", "Great", "Excellent"];
@@ -113,15 +113,6 @@ export default function FeedbackPage() {
         }
     };
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case "NEW": return "#f97316";
-            case "REVIEWED": return "var(--yellow)";
-            case "RESOLVED": return "#22c55e";
-            default: return "var(--text-muted)";
-        }
-    };
-
     const getStatusIcon = (status: string) => {
         switch (status) {
             case "NEW": return <AlertCircle size={14} />;
@@ -139,16 +130,15 @@ export default function FeedbackPage() {
                         width: "100px",
                         height: "100px",
                         borderRadius: "50%",
-                        background: "linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05))",
+                        background: "rgba(250, 204, 21, 0.1)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         margin: "0 auto 24px",
-                        boxShadow: "0 0 40px rgba(34, 197, 94, 0.2)",
-                        animation: "pulse 2s infinite",
+                        boxShadow: "0 0 40px rgba(250, 204, 21, 0.2)",
                     }}
                 >
-                    <CheckCircle size={48} style={{ color: "#22c55e" }} />
+                    <CheckCircle size={48} style={{ color: "var(--yellow)" }} />
                 </div>
                 <h1
                     style={{
@@ -214,7 +204,7 @@ export default function FeedbackPage() {
                         width: "70px",
                         height: "70px",
                         borderRadius: "50%",
-                        background: "linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(250, 204, 21, 0.05))",
+                        background: "rgba(250, 204, 21, 0.1)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -341,7 +331,7 @@ export default function FeedbackPage() {
                                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
                                             <div>
                                                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-                                                    <TypeIcon size={16} style={{ color: typeInfo?.color }} />
+                                                    <TypeIcon size={16} style={{ color: "var(--yellow)" }} />
                                                     <h4 style={{
                                                         fontFamily: "var(--font-heading)",
                                                         fontSize: "1rem",
@@ -367,9 +357,9 @@ export default function FeedbackPage() {
                                                     fontSize: "11px",
                                                     padding: "4px 10px",
                                                     borderRadius: "4px",
-                                                    background: `${getStatusColor(fb.status)}15`,
-                                                    color: getStatusColor(fb.status),
-                                                    border: `1px solid ${getStatusColor(fb.status)}30`,
+                                                    background: "rgba(250, 204, 21, 0.1)",
+                                                    color: "var(--yellow)",
+                                                    border: "1px solid rgba(250, 204, 21, 0.2)",
                                                     textTransform: "uppercase",
                                                     fontWeight: 600,
                                                 }}
@@ -438,14 +428,18 @@ export default function FeedbackPage() {
                         <div
                             style={{
                                 padding: "12px 16px",
-                                background: "rgba(239, 68, 68, 0.1)",
-                                border: "1px solid rgba(239, 68, 68, 0.2)",
+                                background: "rgba(250, 204, 21, 0.1)",
+                                border: "1px solid rgba(250, 204, 21, 0.2)",
                                 borderRadius: "8px",
-                                color: "#ef4444",
+                                color: "var(--yellow)",
                                 marginBottom: "24px",
                                 fontSize: "14px",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "8px",
                             }}
                         >
+                            <AlertTriangle size={16} />
                             {error}
                         </div>
                     )}
@@ -479,9 +473,9 @@ export default function FeedbackPage() {
                                                 gap: "8px",
                                                 padding: "10px 16px",
                                                 borderRadius: "8px",
-                                                border: `1px solid ${isSelected ? type.color : "var(--black-border)"}`,
-                                                background: isSelected ? `${type.color}15` : "var(--black-base)",
-                                                color: isSelected ? type.color : "var(--text-secondary)",
+                                                border: `1px solid ${isSelected ? "var(--yellow)" : "var(--black-border)"}`,
+                                                background: isSelected ? "rgba(250, 204, 21, 0.1)" : "var(--black-base)",
+                                                color: isSelected ? "var(--yellow)" : "var(--text-secondary)",
                                                 cursor: "pointer",
                                                 fontSize: "13px",
                                                 fontWeight: 500,
@@ -521,9 +515,9 @@ export default function FeedbackPage() {
                                                 flex: 1,
                                                 padding: "10px 12px",
                                                 borderRadius: "8px",
-                                                border: `1px solid ${isSelected ? priority.color : "var(--black-border)"}`,
-                                                background: isSelected ? `${priority.color}15` : "var(--black-base)",
-                                                color: isSelected ? priority.color : "var(--text-secondary)",
+                                                border: `1px solid ${isSelected ? "var(--yellow)" : "var(--black-border)"}`,
+                                                background: isSelected ? "rgba(250, 204, 21, 0.1)" : "var(--black-base)",
+                                                color: isSelected ? "var(--yellow)" : "var(--text-secondary)",
                                                 cursor: "pointer",
                                                 fontSize: "13px",
                                                 fontWeight: 500,

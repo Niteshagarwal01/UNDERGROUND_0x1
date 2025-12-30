@@ -17,7 +17,6 @@ import {
     Trash2,
     Send,
     ChevronDown,
-    ChevronUp,
     Loader2,
     RefreshCw,
     X,
@@ -72,24 +71,24 @@ interface Stats {
 }
 
 const feedbackTypes = [
-    { value: "BUG", label: "Bug", icon: Bug, color: "#ef4444" },
-    { value: "FEATURE", label: "Feature", icon: Lightbulb, color: "#3b82f6" },
-    { value: "SUGGESTION", label: "Suggestion", icon: Sparkles, color: "#8b5cf6" },
-    { value: "GENERAL", label: "General", icon: MessageCircle, color: "#6b7280" },
-    { value: "PRAISE", label: "Praise", icon: Heart, color: "#22c55e" },
+    { value: "BUG", label: "Bug", icon: Bug },
+    { value: "FEATURE", label: "Feature", icon: Lightbulb },
+    { value: "SUGGESTION", label: "Suggestion", icon: Sparkles },
+    { value: "GENERAL", label: "General", icon: MessageCircle },
+    { value: "PRAISE", label: "Praise", icon: Heart },
 ];
 
 const priorityLevels = [
-    { value: "LOW", label: "Low", color: "#6b7280" },
-    { value: "MEDIUM", label: "Medium", color: "#f59e0b" },
-    { value: "HIGH", label: "High", color: "#f97316" },
-    { value: "CRITICAL", label: "Critical", color: "#ef4444" },
+    { value: "LOW", label: "Low" },
+    { value: "MEDIUM", label: "Medium" },
+    { value: "HIGH", label: "High" },
+    { value: "CRITICAL", label: "Critical" },
 ];
 
 const statusOptions = [
-    { value: "NEW", label: "New", color: "#f97316", icon: AlertCircle },
-    { value: "REVIEWED", label: "Reviewed", color: "#facc15", icon: Clock },
-    { value: "RESOLVED", label: "Resolved", color: "#22c55e", icon: CheckCircle },
+    { value: "NEW", label: "New", icon: AlertCircle },
+    { value: "REVIEWED", label: "Reviewed", icon: Clock },
+    { value: "RESOLVED", label: "Resolved", icon: CheckCircle },
 ];
 
 export default function AdminFeedbackPage() {
@@ -219,10 +218,6 @@ export default function AdminFeedbackPage() {
         return feedbackTypes.find(t => t.value === type) || feedbackTypes[3];
     };
 
-    const getPriorityInfo = (priority: string) => {
-        return priorityLevels.find(p => p.value === priority) || priorityLevels[1];
-    };
-
     const getStatusInfo = (status: string) => {
         return statusOptions.find(s => s.value === status) || statusOptions[0];
     };
@@ -302,15 +297,15 @@ export default function AdminFeedbackPage() {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "10px",
-                                background: "rgba(249, 115, 22, 0.1)",
+                                background: "rgba(250, 204, 21, 0.1)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                                <AlertCircle size={20} style={{ color: "#f97316" }} />
+                                <AlertCircle size={20} style={{ color: "var(--yellow)" }} />
                             </div>
                             <div>
-                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "#f97316", fontFamily: "var(--font-heading)" }}>
+                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "var(--yellow)", fontFamily: "var(--font-heading)" }}>
                                     {stats.new}
                                 </div>
                             </div>
@@ -326,15 +321,15 @@ export default function AdminFeedbackPage() {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "10px",
-                                background: "rgba(34, 197, 94, 0.1)",
+                                background: "rgba(250, 204, 21, 0.1)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                                <CheckCircle size={20} style={{ color: "#22c55e" }} />
+                                <CheckCircle size={20} style={{ color: "var(--yellow)" }} />
                             </div>
                             <div>
-                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "#22c55e", fontFamily: "var(--font-heading)" }}>
+                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "var(--yellow)", fontFamily: "var(--font-heading)" }}>
                                     {stats.resolved}
                                 </div>
                             </div>
@@ -374,15 +369,15 @@ export default function AdminFeedbackPage() {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "10px",
-                                background: "rgba(139, 92, 246, 0.1)",
+                                background: "rgba(250, 204, 21, 0.1)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                                <TrendingUp size={20} style={{ color: "#8b5cf6" }} />
+                                <TrendingUp size={20} style={{ color: "var(--yellow)" }} />
                             </div>
                             <div>
-                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "#8b5cf6", fontFamily: "var(--font-heading)" }}>
+                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "var(--yellow)", fontFamily: "var(--font-heading)" }}>
                                     {stats.responseRate}%
                                 </div>
                             </div>
@@ -398,15 +393,15 @@ export default function AdminFeedbackPage() {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "10px",
-                                background: "rgba(239, 68, 68, 0.1)",
+                                background: "rgba(250, 204, 21, 0.1)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
-                                <AlertTriangle size={20} style={{ color: "#ef4444" }} />
+                                <AlertTriangle size={20} style={{ color: "var(--yellow)" }} />
                             </div>
                             <div>
-                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "#ef4444", fontFamily: "var(--font-heading)" }}>
+                                <div style={{ fontSize: "1.75rem", fontWeight: 700, color: "var(--yellow)", fontFamily: "var(--font-heading)" }}>
                                     {stats.priorityDistribution.critical}
                                 </div>
                             </div>
@@ -644,9 +639,9 @@ export default function AdminFeedbackPage() {
                                 onClick={clearFilters}
                                 style={{
                                     padding: "10px 16px",
-                                    background: "rgba(239, 68, 68, 0.1)",
-                                    color: "#ef4444",
-                                    border: "1px solid rgba(239, 68, 68, 0.2)",
+                                    background: "rgba(250, 204, 21, 0.1)",
+                                    color: "var(--yellow)",
+                                    border: "1px solid rgba(250, 204, 21, 0.2)",
                                     borderRadius: "8px",
                                     cursor: "pointer",
                                     display: "flex",
@@ -680,7 +675,6 @@ export default function AdminFeedbackPage() {
                 ) : (
                     feedback.map((item) => {
                         const typeInfo = getTypeInfo(item.type);
-                        const priorityInfo = getPriorityInfo(item.priority);
                         const statusInfo = getStatusInfo(item.status);
                         const TypeIcon = typeInfo.icon;
                         const StatusIcon = statusInfo.icon;
@@ -707,11 +701,12 @@ export default function AdminFeedbackPage() {
                                                     gap: "4px",
                                                     padding: "4px 8px",
                                                     borderRadius: "4px",
-                                                    background: `${typeInfo.color}15`,
-                                                    color: typeInfo.color,
+                                                    background: "rgba(250, 204, 21, 0.1)",
+                                                    color: "var(--yellow)",
                                                     fontSize: "11px",
                                                     fontWeight: 600,
                                                     textTransform: "uppercase",
+                                                    border: "1px solid rgba(250, 204, 21, 0.2)",
                                                 }}>
                                                     <TypeIcon size={12} />
                                                     {typeInfo.label}
@@ -721,13 +716,14 @@ export default function AdminFeedbackPage() {
                                                 <span style={{
                                                     padding: "4px 8px",
                                                     borderRadius: "4px",
-                                                    background: `${priorityInfo.color}15`,
-                                                    color: priorityInfo.color,
+                                                    background: "var(--black-base)",
+                                                    color: "var(--text-secondary)",
                                                     fontSize: "11px",
                                                     fontWeight: 600,
                                                     textTransform: "uppercase",
+                                                    border: "1px solid var(--black-border)",
                                                 }}>
-                                                    {priorityInfo.label}
+                                                    {item.priority}
                                                 </span>
 
                                                 {/* Status Badge */}
@@ -737,11 +733,12 @@ export default function AdminFeedbackPage() {
                                                     gap: "4px",
                                                     padding: "4px 8px",
                                                     borderRadius: "4px",
-                                                    background: `${statusInfo.color}15`,
-                                                    color: statusInfo.color,
+                                                    background: "rgba(250, 204, 21, 0.1)",
+                                                    color: "var(--yellow)",
                                                     fontSize: "11px",
                                                     fontWeight: 600,
                                                     textTransform: "uppercase",
+                                                    border: "1px solid rgba(250, 204, 21, 0.2)",
                                                 }}>
                                                     <StatusIcon size={12} />
                                                     {statusInfo.label}
@@ -919,7 +916,7 @@ export default function AdminFeedbackPage() {
                                                         background: "var(--black-base)",
                                                         border: "1px solid var(--black-border)",
                                                         borderRadius: "6px",
-                                                        color: statusInfo.color,
+                                                        color: "var(--yellow)",
                                                         fontSize: "13px",
                                                         fontWeight: 500,
                                                     }}
@@ -937,9 +934,9 @@ export default function AdminFeedbackPage() {
                                                 style={{
                                                     marginLeft: "auto",
                                                     padding: "8px 12px",
-                                                    background: "rgba(239, 68, 68, 0.1)",
-                                                    color: "#ef4444",
-                                                    border: "1px solid rgba(239, 68, 68, 0.2)",
+                                                    background: "rgba(250, 204, 21, 0.1)",
+                                                    color: "var(--yellow)",
+                                                    border: "1px solid rgba(250, 204, 21, 0.2)",
                                                     borderRadius: "6px",
                                                     cursor: "pointer",
                                                     display: "flex",
