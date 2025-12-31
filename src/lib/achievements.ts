@@ -115,6 +115,13 @@ export async function checkAndAwardAchievements(check: AchievementCheck): Promis
                     break;
 
                 case 'CATEGORY':
+                    // FREEZE: Only OSINT category achievement is active for now
+                    // All other category achievements are frozen until challenges are complete
+                    const allowedCategoryAchievements = ['osint-master'];
+                    if (!allowedCategoryAchievements.includes(achievement.slug)) {
+                        break; // Skip frozen category achievements
+                    }
+
                     // Check if user completed an entire category
                     if (check.categorySlug) {
                         // Map all 9 category slugs to their master achievements
