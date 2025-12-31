@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Award, Loader2 } from "lucide-react";
+import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Award, Loader2, Headphones } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
 
 export default function MobileNavbar() {
@@ -75,7 +75,7 @@ export default function MobileNavbar() {
         { href: "/leaderboard", icon: Trophy, label: "Leaderboard" },
         { href: "/hall-of-fame", icon: Flame, label: "Hall of Fame" },
         { href: "/certificates", icon: Award, label: "Certificates", auth: true },
-        { href: "/feedback", icon: MessageSquare, label: "Feedback" },
+        { href: "/support", icon: Headphones, label: "Support" },
         { href: "/chat", icon: MessageSquare, label: "Chat" },
         { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", auth: true },
     ];

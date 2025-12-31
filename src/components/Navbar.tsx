@@ -100,10 +100,10 @@ export default function Navbar() {
                         Hall of Fame
                     </Link>
                     <Link
-                        href="/feedback"
-                        className={`navbar-link ${isActive("/feedback") ? "active" : ""}`}
+                        href="/support"
+                        className={`navbar-link ${isActive("/support") ? "active" : ""}`}
                     >
-                        Feedback
+                        Support
                     </Link>
 
                     {/* Show loading state while Clerk loads */}
@@ -201,10 +201,10 @@ export default function Navbar() {
                         Hall of Fame
                     </Link>
                     <Link
-                        href="/feedback"
-                        className={`navbar-mobile-link ${isActive("/feedback") ? "active" : ""}`}
+                        href="/support"
+                        className={`navbar-mobile-link ${isActive("/support") ? "active" : ""}`}
                     >
-                        Feedback
+                        Support
                     </Link>
                     <Link
                         href="/chat"

@@ -10,9 +10,11 @@ const isPublicRoute = createRouteMatcher([
     "/challenges",
     "/leaderboard",
     "/feedback",
+    "/support",
     "/api/challenges",
     "/api/leaderboard",
     "/api/feedback",
+    "/api/ai-support",
 ]);
 
 // Define admin routes
