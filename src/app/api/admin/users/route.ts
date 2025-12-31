@@ -59,19 +59,29 @@ export async function GET() {
         });
 
         // Also fetch teams for stats
-        const teams = await prisma.team.findMany({
+        const teamsRaw = await prisma.team.findMany({
             select: {
                 id: true,
                 name: true,
                 totalPoints: true,
                 solvedCount: true,
                 inviteCode: true,
+                isBanned: true, // Include isBanned
                 members: {
                     select: { id: true }
                 }
             },
-            orderBy: { totalPoints: "desc" }
+            orderBy: [
+                { totalPoints: "desc" },
+                { updatedAt: "asc" }
+            ]
         });
+
+        // Calculate rank
+        const teams = teamsRaw.map((team, index) => ({
+            ...team,
+            rank: index + 1
+        }));
 
         return NextResponse.json({
             success: true,
