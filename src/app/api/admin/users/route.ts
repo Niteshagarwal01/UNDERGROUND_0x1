@@ -59,16 +59,14 @@ export async function GET() {
         });
 
         // Also fetch teams for stats
+        // Also fetch teams for stats - use include to avoid select/include conflict
         const teamsRaw = await prisma.team.findMany({
-            select: {
-                id: true,
-                name: true,
-                totalPoints: true,
-                solvedCount: true,
-                inviteCode: true,
-                isBanned: true, // Include isBanned
+            include: {
                 members: {
-                    select: { id: true }
+                    select: { id: true, role: true }
+                },
+                _count: {
+                    select: { solves: true }
                 }
             },
             orderBy: [
@@ -77,11 +75,27 @@ export async function GET() {
             ]
         });
 
-        // Calculate rank
-        const teams = teamsRaw.map((team, index) => ({
-            ...team,
-            rank: index + 1
-        }));
+        // Calculate rank exactly like leaderboard
+        let currentRank = 1;
+        const teams = teamsRaw.map((team) => {
+            const hasAdmin = team.members.some(m => m.role === "ADMIN" || m.role === "MODERATOR");
+
+            let rank: number | null = null;
+            if (!hasAdmin) {
+                rank = currentRank++;
+            }
+
+            return {
+                id: team.id,
+                name: team.name,
+                totalPoints: team.totalPoints,
+                solvedCount: team.solvedCount,
+                inviteCode: team.inviteCode,
+                isBanned: team.isBanned,
+                members: team.members.map(m => ({ id: m.id })), // sanitize to match interface
+                rank
+            };
+        });
 
         return NextResponse.json({
             success: true,
