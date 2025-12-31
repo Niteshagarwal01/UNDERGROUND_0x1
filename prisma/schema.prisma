@@ -36,11 +36,13 @@ model User {
   lastActive    DateTime @default(now())
   
   // Relations
-  submissions   Submission[]
-  joinRequests  JoinRequest[]
-  feedback      Feedback[]
-  achievements  UserAchievement[]
-  writeups      Writeup[]
+  submissions      Submission[]
+  joinRequests     JoinRequest[]
+  feedback         Feedback[]
+  achievements     UserAchievement[]
+  writeups         Writeup[]
+  chatMessages     ChatMessage[]
+  teamChatMessages TeamChatMessage[]
   
   role          Role     @default(USER)
   isBanned      Boolean  @default(false)
@@ -79,6 +81,7 @@ model Team {
   solves        Solve[]
   joinRequests  JoinRequest[]
   certificates  Certificate[]
+  chatMessages  TeamChatMessage[]
   
   @@index([totalPoints(sort: Desc)])
 }
@@ -589,5 +592,51 @@ model Writeup {
   
   @@unique([userId, challengeId]) // One writeup per user per challenge
   @@index([challengeId, isPublic])
+  @@index([userId])
+}
+
+// ============================================
+// CHAT MODELS
+// ============================================
+
+// Community Chat - messages auto-deleted after 2 days
+model ChatMessage {
+  id          String   @id @default(cuid())
+  
+  // Author
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  // Content
+  content     String   @db.VarChar(500)
+  
+  // Moderation
+  isDeleted   Boolean  @default(false)
+  deletedBy   String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([createdAt])
+  @@index([userId])
+}
+
+// Team Chat - messages persist forever
+model TeamChatMessage {
+  id          String   @id @default(cuid())
+  
+  // Author
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  // Team
+  teamId      String
+  team        Team     @relation(fields: [teamId], references: [id])
+  
+  // Content
+  content     String   @db.VarChar(500)
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([teamId, createdAt])
   @@index([userId])
 }

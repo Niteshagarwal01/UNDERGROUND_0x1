@@ -76,6 +76,7 @@ export default function MobileNavbar() {
         { href: "/hall-of-fame", icon: Flame, label: "Hall of Fame" },
         { href: "/certificates", icon: Award, label: "Certificates", auth: true },
         { href: "/feedback", icon: MessageSquare, label: "Feedback" },
+        { href: "/chat", icon: MessageSquare, label: "Chat" },
         { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", auth: true },
     ];
 

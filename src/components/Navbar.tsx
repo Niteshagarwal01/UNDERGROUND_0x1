@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
 import { SignedIn, SignedOut, useAuth, useClerk } from "@clerk/nextjs";
-import { LogOut, Menu, X, Flame, User, Award, Loader2 } from "lucide-react";
+import { LogOut, Menu, X, Flame, User, Award, Loader2, MessageCircle } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
 
 export default function Navbar() {
@@ -127,6 +127,14 @@ export default function Navbar() {
                             >
                                 Dashboard
                             </Link>
+                            <Link
+                                href="/chat"
+                                className={`navbar-link ${isActive("/chat") ? "active" : ""}`}
+                                style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                            >
+                                <MessageCircle size={14} />
+                                Chat
+                            </Link>
                             {dbUsername && (
                                 <Link
                                     href={`/profile/${dbUsername}`}
@@ -197,6 +205,14 @@ export default function Navbar() {
                         className={`navbar-mobile-link ${isActive("/feedback") ? "active" : ""}`}
                     >
                         Feedback
+                    </Link>
+                    <Link
+                        href="/chat"
+                        className={`navbar-mobile-link ${isActive("/chat") ? "active" : ""}`}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                    >
+                        <MessageCircle size={16} />
+                        Chat
                     </Link>
 
                     {!isLoaded ? (
