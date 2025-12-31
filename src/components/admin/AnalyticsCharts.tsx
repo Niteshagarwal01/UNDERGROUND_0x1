@@ -153,7 +153,7 @@ function BarChartComponent({ data, label }: { data: Array<{ name: string; value:
                 {label}
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                {data.slice(0, 6).map((d) => (
+                {data.map((d) => (
                     <div key={d.name} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                         <span style={{
                             fontSize: "12px",
@@ -317,7 +317,7 @@ export default function AnalyticsCharts() {
                     label="Solves by Category"
                 />
                 <BarChartComponent
-                    data={analytics.topChallenges.slice(0, 5).map(c => ({ name: c.title, value: c.solveCount }))}
+                    data={analytics.topChallenges.map(c => ({ name: c.title, value: c.solveCount }))}
                     label="Most Solved Challenges"
                 />
             </div>

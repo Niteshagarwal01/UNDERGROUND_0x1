@@ -106,9 +106,8 @@ export async function GET() {
             _sum: { solveCount: true }
         });
 
-        // Get top 10 most solved challenges
+        // Get all challenges sorted by solve count (most solved first)
         const topChallenges = await prisma.challenge.findMany({
-            take: 10,
             orderBy: { solveCount: "desc" },
             select: {
                 title: true,

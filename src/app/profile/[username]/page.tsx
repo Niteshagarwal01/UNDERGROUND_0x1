@@ -268,7 +268,7 @@ export default function ProfilePage() {
                             <div className="stat-value">
                                 {profile.rank !== null ? `#${profile.rank}` : '—'}
                             </div>
-                            <div className="stat-label">{profile.isAdmin ? 'Admin' : 'Rank'}</div>
+                            <div className="stat-label">{profile.isAdmin ? 'Admin' : 'User Rank'}</div>
                         </div>
                         <div className="stat-card">
                             <Zap size={24} className="stat-icon" />

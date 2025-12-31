@@ -140,25 +140,34 @@ export async function GET(
             }));
         }
 
-        // Calculate user rank ONLY if not admin/in admin team
+        // Calculate user rank (Individual)
         let userRank: number | null = null;
         if (!shouldHideRankAndAchievements) {
             const usersWithHigherPoints = await prisma.user.count({
                 where: {
                     totalPoints: { gt: user.totalPoints },
-                    // Exclude admins from ranking
                     role: { notIn: ["ADMIN", "MODERATOR"] }
                 }
             });
             userRank = usersWithHigherPoints + 1;
         }
 
-        // Calculate team rank if user has a team and not admin
+        // Calculate team rank (since leaderboard is team-based)
+        // Users without a team should not have a rank displayed
         let teamRank: number | null = null;
         if (user.team && !shouldHideRankAndAchievements) {
+            // Count teams with higher points (excluding admin teams)
             const teamsWithHigherPoints = await prisma.team.count({
                 where: {
-                    totalPoints: { gt: user.team.totalPoints }
+                    totalPoints: { gt: user.team.totalPoints },
+                    // Exclude teams that have admin/moderator members
+                    NOT: {
+                        members: {
+                            some: {
+                                role: { in: ["ADMIN", "MODERATOR"] }
+                            }
+                        }
+                    }
                 }
             });
             teamRank = teamsWithHigherPoints + 1;
@@ -183,7 +192,7 @@ export async function GET(
                 avatarUrl: user.avatarUrl,
                 totalPoints: user.totalPoints,
                 solvedCount: user.solvedCount,
-                rank: userRank, // null for admins
+                rank: userRank, // Return User Rank here
                 isAdmin: shouldHideRankAndAchievements, // flag for frontend
                 createdAt: user.createdAt,
                 lastActive: user.lastActive,

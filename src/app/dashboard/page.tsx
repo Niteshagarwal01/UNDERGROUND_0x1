@@ -21,7 +21,8 @@ import {
     Share2,
     User,
     Trophy,
-    Target
+    Target,
+    Hash
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -503,6 +504,13 @@ export default function DashboardPage() {
                                         <Trophy size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
                                         <div className="team-stat-value text-yellow">{userData.team.totalPoints}</div>
                                         <div className="team-stat-label">Points</div>
+                                    </div>
+                                    <div className="team-stat-box">
+                                        <Hash size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
+                                        <div className="team-stat-value">
+                                            {userData.rank ? `#${userData.rank}` : '—'}
+                                        </div>
+                                        <div className="team-stat-label">Team Rank</div>
                                     </div>
                                     <div className="team-stat-box">
                                         <Target size={20} className="text-yellow" style={{ marginBottom: '8px' }} />
