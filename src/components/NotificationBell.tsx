@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Bell, Check, Trophy, Users, UserPlus, UserMinus, Zap, Megaphone, Target, X } from "lucide-react";
 import Link from "next/link";
 
@@ -55,6 +55,29 @@ export default function NotificationBell() {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile device
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    // Prevent body scroll when mobile modal is open
+    useEffect(() => {
+        if (isOpen && isMobile) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen, isMobile]);
 
     // Fetch notifications
     const fetchNotifications = async () => {
@@ -141,65 +164,87 @@ export default function NotificationBell() {
             </button>
 
             {isOpen && (
-                <div className="notification-dropdown">
-                    <div className="notification-header">
-                        <h3>Notifications</h3>
-                        {unreadCount > 0 && (
-                            <button
-                                className="mark-all-read"
-                                onClick={markAllRead}
-                                disabled={loading}
-                            >
-                                <Check size={14} />
-                                Mark all read
-                            </button>
-                        )}
-                    </div>
+                <>
+                    {/* Mobile: Fullscreen Modal Overlay */}
+                    {isMobile && (
+                        <div
+                            className="mobile-notification-overlay"
+                            onClick={() => setIsOpen(false)}
+                        />
+                    )}
 
-                    <div className="notification-list">
-                        {notifications.length === 0 ? (
-                            <div className="notification-empty">
-                                <Bell size={32} />
-                                <p>No notifications yet</p>
-                            </div>
-                        ) : (
-                            notifications.map((notification) => {
-                                const Icon = typeIcons[notification.type] || Bell;
-                                const color = typeColors[notification.type] || "#737373";
-
-                                const content = (
-                                    <div
-                                        className={`notification-item ${!notification.isRead ? "unread" : ""}`}
-                                        onClick={() => !notification.isRead && markAsRead(notification.id)}
+                    {/* Notification Panel - Modal on mobile, Dropdown on desktop */}
+                    <div className={`notification-dropdown ${isMobile ? 'mobile-modal' : ''}`}>
+                        <div className="notification-header">
+                            <h3>Notifications</h3>
+                            <div className="notification-header-actions">
+                                {unreadCount > 0 && (
+                                    <button
+                                        className="mark-all-read"
+                                        onClick={markAllRead}
+                                        disabled={loading}
                                     >
-                                        <div
-                                            className="notification-icon"
-                                            style={{ background: `${color}20`, color }}
-                                        >
-                                            <Icon size={16} />
-                                        </div>
-                                        <div className="notification-content">
-                                            <div className="notification-title">{notification.title}</div>
-                                            <div className="notification-message">{notification.message}</div>
-                                            <div className="notification-time">{formatTimeAgo(notification.createdAt)}</div>
-                                        </div>
-                                        {!notification.isRead && (
-                                            <div className="notification-unread-dot" />
-                                        )}
-                                    </div>
-                                );
+                                        <Check size={14} />
+                                        Mark all read
+                                    </button>
+                                )}
+                                {isMobile && (
+                                    <button
+                                        className="mobile-close-btn"
+                                        onClick={() => setIsOpen(false)}
+                                        aria-label="Close notifications"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                )}
+                            </div>
+                        </div>
 
-                                return notification.link ? (
-                                    <Link key={notification.id} href={notification.link} onClick={() => setIsOpen(false)}>
-                                        {content}
-                                    </Link>
-                                ) : (
-                                    <div key={notification.id}>{content}</div>
-                                );
-                            })
-                        )}
+                        <div className="notification-list">
+                            {notifications.length === 0 ? (
+                                <div className="notification-empty">
+                                    <Bell size={32} />
+                                    <p>No notifications yet</p>
+                                </div>
+                            ) : (
+                                notifications.map((notification) => {
+                                    const Icon = typeIcons[notification.type] || Bell;
+                                    const color = typeColors[notification.type] || "#737373";
+
+                                    const content = (
+                                        <div
+                                            className={`notification-item ${!notification.isRead ? "unread" : ""}`}
+                                            onClick={() => !notification.isRead && markAsRead(notification.id)}
+                                        >
+                                            <div
+                                                className="notification-icon"
+                                                style={{ background: `${color}20`, color }}
+                                            >
+                                                <Icon size={16} />
+                                            </div>
+                                            <div className="notification-content">
+                                                <div className="notification-title">{notification.title}</div>
+                                                <div className="notification-message">{notification.message}</div>
+                                                <div className="notification-time">{formatTimeAgo(notification.createdAt)}</div>
+                                            </div>
+                                            {!notification.isRead && (
+                                                <div className="notification-unread-dot" />
+                                            )}
+                                        </div>
+                                    );
+
+                                    return notification.link ? (
+                                        <Link key={notification.id} href={notification.link} onClick={() => setIsOpen(false)}>
+                                            {content}
+                                        </Link>
+                                    ) : (
+                                        <div key={notification.id}>{content}</div>
+                                    );
+                                })
+                            )}
+                        </div>
                     </div>
-                </div>
+                </>
             )}
 
             <style jsx>{`
@@ -378,10 +423,115 @@ export default function NotificationBell() {
                 }
 
                 @media (max-width: 400px) {
-                    .notification-dropdown {
+                    .notification-dropdown:not(.mobile-modal) {
                         width: calc(100vw - 24px);
                         right: -12px;
                     }
+                }
+
+                /* Mobile Fullscreen Modal Styles */
+                .mobile-notification-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.85);
+                    z-index: 10001;
+                    animation: fadeIn 0.2s ease;
+                }
+
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+
+                @keyframes slideUp {
+                    from { 
+                        transform: translateY(100%);
+                        opacity: 0;
+                    }
+                    to { 
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+
+                .notification-dropdown.mobile-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    max-width: 100%;
+                    max-height: 100vh;
+                    height: 100%;
+                    border-radius: 0;
+                    border: none;
+                    z-index: 10002;
+                    animation: slideUp 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: env(safe-area-inset-top, 0);
+                    padding-bottom: env(safe-area-inset-bottom, 0);
+                }
+
+                .mobile-modal .notification-header {
+                    padding: 20px;
+                    padding-top: max(20px, env(safe-area-inset-top, 20px));
+                    border-bottom: 1px solid rgba(250, 204, 21, 0.15);
+                    flex-shrink: 0;
+                }
+
+                .mobile-modal .notification-header h3 {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #facc15;
+                }
+
+                .notification-header-actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+
+                .mobile-close-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    color: #a3a3a3;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+
+                .mobile-close-btn:hover,
+                .mobile-close-btn:active {
+                    background: rgba(250, 204, 21, 0.2);
+                    border-color: rgba(250, 204, 21, 0.3);
+                    color: #facc15;
+                }
+
+                .mobile-modal .notification-list {
+                    flex: 1;
+                    max-height: none;
+                    overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+                }
+
+                .mobile-modal .notification-item {
+                    padding: 16px 20px;
+                }
+
+                .mobile-modal .notification-empty {
+                    height: 100%;
+                    min-height: 300px;
                 }
             `}</style>
         </div>
