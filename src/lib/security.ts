@@ -969,5 +969,20 @@ export function getFirewallsSummary(): { id: number; name: string; description: 
         { id: 11, name: "Session Hijack Detection", description: "Detects session fingerprint changes" },
         { id: 12, name: "Content-Type Validation", description: "Prevents content-type confusion attacks" },
         { id: 13, name: "Request Size Limits", description: "Enforces endpoint-specific size limits" },
+        { id: 14, name: "Log Hardening", description: "Prevents flag/sensitive data leakage in console & network" },
     ];
 }
+
+// ============================================
+// RE-EXPORT SECURITY HARDENING
+// ============================================
+
+export {
+    redactSensitiveData,
+    redactObject,
+    sanitizeApiResponse,
+    safeErrorMessage,
+    secureErrorLog,
+    SECURITY_HEADERS,
+    initializeSecurityHardening,
+} from "./security-hardening";
