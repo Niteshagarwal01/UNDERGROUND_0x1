@@ -33,6 +33,7 @@ export default function AdminSidebar() {
         { href: "/admin/announcements", icon: Megaphone, label: "Announcements" },
         { href: "/admin/feedback", icon: MessageSquare, label: "Feedback" },
         { href: "/admin/audit-log", icon: FileText, label: "Audit Log" },
+        { href: "/admin/security", icon: ShieldAlert, label: "Security" },
         { href: "/admin/import", icon: Upload, label: "Import Data" },
         { href: "/admin/export", icon: Download, label: "Export Data" },
         { href: "/admin/settings", icon: Settings, label: "Settings" },

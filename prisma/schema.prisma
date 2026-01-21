@@ -640,3 +640,75 @@ model TeamChatMessage {
   @@index([teamId, createdAt])
   @@index([userId])
 }
+
+// ============================================
+// SECURITY: THREAT INTELLIGENCE
+// ============================================
+
+// Threat Intelligence - Persistent IP/User threat tracking
+model ThreatLog {
+  id            String      @id @default(cuid())
+  ip            String
+  userId        String?
+  
+  // Threat details
+  type          ThreatType
+  severity      Int         @default(1)  // 1-5 scale
+  details       String?
+  
+  // Outcome
+  wasBlocked    Boolean     @default(false)
+  
+  createdAt     DateTime    @default(now())
+  
+  @@index([ip, createdAt])
+  @@index([userId])
+  @@index([type])
+}
+
+// Persistent IP blocklist with escalation
+model BlockedIP {
+  id            String      @id @default(cuid())
+  ip            String      @unique
+  reason        String
+  severity      Int         @default(1)
+  
+  // Block timing
+  blockedAt     DateTime    @default(now())
+  expiresAt     DateTime?   // null = permanent
+  
+  // Escalation tracking
+  strikeCount   Int         @default(1)
+  
+  @@index([expiresAt])
+}
+
+// Track flag submissions for sharing detection
+model FlagSubmissionTrace {
+  id            String      @id @default(cuid())
+  challengeId   String
+  teamId        String
+  ip            String
+  
+  // For sharing detection
+  flagPartial   String      // Partial flag for comparison (not full flag)
+  submittedAt   DateTime    @default(now())
+  solveTimeMs   Int?        // Time from challenge view to solve
+  
+  @@index([challengeId, ip])
+  @@index([ip, teamId])
+}
+
+enum ThreatType {
+  INJECTION_ATTEMPT
+  BRUTE_FORCE
+  RATE_LIMIT_VIOLATION
+  HONEYPOT_TRIGGER
+  AUTOMATION_DETECTED
+  SUSPICIOUS_SOLVE
+  FLAG_SHARING
+  MULTI_ACCOUNT
+  ENUMERATION
+  BLOCKED_PATH
+  BLOCKED_AGENT
+}

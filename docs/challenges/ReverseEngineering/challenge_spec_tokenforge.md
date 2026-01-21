@@ -1,287 +1,178 @@
-# Reverse Engineering Challenge: Token Forge - The Magenta Line Breach
+# Token Forge: The Magenta Line Breach
 
 ## Challenge Metadata
 | Field | Value |
-|-------|-------
-| **Name** | Token Forge: The Magenta Line Breach |
+|-------|-------|
 | **Category** | Reverse Engineering |
-| **Difficulty** | MEDIUM (But No Mercy!) |
-| **Points** | 350 |
-| **Solve Time** | 3-4 hours |
+| **Difficulty** | MEDIUM |
+| **Points** | 300 |
 | **Flag** | `UG0x1{M4g3nt4_T0k3n_F0rg3d_N0ID4}` |
+| **Admin Key** | `MAGENTA-BOT-JAN-B671` |
 
 ---
 
-## Challenge Story
+## Challenge Description (For Platform)
 
-> **DMRC SECURITY ALERT - MAGENTA LINE**
->
-> **Date:** December 31, 2024  
-> **Location:** Sector 52 Metro Station, Noida (Magenta Line)
->
-> An unauthorized token generator has been discovered on the dark web, specifically 
-> targeting the Magenta Line's smart card validation system. The binary appears to 
-> generate valid AFC (Automatic Fare Collection) tokens.
->
-> Our security team recovered the binary but it's heavily obfuscated. The author 
-> left taunting messages referencing multiple metro lines.
->
-> **Your mission:** Reverse engineer the token generator, understand the validation 
-> algorithm, and extract the hidden flag.
->
-> The flag proves you understand how the attacker bypassed the fare system.
->
-> *— DMRC Cyber Intelligence Unit*
-
----
-
-## Technical Specification
-
-### Binary Details
-- **Format:** Windows PE32+ (x64) or ELF64
-- **Language:** C with inline assembly
-- **Size:** ~50KB
-- **Stripped:** Yes (no debug symbols)
-
-### Protection Layers (4 Total)
-
-#### Layer 1: String Obfuscation
-All strings are XOR encrypted with metro line names as keys:
-```c
-// Encrypted strings use different line names as keys
-char* key_red = "Dilshad Garden";      // Red Line terminus
-char* key_yellow = "Samaypur Badli";   // Yellow Line terminus  
-char* key_magenta = "Botanical Garden"; // Magenta Line terminus
-char* key_pink = "Majlis Park";        // Pink Line terminus
-char* key_violet = "Kashmere Gate";    // Violet Line terminus
 ```
+DMRC SECURITY ALERT - CLASSIFIED
 
-#### Layer 2: Control Flow Obfuscation
-- Fake conditional branches based on station codes
-- Opaque predicates using station distances
-- Function pointers stored in "route table" array
+Date: December 31, 2024
+Location: Sector 52, Noida
 
-#### Layer 3: Anti-Debugging Checks
-```c
-// Multiple anti-debug techniques
-- IsDebuggerPresent() check
-- Timing checks (QueryPerformanceCounter)
-- PEB.BeingDebugged flag check
-- INT 2D anti-debug interrupt
-- NtQueryInformationProcess checks
-```
+Our forensics team recovered an unauthorized binary from a compromised 
+ticketing terminal on the Magenta Line. Initial analysis suggests it's 
+a sophisticated token generator targeting the AFC (Automatic Fare Collection) 
+system.
 
-#### Layer 4: Custom Validation Algorithm
-The "token validation" uses metro line colors and station counts:
-```c
-// Token structure (player must reverse this)
-struct Token {
-    uint32_t line_id;        // Metro line identifier
-    uint32_t station_from;   // Source station code
-    uint32_t station_to;     // Destination station code
-    uint32_t timestamp;      // Journey timestamp
-    uint64_t checksum;       // Custom checksum algorithm
-};
+The binary simulates a legitimate DMRC booking interface, but conceals 
+a hidden authentication mechanism. Intelligence suggests the author 
+embedded their signature somewhere within the validation routines.
 
-// Checksum uses: line_color_code * station_count + XOR(station_names)
+Your mission: Reverse engineer the binary, understand the hidden 
+authentication system, and extract the author's signature (flag).
+
+⚠️ WARNING: The binary employs multiple protection mechanisms. 
+Proceed with caution.
+
+Binary: Windows PE64 / Linux ELF64
+Tools: Ghidra, IDA Pro, x64dbg
+Estimated Time: 3-5 hours
 ```
 
 ---
 
-## Metro Line Data (Embedded in Binary)
+## Technical Architecture
 
-```c
-// Delhi Metro Lines - used throughout the binary
-typedef struct {
-    char* name;
-    char* color_code;  // Hex color
-    int station_count;
-    char* terminus_1;
-    char* terminus_2;
-} MetroLine;
+### Protection Layers
 
-MetroLine lines[] = {
-    {"Red Line",     "#EE3124", 29, "Rithala", "Shaheed Sthal"},
-    {"Yellow Line",  "#FFCB05", 37, "Samaypur Badli", "HUDA City Centre"},
-    {"Blue Line",    "#0066B3", 50, "Dwarka Sector 21", "Noida Electronic City"},
-    {"Green Line",   "#00A650", 21, "Kirti Nagar", "Brigadier Hoshiar Singh"},
-    {"Violet Line",  "#8B5BA6", 34, "Kashmere Gate", "Raja Nahar Singh"},
-    {"Pink Line",    "#E31E88", 38, "Majlis Park", "Shiv Vihar"},
-    {"Magenta Line", "#BB2299", 25, "Botanical Garden", "Janakpuri West"},
-    {"Grey Line",    "#8C8C8C", 3, "Dwarka", "Najafgarh"},
-    {"Aqua Line",    "#00B5AD", 21, "Noida Sector 51", "NOIDA Depot"},
-    {"Airport Line", "#F7931E", 6, "New Delhi", "Dwarka Sector 21"}
-};
+| Layer | Mechanism | Purpose |
+|-------|-----------|---------|
+| 1 | XOR-encrypted flags | No strings visible in binary |
+| 2 | Custom VM bytecode | Obfuscated key prefix validation |
+| 3 | S-Box substitution | AES-style byte transformation |
+| 4 | Anti-debugging (15+ checks) | Detects debuggers, timing attacks |
+| 5 | Integrity verification | Magic value checks throughout |
+| 6 | Math obfuscation | Complex arithmetic instead of direct comparisons |
+| 7 | Volatile variables | Prevents compiler optimization attacks |
+
+### Key Format
+```
+MAGENTA-BOT-JAN-B671
+│       │   │   │
+│       │   │   └── Checksum (4 hex chars)
+│       │   └────── Destination: Janakpuri West (JAN)  
+│       └────────── Source: Botanical Garden (BOT)
+└────────────────── Metro Line: Magenta Line
 ```
 
----
-
-## Binary Behavior
-
-### Normal Execution:
-```
-$ ./token_forge.exe
-╔════════════════════════════════════════════════╗
-║     DMRC Token Generator v3.14159              ║
-║     [UNAUTHORIZED - EDUCATIONAL USE ONLY]      ║
-╚════════════════════════════════════════════════╝
-
-Enter your authentication key: ________
-
-[!] Invalid key. Access denied.
-[!] Hint: The key is hidden in the Magenta Line...
-```
-
-### With Correct Key:
-```
-$ ./token_forge.exe
-Enter your authentication key: ________
-
-[✓] Authentication successful!
-[✓] Token generator unlocked.
-[✓] Flag: UG0x1{M4g3nt4_T0k3n_F0rg3d_N0ID4}
-```
-
----
-
-## Solution Path
-
-### Step 1: Initial Static Analysis (30-45 min)
-1. Load in Ghidra/IDA Pro
-2. Identify main() function (look for print statements)
-3. Notice string table is encrypted
-4. Find XOR decryption routine
-
-### Step 2: String Decryption (30 min)
+### Checksum Calculation
 ```python
-# Players must identify the XOR keys from metro data
-def decrypt_string(encrypted, key):
-    return bytes([c ^ key[i % len(key)] for i, c in enumerate(encrypted)])
+magenta_color = 0xBB2299
+botanical_code = 0xB07A1CA1
+janakpuri_code = 0x4A414E41
 
-# Key discovery: look for metro terminus names in rodata
-key = b"Botanical Garden"  # Magenta Line terminus
+combined = magenta_color ^ botanical_code ^ janakpuri_code
+hash_value = nightmare_hash(combined, seed=0x20241231)
+checksum = hash_value & 0xFFFF  # = 0xB671
 ```
 
-### Step 3: Bypass Anti-Debug (45 min)
-Players can either:
-- Patch out anti-debug checks (NOP sled)
-- Use x64dbg with ScyllaHide plugin
-- Set hardware breakpoints instead of software
+---
 
-### Step 4: Understand Token Algorithm (60 min)
-```c
-// The validation function (obfuscated)
-bool validate_key(char* input) {
-    // Key format: LINE-STATION1-STATION2-CHECKSUM
-    // Example: MAGENTA-SEC52-BOTAN-A7B3
-    
-    uint32_t line_hash = hash_line_name(parts[0]);
-    uint32_t src_code = hash_station(parts[1]);
-    uint32_t dst_code = hash_station(parts[2]);
-    
-    // Checksum = (line_color_code + station_count) ^ timestamp_mask
-    uint16_t expected = calculate_checksum(line_hash, src_code, dst_code);
-    
-    return memcmp(parts[3], &expected, 2) == 0;
-}
-```
+## Solution Walkthrough
 
-### Step 5: Generate Valid Key (15 min)
+### Phase 1: Initial Reconnaissance (30 min)
+1. Run `file` and `strings` commands - observe no readable flags
+2. Load in Ghidra or IDA Pro
+3. Identify `main()` function and menu structure
+4. Locate admin panel function (`_ap`)
+
+### Phase 2: Understanding the VM (60 min)
+1. Find `_ve()` function - custom bytecode interpreter
+2. Reverse the bytecode in `_vc[]` array
+3. Understand opcodes: LOAD, XOR, JNZ, HALT
+4. Determine it validates "MAGENTA" prefix character by character
+
+### Phase 3: Bypassing Anti-Debug (45 min)
+1. Identify `_nad()` function - anti-debug master check
+2. Notice: timing checks, debugger detection, PEB flags
+3. Options:
+   - Patch return value to 0
+   - Use ScyllaHide plugin for x64dbg
+   - Static analysis only (recommended)
+
+### Phase 4: Key Validation Analysis (60 min)
+1. Find `_vnk()` - key validation function
+2. Reverse the obfuscated checks:
+   - Length check: `(len * 0x1337) ^ 0x19A60`
+   - Separator check: XOR with 0x2D (dash)
+   - Station codes: `0x424F54` = "BOT", `0x4A414E` = "JAN"
+3. Locate checksum calculation in `_cc()` and `_nh()`
+
+### Phase 5: Extracting Data (30 min)
+1. Find metro line data in `_ml[]` array
+2. Find station data in `_ms[]` array
+3. Extract: Magenta color (0xBB2299), station codes
+
+### Phase 6: Calculating Checksum (30 min)
 ```python
-# After reversing the algorithm:
-line = "MAGENTA"
-station_1 = "SEC52"      # Sector 52
-station_2 = "BOTAN"      # Botanical Garden
-checksum = calculate_checksum(line, station_1, station_2)
+def nightmare_hash(data, seed):
+    h = seed ^ len(data)
+    SBOX = [0x63, 0x7c, 0x77, ...]  # Extract from binary
+    for byte in data:
+        h ^= SBOX[byte]
+        h = (h * 0x5bd1e995) & 0xFFFFFFFF
+        h ^= h >> 15
+        h = (h * 0x1b873593) & 0xFFFFFFFF
+        h = ((h << 13) | (h >> 19)) & 0xFFFFFFFF
+        h = (h * 5 + 0xe6546b64) & 0xFFFFFFFF
+    h ^= h >> 16
+    h = (h * 0x85ebca6b) & 0xFFFFFFFF
+    h ^= h >> 13
+    h = (h * 0xc2b2ae35) & 0xFFFFFFFF
+    h ^= h >> 16
+    h ^= 0xDEADC0DE
+    h = ((h << 7) | (h >> 25)) & 0xFFFFFFFF
+    h = (h * 0x1337CAFE) & 0xFFFFFFFF
+    return h
 
-key = f"{line}-{station_1}-{station_2}-{checksum:04X}"
-print(key)  # MAGENTA-SEC52-BOTAN-A7B3
+combined = 0xBB2299 ^ 0xB07A1CA1 ^ 0x4A414E41
+checksum = nightmare_hash(combined.to_bytes(4, 'little'), 0x20241231) & 0xFFFF
+# Result: 0xB671
 ```
 
----
-
-## Anti-Solving Features
-
-1. **Red Herrings:**
-   - Fake flag: `UG0x1{y0u_f0und_th3_wr0ng_fl4g}`
-   - Invalid token algorithms that look real
-   - Decoy strings referencing wrong lines
-
-2. **Time Wasters:**
-   - Blue Line references (most common, players gravitate here)
-   - Yellow Line station data (most familiar to players)
-   - Fake "easy" path with obvious XOR key
-
-3. **Skill Checks:**
-   - Must understand PE/ELF structure
-   - Must bypass anti-debug without crashing
-   - Must reverse custom hash algorithm
-
----
-
-## Files to Create
-
-1. `token_forge.c` - Source code (kept private)
-2. `token_forge.exe` - Windows binary for players
-3. `token_forge` - Linux ELF binary (optional)
-4. `generate_token_forge.py` - Build script
-5. `SOLUTION.md` - Internal writeup
+### Phase 7: Getting the Flag
+1. Run binary
+2. Select option 5 (Admin Panel)
+3. Enter: `MAGENTA-BOT-JAN-B671`
+4. Flag revealed: `UG0x1{M4g3nt4_T0k3n_F0rg3d_N0ID4}`
 
 ---
 
 ## Build Instructions
 
+### Compile for Windows
 ```bash
-# Compile with optimizations and strip
-gcc -O2 -s -o token_forge token_forge.c -luser32
+x86_64-w64-mingw32-gcc -O2 -s -o token_forge.exe dmrc_booking.c
+```
 
-# For Windows cross-compile from Linux:
-x86_64-w64-mingw32-gcc -O2 -s -o token_forge.exe token_forge.c
-
-# Add anti-debug includes for Windows:
-# #include <windows.h>
-# #include <winternl.h>
+### Compile for Linux
+```bash
+gcc -O2 -s -o token_forge dmrc_booking.c
 ```
 
 ---
 
-## Admin Panel Entry
+## Files
 
-| Field | Value |
-|-------|-------|
-| **Title** | Token Forge: The Magenta Line Breach |
-| **Category** | Reverse Engineering |
-| **Difficulty** | MEDIUM |
-| **Points** | 350 |
-| **Flag** | `UG0x1{M4g3nt4_T0k3n_F0rg3d_N0ID4}` |
-
-### Description:
-```
-An unauthorized token generator targeting the Magenta Line's smart card system 
-has surfaced on the dark web. Reverse engineer the binary and extract the flag.
-
-The author was clever - multiple metro lines are referenced as decoys.
-Only the Magenta Line holds the secret.
-
-Format: Windows PE64 executable
-Tools: Ghidra, x64dbg, Python
-Difficulty: No mercy. 🔥
-```
+| File | Purpose |
+|------|---------|
+| `dmrc_booking.c` | Source code (INTERNAL ONLY) |
+| `TokenForge_Challenge.zip` | Distribution package for players |
 
 ---
 
-## Estimated Build Time
-| Component | Time | Complexity |
-|-----------|------|------------|
-| Core validation logic | 2 hours | Medium |
-| String obfuscation | 1 hour | Medium |
-| Anti-debug checks | 1 hour | Medium |
-| Control flow obfuscation | 1.5 hours | High |
-| Testing & polish | 1 hour | Medium |
-| **Total** | **6-7 hours** | **Medium-High** |
+## Hints (If Needed)
 
----
-
-## Proceed?
-
-Ready to create the C source code and build the binary?
+1. **Hint 1 (50 pts):** "The garden blooms at one end, the sun sets at the other"
+2. **Hint 2 (75 pts):** "Purple is just another name for it"
+3. **Hint 3 (100 pts):** "Station codes in the data structures are your friends"

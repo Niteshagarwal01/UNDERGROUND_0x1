@@ -6,11 +6,17 @@ import {
     applySecurityFirewalls,
     checkBruteForce,
     recordFailedAttempt,
-    clearBruteForce,
-    sanitizeFlag
+    sanitizeFlag,
+    getClientIP
 } from "@/lib/security";
 import { announceFirstBlood, announceSolve } from "@/lib/discord";
 import { checkAndAwardAchievements } from "@/lib/achievements";
+import { isIPBlocked, recordThreat } from "@/lib/threat-intelligence";
+import {
+    recordFlagSubmissionTrace,
+    checkFlagSharing,
+    checkSuspiciousSolve
+} from "@/lib/competition-integrity";
 
 // Database-based rate limiting
 async function checkRateLimit(userId: string): Promise<{ allowed: boolean; retryAfter?: number }> {
@@ -49,6 +55,18 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; retry
 
 export async function POST(request: NextRequest) {
     try {
+        // Get client IP for threat intelligence
+        const ip = getClientIP(request);
+
+        // SECURITY: Check if IP is blocked (persistent database check)
+        const blockCheck = await isIPBlocked(ip);
+        if (blockCheck.blocked) {
+            return NextResponse.json(
+                { success: false, message: "Access denied. Contact support if you believe this is an error." },
+                { status: 403 }
+            );
+        }
+
         const { userId: clerkId } = await auth();
 
         if (!clerkId) {
