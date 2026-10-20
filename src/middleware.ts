@@ -145,9 +145,10 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
     // Content Security Policy
+    // worker-src blob: is required for Clerk's internal blob web worker (session management)
     response.headers.set(
         "Content-Security-Policy",
-        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.com https://*.clerk.accounts.dev; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.clerk.accounts.dev https://clerk.com wss://*.clerk.accounts.dev; frame-src https://*.clerk.accounts.dev;"
+        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.com https://*.clerk.accounts.dev; worker-src blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.clerk.accounts.dev https://clerk.com wss://*.clerk.accounts.dev; frame-src https://*.clerk.accounts.dev;"
     );
 
     // Permissions policy (disable unnecessary features)
@@ -200,9 +201,15 @@ export default clerkMiddleware(async (auth, req) => {
         return response;
     }
 
-    // FIREWALL 3: Block suspicious HTTP methods on non-API routes
+    // FIREWALL 3: Block suspicious HTTP methods on non-API, non-Clerk routes
+    // Allow POST/DELETE on Clerk internal paths so sign-in/sign-out flows aren't broken
     const method = req.method;
-    if (!isApi && !["GET", "HEAD", "OPTIONS"].includes(method)) {
+    const pathname = new URL(req.url).pathname;
+    const isClerkRoute = pathname.startsWith("/sign-in") ||
+        pathname.startsWith("/sign-up") ||
+        pathname.startsWith("/__clerk") ||
+        pathname.startsWith("/enter");
+    if (!isApi && !isClerkRoute && !["GET", "HEAD", "OPTIONS", "POST"].includes(method)) {
         return new NextResponse(
             JSON.stringify({ success: false, message: "Method not allowed" }),
             { status: 405, headers: { "Content-Type": "application/json" } }
