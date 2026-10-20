@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { LogOut, Menu, X, Target, Trophy, MessageSquare, LayoutDashboard, Flame, User, Award, Loader2, Headphones } from "lucide-react";
 import NotificationBell from "@/components/NotificationBell";
@@ -10,7 +10,6 @@ import NotificationBell from "@/components/NotificationBell";
 export default function MobileNavbar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const router = useRouter();
     const { isSignedIn, isLoaded } = useAuth();
     const { signOut } = useClerk();
     const [dbUsername, setDbUsername] = useState<string | null>(null);
@@ -58,14 +57,11 @@ export default function MobileNavbar() {
     const handleSignOut = async () => {
         setSigningOut(true);
         try {
-            await signOut();
             setDbUsername(null);
             setIsOpen(false);
-            router.push("/");
-            router.refresh();
+            await signOut({ redirectUrl: "/" });
         } catch (error) {
             console.error("Sign out error:", error);
-        } finally {
             setSigningOut(false);
         }
     };

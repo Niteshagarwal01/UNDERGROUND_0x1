@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
 import { SignedIn, SignedOut, useAuth, useClerk } from "@clerk/nextjs";
 import { LogOut, Menu, X, Flame, User, Award, Loader2, MessageCircle } from "lucide-react";
@@ -9,7 +9,6 @@ import NotificationBell from "@/components/NotificationBell";
 
 export default function Navbar() {
     const pathname = usePathname();
-    const router = useRouter();
     const { isSignedIn, isLoaded } = useAuth();
     const { signOut } = useClerk();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,13 +58,10 @@ export default function Navbar() {
     const handleSignOut = async () => {
         setSigningOut(true);
         try {
-            await signOut();
             setDbUsername(null);
-            router.push("/");
-            router.refresh();
+            await signOut({ redirectUrl: "/" });
         } catch (error) {
             console.error("Sign out error:", error);
-        } finally {
             setSigningOut(false);
         }
     };
